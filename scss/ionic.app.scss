@@ -11,6 +11,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+@import "www/lib/ion-md-input/ion-md-input";
 
 $RobotoDraftFontPath: "../lib/robotodraft/fonts"; // REMINDER: edit as appropriate!
 $RobotoDraftFontName: "RobotoDraft";
@@ -106,6 +107,7 @@ $RobotoDraftFontVersion: "1.0.0";
 		    margin-top: 10px;
 				.md-input{
 					background-color: transparent;
+					padding-left:0px;
 					&:focus~.highlight{
 						background-color:$background-color;
 					}
