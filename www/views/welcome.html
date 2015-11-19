@@ -1,0 +1,35 @@
+<ion-view class="welcome-view" cache-view="false" >
+	<div class="bg_white"></div>
+	<ion-content scroll="false">
+		<div class="top-content row">
+			<div class="app-copy col col-top">
+				<div class="app-logo"><!-- <img src="/img/logo.png" width="100%"> --></div>
+			</div>
+		</div>
+		<div class="row row-bottom authFields">
+			<div class="loginTab">
+				<div class="userTab" ng-class="{'active':activeUserTab}" ng-click="userLoginForm()"><span>User</span></div>
+				<div class="monkTab" ng-class="{'active':activeMonkTab}" ng-click="monkLoginForm()"><span>Monk</span></div>
+			</div>
+			<div class="inputFields" ng-show="activeUserTab">
+				<ion-md-input placeholder="Email" highlight-color="custom" type="text"></ion-md-input>
+				<ion-md-input placeholder="Password" highlight-color="custom" type="password"></ion-md-input>
+				<a class="button button-custom button-small" ng-click="userLogin()">Login</a>
+				<a href="" class="registerWithUs">Sign Up</a>
+			</div>
+			<div class="inputFields" ng-hide="activeUserTab">
+				<ion-md-input placeholder="Email" highlight-color="custom" type="text"></ion-md-input>
+				<ion-md-input placeholder="Password" highlight-color="custom" type="password"></ion-md-input>
+				<a class="button button-custom button-small" ng-click="monkLogin()">MLogin</a>
+				<a href="" class="registerWithUs">Sign Up</a>
+			</div>
+		</div>
+		<!-- <div class="bottom-content row row-bottom">
+			<div class="col col-bottom">
+				<a class="facebook-sign-in button button-full ink" ng-click="facebookSignIn()">
+					Log in with Facebook
+				</a>
+			</div>
+		</div> -->
+	</ion-content>
+</ion-view>
