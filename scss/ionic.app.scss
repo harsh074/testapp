@@ -19,8 +19,7 @@ $RobotoDraftFontVersion: "1.0.0";
 @import "www/lib/robotodraft/sass/robotodraft.scss";    // REMINDER: edit as appropriate!
 
 .welcome-view{
-	// background-color: $background-color;
-	background-image:url('../img/bg_login.png');
+	background-image:url('../img/bg_login/bg_login-5x.png');
   background-size: cover;
   .bg_white{
     background-color: rgba(255, 255, 255, 0.12);
@@ -110,7 +109,7 @@ $RobotoDraftFontVersion: "1.0.0";
 					&:focus~.highlight{
 						background-color:$background-color;
 					}
-					&:focus~.input-label{
+					&:focus~.input-label, &.used~.input-label{
 				    -webkit-transform: translate3d(0,-60px,0) scale(.9);
 				    transform: translate3d(0,-60px,0) scale(.9);
 				    opacity: 1;
@@ -127,6 +126,7 @@ $RobotoDraftFontVersion: "1.0.0";
 					left: -1px;
 					-webkit-transform: translate3d(0,0,0);
 					transform: translate3d(0,0,0);
+					height: 1px;
 				}
 			}	
 		}
@@ -276,11 +276,24 @@ $RobotoDraftFontVersion: "1.0.0";
 }
 .menu.yprofile span i {
 	color:#67D5E4;
+  position: relative;
+  padding-right: 50px;
 }
 .menu.setting span i {
 	color:#9389FF;
 }
-
+.ion-yogi-profile:before{
+	content:'';
+	background-image:url('../img/monks.png');
+  width: 25px;
+	height: 25px;
+	position: absolute;
+	background-size: contain;
+	top: 0px;
+	left: 7px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
 .profileData{
 	display:inline-block;
   padding-top: 15px;
@@ -344,4 +357,27 @@ dl{
 }
 ion-side-menu .has-header{
 	top:194px;
+}
+
+
+/*************** iPhone 5 ***************/
+@media all and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) and(-webkit-device-pixel-ratio: 2){
+	.welcome-view .authFields .inputFields:after {
+			width: 39%;
+		}
+}
+
+
+/*************** iPhone 6 ***************/
+@media all and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: portrait) and(-webkit-device-pixel-ratio: 2){
+	.welcome-view .authFields .inputFields:after {
+		width: 50%;
+	}
+}
+
+/*************** iPhone 6+ and Above ***************/
+@media all and (min-device-width: 412px) and (max-device-height: 736px) and (orientation: portrait){
+	.welcome-view .authFields .inputFields:after {
+		width: 55%;
+	}
 }

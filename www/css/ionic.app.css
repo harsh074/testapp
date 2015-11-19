@@ -9155,7 +9155,7 @@ a.button {
 
 /* END Black */
 .welcome-view {
-  background-image: url("../img/bg_login.png");
+  background-image: url("../img/bg_login/bg_login-5x.png");
   background-size: cover; }
   .welcome-view .bg_white {
     background-color: rgba(255, 255, 255, 0.12);
@@ -9231,7 +9231,7 @@ a.button {
           background-color: transparent; }
           .welcome-view .authFields .inputFields label .md-input:focus ~ .highlight {
             background-color: #00BCD2; }
-          .welcome-view .authFields .inputFields label .md-input:focus ~ .input-label {
+          .welcome-view .authFields .inputFields label .md-input:focus ~ .input-label, .welcome-view .authFields .inputFields label .md-input.used ~ .input-label {
             -webkit-transform: translate3d(0, -60px, 0) scale(0.9);
             transform: translate3d(0, -60px, 0) scale(0.9);
             opacity: 1;
@@ -9244,7 +9244,8 @@ a.button {
           background-color: #fff;
           left: -1px;
           -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0); }
+          transform: translate3d(0, 0, 0);
+          height: 1px; }
   .welcome-view .bottom-content .facebook-sign-in {
     border-radius: 4px;
     font-weight: 500;
@@ -9363,10 +9364,24 @@ a.button {
   color: #30B195; }
 
 .menu.yprofile span i {
-  color: #67D5E4; }
+  color: #67D5E4;
+  position: relative;
+  padding-right: 50px; }
 
 .menu.setting span i {
   color: #9389FF; }
+
+.ion-yogi-profile:before {
+  content: '';
+  background-image: url("../img/monks.png");
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  background-size: contain;
+  top: 0px;
+  left: 7px;
+  background-repeat: no-repeat;
+  background-position: center; }
 
 .profileData {
   display: inline-block;
@@ -9426,3 +9441,18 @@ dl {
 
 ion-side-menu .has-header {
   top: 194px; }
+
+/*************** iPhone 5 ***************/
+@media all and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
+  .welcome-view .authFields .inputFields:after {
+    width: 39%; } }
+
+/*************** iPhone 6 ***************/
+@media all and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
+  .welcome-view .authFields .inputFields:after {
+    width: 50%; } }
+
+/*************** iPhone 6+ and Above ***************/
+@media all and (min-device-width: 412px) and (max-device-height: 736px) and (orientation: portrait) {
+  .welcome-view .authFields .inputFields:after {
+    width: 55%; } }
