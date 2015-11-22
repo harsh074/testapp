@@ -12,8 +12,8 @@
 				<div class="monkTab" ng-class="{'active':activeMonkTab}" ng-click="monkLoginForm()"><span>Monk</span></div>
 			</div>
 			<div class="inputFields" ng-show="activeUserTab">
-				<ion-md-input placeholder="Email" highlight-color="custom" type="text"></ion-md-input>
-				<ion-md-input placeholder="Password" highlight-color="custom" type="password"></ion-md-input>
+				<ion-md-input placeholder="Email" highlight-color="custom" ng-model="args.email" type="email"></ion-md-input>
+				<ion-md-input placeholder="Password" highlight-color="custom" ng-model="args.password" type="password"></ion-md-input>
 				<a class="button button-custom button-small" ng-click="userLogin()">Login</a>
 				<a href="" class="registerWithUs">Sign Up</a>
 			</div>
@@ -31,5 +31,6 @@
 				</a>
 			</div>
 		</div> -->
+
 	</ion-content>
 </ion-view>

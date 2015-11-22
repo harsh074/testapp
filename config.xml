@@ -15,9 +15,10 @@
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
-  <preference name="SplashScreenDelay" value="5000"/>
-  <preference name="Fullscreen" value="true"/>
+  <preference name="SplashScreenDelay" value="3000"/>
+  <preference name="FadeSplashScreenDuration" value="3000"/>
   <preference name="ShowSplashScreenSpinner" value="false"/>
+  <preference name="Fullscreen" value="true"/>
   <preference name="android-minSdkVersion" value="19"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
@@ -25,6 +26,10 @@
   <feature name="SplashScreen">
     <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen"/>
     <param name="ios-package" value="CDVSplashScreen"/>
+  </feature>
+  <feature name="Toast">
+    <param name="android-package" value="nl.xservices.plugins.Toast"/>
+    <param name="ios-package" value="Toast"/>
   </feature>
   <platform name="android">
     <icon src="resources\android\icon\drawable-ldpi-icon.png" density="ldpi"/>

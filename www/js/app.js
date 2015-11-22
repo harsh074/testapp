@@ -1,7 +1,7 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionic-material','ionMdInput']);
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ipCookie']);
 
 askmonkApp.run(function($ionicPlatform,$state) {
-  $state.go('welcome');
+  $state.go('login');
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,11 +20,11 @@ askmonkApp.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvid
 
   $stateProvider
 
-  .state('welcome', {
-    url: '/welcome',
+  .state('login', {
+    url: '/login',
     cache: false,
-    templateUrl: "views/welcome.html",
-    controller: 'welcomeCtrl'
+    templateUrl: "views/login.html",
+    controller: 'loginCtrl'
   })
 
   .state('app', {
@@ -75,6 +75,17 @@ askmonkApp.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvid
       }
     }
   })
+  .state('app.editProfile',{
+    url:"/editprofile",
+    cache: false,
+    views:{
+      'menuContent':{
+        templateUrl:"views/editProfile.html",
+        controller:"editProfileCtrl"
+      }
+    }
+  })
+  
   ;
 
   // if none of the above states are matched, use this as the fallback
