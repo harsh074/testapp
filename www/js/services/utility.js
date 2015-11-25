@@ -61,7 +61,7 @@ askmonkApp.service('utility', ['$q','$http','$state','ipCookie', function utilit
       });
       return deferred.promise;
     },
-    'getQuestion': function(url){
+    'getAllQuestion': function(url){
       return this.request({
         'method': "GET",
         'url': url

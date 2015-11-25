@@ -1,7 +1,8 @@
 askmonkApp.controller('editProfileCtrl', ['$scope','$state', function($scope,$state){
   $scope.editData = {"gender":""};
+  $scope.showDate = false;
   $scope.datepickerObject = {
-    titleLabel: 'Date of Birth',  //Optional
+    titleLabel: 'DOB',  //Optional
     todayLabel: 'Today',  //Optional
     closeLabel: 'Close',  //Optional
     setLabel: 'Set',  //Optional
@@ -27,7 +28,8 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state', function($scope,$st
   };
 
   function datePickerCallback(val){
-    console.log(val)
+    console.log(val);
+    $scope.showDate = true;
     if(val){
       $scope.datepickerObject.inputDate = val;
     }else{

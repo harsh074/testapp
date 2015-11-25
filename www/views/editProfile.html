@@ -1,5 +1,5 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
-	<ion-content class="row">
+	<ion-content class="row paddingLRPlus21" scroll="true">
 		<div class="list editProfile">
       <ion-md-input placeholder="Name"  hightlight-color="calm" type="text"></ion-md-input>
 
@@ -15,7 +15,11 @@
 
       <label class="item item-input item-calender">
       	<ionic-datepicker input-obj="datepickerObject">
-				  <button class="button button-custom-small button-light"> {{datepickerObject.inputDate | date:'dd - MM - yyyy'}}<i class="ion-android-calendar"></i></button>
+				  <button class="button button-custom-small button-light"> 
+            <span class="dateObject" ng-if="!showDate">{{datepickerObject.titleLabel}}</span>
+            <span class="dateObject" ng-if="showDate">{{datepickerObject.inputDate | date:'dd - MM - yyyy'}}</span>
+            <i class="ion-android-calendar"></i>
+          </button>
 				</ionic-datepicker>
       </label>
 		  <label class="item item-input item-select">
@@ -27,8 +31,9 @@
         </select>
       </label>
 			<div class="button-bar btn-two">
-			  <a class="button button-custom-small button-askmonk" ng-click="saveEditProfile()">Save changes</a>
 			  <a class="button button-custom-small button-askmonk" ng-click="cancelEditProfile()">Cancel</a>
+        <a class="button button-custom-small button-askmonk" ng-click="saveEditProfile()">Save</a>
+
 			</div>
     </div>
 	</ion-content>

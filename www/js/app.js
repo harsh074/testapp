@@ -1,4 +1,4 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ipCookie']);
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ipCookie','ng-mfb']);
 
 askmonkApp.run(function($ionicPlatform,$state) {
   $state.go('login');
@@ -11,6 +11,8 @@ askmonkApp.run(function($ionicPlatform,$state) {
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    ionic.Platform.isFullScreen = true;
+    ionic.Platform.showStatusBar(false);
   });
 });
 
@@ -85,7 +87,16 @@ askmonkApp.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvid
       }
     }
   })
-  
+  .state('app.askQuestion',{
+    url:"/askquestion",
+    cache: false,
+    views:{
+      'menuContent':{
+        templateUrl:"views/askQuestion.html",
+        controller:"askQuestionCtrl"
+      }
+    }
+  })
   ;
 
   // if none of the above states are matched, use this as the fallback

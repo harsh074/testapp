@@ -1,70 +1,32 @@
-askmonkApp.directive('canDragMenu', function ($timeout, $ionicGesture, $ionicSideMenuDelegate) {
-  return {
-    restrict: 'A',
-    require: '^ionSideMenus',
-    scope: true,
-    link: function($scope, $element, $attr, sideMenuCtrl) {
-      $ionicGesture.on('dragleft', function(e) {
-        sideMenuCtrl._handleDrag(e);
-        e.gesture.srcEvent.preventDefault();
-      }, $element);
-      $ionicGesture.on('dragright', function(e) {
-        sideMenuCtrl._handleDrag(e);
-        e.gesture.srcEvent.preventDefault();
-      }, $element);
-      $ionicGesture.on('release', function(e) {
-        sideMenuCtrl._endDrag(e);
-      }, $element);
-    }
-  }
-});
-
-askmonkApp.directive('fader', function ($timeout, $ionicGesture, $ionicSideMenuDelegate) {
-  return {
-    restrict: 'E',
-    require: '^ionSideMenus',
-    scope: true,
-    link: function($scope, $element, $attr, sideMenuCtrl) {
-      $ionicGesture.on('tap', function(e) {
-        $ionicSideMenuDelegate.toggleRight(true);
-      }, $element);
-      $ionicGesture.on('dragleft', function(e) {
-        sideMenuCtrl._handleDrag(e);
-        e.gesture.srcEvent.preventDefault();
-      }, $element);
-      $ionicGesture.on('dragright', function(e) {
-        sideMenuCtrl._handleDrag(e);
-        e.gesture.srcEvent.preventDefault();
-      }, $element);
-      $ionicGesture.on('release', function(e) {
-        sideMenuCtrl._endDrag(e);
-      }, $element);
-      $scope.sideMenuDelegate = $ionicSideMenuDelegate;
-      $scope.$watch('sideMenuDelegate.getOpenRatio()', function(ratio) {
-        if (Math.abs(ratio)<1) {
-          $element[0].style.zIndex = "1";
-          $element[0].style.opacity = 0.7-Math.abs(ratio);
-        } else {
-          $element[0].style.zIndex = "-1";
-        }
-      });
-    }
-  }
-});
-
-askmonkApp.directive('ionMenuClose', ['$ionicSideMenuDelegate','$ionicGesture','$timeout', function($ionicSideMenuDelegate,$ionicGesture,$timeout){
+// askmonkApp.directive('', ['', function(){
   // Runs during compile
+  // return {
+    // name: '',
+    // priority: 1,
+    // terminal: true,
+    // scope: {}, // {} = isolate, true = child, false/undefined = no change
+    // controller: function($scope, $element, $attrs, $transclude) {},
+    // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+    // restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+    // template: '',
+    // templateUrl: '',
+    // replace: true,
+    // transclude: true,
+    // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+//     link: function($scope, iElm, iAttrs, controller) {
+      
+//     }
+//   };
+// }]);
+
+
+askmonkApp.directive('focusMe', function($timeout,$ionicScrollDelegate) {
   return {
-    restrict: 'A',
-    require: '^ionSideMenus',
-    scope: true,
-    link: function($scope, $element, $attr) {
-      $ionicGesture.on('tap', function(e) {
-        $timeout(function(){
-          $ionicSideMenuDelegate.toggleRight(true);
-        }, 200);
-      }, $element);
+    link: function(scope, element, attrs) {
+      $timeout(function() {
+        element[0].focus();
+        $ionicScrollDelegate.$getByHandle('scrollHandle').resize();
+      },250);
     }
   };
-}]);
-
+});
