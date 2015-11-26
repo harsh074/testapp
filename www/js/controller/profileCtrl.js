@@ -5,6 +5,6 @@ askmonkApp.controller('profileCtrl', ['$scope','$state', function($scope, $state
   }
 
   $scope.askQuestion = function(){
-  	$state.go('app.askQuestion')
+  	$state.go('app.askQuestion',{},{"reload":true})
   }
 }]);

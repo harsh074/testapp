@@ -1,30 +1,30 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
-<ion-content scroll="true" class="ion-content-askQuestion">
-	<div class="bar-subHeader">
-	  <h1 class="title">Compose Question Below</h1>
-	</div>
-	<div class="askQuestionForm list paddingLRPlus21">
-		<label class="item item-input item-select">
-			<select name="questionCategory" ng-model="askQuestion.category" required ng-change="askQuestionCategory($event, askQuestion.category)">
-				<option value="" disabled selected>Question Related To </option>
-				<option ng-repeat="(key,value) in questions" value="{{key}}">{{key}}</option>
-				<option value="other">Other</option>
-	  	</select>
-	  </label>
+	<ion-content scroll="true" class="ion-content-askQuestion">
+		<div class="bar-subHeader paddingLRPlus21">
+			<h1 class="title">Compose</h1>
+			<div class="askQuestionBtn">
+			  <button class="button button-custom-small button-askmonk" ui-sref="app.profile">Ask Question</button>
+			</div>
+		</div>
+		<div class="askQuestionForm list">
+			<label class="item item-input item-select">
+				<select name="questionCategory" ng-model="askQuestion.category" required ng-change="askQuestionCategory($event, askQuestion.category)">
+					<option value="" disabled selected>Question Related To </option>
+					<option ng-repeat="(key,value) in questions" value="{{key}}">{{key}}</option>
+					<option value="other">Other</option>
+				</select>
+			</label>
 
-	  <div class="categoryQuestion">
-	   	<div ng-if="showQuestion" ng-repeat="question in preffredQuestion track by $index">
-	    	<ion-radio ng-model="askQuestion.question" ng-value="question" ng-change="clearQuestionOnOther()">{{question}}</ion-radio>
-	  	</div>
-	  	<div class="item textarea" ng-if="!showQuestion || showOnOtherQuestion">
-	  		<textarea id="askQuestionTextarea" focus-me ng-modal="askQuestion.question" placeholder="Ask A Question" ng-keyup="expandText()" ng-keydown="expandText()"></textarea>
-	  	</div>
-  	</div>
+			<div class="categoryQuestion">
+				<div ng-if="showQuestion" ng-repeat="question in preffredQuestion track by $index">
+					<ion-radio ng-model="askQuestion.question" ng-value="question" ng-change="clearQuestionOnOther()">{{question}}</ion-radio>
+				</div>
+				<div class="item textarea" ng-if="!showQuestion || showOnOtherQuestion">
+					<textarea id="askQuestionTextarea" focus-me ng-modal="askQuestion.question" placeholder="Write the question that you wish to compose..." ng-keyup="expandText()" ng-keydown="expandText()"></textarea>
+				</div>
+			</div>
 
-	</div>
+		</div>
 
-</ion-content>
-	<div class="askQuestionBtn">
-	  <button class="button button-custom-small button-askmonk" ui-sref="app.profile">Ask Question</button>
-	</div>
+	</ion-content>
 </ion-view>

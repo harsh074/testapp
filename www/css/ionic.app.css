@@ -9982,7 +9982,7 @@ a.button {
           background-color: rgba(43, 93, 128, 0.6); }
     .welcome-view .authFields .registerWithUs {
       float: right;
-      margin-top: 35px;
+      margin-top: 45px;
       color: #fff;
       text-decoration: none;
       white-space: nowrap; }
@@ -10009,8 +10009,9 @@ a.button {
         .welcome-view .authFields .inputFields label .md-input:focus ~ .highlight {
           background-color: #00BCD2; }
         .welcome-view .authFields .inputFields label .md-input:focus ~ .input-label, .welcome-view .authFields .inputFields label .md-input.used ~ .input-label {
-          -webkit-transform: translate3d(0, -60px, 0) scale(0.9);
-          transform: translate3d(0, -60px, 0) scale(0.9);
+          -webkit-transform: translate3d(0, -60px, 0) scale(1);
+          transform: translate3d(0, -60px, 0) scale(1);
+          font-size: 14px;
           opacity: 1;
           line-height: 35px; }
         .welcome-view .authFields .inputFields label .input-label {
@@ -10043,7 +10044,8 @@ a.button {
   margin-top: 35px;
   background-color: #00BCD2;
   border-color: transparent;
-  color: #fff; }
+  color: #fff;
+  border-radius: 0px; }
   .button.button-custom.active, .button.button-custom.activated {
     border-color: transparent;
     background-color: #00BCD2;
@@ -10054,7 +10056,8 @@ a.button {
   min-width: 28px;
   min-height: 30px;
   font-size: 12px;
-  line-height: 26px; }
+  line-height: 26px;
+  border-radius: 0px; }
   .button.button-custom-small.active, .button.button-custom-small.activated {
     border-color: transparent;
     background-color: #00BCD2;
@@ -10070,17 +10073,23 @@ a.button {
 .button.button-askmonk {
   border-color: #00BCD2;
   background-color: #00BCD2;
-  color: #fff; }
+  color: #fff;
+  border-radius: 0px !important; }
+
+.ion-social-usd {
+  font-size: 23px;
+  color: black !important;
+  padding: 0px 19px; }
 
 .home-view .yprofile {
   height: 150px;
   background-color: #577E9A;
-  padding: 12px 0px 0px; }
+  padding: 17px 0px 0px; }
   .home-view .yprofile .pofilePic {
     text-align: left;
-    padding-left: 15px;
-    padding-top: 5px;
-    height: 100%; }
+    height: 100%;
+    padding: 0px 23px;
+    color: #fff; }
     .home-view .yprofile .pofilePic .avatar {
       height: 75px;
       width: 75px;
@@ -10089,26 +10098,28 @@ a.button {
       text-align: center;
       font-size: 70px;
       color: #577E9A;
-      border-radius: 3px; }
+      border-radius: 50%;
+      vertical-align: top; }
   .home-view .yprofile .yAnswerStatus {
     display: inline-block;
     font-size: 20px;
     width: 65%;
     line-height: 25px;
-    vertical-align: top;
     margin-left: 20px; }
     .home-view .yprofile .yAnswerStatus .profileEditBtn {
-      min-height: 22px;
-      line-height: 18px;
+      min-height: 0px;
+      line-height: 22px;
       margin-top: 5px;
-      font-size: 14px;
-      display: block; }
+      font-size: 15px;
+      display: block;
+      width: 106%;
+      padding: 0px 13px; }
       .home-view .yprofile .yAnswerStatus .profileEditBtn .ion-edit {
         color: #000;
-        margin-right: 10px; }
+        float: left; }
   .home-view .yprofile .userName {
     text-transform: capitalize;
-    margin-top: 5px;
+    margin-top: 15px;
     font-size: 16px;
     display: inline-block;
     white-space: nowrap; }
@@ -10124,8 +10135,8 @@ a.button {
   margin-right: -21px; }
 
 .home-view .paddingLRPlus21 {
-  padding-left: 20px;
-  padding-right: 20px; }
+  padding-left: 24px;
+  padding-right: 24px; }
 
 .bar-assertive-900 {
   box-shadow: 1px 1px rgba(0, 0, 0, 0.15);
@@ -10263,12 +10274,13 @@ ion-side-menu .has-header {
     padding-left: 5px;
     border-width: 0px 0px 1px 0px; }
     .editProfile .item-md-label .md-input {
-      color: #aaa;
+      color: #000;
       padding-top: 0px;
       height: 25px; }
       .editProfile .item-md-label .md-input:focus ~ .input-label, .editProfile .item-md-label .md-input.used ~ .input-label {
-        -webkit-transform: translate3d(0, -50px, 0) scale(0.9);
-        transform: translate3d(0, -50px, 0) scale(0.9); }
+        -webkit-transform: translate3d(0, -50px, 0) scale(1);
+        transform: translate3d(0, -50px, 0) scale(1);
+        font-size: 14px; }
     .editProfile .item-md-label .input-label {
       color: #aaa; }
     .editProfile .item-md-label .highlight-calm {
@@ -10283,7 +10295,7 @@ ion-side-menu .has-header {
     margin-top: 8px;
     border-bottom: 0px; }
     .editProfile .item-select select {
-      padding: 4px 33px 4px 5px;
+      padding: 4px 33px 4px 2px;
       height: 34px;
       border: 1px solid #ddd;
       width: 100%;
@@ -10302,13 +10314,14 @@ ion-side-menu .has-header {
     .editProfile .item-calender ionic-datepicker {
       width: 100%; }
       .editProfile .item-calender ionic-datepicker .button {
-        width: 100%; }
+        width: 100%;
+        padding-left: 5px; }
   .editProfile .btn-two {
-    margin-top: 10px;
-    position: absolute;
-    bottom: 10px; }
-    .editProfile .btn-two .button {
-      margin: 0px 5px; }
+    padding-top: 15px; }
+    .editProfile .btn-two .button:first-child {
+      margin-right: 5px; }
+    .editProfile .btn-two .button:last-child {
+      margin-left: 5px; }
 
 .bar-subHeader {
   border-color: #2B5D80;
@@ -10346,39 +10359,59 @@ ion-side-menu .has-header {
     top: 42%; }
 
 .askQuestionForm select {
-  padding: 4px 33px 4px 5px;
+  padding: 4px 33px 4px 25px;
   height: 34px;
-  border: 1px solid #ddd;
   width: 100%;
   max-width: 100%;
-  direction: ltr; }
+  direction: ltr;
+  font-size: 17px; }
 
 .askQuestionForm .categoryQuestion {
   display: inline-block;
   width: 100%; }
   .askQuestionForm .categoryQuestion label {
-    border-width: 1px 0px; }
+    border-width: 1px 0px;
+    font-size: 17px; }
+    .askQuestionForm .categoryQuestion label .radio-icon {
+      margin-right: 13px; }
   .askQuestionForm .categoryQuestion .item-content {
-    white-space: normal; }
+    white-space: normal;
+    padding-left: 30px;
+    padding-right: 40px; }
 
 .askQuestionForm .textarea {
   border-width: 1px 0px 0px;
   padding: 10px; }
   .askQuestionForm .textarea #askQuestionTextarea {
-    width: 100%; }
-
-.askQuestionBtn {
-  border: none;
-  background-image: none; }
-  .askQuestionBtn .button {
-    right: 22px;
-    position: absolute;
-    bottom: 20px; }
+    width: 100%;
+    padding: 2px 20px;
+    font-size: 17px; }
+    .askQuestionForm .textarea #askQuestionTextarea::-webkit-input-placeholder {
+      font-style: italic; }
+    .askQuestionForm .textarea #askQuestionTextarea:-moz-placeholder {
+      font-style: italic; }
+    .askQuestionForm .textarea #askQuestionTextarea::-moz-placeholder {
+      font-style: italic; }
+    .askQuestionForm .textarea #askQuestionTextarea:-ms-input-placeholder {
+      font-style: italic; }
 
 .ion-content-askQuestion {
   height: -moz-calc(100% - 100px);
   height: -webkit-calc(100% - 100px);
   height: calc(100% - 100px); }
+  .ion-content-askQuestion .bar-subHeader .title {
+    min-width: 0px;
+    display: inline-block;
+    float: left;
+    height: 30px;
+    margin-top: 2px; }
+  .ion-content-askQuestion .askQuestionBtn {
+    border: none;
+    background-image: none;
+    display: inline-block;
+    float: right; }
+    .ion-content-askQuestion .askQuestionBtn .button {
+      padding: 0px 13px; }
 
 .mfb-component__button--main, .mfb-component__button--child {
   background-color: #00BCD2; }
@@ -10388,7 +10421,12 @@ ion-side-menu .has-header {
 /*************** iPhone 5 ***************/
 @media all and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
   .welcome-view .authFields .inputFields:after {
-    width: 39%; } }
+    width: 39%; }
+  .home-view .yprofile .pofilePic {
+    padding: 0px 18px; }
+  .home-view .paddingLRPlus21 {
+    padding-left: 20px;
+    padding-right: 20px; } }
 
 /*************** iPhone 6 ***************/
 @media all and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
@@ -10398,4 +10436,9 @@ ion-side-menu .has-header {
 /*************** iPhone 6+ and Above ***************/
 @media all and (min-device-width: 412px) and (max-device-height: 736px) and (orientation: portrait) {
   .welcome-view .authFields .inputFields:after {
-    width: 55%; } }
+    width: 55%; }
+  .editProfile .btn-two .button {
+    line-height: 32px;
+    font-size: 15px; }
+  .home-view .yprofile .yRating i {
+    font-size: 24px; } }
