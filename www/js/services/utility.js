@@ -1,11 +1,11 @@
 'use strict';
-askmonkApp.service('utility', ['$q','$http','$state','ipCookie', function utility($q, $http, $state, ipCookie) {
+askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http, $state) {
   var service = {
     'authenticated': null,
     'request': function(args) {
       // Let's retrieve the token from the cookie, if available
-      if(ipCookie('token')){
-        $http.defaults.headers.common.Authorization = 'Basic ' + ipCookie('token');
+      if(localStorage.getItem('token')){
+        $http.defaults.headers.common.Authorization = 'Basic ' + localStorage.getItem('token');
       }
 
       params = args.params || {}
@@ -20,7 +20,6 @@ askmonkApp.service('utility', ['$q','$http','$state','ipCookie', function utilit
         url: url,
         withCredentials: this.use_session,
         method: method.toUpperCase(),
-        headers: {'X-CSRFToken': ipCookie('token')},
         params: params,
         data: data
       })
@@ -50,8 +49,8 @@ askmonkApp.service('utility', ['$q','$http','$state','ipCookie', function utilit
       }).then(function(data){
        if(!utility.use_session){
           $http.defaults.headers.common.Authorization = 'Basic ' + data.id;
-          ipCookie('token',data.id, {expires: 4, expirationUnit: 'days'});
-          ipCookie('userId', data.userId, {expires: 4, expirationUnit: 'days'});
+          localStorage.setItem('token',data.id);
+          localStorage.setItem('userId',data.userId);
        }
       });
     },
@@ -59,12 +58,12 @@ askmonkApp.service('utility', ['$q','$http','$state','ipCookie', function utilit
       return this.request({
         'method':"POST",
         'url':"/users/logout",
-        'params': {"access_token":ipCookie('token')},
+        'params': {"access_token":localStorage.getItem('token')},
       }).then(function(data){
-        ipCookie.remove('token');
-        ipCookie.remove('userId');
-        delete $http.defaults.headers.common.Authorization;
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
         localStorage.removeItem("profileData");
+        delete $http.defaults.headers.common.Authorization;
         $state.go('login');
       });
     },
@@ -83,15 +82,15 @@ askmonkApp.service('utility', ['$q','$http','$state','ipCookie', function utilit
     getUserProfile: function(){
       return this.request({
         'method':"GET",
-        'url':'/users/findUser/'+ipCookie('userId')
+        'url':'/users/findUser/'+localStorage.getItem('userId')
       });
     },
     updateUserProfile:function(args){
       return this.request({
         'method':"PUT",
-        'url':"/users/"+ipCookie('userId'),
+        'url':"/users/"+localStorage.getItem('userId'),
         'data':args,
-        'params': {"access_token":ipCookie('token')}
+        'params': {"access_token":localStorage.getItem('token')}
       });
     },
     'initialize': function(url, sessions, scope, rootScope){
@@ -100,10 +99,10 @@ askmonkApp.service('utility', ['$q','$http','$state','ipCookie', function utilit
       if(scope){
         scope.authenticated = null;
         if(this.authenticated == null){
-          if(ipCookie('token')){
+          if(localStorage.getItem('token')){
             utility.authenticated = true;
             scope.authenticated = true;
-            rootScope.token = ipCookie('token');
+            rootScope.token = localStorage.getItem('token');
           }
           else{
             utility.authenticated = false;

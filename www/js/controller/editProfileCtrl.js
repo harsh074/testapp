@@ -1,4 +1,4 @@
-askmonkApp.controller('editProfileCtrl', ['$scope','$state','ipCookie','CONSTANT','$rootScope','utility', function($scope,$state,ipCookie,CONSTANT,$rootScope,utility){
+askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootScope','utility', function($scope,$state,CONSTANT,$rootScope,utility){
   if($scope.authenticated){
 
     $scope.showDate = false;

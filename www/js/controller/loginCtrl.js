@@ -1,4 +1,4 @@
-askmonkApp.controller('loginCtrl', ['$scope','$state','utility','ipCookie','CONSTANT','$ionicScrollDelegate','$timeout','$rootScope', function($scope, $state,utility,ipCookie,CONSTANT,$ionicScrollDelegate,$timeout,$rootScope) {
+askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ionicScrollDelegate','$timeout','$rootScope', function($scope, $state,utility,CONSTANT,$ionicScrollDelegate,$timeout,$rootScope) {
   if(!$scope.authenticated){
     $scope.activeUserTab = true;
     $scope.activeMonkTab = false;
@@ -6,10 +6,11 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','ipCookie','CONS
 
     // $scope.args = {"email":"harsh.agarwal1112@gmail.com","password":"password"};
     // $scope.argsSignup = {"name":"harsh","email":"harsh@gmail.com","password":"password"};
-    // $scope.conpassword = "password";
+    // $scope.conpassword = {"pass":"password"};
+
     $scope.args = {"email":"","password":""};
     $scope.argsSignup = {"name":"","email":"","password":""};
-    $scope.conpassword = "";
+    $scope.conpassword = {"pass":""};
 
     $scope.userLoginForm =function() {
       $scope.activeUserTab = true;
@@ -49,8 +50,8 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','ipCookie','CONS
       }, 10);
     }
     $scope.userSignUp = function(formData){
-      if($scope.conpassword != ""){
-        if($scope.argsSignup.password != $scope.conpassword){
+      if($scope.conpassword.pass != ""){
+        if($scope.argsSignup.password != $scope.conpassword.pass){
           $scope.showMessage("Sorry, the passwords do not match");
           return;
         }
@@ -66,7 +67,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','ipCookie','CONS
           CONSTANT.isComingFromSignUp = true;
           utility.login({"email":data.email,"password":$scope.argsSignup.password})
           .then(function(dataLogin){
-            $rootScope.token = ipCookie('token');
+            $rootScope.token = localStorage.getItem('token');
             localStorage.setItem("profileData", JSON.stringify(data));
             $scope.setAuth(true);
             $state.go('app.editProfile');

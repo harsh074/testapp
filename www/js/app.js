@@ -1,7 +1,7 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ipCookie','ng-mfb']);
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ng-mfb']);
 
-askmonkApp.run(['$ionicPlatform' ,'$state','ipCookie', function($ionicPlatform,$state,ipCookie) {
-  if(ipCookie('token')){
+askmonkApp.run(['$ionicPlatform','$state', function($ionicPlatform,$state) {
+  if(localStorage.getItem('token')){
     $state.go('app.profile');
   }else{
     $state.go('login');
