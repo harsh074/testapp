@@ -5,7 +5,7 @@ askmonkApp.service('utility', ['$q','$http','$state','ipCookie', function utilit
     'request': function(args) {
       // Let's retrieve the token from the cookie, if available
       if(ipCookie('token')){
-        $http.defaults.headers.common.Authorization = 'Token ' + ipCookie('token');
+        $http.defaults.headers.common.Authorization = 'Basic ' + ipCookie('token');
       }
 
       params = args.params || {}
@@ -32,16 +32,11 @@ askmonkApp.service('utility', ['$q','$http','$state','ipCookie', function utilit
       }));
       return deferred.promise;
     },
-    'register': function(args, rootScope){
+    'register': function(args){
       return this.request({
         'method': "POST",
-        'url': "/register/",
+        'url': "/users/",
         'data': args
-      }).then(function(data){
-        if(!utility.use_session){
-          $http.defaults.headers.common.Authorization = 'Token ' + data.token;
-          // ipCookie('token',data.token, {expires: 4, expirationUnit: 'hours'});
-        }
       });
     },
     'login': function(args,rootScope){
@@ -54,18 +49,50 @@ askmonkApp.service('utility', ['$q','$http','$state','ipCookie', function utilit
        }
       }).then(function(data){
        if(!utility.use_session){
-          $http.defaults.headers.common.Authorization = 'Token ' + data.id;
+          $http.defaults.headers.common.Authorization = 'Basic ' + data.id;
           ipCookie('token',data.id, {expires: 4, expirationUnit: 'days'});
           ipCookie('userId', data.userId, {expires: 4, expirationUnit: 'days'});
        }
       });
-      return deferred.promise;
+    },
+    'logout':function(){
+      return this.request({
+        'method':"POST",
+        'url':"/users/logout",
+        'params': {"access_token":ipCookie('token')},
+      }).then(function(data){
+        ipCookie.remove('token');
+        ipCookie.remove('userId');
+        delete $http.defaults.headers.common.Authorization;
+        localStorage.removeItem("profileData");
+        $state.go('login');
+      });
     },
     'getAllQuestion': function(url){
       return this.request({
         'method': "GET",
         'url': url
       }); 
+    },
+    getUserQuestions:function(){
+      return this.request({
+        'method': "GET",
+        'url': url
+      }); 
+    },
+    getUserProfile: function(){
+      return this.request({
+        'method':"GET",
+        'url':'/users/findUser/'+ipCookie('userId')
+      });
+    },
+    updateUserProfile:function(args){
+      return this.request({
+        'method':"PUT",
+        'url':"/users/"+ipCookie('userId'),
+        'data':args,
+        'params': {"access_token":ipCookie('token')}
+      });
     },
     'initialize': function(url, sessions, scope, rootScope){
       this.API_URL = url;
@@ -76,6 +103,7 @@ askmonkApp.service('utility', ['$q','$http','$state','ipCookie', function utilit
           if(ipCookie('token')){
             utility.authenticated = true;
             scope.authenticated = true;
+            rootScope.token = ipCookie('token');
           }
           else{
             utility.authenticated = false;

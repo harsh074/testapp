@@ -6,34 +6,34 @@
 			<div class="content pofilePic">
 					<div class="avatar"><i class="ion-person"></i></div>
 					<div class="yAnswerStatus">20 Question Asked <br>1000 rs in wallet<button class="button button-custom-small button-askmonk profileEditBtn" ng-click="profileEdit()"><i class="ion-edit"></i> Edit Profile</button></div>
-					<div class="userName">harsh agarwal</div>
+					<div class="userName">{{profileInfo.name}}</div>
 			</div>
 		</div>
 	</ion-content>
 	<ion-content class="row profileData paddingLRPlus21" scroll="true">
 		<dl>
 		  <dt>DOB:</dt>
-		  <dd>21-09-1991</dd>
+		  <dd>{{profileInfo.dob | date : 'dd-MM-yyyy'}}</dd>
 		</dl>
 		<dl>
 		  <dt>Birth Place:</dt>
-		  <dd>Bharatpur, Rajasthan</dd>
+		  <dd>{{profileInfo.birthPlace}}</dd>
 		</dl>
 		<dl>
 		  <dt>Birth Time:</dt>
-		  <dd>2:00 am</dd>
+		  <dd>{{profileInfo.birthTime | date : 'h:mm a'}}</dd>
 		</dl>
 		<dl>
 		  <dt>Gender:</dt>
-		  <dd>Male</dd>
+		  <dd>{{profileInfo.gender}}</dd>
 		</dl>
 		<dl>
 		  <dt>Age:</dt>
-		  <dd>24</dd>
+		  <dd>{{profileInfo.dob | ageFilter}}</dd>
 		</dl>
-		<dl>
+		<!-- <dl>
 		  <dt>Bio:</dt>
 		  <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.</dd>
-		</dl>
+		</dl> -->
 	</ion-content>
 </ion-view>

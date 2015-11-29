@@ -5,21 +5,18 @@ $auth-big-btn-bg: #FFF;
 $auth-small-btn-color: #FFF;
 $facebook-blue: #294886;
 $welcome-color: #FFFFFF;
-$profile-color: #2B5D80;
+$top-portion-color: #2B5D80;
+$anchor-color:#1464F6;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
-
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 @import "www/lib/ion-md-input/ion-md-input";
-
 $RobotoDraftFontPath: "../lib/robotodraft/fonts"; // REMINDER: edit as appropriate!
 $RobotoDraftFontName: "RobotoDraft";
 $RobotoDraftFontVersion: "1.0.0";
-
 @import "www/lib/robotodraft/sass/robotodraft";    // REMINDER: edit as appropriate!
-
 @import "www/lib/mfb/mfb";
 
 .welcome-view{
@@ -102,6 +99,15 @@ $RobotoDraftFontVersion: "1.0.0";
 				top: 0;
 				right: 0;
 			}
+			&.signUptab:after{
+				content: '';
+				background-color: #888;
+				width: 76%;
+				height: 1px;
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
 			label{
 				margin: 0px;
 				border:none;
@@ -155,12 +161,13 @@ $RobotoDraftFontVersion: "1.0.0";
 	letter-spacing: 2px;
 }
 .button.button-custom{
-	padding: 0px 23px;
+	padding: 1px 23px;
 	margin-top: 35px;
 	background-color: $background-color;
 	border-color: transparent;
 	color: #fff;
 	border-radius:0px;
+	font-size:15px;
 	&.active, &.activated {
 		border-color: transparent;
 		background-color: $background-color;
@@ -168,7 +175,7 @@ $RobotoDraftFontVersion: "1.0.0";
 	}
 }
 .button.button-custom-small{
-		padding: 3px 13px;
+		padding: 4px 13px;
 		min-width: 28px;
 		min-height: 30px;
 		font-size: 12px;
@@ -203,7 +210,7 @@ $RobotoDraftFontVersion: "1.0.0";
 .home-view{
 	.yprofile{
 		height: 150px;
-		background-color:#577E9A;
+		background-color:$top-portion-color;
 		padding: 17px 0px 0px;
 		.pofilePic{
 			text-align: left;
@@ -219,7 +226,7 @@ $RobotoDraftFontVersion: "1.0.0";
 				background-color: #fff;
 				text-align: center;
 				font-size: 70px;
-				color: #577E9A;
+				color: $top-portion-color;
 				border-radius:50%;
 				vertical-align: top;
 			}
@@ -234,10 +241,10 @@ $RobotoDraftFontVersion: "1.0.0";
 		    min-height: 0px;
 		    line-height: 22px;
 		    margin-top: 5px;
-        font-size: 15px;
+        font-size: 16px;
         display: block;
         width: 106%;
-        padding:0px 13px;
+        padding:3px 13px;
 		    .ion-edit{
 		    	color: #000;
     			float: left;
@@ -250,6 +257,8 @@ $RobotoDraftFontVersion: "1.0.0";
 		  font-size: 16px;
 		  display: inline-block;
 		  white-space: nowrap;
+      text-align: center;
+    	width: 75px;
 		}
 		.yRating{
 			i{
@@ -257,6 +266,121 @@ $RobotoDraftFontVersion: "1.0.0";
 			}
 		}
 	}
+	.dashboard{
+		height: 113px;
+		background-color:$top-portion-color;
+		padding: 17px 0px 0px;
+		.pofilePic{
+			.avatar{
+				height: 40px;
+				width: 40px;
+				font-size: 40px;
+				vertical-align: middle;
+			}
+			.item-search{
+				height: 40px;
+    		margin: 17px -23px 0px;
+    		border-bottom: 1px solid;
+    		padding-left: 21px;
+    		padding-right: 21px;
+    		&:before {
+			    content: "";
+			    display: inline-block;
+			    font-family: "Ionicons";
+			    line-height: 1;
+			    -webkit-font-smoothing: antialiased;
+			    -moz-osx-font-smoothing: grayscale;
+			    margin-right: 10px;
+			    font-size: 22px;
+				}
+				.placeholder-icon{
+					 font-size: 22px;
+					 color: #000;
+				}
+    		input{
+    			&::-webkit-input-placeholder {
+				  	font-style: italic;
+				  	font-size: 18px;
+					}
+					&:-moz-placeholder {
+				  	font-style: italic;
+				  	font-size: 18px;
+					}
+					&::-moz-placeholder {
+					  font-style: italic;
+					  font-size: 18px;
+					}
+					&:-ms-input-placeholder {  
+					  font-style: italic;
+					  font-size: 18px;
+					}
+    		}
+			}
+		}
+	}
+	.dashboardData{
+		display: inline-block;
+    padding-top: 0px;
+    top: 159px;
+    z-index: 1;
+    font-size: 18px;
+    .noQuestionFound, .payTogetMore{
+    	a{
+	    	color: $anchor-color;
+		    text-align: center;
+		    display: block;
+		    font-size: 20px;
+		    padding-top: 40px;
+    	}
+    }
+    .questionFound{
+  		.questions{
+	    	padding: 10px 21px;
+  			border-bottom: 1px solid #ddd;
+  			&.active{
+  				background-color:#F7F7F7;
+  			}
+  			.question{
+  				display: inline-block;
+  			}
+  			i{
+  				float: right;
+  				
+  			}
+  			.answer{
+		    	display: inline-block;
+				  width: 100%;
+				  padding: 10px 0px;
+  				&.activeAnswer{
+  					p{
+  						height: auto;
+  						-webkit-line-clamp:initial;
+  					}
+  				}
+  				p{
+				    overflow: hidden;
+				    text-overflow: ellipsis;
+				    display: -webkit-box;
+				    -webkit-line-clamp: 3;
+				    -webkit-box-orient: vertical;
+  				}
+  			}
+  			.answerRating{
+					display: inline-block;
+					i{
+						padding-right: 3px;
+						float: left;
+						&.checked{
+							color: #FEC63D
+						}
+						&.unchecked{
+							color: #FFF1D7;
+						}
+					}
+				}
+  		}
+    }
+  }
 	ion-content{
 		&.row{
 			.scroll{
@@ -394,7 +518,7 @@ dl{
 		background-size:contain;
 		border-radius:50%;
 		margin: 40px 10px 0px 20px;
-		background-color: #577E9A;
+		// background-color: $top-portion-color;
 		color: #fff;
 		font-size: 35px;
 		border: 5px solid #fff;
@@ -458,7 +582,6 @@ ion-side-menu .has-header{
 	}
 	.item-calender{
 		border-width: 0px;
-		// display: inline-block;
 		padding-top: 0px;
 		margin: 20px 0px 0px;
 		padding-bottom: 10px;
@@ -473,8 +596,11 @@ ion-side-menu .has-header{
 		}
 	}
 	.btn-two{
-    	padding-top: 15px;
 		.button{
+			margin-top: 15px;
+			font-size: 16px;
+      line-height: 35px;
+    	min-height: 35px;
 			&:first-child{
 				margin-right:5px;
 			}
@@ -486,9 +612,9 @@ ion-side-menu .has-header{
 }
 
 .bar-subHeader{
-  border-color: $profile-color;
-  background-color: $profile-color;
-  background-image: linear-gradient(0deg, $profile-color, $profile-color 50%, transparent 50%);
+  border-color: $top-portion-color;
+  background-color: $top-portion-color;
+  background-image: linear-gradient(0deg, $top-portion-color, $top-portion-color 50%, transparent 50%);
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -571,12 +697,16 @@ ion-side-menu .has-header{
   	}
   }
 }
-
+.questionBottom{
+	top:120px;
+	padding:0px;
+}
 .ion-content-askQuestion{
-	height: -moz-calc(100% - 100px);
-	height: -webkit-calc(100% - 100px);
-	height: calc(100% - 100px);
+	height:75px;
+	z-index:2;
 	.bar-subHeader{
+		height: 75px;
+    padding: 22px 24px;
 		.title{
 			min-width: 0px;
 			display: inline-block;
@@ -595,7 +725,6 @@ ion-side-menu .has-header{
 	  }
 	}
 }
-
 .mfb-component__button--main, .mfb-component__button--child{
 	background-color:$background-color;
 	i{
@@ -607,9 +736,20 @@ ion-side-menu .has-header{
 
 
 /*************** iPhone 5 ***************/
-@media all and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) and(-webkit-device-pixel-ratio: 2){
-	.welcome-view .authFields .inputFields:after {
-		width: 39%;
+@media all and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait){
+	.welcome-view .authFields .inputFields{
+		&:after {
+			width: 39%;
+		}
+		&.signUptab:after{
+			content: '';
+			background-color: #888;
+			width: 72%;
+			height: 1px;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
 	}
 	.home-view {
 		.yprofile .pofilePic{
@@ -624,16 +764,38 @@ ion-side-menu .has-header{
 
 
 /*************** iPhone 6 ***************/
-@media all and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: portrait) and(-webkit-device-pixel-ratio: 2){
-	.welcome-view .authFields .inputFields:after {
-		width: 50%;
+@media all and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: portrait){
+	.welcome-view .authFields .inputFields{
+		&:after {
+			width: 50%;
+		}
+		&.signUptab:after{
+			content: '';
+			background-color: #888;
+			width: 77%;
+			height: 1px;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
 	}
 }
 
 /*************** iPhone 6+ and Above ***************/
 @media all and (min-device-width: 412px) and (max-device-height: 736px) and (orientation: portrait){
-	.welcome-view .authFields .inputFields:after {
-		width: 55%;
+	.welcome-view .authFields .inputFields{
+		&:after {
+			width: 55%;
+		}
+		&.signUptab:after{
+			content: '';
+			background-color: #888;
+			width: 79.5%;
+			height: 1px;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
 	}
 
 	.editProfile .btn-two .button{

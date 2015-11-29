@@ -10000,6 +10000,14 @@ a.button {
         position: absolute;
         top: 0;
         right: 0; }
+      .welcome-view .authFields .inputFields.signUptab:after {
+        content: '';
+        background-color: #888;
+        width: 76%;
+        height: 1px;
+        position: absolute;
+        top: 0;
+        right: 0; }
       .welcome-view .authFields .inputFields label {
         margin: 0px;
         border: none;
@@ -10040,19 +10048,20 @@ a.button {
   letter-spacing: 2px; }
 
 .button.button-custom {
-  padding: 0px 23px;
+  padding: 1px 23px;
   margin-top: 35px;
   background-color: #00BCD2;
   border-color: transparent;
   color: #fff;
-  border-radius: 0px; }
+  border-radius: 0px;
+  font-size: 15px; }
   .button.button-custom.active, .button.button-custom.activated {
     border-color: transparent;
     background-color: #00BCD2;
     box-shadow: inset 0 1px 4px transparent; }
 
 .button.button-custom-small {
-  padding: 3px 13px;
+  padding: 4px 13px;
   min-width: 28px;
   min-height: 30px;
   font-size: 12px;
@@ -10083,7 +10092,7 @@ a.button {
 
 .home-view .yprofile {
   height: 150px;
-  background-color: #577E9A;
+  background-color: #2B5D80;
   padding: 17px 0px 0px; }
   .home-view .yprofile .pofilePic {
     text-align: left;
@@ -10097,7 +10106,7 @@ a.button {
       background-color: #fff;
       text-align: center;
       font-size: 70px;
-      color: #577E9A;
+      color: #2B5D80;
       border-radius: 50%;
       vertical-align: top; }
   .home-view .yprofile .yAnswerStatus {
@@ -10110,10 +10119,10 @@ a.button {
       min-height: 0px;
       line-height: 22px;
       margin-top: 5px;
-      font-size: 15px;
+      font-size: 16px;
       display: block;
       width: 106%;
-      padding: 0px 13px; }
+      padding: 3px 13px; }
       .home-view .yprofile .yAnswerStatus .profileEditBtn .ion-edit {
         color: #000;
         float: left; }
@@ -10122,9 +10131,95 @@ a.button {
     margin-top: 15px;
     font-size: 16px;
     display: inline-block;
-    white-space: nowrap; }
+    white-space: nowrap;
+    text-align: center;
+    width: 75px; }
   .home-view .yprofile .yRating i {
     color: #DC4C18; }
+
+.home-view .dashboard {
+  height: 113px;
+  background-color: #2B5D80;
+  padding: 17px 0px 0px; }
+  .home-view .dashboard .pofilePic .avatar {
+    height: 40px;
+    width: 40px;
+    font-size: 40px;
+    vertical-align: middle; }
+  .home-view .dashboard .pofilePic .item-search {
+    height: 40px;
+    margin: 17px -23px 0px;
+    border-bottom: 1px solid;
+    padding-left: 21px;
+    padding-right: 21px; }
+    .home-view .dashboard .pofilePic .item-search:before {
+      content: "";
+      display: inline-block;
+      font-family: "Ionicons";
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      margin-right: 10px;
+      font-size: 22px; }
+    .home-view .dashboard .pofilePic .item-search .placeholder-icon {
+      font-size: 22px;
+      color: #000; }
+    .home-view .dashboard .pofilePic .item-search input::-webkit-input-placeholder {
+      font-style: italic;
+      font-size: 18px; }
+    .home-view .dashboard .pofilePic .item-search input:-moz-placeholder {
+      font-style: italic;
+      font-size: 18px; }
+    .home-view .dashboard .pofilePic .item-search input::-moz-placeholder {
+      font-style: italic;
+      font-size: 18px; }
+    .home-view .dashboard .pofilePic .item-search input:-ms-input-placeholder {
+      font-style: italic;
+      font-size: 18px; }
+
+.home-view .dashboardData {
+  display: inline-block;
+  padding-top: 0px;
+  top: 159px;
+  z-index: 1;
+  font-size: 18px; }
+  .home-view .dashboardData .noQuestionFound a, .home-view .dashboardData .payTogetMore a {
+    color: #1464F6;
+    text-align: center;
+    display: block;
+    font-size: 20px;
+    padding-top: 40px; }
+  .home-view .dashboardData .questionFound .questions {
+    padding: 10px 21px;
+    border-bottom: 1px solid #ddd; }
+    .home-view .dashboardData .questionFound .questions.active {
+      background-color: #F7F7F7; }
+    .home-view .dashboardData .questionFound .questions .question {
+      display: inline-block; }
+    .home-view .dashboardData .questionFound .questions i {
+      float: right; }
+    .home-view .dashboardData .questionFound .questions .answer {
+      display: inline-block;
+      width: 100%;
+      padding: 10px 0px; }
+      .home-view .dashboardData .questionFound .questions .answer.activeAnswer p {
+        height: auto;
+        -webkit-line-clamp: initial; }
+      .home-view .dashboardData .questionFound .questions .answer p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical; }
+    .home-view .dashboardData .questionFound .questions .answerRating {
+      display: inline-block; }
+      .home-view .dashboardData .questionFound .questions .answerRating i {
+        padding-right: 3px;
+        float: left; }
+        .home-view .dashboardData .questionFound .questions .answerRating i.checked {
+          color: #FEC63D; }
+        .home-view .dashboardData .questionFound .questions .answerRating i.unchecked {
+          color: #FFF1D7; }
 
 .home-view ion-content.row .scroll {
   width: 100%;
@@ -10252,7 +10347,6 @@ dl {
     background-size: contain;
     border-radius: 50%;
     margin: 40px 10px 0px 20px;
-    background-color: #577E9A;
     color: #fff;
     font-size: 35px;
     border: 5px solid #fff;
@@ -10316,8 +10410,11 @@ ion-side-menu .has-header {
       .editProfile .item-calender ionic-datepicker .button {
         width: 100%;
         padding-left: 5px; }
-  .editProfile .btn-two {
-    padding-top: 15px; }
+  .editProfile .btn-two .button {
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 35px;
+    min-height: 35px; }
     .editProfile .btn-two .button:first-child {
       margin-right: 5px; }
     .editProfile .btn-two .button:last-child {
@@ -10395,16 +10492,22 @@ ion-side-menu .has-header {
     .askQuestionForm .textarea #askQuestionTextarea:-ms-input-placeholder {
       font-style: italic; }
 
+.questionBottom {
+  top: 120px;
+  padding: 0px; }
+
 .ion-content-askQuestion {
-  height: -moz-calc(100% - 100px);
-  height: -webkit-calc(100% - 100px);
-  height: calc(100% - 100px); }
-  .ion-content-askQuestion .bar-subHeader .title {
-    min-width: 0px;
-    display: inline-block;
-    float: left;
-    height: 30px;
-    margin-top: 2px; }
+  height: 75px;
+  z-index: 2; }
+  .ion-content-askQuestion .bar-subHeader {
+    height: 75px;
+    padding: 22px 24px; }
+    .ion-content-askQuestion .bar-subHeader .title {
+      min-width: 0px;
+      display: inline-block;
+      float: left;
+      height: 30px;
+      margin-top: 2px; }
   .ion-content-askQuestion .askQuestionBtn {
     border: none;
     background-image: none;
@@ -10419,9 +10522,17 @@ ion-side-menu .has-header {
     font-size: 32px; }
 
 /*************** iPhone 5 ***************/
-@media all and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
+@media all and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) {
   .welcome-view .authFields .inputFields:after {
     width: 39%; }
+  .welcome-view .authFields .inputFields.signUptab:after {
+    content: '';
+    background-color: #888;
+    width: 72%;
+    height: 1px;
+    position: absolute;
+    top: 0;
+    right: 0; }
   .home-view .yprofile .pofilePic {
     padding: 0px 18px; }
   .home-view .paddingLRPlus21 {
@@ -10429,14 +10540,30 @@ ion-side-menu .has-header {
     padding-right: 20px; } }
 
 /*************** iPhone 6 ***************/
-@media all and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
+@media all and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: portrait) {
   .welcome-view .authFields .inputFields:after {
-    width: 50%; } }
+    width: 50%; }
+  .welcome-view .authFields .inputFields.signUptab:after {
+    content: '';
+    background-color: #888;
+    width: 77%;
+    height: 1px;
+    position: absolute;
+    top: 0;
+    right: 0; } }
 
 /*************** iPhone 6+ and Above ***************/
 @media all and (min-device-width: 412px) and (max-device-height: 736px) and (orientation: portrait) {
   .welcome-view .authFields .inputFields:after {
     width: 55%; }
+  .welcome-view .authFields .inputFields.signUptab:after {
+    content: '';
+    background-color: #888;
+    width: 79.5%;
+    height: 1px;
+    position: absolute;
+    top: 0;
+    right: 0; }
   .editProfile .btn-two .button {
     line-height: 32px;
     font-size: 15px; }

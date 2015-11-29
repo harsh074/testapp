@@ -1,7 +1,11 @@
 var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ipCookie','ng-mfb']);
 
-askmonkApp.run(function($ionicPlatform,$state) {
-  $state.go('login');
+askmonkApp.run(['$ionicPlatform' ,'$state','ipCookie', function($ionicPlatform,$state,ipCookie) {
+  if(ipCookie('token')){
+    $state.go('app.profile');
+  }else{
+    $state.go('login');
+  }
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -14,9 +18,9 @@ askmonkApp.run(function($ionicPlatform,$state) {
     ionic.Platform.isFullScreen = true;
     ionic.Platform.showStatusBar(false);
   });
-});
+}]);
 
-askmonkApp.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
+askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider', function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
   $ionicConfigProvider.views.transition('none');
   $ionicConfigProvider.views.swipeBackEnabled(false);
 
@@ -97,8 +101,18 @@ askmonkApp.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvid
       }
     }
   })
+  .state('app.dashboard',{
+    url:"/dashboard",
+    cache: false,
+    views:{
+      'menuContent':{
+        templateUrl:"views/dashboard.html",
+        controller:"dashboardCtrl"
+      }
+    }
+  })
   ;
 
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/welcome');
-});
+}]);

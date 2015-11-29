@@ -1,0 +1,41 @@
+<ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
+	<nav mfb-menu position="br" effect="slidein" label="Ask Question" active-icon="ion-ios-compose-outline" resting-icon="ion-ios-compose-outline" main-action="askQuestion()">
+	</nav>
+	<ion-content scroll="false">
+		<div class="yprofile dashboard">
+			<div class="pofilePic">
+				<div class="avatar"><i class="ion-person"></i></div>
+				<div class="yAnswerStatus">My Questions</div>
+				<label class="item item-input item-search">
+			    <input type="text" placeholder="Search" ng-model="data.search" />
+					<div ng-click="clearData(data.search)">	<i class="icon ion-android-cancel placeholder-icon"></i></div>
+			  </label>
+			</div>
+		</div>
+	</ion-content>
+	<ion-content class="row dashboardData paddingLRPlus21" scroll="true" delegate-handle="mainScroll">
+		<div class="noQuestionFound" ng-if="noQuestionFound">
+			<a ui-sref="app.askQuestion">Ask first question for free</a>
+		</div>
+		<div class="questionFound marginLRMinus21" ng-if="!noQuestionFound">
+			<ion-list>
+        <div ng-repeat="group in groups" class="questions" ng-click="toggleGroup(group,$index)" ng-class="{active: isGroupShown(group)}">
+          <div class="question"> Q{{$index+1}}. &nbsp; {{group.question}}</div>
+          <i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-down' : 'ion-ios-arrow-up'"></i>
+          <div ng-show="group.answer" class="answer" ng-class="{activeAnswer:isGroupShown(group)}"><p>{{group.answer}}</p>
+          </div>
+          <div class="answerRating" ng-show="group.answer">
+	          <i class="icon ion-ios-heart checked"></i>
+	          <i class="icon ion-ios-heart checked"></i>
+	          <i class="icon ion-ios-heart checked"></i>
+	          <i class="icon ion-ios-heart unchecked"></i>
+	          <i class="icon ion-ios-heart unchecked"></i>
+	        </div>
+        </div>
+        <div class="payTogetMore">
+	      	<a ui-sref="app.offers">Pay to get more answers.</a>
+	      </div>
+      </ion-list>
+		</div>
+	</ion-content>
+</ion-view>

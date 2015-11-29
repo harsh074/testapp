@@ -1,18 +1,18 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
 	<ion-content class="row paddingLRPlus21" scroll="true">
 		<div class="list editProfile">
-      <ion-md-input placeholder="Name" autofocus hightlight-color="calm" type="text"></ion-md-input>
+      <ion-md-input placeholder="Name" autofocus hightlight-color="calm" type="text" ng-model="editProfileData.name"></ion-md-input>
 
-      <ion-md-input placeholder="Email" hightlight-color="custom" type="email"></ion-md-input>
+      <ion-md-input placeholder="Email" hightlight-color="custom" type="email" ng-model="editProfileData.email"></ion-md-input>
 
-      <ion-md-input placeholder="Mobile" hightlight-color="custom" type="number"></ion-md-input>
+      <ion-md-input placeholder="Mobile" hightlight-color="custom" type="number" ng-model="editProfileData.mobile"></ion-md-input>
 
-      <ion-md-input placeholder="Birth Place" hightlight-color="custom" type="text"></ion-md-input>
+      <ion-md-input placeholder="Birth Place" hightlight-color="custom" type="text" ng-model="editProfileData.birthPlace"></ion-md-input>
 
-      <ion-md-input placeholder="Birth Time" hightlight-color="custom" type="time"></ion-md-input>
+      <ion-md-input placeholder="Birth Time" hightlight-color="custom" type="time" ng-model="editProfileData.birthTime"></ion-md-input>
 
-      <ion-md-input placeholder="Age" hightlight-color="custom" type="number"></ion-md-input>
-
+      <!-- <ion-md-input placeholder="Age" hightlight-color="custom" type="number"></ion-md-input> -->
+      
       <label class="item item-input item-calender">
       	<ionic-datepicker input-obj="datepickerObject">
 				  <button class="button button-custom-small button-light"> 
@@ -23,7 +23,7 @@
 				</ionic-datepicker>
       </label>
 		  <label class="item item-input item-select">
-        <select name="disease" ng-model="personalInfo.kvDisease" required="">
+        <select name="gender" ng-model="editProfileData.gender" required="">
             <option value="" disabled>Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
@@ -31,8 +31,8 @@
         </select>
       </label>
 			<div class="button-bar btn-two">
-			  <a class="button button-custom-small button-askmonk" ng-click="cancelEditProfile()">Cancel</a>
-        <a class="button button-custom-small button-askmonk" ng-click="saveEditProfile()">Save</a>
+			  <a class="button button-custom button-askmonk" ng-click="cancelEditProfile()">Cancel</a>
+        <a class="button button-custom button-askmonk" ng-click="saveEditProfile()">Save</a>
 
 			</div>
     </div>

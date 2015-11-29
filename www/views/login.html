@@ -1,6 +1,6 @@
 <ion-view class="welcome-view" cache-view="false" >
 	<div class="bg_white"></div>
-	<ion-content scroll="true" has-bouncing="false">
+	<ion-content scroll="true" has-bouncing="false" delegate-handle="loginScroll">
 		<div class="top-content row">
 			<div class="app-copy col col-top">
 				<div class="app-logo"><!-- <img src="/img/logo.png" width="100%"> --></div>
@@ -9,21 +9,31 @@
 		<div class="row row-bottom authFields">
 			<div class="loginTab">
 				<div class="userTab" ng-class="{'active':activeUserTab}" ng-click="userLoginForm()"><span>User</span></div>
-				<div class="monkTab" ng-class="{'active':activeMonkTab}" ng-click="monkLoginForm()"><span>Monk</span></div>
+				<div class="monkTab" ng-class="{'active':activeMonkTab}" ng-click="monkLoginForm()" ng-show="monkTab"><span>Monk</span></div>
 			</div>
-			<div class="inputFields" ng-show="activeUserTab">
-				<form name="myform" class="form form-horizontal" novalidate>
+			<div class="inputFields" ng-show="activeUserTab" ng-class="{'signUptab':signUptab}">
+				<form name="myform" class="form form-horizontal" novalidate ng-hide="signUptab">
 					<ion-md-input placeholder="Email" highlight-color="custom" ng-model="args.email" type="email"></ion-md-input>
 					<ion-md-input placeholder="Password" highlight-color="custom" ng-model="args.password" type="password"></ion-md-input>
 					<button class="button button-custom button-small" ng-click="userLogin()" type="submit">Login</button>
-					<a ui-sref="app.profile" class="registerWithUs">Sign Up</a>
+					<a ng-click="signUpTab()" class="registerWithUs">Sign Up</a>
+				</form>
+				<form name="registerForm" class="form form-horizontal" ng-submit="userSignUp(registerForm)" novalidate autocomplete="off" ng-show="signUptab">
+					<ion-md-input placeholder="Name" name="name" highlight-color="custom" ng-model="argsSignup.name" type="text"></ion-md-input>
+					<ion-md-input placeholder="Email" ng-pattern="/^\w+([\.+-]?\w+)*@\w+([\.-]?\w+)(\.\w{1,})+$/" name="email" highlight-color="custom" ng-model="argsSignup.email" type="email"></ion-md-input>
+					<ion-md-input placeholder="Password" name="password" highlight-color="custom" ng-model="argsSignup.password" type="password"></ion-md-input>
+					<ion-md-input placeholder="Confirm Password" name="conpassword" highlight-color="custom" ng-model="conpassword" type="password"></ion-md-input>
+					<button class="button button-custom button-small" type="submit">Sign Up</button>
+					<a ng-click="loginTab()" class="registerWithUs">Login</a>
 				</form>
 			</div>
 			<div class="inputFields" ng-hide="activeUserTab">
-				<ion-md-input placeholder="Email" highlight-color="custom" type="text"></ion-md-input>
-				<ion-md-input placeholder="Password" highlight-color="custom" type="password"></ion-md-input>
-				<a class="button button-custom button-small" ng-click="monkLogin()">MLogin</a>
-				<a href="" class="registerWithUs">Sign Up</a>
+				<form name="myform" class="form form-horizontal" novalidate>
+					<ion-md-input placeholder="Email" highlight-color="custom" type="text"></ion-md-input>
+					<ion-md-input placeholder="Password" highlight-color="custom" type="password"></ion-md-input>
+					<button class="button button-custom button-small" ng-click="monkLogin()">MLogin</button>
+					<!-- <a ng-click="" class="registerWithUs">Sign Up</a> -->
+				</form>
 			</div>
 		</div>
 		<!-- <div class="bottom-content row row-bottom">
