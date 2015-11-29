@@ -17,7 +17,7 @@ $RobotoDraftFontPath: "../lib/robotodraft/fonts"; // REMINDER: edit as appropria
 $RobotoDraftFontName: "RobotoDraft";
 $RobotoDraftFontVersion: "1.0.0";
 @import "www/lib/robotodraft/sass/robotodraft";    // REMINDER: edit as appropriate!
-@import "www/lib/mfb/mfb";
+//@import "www/lib/mfb/mfb";
 
 .welcome-view{
 	background-image:url('../img/bg_login/bg_login-5x.png');
@@ -237,13 +237,14 @@ $RobotoDraftFontVersion: "1.0.0";
 			width: 65%;
 			line-height: 25px;
 			margin-left: 20px;
+			white-space: nowrap;
 			.profileEditBtn{
 		    min-height: 0px;
 		    line-height: 22px;
 		    margin-top: 5px;
         font-size: 16px;
         display: block;
-        width: 106%;
+        width: 100%;
         padding:3px 13px;
 		    .ion-edit{
 		    	color: #000;
@@ -541,6 +542,9 @@ ion-side-menu .has-header{
 	.item-md-label{
 		padding-left: 5px;
 		border-width: 0px 0px 1px 0px;
+		input[type="time"]{
+			margin-left: -4px;
+		}
 		.md-input{
 			color: #000;
 			padding-top: 0px;
@@ -713,6 +717,7 @@ ion-side-menu .has-header{
 			float: left;
 			height: 30px;
 			margin-top: 2px;
+			font-size: 20px;
 		}
 	}
 	.askQuestionBtn{
@@ -725,15 +730,38 @@ ion-side-menu .has-header{
 	  }
 	}
 }
-.mfb-component__button--main, .mfb-component__button--child{
-	background-color:$background-color;
-	i{
-		font-size:32px;
-	}
+.floatingButton{
+	position: fixed;
+  background: $background-color;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 50%;
+  right: 20px;
+  bottom: -100px;
+  font-size: 35px;
+  transition: all 0.4s linear;
+  z-index: 1;
+  &.floatBtn{
+  	bottom:20px;
+  }
 }
 
-
-
+.spinner{
+	svg {
+  	width: 58px;
+    height: 58px;
+	}
+	&.spinner-askmonk {
+  	stroke: $background-color;
+  	fill: $background-color;
+	}
+}
+.loading-container .loading{
+	padding:5px;
+}
 
 /*************** iPhone 5 ***************/
 @media all and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait){

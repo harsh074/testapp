@@ -3,6 +3,13 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$ionicScrol
 	$scope.noQuestionFound = false;
 	$scope.data = {"search":""};
 
+  $scope.floatingBtnAction = false;
+  $scope.$on('$ionicView.enter', function(){
+    $scope.floatingBtnAction = true;
+    $scope.showLoader();
+  });
+  $scope.hideLoader();
+
   $scope.askQuestion = function(){
   	$state.go('app.askQuestion',{},{"reload":true})
   }
@@ -29,7 +36,7 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$ionicScrol
   	$timeout(function(){
   		$ionicScrollDelegate.$getByHandle('mainScroll').resize();
   		if($index>0){
-  			var topScrollPosition = $index*150;
+  			var topScrollPosition = $index*155;
   			$ionicScrollDelegate.$getByHandle('mainScroll').scrollTo(0, topScrollPosition, true);
   		}
   	}, 10);

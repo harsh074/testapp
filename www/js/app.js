@@ -1,4 +1,4 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ng-mfb']);
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker']);
 
 askmonkApp.run(['$ionicPlatform','$state', function($ionicPlatform,$state) {
   if(localStorage.getItem('token')){

@@ -23,12 +23,15 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     }
 
     $scope.userLogin = function(){
+      $scope.showLoader();
       utility.login($scope.args)
       .then(function(data){
         $scope.setAuth(true);
+        $scope.hideLoader();
         $state.go('app.profile');
       },function(data){
-        $scope.showMessage(data.error.message)
+        $scope.hideLoader();
+        $scope.showMessage(data.error.message);
       });
     }
     $scope.monkLogin = function(){
@@ -62,19 +65,23 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       }
 
       if(formData.$valid){
+        $scope.showLoader();
         utility.register($scope.argsSignup)
         .then(function(data){
           CONSTANT.isComingFromSignUp = true;
           utility.login({"email":data.email,"password":$scope.argsSignup.password})
           .then(function(dataLogin){
+            $scope.hideLoader();
             $rootScope.token = localStorage.getItem('token');
             localStorage.setItem("profileData", JSON.stringify(data));
             $scope.setAuth(true);
             $state.go('app.editProfile');
           },function(data){
+            $scope.hideLoader();
             $scope.showMessage(data.error.message);
           });
         },function(data){
+          $scope.hideLoader();
           if(data.error.status == 422){
             $scope.showMessage("Email address is already register");
           }
@@ -83,11 +90,8 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         $scope.showMessage("Please enter a valid email address");
         return;
       }
-
-      console.log($scope.argsSignup);
     }
   }else{
     $state.go('app.profile');
   }
-
 }]);

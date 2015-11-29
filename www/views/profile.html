@@ -1,11 +1,9 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
-	<nav mfb-menu position="br" effect="slidein" label="Ask Question" active-icon="ion-ios-compose-outline" resting-icon="ion-ios-compose-outline" main-action="askQuestion()">
-	</nav>
 	<ion-content scroll="false">
 		<div class="yprofile">
 			<div class="content pofilePic">
 					<div class="avatar"><i class="ion-person"></i></div>
-					<div class="yAnswerStatus">20 Question Asked <br>1000 rs in wallet<button class="button button-custom-small button-askmonk profileEditBtn" ng-click="profileEdit()"><i class="ion-edit"></i> Edit Profile</button></div>
+					<div class="yAnswerStatus">{{profileInfo.totalQuestionsAsked ? profileInfo.totalQuestionsAsked : 0}} Question Asked <br>{{profileInfo.waletMoney ? profileInfo.waletMoney : 0}} Rs in wallet<button class="button button-custom-small button-askmonk profileEditBtn" ng-click="profileEdit()"><i class="ion-edit"></i> Edit Profile</button></div>
 					<div class="userName">{{profileInfo.name}}</div>
 			</div>
 		</div>
@@ -36,4 +34,7 @@
 		  <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.</dd>
 		</dl> -->
 	</ion-content>
+	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}">
+		<i class="icon ion-ios-compose-outline"></i>
+	</div>
 </ion-view>

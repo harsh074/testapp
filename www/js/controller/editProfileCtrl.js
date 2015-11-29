@@ -6,8 +6,6 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
     if(CONSTANT.isComingFromSignUp){
       $scope.$emit("updateEditProfileFirstUser");
     }
-    // console.log($rootScope.profileData);
-
 
     if($rootScope.profileData){
       $scope.editProfileData = angular.copy($rootScope.profileData);
@@ -45,6 +43,8 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       closeOnSelect: false //Optional
     };
 
+    // $scope.hideLoader();
+    
     function datePickerCallback(val){
       // console.log(val);
       $scope.showDate = true;
@@ -57,16 +57,21 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
     }
 
     $scope.saveEditProfile = function(){
-      utility.updateUserProfile($scope.editProfileData)
-      .then(function(data){
-        CONSTANT.isComingFromSignUp = false;
-        localStorage.removeItem("profileData");
-        $scope.$emit("updateEditProfileFirstUser");
-        $state.go('app.profile');
-      },function(data){
-        console.log(data);
-
-      })
+      $scope.showLoader();
+      if(!$scope.editProfileData.dob || !$scope.editProfileData.birthPlace || !$scope.editProfileData.birthTime){
+        $scope.showMessage("All fields are required");
+        return;
+      }else{
+        utility.updateUserProfile($scope.editProfileData)
+        .then(function(data){
+          CONSTANT.isComingFromSignUp = false;
+          localStorage.removeItem("profileData");
+          $scope.$emit("updateEditProfileFirstUser");
+          $state.go('app.profile');
+        },function(data){
+          console.log(data);
+        });
+      }
     }
     
     $scope.cancelEditProfile = function(){

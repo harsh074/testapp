@@ -1,6 +1,4 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
-	<nav mfb-menu position="br" effect="slidein" label="Ask Question" active-icon="ion-ios-compose-outline" resting-icon="ion-ios-compose-outline" main-action="askQuestion()">
-	</nav>
 	<ion-content scroll="false">
 		<div class="yprofile dashboard">
 			<div class="pofilePic">
@@ -38,4 +36,7 @@
       </ion-list>
 		</div>
 	</ion-content>
+	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}">
+		<i class="icon ion-ios-compose-outline"></i>
+	</div>
 </ion-view>

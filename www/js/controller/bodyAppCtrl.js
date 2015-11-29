@@ -8,7 +8,7 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$rootScope', function($sc
  	});
 }]);
 
-askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','CONSTANT', function($scope,utility,CONSTANT,$rootScope,CONSTANT){
+askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','CONSTANT','$ionicLoading', function($scope,utility,CONSTANT,$rootScope,CONSTANT,$ionicLoading){
 	document.addEventListener("deviceready", onDeviceReady, false);
   function onDeviceReady() {
   	console.log('deviceReady');
@@ -31,5 +31,21 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
       }    // optional
     );
   }
+  $scope.showLoader = function() {
+    $ionicLoading.show({
+      animation: 'fade-in',
+      showBackdrop: true,
+      template:'<ion-spinner icon="ripple" class="spinner-askmonk"></ion-spinner>',
+      duration : 1000
+    });
+  };
+  $scope.hideLoader = function(){
+    $ionicLoading.hide();
+    // function success (status) { };
+    // function error (status) { };
+    // if(ionic.Platform.isAndroid()){
+      // window.cache.clear( success, error );
+    // }
+  };
 
 }]);

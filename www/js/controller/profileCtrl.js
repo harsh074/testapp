@@ -1,5 +1,12 @@
 askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$rootScope', function($scope, $state, utility,CONSTANT,$rootScope){
   
+  $scope.floatingBtnAction = false;
+	$scope.$on('$ionicView.enter', function(){
+    $scope.floatingBtnAction = true;
+  });
+
+	$scope.showLoader();
+
   utility.getUserProfile()
   .then(function(data){
   	// console.log(data);
@@ -8,14 +15,16 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   		CONSTANT.isComingFromSignUp = true;
   		$state.go('app.editProfile');
   	}else{
-  		console.log("data");
+  		$scope.hideLoader();
   		$scope.profileInfo = angular.copy($rootScope.profileData);
   	}
   },function(data){
+  	$scope.hideLoader();
   	console.log(data);
   });
   
   $scope.profileEdit = function(){
+  	$scope.showLoader();
     $state.go('app.editProfile');
   }
 
