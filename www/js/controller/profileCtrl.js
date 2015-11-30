@@ -16,7 +16,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   	}else{
   		$scope.hideLoader();
   		$scope.profileInfo = angular.copy($rootScope.profileData);
-      $scope.profileImage = '/img/moonSign/'+$scope.profileInfo.moonSign+'.png';
+      $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
   	}
   },function(data){
   	$scope.hideLoader();

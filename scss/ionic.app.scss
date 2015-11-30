@@ -266,7 +266,7 @@ $RobotoDraftFontVersion: "1.0.0";
 		}
 	}
 	.dashboard{
-		height: 98px;
+		height: 65px;
 		background-color:$top-portion-color;
 		padding: 17px 0px 0px;
 		.yAnswerStatus{
@@ -661,7 +661,7 @@ ion-side-menu .has-header{
 		}
 	}
 	select {
-    padding: 4px 33px 4px 25px;
+    padding: 4px 33px 4px 20px;
     height: 34px;
     width: 100%;
     max-width: 100%;
@@ -680,7 +680,7 @@ ion-side-menu .has-header{
 		}
 		.item-content{
 			white-space: normal;
-	    padding-left: 30px;
+	    padding-left: 24px;
     	padding-right: 40px;
 		}
 
@@ -719,27 +719,29 @@ ion-side-menu .has-header{
     padding: 0px 24px;
 		.title{
 			min-width: 0px;
-			display: inline-block;
+			display: flex;
 			float: left;
 			height: 100%;
 			margin:0px;
 			font-size: 20px;
-	    line-height: 56px;
+	    line-height: 58px;
+	    @include align-items(center);
+	    @include justify-content(center);
 		}
 	}
 	.askQuestionBtn{
 	  border: none;
 	  background-image: none;
-	  display: inline-block;
+	  display: flex;
     float: right;
-    height: 100%;
-    line-height: 58px;
+    height: 58px;
     width: 58px;
-  	text-align: right;
+  	@include align-items(center);
+  	@include justify-content(flex-end);
   	&.backBtn{
   		float: left;
-    	text-align: left;
     	width: 40px;
+    	@include justify-content(flex-start);
   	}
     .askBtnIcon{
     	i{
