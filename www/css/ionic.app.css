@@ -9382,7 +9382,7 @@ a.button {
       height: 75px;
       width: 75px;
       display: inline-block;
-      background-color: #fff;
+      background-color: transparent;
       text-align: center;
       font-size: 70px;
       color: #2B5D80;
@@ -9418,9 +9418,12 @@ a.button {
     color: #DC4C18; }
 
 .home-view .dashboard {
-  height: 113px;
+  height: 98px;
   background-color: #2B5D80;
   padding: 17px 0px 0px; }
+  .home-view .dashboard .yAnswerStatus {
+    width: auto;
+    margin-left: 0px; }
   .home-view .dashboard .pofilePic .avatar {
     height: 40px;
     width: 40px;
@@ -9460,7 +9463,7 @@ a.button {
 .home-view .dashboardData {
   display: inline-block;
   padding-top: 0px;
-  top: 159px;
+  top: 145px;
   z-index: 1;
   font-size: 18px; }
   .home-view .dashboardData .noQuestionFound a, .home-view .dashboardData .payTogetMore a {
@@ -9598,7 +9601,7 @@ dl {
   position: relative;
   overflow: hidden; }
   .bar.sideMenuTop .imgHldr {
-    background-image: url("../img/default.jpg");
+    background-image: url("../img/sidemenu_bg.jpg");
     background-size: cover;
     position: absolute;
     left: -8px;
@@ -9623,7 +9626,7 @@ dl {
   .shortSideMenuProfile .sProfilePic {
     height: 80px;
     width: 80px;
-    background-image: url("../img/default.jpg");
+    background-image: url("../img/sidemenu_bg.jpg");
     background-size: contain;
     border-radius: 50%;
     margin: 40px 10px 0px 20px;
@@ -9637,7 +9640,8 @@ dl {
     color: #fff;
     width: 160px;
     display: inline-block;
-    vertical-align: top; }
+    vertical-align: top;
+    text-transform: capitalize; }
 
 ion-side-menu .has-header {
   top: 194px; }
@@ -9645,7 +9649,7 @@ ion-side-menu .has-header {
 .editProfile {
   height: 100%; }
   .editProfile .item-md-label {
-    padding-left: 5px;
+    padding: 33px 0px 6px 5px;
     border-width: 0px 0px 1px 0px; }
     .editProfile .item-md-label input[type="time"] {
       margin-left: -4px; }
@@ -9775,29 +9779,39 @@ ion-side-menu .has-header {
       font-style: italic; }
 
 .questionBottom {
-  top: 120px;
+  top: 105px;
   padding: 0px; }
 
 .ion-content-askQuestion {
-  height: 75px;
+  height: 58px;
   z-index: 2; }
   .ion-content-askQuestion .bar-subHeader {
-    height: 75px;
-    padding: 22px 24px; }
+    height: 58px;
+    padding: 0px 24px; }
     .ion-content-askQuestion .bar-subHeader .title {
       min-width: 0px;
       display: inline-block;
       float: left;
-      height: 30px;
-      margin-top: 2px;
-      font-size: 20px; }
+      height: 100%;
+      margin: 0px;
+      font-size: 20px;
+      line-height: 56px; }
   .ion-content-askQuestion .askQuestionBtn {
     border: none;
     background-image: none;
     display: inline-block;
-    float: right; }
-    .ion-content-askQuestion .askQuestionBtn .button {
-      padding: 0px 13px; }
+    float: right;
+    height: 100%;
+    line-height: 58px;
+    width: 58px;
+    text-align: right; }
+    .ion-content-askQuestion .askQuestionBtn.backBtn {
+      float: left;
+      text-align: left;
+      width: 40px; }
+    .ion-content-askQuestion .askQuestionBtn .askBtnIcon i {
+      font-size: 30px;
+      color: #fff; }
 
 .floatingButton {
   position: fixed;
@@ -9812,7 +9826,7 @@ ion-side-menu .has-header {
   bottom: -100px;
   font-size: 35px;
   transition: all 0.4s linear;
-  z-index: 1; }
+  z-index: 13; }
   .floatingButton.floatBtn {
     bottom: 20px; }
 

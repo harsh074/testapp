@@ -24,6 +24,9 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
 
     $scope.userLogin = function(){
       $scope.showLoader();
+      if(CONSTANT.isDevice){
+        cordova.plugins.Keyboard.close();
+      }
       utility.login($scope.args)
       .then(function(data){
         $scope.setAuth(true);
@@ -66,9 +69,11 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
 
       if(formData.$valid){
         $scope.showLoader();
+        cordova.plugins.Keyboard.close();
         utility.register($scope.argsSignup)
         .then(function(data){
           CONSTANT.isComingFromSignUp = true;
+          localStorage.setItem("name",data.name);
           utility.login({"email":data.email,"password":$scope.argsSignup.password})
           .then(function(dataLogin){
             $scope.hideLoader();

@@ -1,5 +1,16 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
-	<ion-content class="row paddingLRPlus21" scroll="true">
+  <ion-content scroll="false" class="ion-content-askQuestion">
+    <div class="bar-subHeader paddingLRPlus21">
+      <div class="askQuestionBtn backBtn" ng-click="cancelEditProfile()">
+        <a class="askBtnIcon"><i class="icon ion-android-arrow-back"></i></a>
+      </div>
+      <h1 class="title">Profile Details</h1>
+      <div class="askQuestionBtn" ng-click="saveEditProfile()">
+        <a class="askBtnIcon"><i class="icon ion-ios-download"></i></a>
+      </div>
+    </div>
+  </ion-content>
+	<ion-content class="row paddingLRPlus21 questionBottom" scroll="true">
 		<div class="list editProfile">
       <ion-md-input placeholder="Name" autofocus hightlight-color="calm" type="text" ng-model="editProfileData.name"></ion-md-input>
 
@@ -30,11 +41,11 @@
             <option value="other">Other</option>
         </select>
       </label>
-			<div class="button-bar btn-two">
+			<!-- <div class="button-bar btn-two">
 			  <a class="button button-custom button-askmonk" ng-click="cancelEditProfile()">Cancel</a>
         <a class="button button-custom button-askmonk" ng-click="saveEditProfile()">Save</a>
 
-			</div>
+			</div> -->
     </div>
 	</ion-content>
 </ion-view>

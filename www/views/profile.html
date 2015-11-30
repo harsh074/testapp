@@ -2,7 +2,10 @@
 	<ion-content scroll="false">
 		<div class="yprofile">
 			<div class="content pofilePic">
-					<div class="avatar"><i class="ion-person"></i></div>
+					<div class="avatar">
+						<!-- <i class="ion-person"></i> -->
+						<img ng-src="{{profileImage}}">
+					</div>
 					<div class="yAnswerStatus">{{profileInfo.totalQuestionsAsked ? profileInfo.totalQuestionsAsked : 0}} Question Asked <br>{{profileInfo.waletMoney ? profileInfo.waletMoney : 0}} Rs in wallet<button class="button button-custom-small button-askmonk profileEditBtn" ng-click="profileEdit()"><i class="ion-edit"></i> Edit Profile</button></div>
 					<div class="userName">{{profileInfo.name}}</div>
 			</div>

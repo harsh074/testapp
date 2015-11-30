@@ -220,10 +220,8 @@ $RobotoDraftFontVersion: "1.0.0";
 			.avatar{
 				height: 75px;
 				width: 75px;
-				// background-image: url('../img/default.jpg');
-				// background-size:contain;
 				display: inline-block;
-				background-color: #fff;
+				background-color: transparent;
 				text-align: center;
 				font-size: 70px;
 				color: $top-portion-color;
@@ -268,9 +266,13 @@ $RobotoDraftFontVersion: "1.0.0";
 		}
 	}
 	.dashboard{
-		height: 113px;
+		height: 98px;
 		background-color:$top-portion-color;
 		padding: 17px 0px 0px;
+		.yAnswerStatus{
+			width: auto;
+			margin-left: 0px;
+		}
 		.pofilePic{
 			.avatar{
 				height: 40px;
@@ -322,7 +324,7 @@ $RobotoDraftFontVersion: "1.0.0";
 	.dashboardData{
 		display: inline-block;
     padding-top: 0px;
-    top: 159px;
+    top: 145px;
     z-index: 1;
     font-size: 18px;
     .noQuestionFound, .payTogetMore{
@@ -493,9 +495,12 @@ dl{
 		width: calc(100% - 105px);
 	}
 }
-.bar.sideMenuTop{height: 194px; position:relative; overflow:hidden;
+.bar.sideMenuTop{
+	height: 194px; 
+	position:relative; 
+	overflow:hidden;
 	.imgHldr{
-		background-image: url('../img/default.jpg');
+		background-image: url('../img/sidemenu_bg.jpg');
 		background-size: cover;
 		position: absolute; left:-8px; top:-8px; right:-8px; bottom:-8px; margin:auto;
 		display: inline-block;
@@ -515,7 +520,7 @@ dl{
 	.sProfilePic{
 		height: 80px;
 		width: 80px;
-		background-image: url('../img/default.jpg');
+		background-image: url('../img/sidemenu_bg.jpg');
 		background-size:contain;
 		border-radius:50%;
 		margin: 40px 10px 0px 20px;
@@ -532,6 +537,7 @@ dl{
 		width: 160px;
 		display: inline-block;
 		vertical-align: top;
+    text-transform: capitalize;
 	}
 }
 ion-side-menu .has-header{
@@ -540,7 +546,7 @@ ion-side-menu .has-header{
 .editProfile{
 	height:100%;
 	.item-md-label{
-		padding-left: 5px;
+		padding: 33px 0px 6px 5px;
 		border-width: 0px 0px 1px 0px;
 		input[type="time"]{
 			margin-left: -4px;
@@ -702,22 +708,23 @@ ion-side-menu .has-header{
   }
 }
 .questionBottom{
-	top:120px;
+	top:105px;
 	padding:0px;
 }
 .ion-content-askQuestion{
-	height:75px;
+	height:58px;
 	z-index:2;
 	.bar-subHeader{
-		height: 75px;
-    padding: 22px 24px;
+    height: 58px;
+    padding: 0px 24px;
 		.title{
 			min-width: 0px;
 			display: inline-block;
 			float: left;
-			height: 30px;
-			margin-top: 2px;
+			height: 100%;
+			margin:0px;
 			font-size: 20px;
+	    line-height: 56px;
 		}
 	}
 	.askQuestionBtn{
@@ -725,9 +732,21 @@ ion-side-menu .has-header{
 	  background-image: none;
 	  display: inline-block;
     float: right;
-	  .button{
-	    padding: 0px 13px;
-	  }
+    height: 100%;
+    line-height: 58px;
+    width: 58px;
+  	text-align: right;
+  	&.backBtn{
+  		float: left;
+    	text-align: left;
+    	width: 40px;
+  	}
+    .askBtnIcon{
+    	i{
+    		font-size:30px;
+    		color: #fff;
+    	}
+    }
 	}
 }
 .floatingButton{
@@ -743,7 +762,7 @@ ion-side-menu .has-header{
   bottom: -100px;
   font-size: 35px;
   transition: all 0.4s linear;
-  z-index: 1;
+  z-index: 13;
   &.floatBtn{
   	bottom:20px;
   }
@@ -759,6 +778,7 @@ ion-side-menu .has-header{
   	fill: $background-color;
 	}
 }
+
 .loading-container .loading{
 	padding:5px;
 }

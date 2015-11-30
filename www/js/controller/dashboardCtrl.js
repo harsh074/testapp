@@ -11,7 +11,8 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$ionicScrol
   $scope.hideLoader();
 
   $scope.askQuestion = function(){
-  	$state.go('app.askQuestion',{},{"reload":true})
+    $scope.showLoader();
+  	$state.go('app.askQuestion')
   }
 
   // utility.getUserQuestions()

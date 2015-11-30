@@ -43,4 +43,8 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 		var element = document.getElementById("askQuestionTextarea");
 		element.style.height =  element.scrollHeight + "px";
 	}
+
+	$scope.askQuestionButton = function(){
+		$state.go('app.profile');
+	}
 }]);

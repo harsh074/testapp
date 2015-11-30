@@ -63,6 +63,7 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
         localStorage.removeItem("profileData");
+        localStorage.removeItem("name");
         delete $http.defaults.headers.common.Authorization;
         $state.go('login');
       });

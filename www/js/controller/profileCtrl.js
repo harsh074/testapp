@@ -9,7 +9,6 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
 
   utility.getUserProfile()
   .then(function(data){
-  	// console.log(data);
   	$rootScope.profileData = data;
   	if(!data.dob || !data.birthPlace || !data.birthTime){
   		CONSTANT.isComingFromSignUp = true;
@@ -17,6 +16,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   	}else{
   		$scope.hideLoader();
   		$scope.profileInfo = angular.copy($rootScope.profileData);
+      $scope.profileImage = '/img/moonSign/'+$scope.profileInfo.moonSign+'.png';
   	}
   },function(data){
   	$scope.hideLoader();
@@ -29,7 +29,8 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   }
 
   $scope.askQuestion = function(){
-  	$state.go('app.askQuestion',{},{"reload":true})
+    $scope.showLoader();
+  	$state.go('app.askQuestion');
   }
 
   $scope.calculateAge = function calculateAge(birthday) { // birthday is a date
