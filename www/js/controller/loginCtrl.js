@@ -30,7 +30,6 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       utility.login($scope.args)
       .then(function(data){
         $scope.setAuth(true);
-        $scope.hideLoader();
         $state.go('app.profile');
       },function(data){
         $scope.hideLoader();
@@ -38,7 +37,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       });
     }
     $scope.monkLogin = function(){
-      $state.go('app.profile'); 
+      $state.go('app.yprofile');
     }
 
     $scope.signUpTab = function(){
@@ -69,14 +68,16 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
 
       if(formData.$valid){
         $scope.showLoader();
-        cordova.plugins.Keyboard.close();
+        if(CONSTANT.isDevice){
+          cordova.plugins.Keyboard.close();
+        }
         utility.register($scope.argsSignup)
         .then(function(data){
           CONSTANT.isComingFromSignUp = true;
           localStorage.setItem("name",data.name);
+          localStorage.setItem("email",data.email);
           utility.login({"email":data.email,"password":$scope.argsSignup.password})
           .then(function(dataLogin){
-            $scope.hideLoader();
             $rootScope.token = localStorage.getItem('token');
             localStorage.setItem("profileData", JSON.stringify(data));
             $scope.setAuth(true);

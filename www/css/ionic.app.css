@@ -9382,7 +9382,7 @@ a.button {
       height: 75px;
       width: 75px;
       display: inline-block;
-      background-color: transparent;
+      background-color: white;
       text-align: center;
       font-size: 70px;
       color: #2B5D80;
@@ -9466,7 +9466,9 @@ a.button {
   top: 145px;
   z-index: 1;
   font-size: 18px; }
-  .home-view .dashboardData .noQuestionFound a, .home-view .dashboardData .payTogetMore a {
+  .home-view .dashboardData .noQuestionFound {
+    margin-top: 30px; }
+  .home-view .dashboardData a, .home-view .dashboardData .payTogetMore a {
     color: #1464F6;
     text-align: center;
     display: block;

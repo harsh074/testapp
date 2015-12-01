@@ -18,9 +18,9 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
 	
 	utility.initialize(CONSTANT.baseUrl, false, $scope, $rootScope);
 
-	$scope.showMessage = function(errorMessage) {
+	$scope.showMessage = function(message) {
     window.plugins.toast.showWithOptions({
-      message: errorMessage,
+      message: message,
       duration: "long",
       position: "bottom",
       addPixelsY: -20  // added a negative value to move it up a bit (default 0)
@@ -32,12 +32,11 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
       console.log('error');
     }); // optional
   }
-  $scope.showLoader = function() {
+  $scope.showLoader = function(duration) {
     $ionicLoading.show({
       animation: 'fade-in',
       showBackdrop: true,
-      template:'<ion-spinner icon="ripple" class="spinner-askmonk"></ion-spinner>',
-      duration : 1000
+      template:'<ion-spinner icon="ripple" class="spinner-askmonk"></ion-spinner>'
     });
   };
   $scope.hideLoader = function(){

@@ -4,5 +4,5 @@ askmonkApp.constant('CONSTANT', {
 	baseUrl:"http://107.170.8.79:3000/api",
   fetchQuestionUrl:'lib/question.json',
   isComingFromSignUp:false,
-  isDevice:true
+  isDevice:false
 });

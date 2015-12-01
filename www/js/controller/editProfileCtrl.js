@@ -43,7 +43,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       closeOnSelect: false //Optional
     };
 
-    // $scope.hideLoader();
+    $scope.hideLoader();
     
     function datePickerCallback(val){
       // console.log(val);
@@ -70,6 +70,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
           $scope.$emit("updateEditProfileFirstUser");
           $state.go('app.profile');
         },function(data){
+          $scope.hideLoader();
           console.log(data);
         });
       }

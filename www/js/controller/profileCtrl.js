@@ -4,11 +4,10 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
 	$scope.$on('$ionicView.enter', function(){
     $scope.floatingBtnAction = true;
   });
-
-	$scope.showLoader();
-
+  $scope.showLoader();
   utility.getUserProfile()
   .then(function(data){
+    localStorage.setItem("email",data.email);
   	$rootScope.profileData = data;
   	if(!data.dob || !data.birthPlace || !data.birthTime){
   		CONSTANT.isComingFromSignUp = true;

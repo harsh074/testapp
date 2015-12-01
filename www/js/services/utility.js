@@ -68,17 +68,17 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         $state.go('login');
       });
     },
-    'getAllQuestion': function(url){
+    'getAllQuestion': function(){
       return this.request({
         'method': "GET",
-        'url': url
-      }); 
+        'url': '/questions/tagQuestions'
+      });
     },
     getUserQuestions:function(){
       return this.request({
         'method': "GET",
-        'url': url
-      }); 
+        'url': "/questions/getQuestions/"+localStorage.getItem('userId')
+      });
     },
     getUserProfile: function(){
       return this.request({
@@ -92,6 +92,13 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'url':"/users/"+localStorage.getItem('userId'),
         'data':args,
         'params': {"access_token":localStorage.getItem('token')}
+      });
+    },
+    askQuestion:function(args){
+      return this.request({
+        'method':"POST",
+        'url':"/questions/askQuestion",
+        'data':args
       });
     },
     'initialize': function(url, sessions, scope, rootScope){

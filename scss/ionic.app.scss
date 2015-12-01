@@ -221,7 +221,7 @@ $RobotoDraftFontVersion: "1.0.0";
 				height: 75px;
 				width: 75px;
 				display: inline-block;
-				background-color: transparent;
+				background-color: white;
 				text-align: center;
 				font-size: 70px;
 				color: $top-portion-color;
@@ -327,7 +327,9 @@ $RobotoDraftFontVersion: "1.0.0";
     top: 145px;
     z-index: 1;
     font-size: 18px;
-    .noQuestionFound, .payTogetMore{
+    .noQuestionFound{
+    	margin-top: 30px;
+    }, .payTogetMore{
     	a{
 	    	color: $anchor-color;
 		    text-align: center;
