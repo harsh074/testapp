@@ -18,26 +18,29 @@
 		<div class="questionFound marginLRMinus21" ng-if="!noQuestionFound">
 			<ion-list>
         <div ng-repeat="group in groups" class="questions" ng-click="toggleGroup(group,$index)" ng-class="{active: isGroupShown(group)}">
-          <div class="question"> Q{{$index+1}}. &nbsp; {{group.question}}</div>
-          <i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-down' : 'ion-ios-arrow-up'"></i>
+          <div class="question"> <span>Q{{$index+1}}.</span>{{group.question}}
+        		<i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-down' : 'ion-ios-arrow-up'" ng-show="group.answer"></i>
+        	</div>
+          
           <div class="answer" ng-class="{activeAnswer:isGroupShown(group)}">
-          	<p>{{group.answer ? group.answer: "Will be answered in the next 24 hrs."}}</p>
-          </div>
-          <div class="answerRating" ng-show="group.answer">
-	          <i class="icon ion-ios-heart checked"></i>
-	          <i class="icon ion-ios-heart checked"></i>
-	          <i class="icon ion-ios-heart checked"></i>
-	          <i class="icon ion-ios-heart unchecked"></i>
-	          <i class="icon ion-ios-heart unchecked"></i>
-	        </div>
+          	<p>{{group.answer ? group.answer: "Will be answered next 24 hrs."}}</p>
+	          <div class="answerRating" ng-show="group.answer">
+		          <i class="icon ion-ios-heart checked"></i>
+		          <i class="icon ion-ios-heart checked"></i>
+		          <i class="icon ion-ios-heart checked"></i>
+		          <i class="icon ion-ios-heart unchecked"></i>
+		          <i class="icon ion-ios-heart unchecked"></i>
+		        </div>
+		       </div>
         </div>
         <div class="payTogetMore">
-	      	<a ui-sref="app.offers">Pay to get more answers.</a>
+	      	<a ui-sref="app.wallet">Pay to get more answers.</a>
 	      </div>
       </ion-list>
 		</div>
 	</ion-content>
 	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}">
-		<i class="icon ion-ios-compose-outline"></i>
+		<!-- <i class="icon ion-ios-compose-outline"></i> -->
+		<img src="img/flyout_icon.jpg" />
 	</div>
 </ion-view>

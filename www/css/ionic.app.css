@@ -9322,6 +9322,9 @@ a.button {
     border-color: #27447e;
     margin-top: 0px; }
 
+.has-header {
+  top: 50px; }
+
 .item-md-label input {
   color: #fff;
   letter-spacing: 2px; }
@@ -9388,6 +9391,10 @@ a.button {
       color: #2B5D80;
       border-radius: 50%;
       vertical-align: top; }
+      .home-view .yprofile .pofilePic .avatar.monk {
+        background-image: url("../img/monk.jpg");
+        background-size: cover;
+        background-position-x: 4px; }
   .home-view .yprofile .yAnswerStatus {
     display: inline-block;
     font-size: 20px;
@@ -9475,18 +9482,24 @@ a.button {
     font-size: 20px;
     padding-top: 40px; }
   .home-view .dashboardData .questionFound .questions {
-    padding: 10px 21px;
+    padding: 10px 21px 0px;
     border-bottom: 1px solid #ddd; }
     .home-view .dashboardData .questionFound .questions.active {
       background-color: #F7F7F7; }
     .home-view .dashboardData .questionFound .questions .question {
-      display: inline-block; }
-    .home-view .dashboardData .questionFound .questions i {
-      float: right; }
+      position: relative;
+      padding: 0px 20px 10px 35px; }
+      .home-view .dashboardData .questionFound .questions .question span {
+        position: absolute;
+        left: 0; }
+      .home-view .dashboardData .questionFound .questions .question i {
+        position: absolute;
+        right: 5px;
+        top: 0; }
     .home-view .dashboardData .questionFound .questions .answer {
       display: inline-block;
       width: 100%;
-      padding: 10px 0px; }
+      padding: 10px 0px 0px 35px; }
       .home-view .dashboardData .questionFound .questions .answer.activeAnswer p {
         height: auto;
         -webkit-line-clamp: initial; }
@@ -9495,7 +9508,9 @@ a.button {
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical; }
+        -webkit-box-orient: vertical;
+        color: #2B5D80;
+        font-size: 15px; }
     .home-view .dashboardData .questionFound .questions .answerRating {
       display: inline-block; }
       .home-view .dashboardData .questionFound .questions .answerRating i {
@@ -9518,9 +9533,70 @@ a.button {
   padding-left: 24px;
   padding-right: 24px; }
 
+.home-view .walletManagement {
+  padding-top: 15px; }
+  .home-view .walletManagement .showMoney {
+    font-size: 18px; }
+  .home-view .walletManagement table.packs {
+    width: 100%;
+    height: 80px;
+    background-color: #2B5D80;
+    margin: 20px 0px;
+    color: white; }
+    .home-view .walletManagement table.packs td {
+      vertical-align: middle;
+      font-size: 16px; }
+      .home-view .walletManagement table.packs td.packName {
+        width: 56%;
+        padding-left: 15px;
+        font-size: 20px; }
+      .home-view .walletManagement table.packs td .preText {
+        color: #00BCD2;
+        text-align: left; }
+      .home-view .walletManagement table.packs td .preTextValues {
+        float: right;
+        padding-right: 10px; }
+      .home-view .walletManagement table.packs td .preTextQuestion {
+        float: right;
+        padding-right: 20px; }
+
+.home-view .allTile {
+  display: block; }
+  .home-view .allTile .tile {
+    display: inline-block;
+    width: 47%;
+    margin-top: 10px;
+    border: 1px solid;
+    text-align: center;
+    padding: 10px 0px;
+    background-color: #2B5D80;
+    color: white; }
+    .home-view .allTile .tile:nth-child(odd) {
+      margin-right: 5px; }
+    .home-view .allTile .tile:nth-child(even) {
+      margin-left: 5px; }
+    .home-view .allTile .tile .imagePic {
+      overflow: hidden;
+      max-height: 210px; }
+      .home-view .allTile .tile .imagePic img {
+        width: 35%; }
+    .home-view .allTile .tile .name p {
+      font-size: 16px;
+      margin-bottom: 5px; }
+    .home-view .allTile .tile .rating i {
+      color: #DC4C18;
+      font-size: 24px; }
+    .home-view .allTile .tile .statics {
+      font-size: 15px; }
+      .home-view .allTile .tile .statics .answered {
+        display: inline-block; }
+      .home-view .allTile .tile .statics .accepted {
+        display: inline-block; }
+
 .bar-assertive-900 {
   box-shadow: 1px 1px rgba(0, 0, 0, 0.15);
-  background-color: #00BCD2; }
+  background-color: #00BCD2;
+  height: 50px; }
   .bar-assertive-900 .button {
     color: #000;
     border-width: 1px 14px 1px 14px;
@@ -9559,7 +9635,7 @@ a.button {
     color: #F6D669; }
   .menu.pament span i {
     color: #DD7B60; }
-  .menu.offers span i {
+  .menu.wallet span i {
     color: #30B195; }
   .menu.yprofile span i {
     color: #67D5E4;
@@ -9841,8 +9917,8 @@ ion-side-menu .has-header {
   position: fixed;
   background: #00BCD2;
   color: #fff;
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 63px;
   text-align: center;
   line-height: 60px;
   border-radius: 50%;
@@ -9851,6 +9927,8 @@ ion-side-menu .has-header {
   font-size: 35px;
   transition: all 0.4s linear;
   z-index: 13; }
+  .floatingButton img {
+    width: 100%; }
   .floatingButton.floatBtn {
     bottom: 20px; }
 
@@ -9863,7 +9941,9 @@ ion-side-menu .has-header {
   fill: #00BCD2; }
 
 .loading-container .loading {
-  padding: 5px; }
+  padding: 0px;
+  border-radius: 50%;
+  height: 58px; }
 
 /*************** iPhone 5 ***************/
 @media all and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) {

@@ -6,7 +6,7 @@
 						<!-- <i class="ion-person"></i> -->
 						<img ng-src="{{profileImage}}">
 					</div>
-					<div class="yAnswerStatus">{{profileInfo.totalQuestionsAsked ? profileInfo.totalQuestionsAsked : 0}} Question Asked <br>{{profileInfo.waletMoney ? profileInfo.waletMoney : 0}} Rs in wallet<button class="button button-custom-small button-askmonk profileEditBtn" ng-click="profileEdit()"><i class="ion-edit"></i> Edit Profile</button></div>
+					<div class="yAnswerStatus">{{profileInfo.totalQuestionsAsked ? profileInfo.totalQuestionsAsked : 0}} Question Asked <br>{{profileInfo.walletMoney ? profileInfo.walletMoney : 0}} Rs in wallet<button class="button button-custom-small button-askmonk profileEditBtn" ng-click="profileEdit()"><i class="ion-edit"></i> Edit Profile</button></div>
 					<div class="userName">{{profileInfo.name}}</div>
 			</div>
 		</div>
@@ -38,6 +38,7 @@
 		</dl> -->
 	</ion-content>
 	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}">
-		<i class="icon ion-ios-compose-outline"></i>
+		<!-- <i class="icon ion-ios-compose-outline"></i> -->
+		<img src="img/flyout_icon.jpg" />
 	</div>
 </ion-view>

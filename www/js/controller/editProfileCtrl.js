@@ -34,7 +34,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       showTodayButton: 'false', //Optional
       modalHeaderColor: 'bar-positive', //Optional
       modalFooterColor: 'bar-positive', //Optional
-      from: new Date(1970, 1, 1), //Optional
+      from: new Date(1940, 1, 1), //Optional
       to: new Date(),  //Optional
       callback: function (val) {  //Mandatory
         datePickerCallback(val);

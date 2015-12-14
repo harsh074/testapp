@@ -156,6 +156,9 @@ $RobotoDraftFontVersion: "1.0.0";
 		}
 	}
 }
+.has-header{
+	top:50px;
+}
 .item-md-label input {
 	color: #fff;
 	letter-spacing: 2px;
@@ -227,6 +230,11 @@ $RobotoDraftFontVersion: "1.0.0";
 				color: $top-portion-color;
 				border-radius:50%;
 				vertical-align: top;
+				&.monk{
+			    background-image: url("../img/monk.jpg");
+			    background-size: cover;
+			    background-position-x: 4px;
+				}
 			}
 		}
 		.yAnswerStatus{
@@ -340,22 +348,28 @@ $RobotoDraftFontVersion: "1.0.0";
     }
     .questionFound{
   		.questions{
-	    	padding: 10px 21px;
+	    	padding: 10px 21px 0px;
   			border-bottom: 1px solid #ddd;
   			&.active{
   				background-color:#F7F7F7;
   			}
   			.question{
-  				display: inline-block;
-  			}
-  			i{
-  				float: right;
-  				
+			    position: relative;
+			    padding:0px 20px 10px 35px;
+			    span{
+	    	    position: absolute;
+    				left: 0;
+			    }
+			    i{
+  					position: absolute;
+				    right: 5px;
+				    top: 0;
+  				}
   			}
   			.answer{
 		    	display: inline-block;
 				  width: 100%;
-				  padding: 10px 0px;
+		      padding: 10px 0px 0px 35px;
   				&.activeAnswer{
   					p{
   						height: auto;
@@ -368,6 +382,8 @@ $RobotoDraftFontVersion: "1.0.0";
 				    display: -webkit-box;
 				    -webkit-line-clamp: 3;
 				    -webkit-box-orient: vertical;
+				    color: $top-portion-color;
+				    font-size: 15px;
   				}
   			}
   			.answerRating{
@@ -402,10 +418,93 @@ $RobotoDraftFontVersion: "1.0.0";
 		padding-left: 24px;
 		padding-right:24px;
 	}
+	.walletManagement{
+		padding-top:15px;
+		.showMoney{
+			font-size: 18px;
+		}
+		table.packs{
+			width: 100%;
+			height: 80px;
+			background-color: $top-portion-color;
+	    margin: 20px 0px;
+	    color: rgb(255, 255, 255);
+	    td{
+	    	vertical-align: middle;
+	    	font-size: 16px;
+	    	&.packName{
+	    		width: 56%;
+	    		padding-left:15px;
+	    		    font-size: 20px;
+	    	}
+	    	.preText{
+	    		color: $background-color;
+	    		text-align: left;
+	    	}
+	    	.preTextValues{
+	    		float: right;
+	    		padding-right:10px
+	    	}
+	    	.preTextQuestion{
+	    		float: right;
+	    		padding-right:20px
+	    	}
+	    }
+		}
+	}
+	.allTile{
+		display: block;
+		.tile{
+	    display: inline-block;
+	    width: 47%;
+  		margin-top: 10px;
+	    border: 1px solid;
+	    text-align: center;
+	    padding: 10px 0px;
+	    background-color:$top-portion-color;
+	    color: white;
+	    &:nth-child(odd) {
+		    margin-right: 5px;
+			}
+			&:nth-child(even) {
+		    margin-left: 5px;
+			}
+
+	    .imagePic{
+	    	overflow: hidden;
+    		max-height: 210px;
+    		img{
+			    width: 35%;
+    		}
+	    }
+	    .name{
+	    	p{
+	    		font-size: 16px;
+    			margin-bottom: 5px; 
+	    	}
+	    }
+	    .rating{
+	    	i{
+					color: #DC4C18;
+					font-size: 24px;
+				}
+	    }
+	    .statics{
+	    	font-size: 15px;
+				.answered{
+					display: inline-block;
+				}
+				.accepted{
+					display: inline-block;
+				}
+	    }
+		}
+	}
 }
 .bar-assertive-900{
 	box-shadow: 1px 1px rgba(0, 0, 0, 0.15);
 	background-color: $background-color;
+	height: 50px;
 	.button{
 		color:#000;
 		border-width: 1px 14px 1px 14px;
@@ -452,7 +551,7 @@ $RobotoDraftFontVersion: "1.0.0";
 	&.pament span i {
 		color:#DD7B60;
 	}
-	&.offers span i {
+	&.wallet span i {
 		color:#30B195;
 	}
 	&.yprofile span i {
@@ -757,8 +856,8 @@ ion-side-menu .has-header{
 	position: fixed;
   background: $background-color;
   color: #fff;
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 63px;
   text-align: center;
   line-height: 60px;
   border-radius: 50%;
@@ -767,6 +866,9 @@ ion-side-menu .has-header{
   font-size: 35px;
   transition: all 0.4s linear;
   z-index: 13;
+  img{
+  	width: 100%;
+  }
   &.floatBtn{
   	bottom:20px;
   }
@@ -784,7 +886,9 @@ ion-side-menu .has-header{
 }
 
 .loading-container .loading{
-	padding:5px;
+	padding:0px;
+	border-radius:50%;
+	height:58px;
 }
 
 /*************** iPhone 5 ***************/

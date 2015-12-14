@@ -9,8 +9,8 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	.then(function(data){
 		$scope.hideLoader();
 		$scope.questions = data;
-		// console.log(data);
 	},function(data){
+		$scope.hideLoader();
 		console.log(data);
 	});
 
@@ -53,23 +53,27 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	}
 
 	$scope.askQuestionButton = function(){
-		// $state.go('app.profile');
+		$scope.showLoader();
 		if($scope.askOtherQuestion.question){
 			$scope.askQuestion.question = null;
 			$scope.askQuestion.question = angular.copy($scope.askOtherQuestion.question);
+			$scope.hideLoader();
 		}
 
 		if($scope.askQuestion.question){
-			console.log($scope.askQuestion);
 			utility.askQuestion($scope.askQuestion)
 			.then(function(data){
-				$scope.showLoader();
 				$state.go('app.dashboard');
 			},function(data){
-				$scope.showMessage(data.message);
+				$scope.showMessage(data.error.message);
+				$scope.hideLoader();
 			});
 		}else{
 			return;
 		}
+	}
+
+	$scope.cancelAskQuestion = function(){
+		$state.go('app.dashboard');
 	}
 }]);

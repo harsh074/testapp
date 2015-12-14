@@ -101,7 +101,13 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'data':args
       });
     },
-    'initialize': function(url, sessions, scope, rootScope){
+    getPacks:function(){
+      return this.request({
+        'method':"GET",
+        'url':"/payments/packs"
+      });
+    },
+    initialize: function(url, sessions, scope, rootScope){
       this.API_URL = url;
       this.use_session = sessions;
       if(scope){

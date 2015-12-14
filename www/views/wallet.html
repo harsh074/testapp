@@ -1,0 +1,25 @@
+<ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">	
+	<ion-content scroll="false" class="ion-content-askQuestion">
+		<div class="bar-subHeader paddingLRPlus21">
+			<h1 class="title">Wallet Details</h1>
+		</div>
+	</ion-content>
+	<ion-content scroll="true" class="row questionBottom paddingLRPlus21">
+		<div class="walletManagement">
+			<p class="showMoney">Present Wallet Money : Rs {{userProfileData.walletMoney ? userProfileData.walletMoney : 0}}</p>
+			<table class="packs" ng-repeat="pack in packs">				
+				<tr>
+					<td rowspan="2" class="packName">{{pack.name}}</td>
+					<td><span class="preText">Amount (Rs): </span><span class="preTextValues">{{pack.amount}}</span></td>
+				</tr>
+				<tr>
+					<td><span class="preText">Questions : </span><span class="preTextQuestion">{{pack.questions}}</span></td>
+				</tr>
+			</table>
+		</div>
+	</ion-content>
+	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}">
+		<!-- <i class="icon ion-ios-compose-outline"></i> -->
+		<img src="img/flyout_icon.jpg" />
+	</div>
+</ion-view>

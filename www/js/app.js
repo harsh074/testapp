@@ -50,6 +50,16 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
       }
     }
   })
+  .state('app.yprofiles', {
+    url: "/yogi-profiles",
+    cache: false,
+    views: {
+      'menuContent': {
+        templateUrl: "views/yogi-profiles-tile.html",
+        controller: 'yProfilesCtrl'
+      }
+    }
+  })
   .state('app.yprofile', {
     url: "/yogi-profile",
     cache: false,
@@ -61,13 +71,13 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     }
   })
 
-  .state('app.offers',{
-    url:"/offers",
+  .state('app.wallet',{
+    url:"/wallet",
     cache: false,
     views:{
       'menuContent':{
-        templateUrl:"views/offers.html",
-        controller:"offersCtrl"
+        templateUrl:"views/wallet.html",
+        controller:"walletCtrl"
       }
     }
   })

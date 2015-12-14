@@ -8,6 +8,9 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$rootScope', function($sc
  	});
 
  	$scope.sideMenuName = localStorage.getItem("name");
+  $scope.$on("updateSideMenuName",function(evt,data){
+    $scope.sideMenuName = localStorage.getItem("name");
+  });
 }]);
 
 askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','CONSTANT','$ionicLoading', function($scope,utility,CONSTANT,$rootScope,CONSTANT,$ionicLoading){

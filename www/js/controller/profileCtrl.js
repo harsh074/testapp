@@ -8,6 +8,8 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   utility.getUserProfile()
   .then(function(data){
     localStorage.setItem("email",data.email);
+    localStorage.setItem("name",data.name);
+    $scope.$emit("updateSideMenuName",data);
   	$rootScope.profileData = data;
   	if(!data.dob || !data.birthPlace || !data.birthTime){
   		CONSTANT.isComingFromSignUp = true;
