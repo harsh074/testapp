@@ -5,29 +5,55 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     $scope.floatingBtnAction = true;
   });
   $scope.showLoader();
-  utility.getUserProfile()
-  .then(function(data){
-    localStorage.setItem("email",data.email);
-    localStorage.setItem("name",data.name);
-    $scope.$emit("updateSideMenuName",data);
-  	$rootScope.profileData = data;
-  	if(!data.dob || !data.birthPlace || !data.birthTime){
-  		CONSTANT.isComingFromSignUp = true;
-  		$state.go('app.editProfile');
-      window.plugins.nativepagetransitions.slide(
-        {"direction":"left"},
-        function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-        function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-      );
-  	}else{
-  		$scope.hideLoader();
-  		$scope.profileInfo = angular.copy($rootScope.profileData);
-      $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
-  	}
-  },function(data){
-  	$scope.hideLoader();
-  	console.log(data);
-  });
+  if(localStorage.getItem('loginType') == "user"){
+    utility.getUserProfile()
+    .then(function(data){
+      localStorage.setItem("email",data.email);
+      localStorage.setItem("name",data.name);
+      $scope.$emit("updateSideMenuName",data);
+    	$rootScope.profileData = data;
+    	if(!data.dob || !data.birthPlace || !data.birthTime){
+    		CONSTANT.isComingFromSignUp = true;
+    		$state.go('app.editProfile');
+        window.plugins.nativepagetransitions.slide(
+          {"direction":"left"},
+          function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+          function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+        );
+    	}else{
+    		$scope.hideLoader();
+    		$scope.profileInfo = angular.copy($rootScope.profileData);
+        $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
+    	}
+    },function(data){
+    	$scope.hideLoader();
+    	console.log(data);
+    });
+  }else{
+    utility.getMonkProfile()
+    .then(function(data){
+      localStorage.setItem("email",data.email);
+      localStorage.setItem("name",data.name);
+      $scope.$emit("updateSideMenuName",data);
+      $rootScope.profileData = data;
+      if(!data.dob || !data.birthPlace || !data.birthTime){
+        CONSTANT.isComingFromSignUp = true;
+        $state.go('app.editProfile');
+        window.plugins.nativepagetransitions.slide(
+          {"direction":"left"},
+          function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+          function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+        );
+      }else{
+        $scope.hideLoader();
+        $scope.profileInfo = angular.copy($rootScope.profileData);
+        $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
+      }
+    },function(data){
+      $scope.hideLoader();
+      console.log(data);
+    });
+  }
   
   $scope.profileEdit = function(){
   	$scope.showLoader();

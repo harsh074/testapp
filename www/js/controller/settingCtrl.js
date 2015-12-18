@@ -9,6 +9,7 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     localStorage.removeItem('userId');
     localStorage.removeItem("name");
     localStorage.removeItem("email");
+    localStorage.removeItem('loginType');
 
     delete $http.defaults.headers.common.Authorization;
     $state.go('login');

@@ -9403,15 +9403,14 @@ a.button {
       width: 75px;
       display: inline-block;
       background-color: white;
-      text-align: center;
-      font-size: 70px;
-      color: #2B5D80;
       border-radius: 50%;
       vertical-align: top; }
-      .home-view .yprofile .pofilePic .avatar.monk {
-        background-image: url("../img/monk.jpg");
-        background-size: cover;
-        background-position-x: 4px; }
+      .home-view .yprofile .pofilePic .avatar img {
+        height: 75px;
+        width: 75px;
+        display: inline-block;
+        border-radius: 50%;
+        vertical-align: top; }
   .home-view .yprofile .yAnswerStatus {
     display: inline-block;
     font-size: 20px;
@@ -9454,10 +9453,15 @@ a.button {
       text-align: center; }
     .home-view .yprofile .subHeaderBottomContent .yRating {
       float: right;
-      padding-right: 18px;
-      font-size: 21px; }
-      .home-view .yprofile .subHeaderBottomContent .yRating i {
-        color: #DC4C18; }
+      padding-right: 18px; }
+      .home-view .yprofile .subHeaderBottomContent .yRating ul.rating li {
+        display: inline;
+        border: 0px;
+        background: none;
+        padding: 5px;
+        color: #CC333C; }
+      .home-view .yprofile .subHeaderBottomContent .yRating ul.rating li i {
+        font-size: 21px; }
 
 .home-view .dashboard {
   height: 58px;
@@ -9600,14 +9604,14 @@ a.button {
         font-size: 19px; }
       .home-view .singleQuestion .questionData .subBottom .answerRating {
         display: inline-block; }
-        .home-view .singleQuestion .questionData .subBottom .answerRating i {
-          padding-right: 3px;
-          float: left;
+        .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li {
+          display: inline;
+          border: 0px;
+          background: none;
+          padding: 5px;
+          color: #CC333C; }
+        .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li i {
           font-size: 30px; }
-          .home-view .singleQuestion .questionData .subBottom .answerRating i.checked {
-            color: #CC333C; }
-          .home-view .singleQuestion .questionData .subBottom .answerRating i.unchecked {
-            color: #FFF1D7; }
 
 .home-view ion-content.row .scroll {
   width: 100%;
@@ -9708,7 +9712,6 @@ a.button {
   background-color: #00BCD2;
   height: 47px; }
   .bar-assertive-900 .customMenuBtn {
-    display: none;
     position: relative;
     overflow: hidden;
     margin: 0;
@@ -9725,8 +9728,8 @@ a.button {
     border-radius: none;
     border: none;
     cursor: pointer;
-    -webkit-transition: background .3s;
-    transition: background .3s;
+    -webkit-transition: background .7s;
+    transition: background .7s;
     background-color: transparent;
     /* active state, i.e. menu open */ }
     .bar-assertive-900 .customMenuBtn:focus {
@@ -9734,27 +9737,27 @@ a.button {
     .bar-assertive-900 .customMenuBtn span {
       display: block;
       position: absolute;
-      top: 16px;
+      top: 17px;
       left: 20px;
-      right: 20px;
+      right: 17px;
       height: 3px;
       background: white;
-      -webkit-transition: -webkit-transform .3s;
-      transition: transform .3s; }
+      -webkit-transition: -webkit-transform .7s;
+      transition: transform .7s; }
       .bar-assertive-900 .customMenuBtn span::before {
-        top: -10px;
+        top: -7px;
         -webkit-transform-origin: top right;
         -ms-transform-origin: top right;
         transform-origin: top right;
-        -webkit-transition: -webkit-transform .3s,width .3s,top .3s;
-        transition: transform .3s,width .3s,top .3s; }
+        -webkit-transition: -webkit-transform .7s,width .7s,top .7s;
+        transition: transform .7s,width .7s,top .7s; }
       .bar-assertive-900 .customMenuBtn span::after {
-        bottom: -10px;
+        bottom: -7px;
         -webkit-transform-origin: bottom right;
         -ms-transform-origin: bottom right;
         transform-origin: bottom right;
-        -webkit-transition: -webkit-transform .3s,width .3s,bottom .3s;
-        transition: transform .3s,width .3s,bottom .3s; }
+        -webkit-transition: -webkit-transform .7s,width .7s,bottom .7s;
+        transition: transform .7s,width .7s,bottom .7s; }
       .bar-assertive-900 .customMenuBtn span::before, .bar-assertive-900 .customMenuBtn span::after {
         position: absolute;
         display: block;
@@ -9773,12 +9776,12 @@ a.button {
       width: 50%; }
     .bar-assertive-900 .customMenuBtn.is-active span::before {
       top: 0;
-      transform: translateX(10px) translateY(1px) rotate(45deg);
-      -webkit-transform: translateX(10px) translateY(1px) rotate(45deg); }
+      transform: translateX(12px) translateY(1px) rotate(45deg);
+      -webkit-transform: translateX(12px) translateY(1px) rotate(45deg); }
     .bar-assertive-900 .customMenuBtn.is-active span::after {
       bottom: 0;
-      transform: translateX(10px) translateY(-1px) rotate(-45deg);
-      -webkit-transform: translateX(10px) translateY(-1px) rotate(-45deg); }
+      transform: translateX(12px) translateY(-1px) rotate(-45deg);
+      -webkit-transform: translateX(12px) translateY(-1px) rotate(-45deg); }
   .bar-assertive-900 .button {
     color: #fff;
     border-width: 1px 14px 1px 9px;
@@ -9792,11 +9795,11 @@ a.button {
 .logoSideMenu {
   background-image: url("../img/logo-bar-header.png");
   width: 100%;
-  height: 84%;
+  height: 80%;
   background-size: contain;
   display: inline-block;
   margin-top: 1px;
-  background-position: center;
+  background-position: center 3px;
   background-repeat: no-repeat; }
 
 .menu {
@@ -9849,7 +9852,7 @@ a.button {
 
 dl {
   width: 100%;
-  font-size: 16px; }
+  font-size: 18px; }
   dl dt {
     width: 100px;
     display: inline-block;

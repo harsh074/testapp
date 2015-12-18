@@ -1,13 +1,4 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
-	<ion-nav-bar class="bar-assertive-900">
-    <ion-nav-buttons side="left">
-      <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-disabled="isComingFromSignUp"></button>
-      <button class="customMenuBtn" ng-class="{'is-active':shouldGoBack}"><span></span></button>
-    </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-      <button class="button-clear ion-social-usd" ng-click="goToWallet()"></button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
 	<ion-content scroll="false">
 		<div class="yprofile">
 			<div class="content pofilePic">
@@ -29,27 +20,27 @@
 	</ion-content>
 	<ion-content class="row profileData paddingLRPlus21" scroll="false">
 		<dl>
-		  <dt>DOB:</dt>
+		  <dt>Birth Date</dt>
 		  <dd>{{profileInfo.dob | date : 'dd-MM-yyyy'}}</dd>
 		</dl>
 		<dl>
-		  <dt>Birth Place:</dt>
+		  <dt>Birth Place</dt>
 		  <dd>{{profileInfo.birthPlace}}</dd>
 		</dl>
 		<dl>
-		  <dt>Birth Time:</dt>
+		  <dt>Birth Time</dt>
 		  <dd>{{profileInfo.birthTime | date : 'h:mm a'}}</dd>
 		</dl>
 		<dl>
-		  <dt>Gender:</dt>
+		  <dt>Gender</dt>
 		  <dd>{{profileInfo.gender}}</dd>
 		</dl>
 		<dl>
-		  <dt>Zodiac:</dt>
+		  <dt>Zodiac</dt>
 		  <dd>{{profileInfo.moonSign}}</dd>
 		</dl>
 		<dl>
-		  <dt>Age:</dt>
+		  <dt>Age</dt>
 		  <dd>{{profileInfo.dob | ageFilter}}</dd>
 		</dl>
 		

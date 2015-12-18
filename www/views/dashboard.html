@@ -1,13 +1,4 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
-	<ion-nav-bar class="bar-assertive-900">
-    <ion-nav-buttons side="left">
-      <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-disabled="isComingFromSignUp"></button>
-      <button class="customMenuBtn" ng-class="{'is-active':shouldGoBack}"><span></span></button>
-    </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-      <button class="button-clear ion-social-usd" ng-click="goToWallet()"></button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
 	<ion-content scroll="false">
 		<div class="yprofile dashboard">
 			<div class="pofilePic">
@@ -42,7 +33,7 @@
 		        </div> -->
 		       </div>
         </div>
-        <div class="payTogetMore">
+        <div class="payTogetMore" ng-if="groups.length<=2">
 	      	<a ui-sref="app.wallet">Pay to get more answers.</a>
 	      </div>
       </ion-list>

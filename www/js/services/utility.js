@@ -38,14 +38,11 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'data': args
       });
     },
-    login: function(args,rootScope){
+    login: function(args){
       return this.request({
        'method': "POST",
        'url': "/users/login/",
-       'data':{
-         'email':args.email,
-         'password':args.password
-       }
+       'data':args
       }).then(function(data){
        if(!utility.use_session){
           $http.defaults.headers.common.Authorization = 'Basic ' + data.id;
@@ -123,6 +120,32 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
       return this.request({
         'method':"GET",
         'url':"/monks/getMonkDetails/"+id
+      });
+    },
+    ratingQuestion:function(args){
+      return this.request({
+        'method':"POST",
+        'url':"/users/rateAnswerByUser",
+        'data':args
+      });
+    },
+    monkLogin:function(args){
+       return this.request({
+       'method': "POST",
+       'url': "/monks/login/",
+       'data':args
+      }).then(function(data){
+       if(!utility.use_session){
+          $http.defaults.headers.common.Authorization = 'Basic ' + data.id;
+          localStorage.setItem('token',data.id);
+          localStorage.setItem('userId',data.userId);
+       }
+      });
+    },
+    getMonkProfile:function(){
+      return this.request({
+        'method':"GET",
+        'url':'/monks/getMonkDetails/'+localStorage.getItem('userId')
       });
     },
     initialize: function(url, sessions, scope, rootScope){

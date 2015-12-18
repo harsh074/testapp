@@ -236,15 +236,14 @@ $RobotoDraftFontVersion: "1.0.0";
 				width: 75px;
 				display: inline-block;
 				background-color: white;
-				text-align: center;
-				font-size: 70px;
-				color: $top-portion-color;
 				border-radius:50%;
 				vertical-align: top;
-				&.monk{
-			    background-image: url("../img/monk.jpg");
-			    background-size: cover;
-			    background-position-x: 4px;
+				img{
+			    height: 75px;
+					width: 75px;
+					display: inline-block;
+					border-radius:50%;
+					vertical-align: top;
 				}
 			}
 		}
@@ -299,9 +298,15 @@ $RobotoDraftFontVersion: "1.0.0";
 			.yRating{
 		  	float: right;
     		padding-right: 18px;
-    		font-size: 21px;
-				i{
-					color: #DC4C18;
+				ul.rating li {
+				  display: inline;
+				  border: 0px;
+				  background: none;
+				  padding: 5px;
+				  color: $red;
+				}
+				ul.rating li i {
+				  font-size: 21px;
 				}
 			}
 		}
@@ -486,17 +491,27 @@ $RobotoDraftFontVersion: "1.0.0";
 				}
 				.answerRating{
 					display: inline-block;
-					i{
-						padding-right: 3px;
-						float: left;
-						font-size: 30px;
-						&.checked{
-							color: $red;
-						}
-						&.unchecked{
-							color: #FFF1D7;
-						}
+					ul.rating li {
+					  display: inline;
+					  border: 0px;
+					  background: none;
+					  padding: 5px;
+					  color: $red;
 					}
+					ul.rating li i {
+					  font-size: 30px;
+					}
+					// i{
+					// 	padding-right: 3px;
+					// 	float: left;
+					// 	font-size: 30px;
+					// 	&.checked{
+					// 		color: $red;
+					// 	}
+					// 	&.unchecked{
+					// 		color: #FFF1D7;
+					// 	}
+					// }
 				}
 			}
 		}
@@ -630,7 +645,7 @@ $RobotoDraftFontVersion: "1.0.0";
 	background-color: $background-color;
 	height: 47px;
 	.customMenuBtn{
-    display: none;
+    // display: none;
     position: relative;
     overflow: hidden;
     margin: 0;
@@ -647,8 +662,8 @@ $RobotoDraftFontVersion: "1.0.0";
     border-radius: none;
     border: none;
     cursor: pointer;
-    -webkit-transition: background .3s;
-    transition: background .3s;
+    -webkit-transition: background .7s;
+    transition: background .7s;
     background-color: rgba(0, 0, 0, 0);
     &:focus {
   		outline: none;
@@ -656,28 +671,28 @@ $RobotoDraftFontVersion: "1.0.0";
 		span {
 		  display: block;
 	    position: absolute;
-	    top: 16px;
+	    top: 17px;
 	    left: 20px;
-	    right: 20px;
+	    right: 17px;
 	    height: 3px;
 	    background: rgb(255, 255, 255);
-	    -webkit-transition: -webkit-transform .3s;
-	    transition: transform .3s;
+	    -webkit-transition: -webkit-transform .7s;
+	    transition: transform .7s;
 		  &::before {
-  			top: -10px;
+  			top: -7px;
   			-webkit-transform-origin: top right;
 		    -ms-transform-origin: top right;
 		    transform-origin: top right;
-		    -webkit-transition: -webkit-transform .3s,width .3s,top .3s;
-		    transition: transform .3s,width .3s,top .3s;
+		    -webkit-transition: -webkit-transform .7s,width .7s,top .7s;
+		    transition: transform .7s,width .7s,top .7s;
 			}
 			&::after{
-				bottom: -10px;
+				bottom: -7px;
 		    -webkit-transform-origin: bottom right;
 		    -ms-transform-origin: bottom right;
 		    transform-origin: bottom right;
-		    -webkit-transition: -webkit-transform .3s,width .3s,bottom .3s;
-		    transition: transform .3s,width .3s,bottom .3s;
+		    -webkit-transition: -webkit-transform .7s,width .7s,bottom .7s;
+		    transition: transform .7s,width .7s,bottom .7s;
 			}
 			&::before, &::after{
 				position: absolute;
@@ -704,13 +719,13 @@ $RobotoDraftFontVersion: "1.0.0";
 		}
 		&.is-active span::before {
 		  top: 0;
-		  transform: translateX(10px) translateY(1px) rotate(45deg);
-		  -webkit-transform: translateX(10px) translateY(1px) rotate(45deg);
+		  transform: translateX(12px) translateY(1px) rotate(45deg);
+		  -webkit-transform: translateX(12px) translateY(1px) rotate(45deg);
 		}
 		&.is-active span::after {
 		  bottom: 0;
-		  transform: translateX(10px) translateY(-1px) rotate(-45deg);
-		  -webkit-transform: translateX(10px) translateY(-1px) rotate(-45deg);
+		  transform: translateX(12px) translateY(-1px) rotate(-45deg);
+		  -webkit-transform: translateX(12px) translateY(-1px) rotate(-45deg);
 		}
 	}
 	.button{
@@ -728,11 +743,11 @@ $RobotoDraftFontVersion: "1.0.0";
 .logoSideMenu{
 	background-image: url('../img/logo-bar-header.png');
 	width: 100%;
-	height: 84%;
+	height: 80%;
 	background-size: contain;
 	display: inline-block;
 	margin-top: 1px;
-	background-position:center;
+	background-position:center 3px;
 	background-repeat:no-repeat;
 }
 .menu{
@@ -796,7 +811,7 @@ $RobotoDraftFontVersion: "1.0.0";
 }
 dl{
 	width:100%;
-	font-size:16px;
+	font-size:18px;
 	dt{
 		width: 100px;
 		display: inline-block;

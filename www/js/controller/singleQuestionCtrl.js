@@ -26,4 +26,14 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
   	console.log(data);
   });
 
+  $scope.rateQuestion = function(){
+    console.log($scope.question);
+    utility.ratingQuestion({"userId":localStorage.getItem('userId'),"email":$scope.question.email,"id":$scope.question.id,"status":$scope.question.status,"rating":$scope.question.rating})
+    .then(function(data){
+      console.log("success",data);
+      $scope.question = angular.copy(data);
+    },function(data){
+      console.log(data,"error");
+    })
+  }
 }]);

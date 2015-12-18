@@ -1,4 +1,4 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker']);
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating']);
 
 askmonkApp.run(['$ionicPlatform','$state', function($ionicPlatform,$state) {
   if(localStorage.getItem('token')){
@@ -22,8 +22,8 @@ askmonkApp.run(['$ionicPlatform','$state', function($ionicPlatform,$state) {
     window.plugins.nativepagetransitions.globalOptions.androiddelay = 0;
     // window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 4;
     // these are used for slide left/right only currently
-    window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 0;
-    window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 0;
+    // window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 0;
+    // window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 0;
     
   });
 }]);

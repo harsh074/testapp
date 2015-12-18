@@ -1,14 +1,4 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
-	<ion-nav-bar class="bar-assertive-900">
-    <ion-nav-buttons side="left">
-      <!-- <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-disabled="isComingFromSignUp"></button> -->
-      <button class="customMenuBtn is-active" ng-click="goBack()"><span></span></button>
-    </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-      <button class="button-clear ion-social-usd" ng-click="goToWallet()"></button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
-
 	<ion-content scroll="false">
 		<div class="shortHeader">
 			<h1 class="title">View Question</h1>
@@ -23,15 +13,16 @@
      	</div>
       <div class="subBottom">
       	<p class="tagName">Tag : <span>{{question.questionTag}}</span></p>
-      	<p class="questionTime" ng-if="question.status=='answered'">Answered 3 hrs ago</p>
+      	<p class="questionTime" ng-if="question.status=='answered' || question.status=='rated'">Answered 3 hrs ago</p>
       	<p class="questionTime"ng-if="question.status=='asked'">Asked 3 hrs ago</p>
-      	<p class="ratingQuestion" ng-if="question.status=='answered'">How Satisfied are you ?</p>
-      	<div class="answerRating" ng-if="question.status=='answered'">
-          <i class="icon ion-android-star checked"></i>
+      	<p class="ratingQuestion" ng-if="question.status=='answered' || question.status=='rated'">How Satisfied are you ?</p>
+      	<div class="answerRating" ng-if="question.status=='answered' || question.status=='rated'">
+          <!-- <i class="icon ion-android-star checked"></i>
           <i class="icon ion-android-star checked"></i>
           <i class="icon ion-android-star checked"></i>
           <i class="icon ion-android-star unchecked"></i>
-          <i class="icon ion-android-star unchecked"></i>
+          <i class="icon ion-android-star unchecked"></i> -->
+          <rating ng-model="question.rating" max="5" ng-click="rateQuestion()"></rating>
         </div>
       </div>
 		</div> 

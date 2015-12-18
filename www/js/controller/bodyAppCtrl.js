@@ -21,8 +21,10 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state', function($scope,
   };
 }]);
 
-askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','CONSTANT','$ionicLoading','$timeout','$ionicHistory', function($scope,utility,CONSTANT,$rootScope,CONSTANT,$ionicLoading,$timeout,$ionicHistory){
+askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','CONSTANT','$ionicLoading','$timeout','$ionicHistory','$state','$ionicSideMenuDelegate', function($scope,utility,CONSTANT,$rootScope,CONSTANT,$ionicLoading,$timeout,$ionicHistory,$state,$ionicSideMenuDelegate){
 	document.addEventListener("deviceready", onDeviceReady, false);
+  $scope.showArrow = false;
+
   function onDeviceReady() {
   	console.log('deviceReady');
   }
@@ -59,15 +61,26 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     // }
   };
 
-  $scope.goBack = function(){
-    $scope.showLoader();
-    $timeout(function(){
-      $ionicHistory.goBack();
-      window.plugins.nativepagetransitions.slide(
-        {"direction":"right"},
-        function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-        function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-      );
-    }, 300);
+  $scope.hamburgerBtnEvent = function(){
+    if($state.current.name == 'app.editProfile' || $state.current.name == 'app.askQuestion' || $state.current.name == 'app.yprofile' || $state.current.name == 'app.singlequestion'){
+      $timeout(function(){
+        $ionicHistory.goBack();
+        window.plugins.nativepagetransitions.slide(
+          {"direction":"right"},
+          function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+          function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+        );
+      }, 300);
+    }else{
+      
+      $ionicSideMenuDelegate.toggleLeft();
+    }
   }
+  $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+     if(toState.name == 'app.editProfile' || toState.name == 'app.askQuestion' || toState.name == 'app.yprofile' || toState.name == 'app.singlequestion'){
+      $scope.showArrow = true;
+    }else{
+      $scope.showArrow = false;
+    }
+  });
 }]);

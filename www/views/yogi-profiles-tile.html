@@ -1,13 +1,4 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
-	<ion-nav-bar class="bar-assertive-900">
-    <ion-nav-buttons side="left">
-      <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-disabled="isComingFromSignUp"></button>
-      <button class="customMenuBtn" ng-class="{'is-active':shouldGoBack}"><span></span></button>
-    </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-      <button class="button-clear ion-social-usd" ng-click="goToWallet()"></button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
 	<ion-content scroll="false">
 		<div class="shortHeader">
 			<h1 class="title">Astrologer Profiles</h1>
@@ -32,7 +23,7 @@
 			</div> -->
 			<div class="tile" ng-repeat="profile in monksProfiles" ng-click="goToYogiProfile(profile.id)">
 				<div class="imagePic">
-					<img ng-src="http://askmonk.in/images/{{profile.name.split(' ')[0].toLowerCase()+profile.name.split(' ')[1]}}.jpg" />
+					<img ng-src="http://askmonk.in/mImages/{{profile.email.split('@')[0].toLowerCase()}}.jpg" />
 				</div>
 				<div class="name">
 					<p>{{profile.name}}</p>

@@ -11,6 +11,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     $scope.args = {"email":"","password":""};
     $scope.argsSignup = {"name":"","email":"","password":""};
     $scope.conpassword = {"pass":""};
+    $scope.argsMonk = {"email":"","password":""};
 
     $scope.userLoginForm =function() {
       $scope.activeUserTab = true;
@@ -30,6 +31,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       utility.login($scope.args)
       .then(function(data){
         $scope.setAuth(true);
+        localStorage.setItem('loginType',"user");
         $state.go('app.profile');
         window.plugins.nativepagetransitions.slide(
           {"direction":"left"},
@@ -42,7 +44,21 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       });
     }
     $scope.monkLogin = function(){
-      $state.go('app.yprofile');
+      utility.monkLogin($scope.argsMonk)
+      .then(function(data){
+        $scope.setAuth(true);
+        $state.go('app.profile');
+        localStorage.setItem('loginType',"monk");
+        window.plugins.nativepagetransitions.slide(
+          {"direction":"left"},
+          function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+          function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+        );
+      },function(data){
+        $scope.hideLoader();
+        $scope.showMessage(data.error.message);
+      });
+      // $state.go('app.yprofile');
     }
 
     $scope.signUpTab = function(){
