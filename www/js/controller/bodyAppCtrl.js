@@ -1,4 +1,4 @@
-askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$rootScope', function($scope,CONSTANT,$rootScope){
+askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state', function($scope,CONSTANT,$state){
 	$scope.isComingFromSignUp = CONSTANT.isComingFromSignUp;
 	$scope.$on("updateEditProfileFirstUser", function() {
 		$scope.isComingFromSignUp = CONSTANT.isComingFromSignUp;
@@ -11,9 +11,17 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$rootScope', function($sc
   $scope.$on("updateSideMenuName",function(evt,data){
     $scope.sideMenuName = localStorage.getItem("name");
   });
+  $scope.goToWallet = function(){
+    $state.go("app.wallet");
+    window.plugins.nativepagetransitions.slide(
+      {"direction":"left"},
+      function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+      function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+    );
+  };
 }]);
 
-askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','CONSTANT','$ionicLoading', function($scope,utility,CONSTANT,$rootScope,CONSTANT,$ionicLoading){
+askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','CONSTANT','$ionicLoading','$timeout','$ionicHistory', function($scope,utility,CONSTANT,$rootScope,CONSTANT,$ionicLoading,$timeout,$ionicHistory){
 	document.addEventListener("deviceready", onDeviceReady, false);
   function onDeviceReady() {
   	console.log('deviceReady');
@@ -51,4 +59,15 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     // }
   };
 
+  $scope.goBack = function(){
+    $scope.showLoader();
+    $timeout(function(){
+      $ionicHistory.goBack();
+      window.plugins.nativepagetransitions.slide(
+        {"direction":"right"},
+        function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+        function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+      );
+    }, 300);
+  }
 }]);

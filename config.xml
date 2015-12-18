@@ -18,7 +18,7 @@
   <preference name="SplashScreenDelay" value="3000"/>
   <preference name="FadeSplashScreenDuration" value="3000"/>
   <preference name="ShowSplashScreenSpinner" value="false"/>
-  <preference name="Fullscreen" value="true"/>
+  <preference name="Fullscreen" value="false"/>
   <preference name="android-minSdkVersion" value="19"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>

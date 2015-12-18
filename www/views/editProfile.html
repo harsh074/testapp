@@ -1,9 +1,18 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
+  <ion-nav-bar class="bar-assertive-900">
+    <ion-nav-buttons side="left">
+      <!-- <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-disabled="isComingFromSignUp"></button> -->
+      <button class="customMenuBtn is-active" ng-click="goBack()"><span></span></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button-clear ion-social-usd" ng-click="goToWallet()"></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
   <ion-content scroll="false" class="ion-content-askQuestion">
-    <div class="bar-subHeader paddingLRPlus21">
-      <div class="askQuestionBtn backBtn" ng-click="cancelEditProfile()">
+    <div class="shortHeader">
+      <!-- <div class="askQuestionBtn backBtn" ng-click="cancelEditProfile()">
         <a class="askBtnIcon"><i class="icon ion-android-arrow-back"></i></a>
-      </div>
+      </div> -->
       <h1 class="title">Profile Details</h1>
       <div class="askQuestionBtn" ng-click="saveEditProfile()">
         <a class="askBtnIcon"><i class="icon ion-ios-download"></i></a>

@@ -1,86 +1,54 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
-	<ion-content class="row paddingLRPlus21">
+	<ion-nav-bar class="bar-assertive-900">
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-disabled="isComingFromSignUp"></button>
+      <button class="customMenuBtn" ng-class="{'is-active':shouldGoBack}"><span></span></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button-clear ion-social-usd" ng-click="goToWallet()"></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+	<ion-content scroll="false">
+		<div class="shortHeader">
+			<h1 class="title">Astrologer Profiles</h1>
+		</div>
+	</ion-content>
+	<ion-content class="row paddingLRPlus21 yogiTileProfile">
 		<div class="allTile">
-			<div class="tile" ng-click="goToYogiProfile()">
-				<div class="imagePic">
-					<img src="img/monk.jpg" width="45%" />
-				</div>
-				<div class="name">
-					<p>Sunil Magon</p>
-				</div>
-				<div class="rating">
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star-half"></i>
-					<i class="ion-ios-star-outline"></i>
-				</div>
-				<div class="statics">
-					<div class="answered">Answered<br/>20</div>
-					<div class="accepted">Accepted<br/>10</div>
-				</div>
-			</div>
-			<div class="tile" ng-click="goToYogiProfile()">
+			<!-- <div class="tile" ng-click="goToYogiProfile()">
 				<div class="imagePic">
 					<img src="img/monk.jpg" />
 				</div>
 				<div class="name">
 					<p>Sunil Magon</p>
 				</div>
-				<div class="rating">
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star-half"></i>
-					<i class="ion-ios-star-outline"></i>
+				<div class="place">
+					<p>place</p>
 				</div>
 				<div class="statics">
-					<div class="answered">Answered<br/>20</div>
-					<div class="accepted">Accepted<br/>10</div>
+					<div class="answered"><span>Answered</span><br/>20</div>
+					<div class="accepted"><span>Views</span><br/>10</div>
 				</div>
-			</div>
-			<div class="tile" ng-click="goToYogiProfile()">
+			</div> -->
+			<div class="tile" ng-repeat="profile in monksProfiles" ng-click="goToYogiProfile(profile.id)">
 				<div class="imagePic">
-					<img src="img/monk.jpg" width="45%" />
+					<img ng-src="http://askmonk.in/images/{{profile.name.split(' ')[0].toLowerCase()+profile.name.split(' ')[1]}}.jpg" />
 				</div>
 				<div class="name">
-					<p>Sunil Magon</p>
+					<p>{{profile.name}}</p>
 				</div>
-				<div class="rating">
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star-half"></i>
-					<i class="ion-ios-star-outline"></i>
+				<div class="place">
+					<p>{{profile.residence}}</p>
 				</div>
 				<div class="statics">
-					<div class="answered">Answered<br/>20</div>
-					<div class="accepted">Accepted<br/>10</div>
-				</div>
-			</div>
-			<div class="tile" ng-click="goToYogiProfile()">
-				<div class="imagePic">
-					<img src="img/monk.jpg" width="45%" />
-				</div>
-				<div class="name">
-					<p>Sunil Magon</p>
-				</div>
-				<div class="rating">
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star-half"></i>
-					<i class="ion-ios-star-outline"></i>
-				</div>
-				<div class="statics">
-					<div class="answered">Answered<br/>20</div>
-					<div class="accepted">Accepted<br/>10</div>
+					<div class="answered"><span>Answered</span><br/>{{profile.questionsAnswered ? profile.questionsAnswered : 0}}</div>
+					<div class="accepted"><span>Views</span><br/>{{profile.profileViews ? profile.profileViews : 0}}</div>
 				</div>
 			</div>
 		</div>
 	</ion-content>
 	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}">
-		<!-- <i class="icon ion-ios-compose-outline"></i> -->
-		<img src="img/flyout_icon.jpg" />
+		<i class="icon ion-ios-compose-outline"></i>
+		<!-- <img src="img/flyout_icon.jpg" /> -->
 	</div>
 </ion-view>

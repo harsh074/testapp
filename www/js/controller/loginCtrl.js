@@ -31,6 +31,11 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       .then(function(data){
         $scope.setAuth(true);
         $state.go('app.profile');
+        window.plugins.nativepagetransitions.slide(
+          {"direction":"left"},
+          function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+          function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+        );
       },function(data){
         $scope.hideLoader();
         $scope.showMessage(data.error.message);
@@ -82,6 +87,11 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
             localStorage.setItem("profileData", JSON.stringify(data));
             $scope.setAuth(true);
             $state.go('app.editProfile');
+            window.plugins.nativepagetransitions.slide(
+              {"direction":"left"},
+              function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+              function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+            );
           },function(data){
             $scope.hideLoader();
             $scope.showMessage(data.error.message);
@@ -99,5 +109,10 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     }
   }else{
     $state.go('app.profile');
+    window.plugins.nativepagetransitions.slide(
+      {"direction":"left"},
+      function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+      function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+    );
   }
 }]);

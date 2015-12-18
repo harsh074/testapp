@@ -1,23 +1,33 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
+	<ion-nav-bar class="bar-assertive-900">
+    <ion-nav-buttons side="left">
+      <button class="customMenuBtn is-active" ng-click="goBack()"><span></span></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button-clear ion-social-usd" ng-click="goToWallet()"></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
 	<ion-content scroll="false">
 		<div class="yprofile">
 			<div class="content pofilePic">
-				<div class="avatar monk">
-					<!-- <i class="ion-person"></i> -->
-					<!-- <img src="/www/img/monk.jpg" /> -->
-				</div>
+				<div class="avatar monk"></div>
 				<div class="yAnswerStatus">
-					<span>20 Question Answered</span>
-					<div class="yRating">
-						<i class="ion-ios-star"></i>
-						<i class="ion-ios-star"></i>
-						<i class="ion-ios-star"></i>
-						<i class="ion-ios-star-half"></i>
-						<i class="ion-ios-star-outline"></i>
-					</div>
 					<button class="button button-custom-small button-askmonk profileEditBtn" ng-click="askQuestion()"> Ask Me Question</button>
+					<div class="statics">
+						<span class="answered">Answered<br/>{{monkProfileData.questionsAnswered ? monkProfileData.questionsAnswered : 0}} </span>
+						<span class="views">Profile Views<br/>{{monkProfileData.profileViews ? monkProfileData.profileViews : 0}} </span>
+					</div>
 				</div>
-				<div class="userName">Sunil Magon</div>
+			</div>
+			<div class="subHeaderBottomContent">
+				<div class="userName">{{monkProfileData.name}}</div>
+				<div class="yRating">
+					<i class="ion-ios-star"></i>
+					<i class="ion-ios-star"></i>
+					<i class="ion-ios-star"></i>
+					<i class="ion-ios-star-half"></i>
+					<i class="ion-ios-star-outline"></i>
+				</div>
 			</div>
 		</div>
 	</ion-content>
@@ -28,19 +38,19 @@
 		</dl> -->
 		<dl>
 		  <dt>Education:</dt>
-		  <dd>IIT Roorkee (81 Batch),<br>Certified Astrologer</dd>
+		  <dd>{{monkProfileData.education}},<br>Certified Astrologer</dd>
 		</dl>
 		<dl>
-		  <dt>Occupation:</dt>
-		  <dd>ONGC</dd>
+		  <dt>Residence:</dt>
+		  <dd>{{monkProfileData.residence}}</dd>
 		</dl>
 		<dl>
 		  <dt>Astrologer:</dt>
-		  <dd>Past 20 years</dd>
+		  <dd>{{monkProfileData.experience}} Years</dd>
 		</dl>
 		<dl>
 		  <dt>Bio:</dt>
-		  <dd>I have been practising Astrology for the last 20 years with a single aim of solving the problems of people and helping them with clear solutions for a better living. Askmonk gives me the exact solution to pursue my passion.</dd>
+		  <dd class="bio">{{monkProfileData.bio}}</dd>
 		</dl>
 	</ion-content>
 </ion-view>

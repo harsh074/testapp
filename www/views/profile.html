@@ -1,17 +1,33 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
+	<ion-nav-bar class="bar-assertive-900">
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-disabled="isComingFromSignUp"></button>
+      <button class="customMenuBtn" ng-class="{'is-active':shouldGoBack}"><span></span></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button-clear ion-social-usd" ng-click="goToWallet()"></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
 	<ion-content scroll="false">
 		<div class="yprofile">
 			<div class="content pofilePic">
-					<div class="avatar">
-						<!-- <i class="ion-person"></i> -->
-						<img ng-src="{{profileImage}}">
+				<div class="avatar">
+					<img ng-src="{{profileImage}}">
+				</div>
+				<div class="yAnswerStatus">
+					<button class="button button-custom-small button-askmonk profileEditBtn" ng-click="profileEdit()"> Edit Profile</button>
+					<div class="statics userProfile">
+						<span class="answered">Asked<br/>{{profileInfo.totalQuestionsAsked ? profileInfo.totalQuestionsAsked : 0}}</span>
+						<span class="views">Wallet<br/>Rs. {{profileInfo.walletMoney ? profileInfo.walletMoney : 0}}</span>
 					</div>
-					<div class="yAnswerStatus">{{profileInfo.totalQuestionsAsked ? profileInfo.totalQuestionsAsked : 0}} Question Asked <br>{{profileInfo.walletMoney ? profileInfo.walletMoney : 0}} Rs in wallet<button class="button button-custom-small button-askmonk profileEditBtn" ng-click="profileEdit()"><i class="ion-edit"></i> Edit Profile</button></div>
-					<div class="userName">{{profileInfo.name}}</div>
+				</div>
+			</div>
+			<div class="subHeaderBottomContent">
+				<div class="userName">{{profileInfo.name}}</div>
 			</div>
 		</div>
 	</ion-content>
-	<ion-content class="row profileData paddingLRPlus21" scroll="true">
+	<ion-content class="row profileData paddingLRPlus21" scroll="false">
 		<dl>
 		  <dt>DOB:</dt>
 		  <dd>{{profileInfo.dob | date : 'dd-MM-yyyy'}}</dd>
@@ -29,16 +45,21 @@
 		  <dd>{{profileInfo.gender}}</dd>
 		</dl>
 		<dl>
+		  <dt>Zodiac:</dt>
+		  <dd>{{profileInfo.moonSign}}</dd>
+		</dl>
+		<dl>
 		  <dt>Age:</dt>
 		  <dd>{{profileInfo.dob | ageFilter}}</dd>
 		</dl>
+		
 		<!-- <dl>
 		  <dt>Bio:</dt>
 		  <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.</dd>
 		</dl> -->
 	</ion-content>
 	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}">
-		<!-- <i class="icon ion-ios-compose-outline"></i> -->
-		<img src="img/flyout_icon.jpg" />
+		<i class="icon ion-ios-compose-outline"></i>
+		<!-- <img src="img/flyout_icon.jpg" /> -->
 	</div>
 </ion-view>

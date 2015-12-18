@@ -13,10 +13,18 @@ askmonkApp.run(['$ionicPlatform','$state', function($ionicPlatform,$state) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if(window.StatusBar) {
-      StatusBar.styleDefault();
+      window.StatusBar.styleDefault();
     }
-    ionic.Platform.isFullScreen = true;
-    ionic.Platform.showStatusBar(false);
+    // ionic.Platform.isFullScreen = false;
+    // ionic.Platform.showStatusBar(true);
+    // then override any default you want
+    window.plugins.nativepagetransitions.globalOptions.duration = 200;
+    window.plugins.nativepagetransitions.globalOptions.androiddelay = 0;
+    // window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 4;
+    // these are used for slide left/right only currently
+    window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 0;
+    window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 0;
+    
   });
 }]);
 
@@ -61,7 +69,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     }
   })
   .state('app.yprofile', {
-    url: "/yogi-profile",
+    url: "/yogi-profile/{id}",
     cache: false,
     views: {
       'menuContent': {
@@ -118,6 +126,16 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
       'menuContent':{
         templateUrl:"views/dashboard.html",
         controller:"dashboardCtrl"
+      }
+    }
+  })
+  .state('app.singlequestion',{
+    url:"/singlequestion/{id}",
+    cache: false,
+    views:{
+      'menuContent':{
+        templateUrl:"views/singleQuestion.html",
+        controller:"singleQuestionCtrl"
       }
     }
   })

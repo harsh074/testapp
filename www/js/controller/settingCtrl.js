@@ -12,6 +12,11 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
 
     delete $http.defaults.headers.common.Authorization;
     $state.go('login');
+    window.plugins.nativepagetransitions.slide(
+      {"direction":"left"},
+      function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+      function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+    );
   }
 
 }]);

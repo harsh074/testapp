@@ -1,0 +1,44 @@
+<ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
+	<ion-nav-bar class="bar-assertive-900">
+    <ion-nav-buttons side="left">
+      <!-- <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-disabled="isComingFromSignUp"></button> -->
+      <button class="customMenuBtn is-active" ng-click="goBack()"><span></span></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button-clear ion-social-usd" ng-click="goToWallet()"></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+	<ion-content scroll="false">
+		<div class="shortHeader">
+			<h1 class="title">View Question</h1>
+		</div>
+	</ion-content>
+	<ion-content class="row singleQuestion dashboardData paddingLRPlus21" scroll="true" delegate-handle="mainScroll">
+		<div class="questionData">
+      <div class="question">{{question.question}}</div>
+      <div class="middleSec">
+      	<p class="answer">{{question.answer ? question.answer: "Will be answered next 24 hrs."}}</p>
+      	<p class="yogiName" ng-if="question.monkName">Answered by {{question.monkName ? question.monkName: "Sunil"}}</p>
+     	</div>
+      <div class="subBottom">
+      	<p class="tagName">Tag : <span>{{question.questionTag}}</span></p>
+      	<p class="questionTime" ng-if="question.status=='answered'">Answered 3 hrs ago</p>
+      	<p class="questionTime"ng-if="question.status=='asked'">Asked 3 hrs ago</p>
+      	<p class="ratingQuestion" ng-if="question.status=='answered'">How Satisfied are you ?</p>
+      	<div class="answerRating" ng-if="question.status=='answered'">
+          <i class="icon ion-android-star checked"></i>
+          <i class="icon ion-android-star checked"></i>
+          <i class="icon ion-android-star checked"></i>
+          <i class="icon ion-android-star unchecked"></i>
+          <i class="icon ion-android-star unchecked"></i>
+        </div>
+      </div>
+		</div> 
+	</ion-content>
+	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}">
+		<i class="icon ion-ios-compose-outline"></i>
+		<!-- <img src="img/flyout_icon.jpg" /> -->
+	</div>
+</ion-view>
+        

@@ -64,6 +64,11 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 			utility.askQuestion($scope.askQuestion)
 			.then(function(data){
 				$state.go('app.dashboard');
+				window.plugins.nativepagetransitions.slide(
+				  {"direction":"left"},
+				  function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+				  function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+				);
 			},function(data){
 				$scope.showMessage(data.error.message);
 				$scope.hideLoader();

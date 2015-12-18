@@ -2,7 +2,7 @@
 askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http, $state) {
   var service = {
     'authenticated': null,
-    'request': function(args) {
+    request: function(args) {
       // Let's retrieve the token from the cookie, if available
       if(localStorage.getItem('token')){
         $http.defaults.headers.common.Authorization = 'Basic ' + localStorage.getItem('token');
@@ -31,14 +31,14 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
       }));
       return deferred.promise;
     },
-    'register': function(args){
+    register: function(args){
       return this.request({
         'method': "POST",
         'url': "/users/",
         'data': args
       });
     },
-    'login': function(args,rootScope){
+    login: function(args,rootScope){
       return this.request({
        'method': "POST",
        'url': "/users/login/",
@@ -54,7 +54,7 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
        }
       });
     },
-    'logout':function(){
+    logout:function(){
       return this.request({
         'method':"POST",
         'url':"/users/logout",
@@ -68,7 +68,7 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         $state.go('login');
       });
     },
-    'getAllQuestion': function(){
+    getAllQuestion: function(){
       return this.request({
         'method': "GET",
         'url': '/questions/tagQuestions'
@@ -78,6 +78,12 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
       return this.request({
         'method': "GET",
         'url': "/questions/getQuestions/"+localStorage.getItem('userId')
+      });
+    },
+    getSingleQuestions:function(id){
+      return this.request({
+        'method':"GET",
+        'url':"/questions/"+id
       });
     },
     getUserProfile: function(){
@@ -105,6 +111,18 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
       return this.request({
         'method':"GET",
         'url':"/payments/packs"
+      });
+    },
+    getAllMonks:function(){
+      return this.request({
+        'method':"GET",
+        'url':"/monks"
+      })
+    },
+    getSingleMonk:function(id){
+      return this.request({
+        'method':"GET",
+        'url':"/monks/getMonkDetails/"+id
       });
     },
     initialize: function(url, sessions, scope, rootScope){

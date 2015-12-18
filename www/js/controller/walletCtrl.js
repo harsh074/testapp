@@ -8,7 +8,12 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state', function($scop
 
   $scope.askQuestion = function(){
     $scope.showLoader();
-  	$state.go('app.askQuestion')
+  	$state.go('app.askQuestion');
+  	window.plugins.nativepagetransitions.slide(
+		  {"direction":"left"},
+		  function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+		  function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+		);
   }
 
 

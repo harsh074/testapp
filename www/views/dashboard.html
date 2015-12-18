@@ -1,4 +1,13 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
+	<ion-nav-bar class="bar-assertive-900">
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-disabled="isComingFromSignUp"></button>
+      <button class="customMenuBtn" ng-class="{'is-active':shouldGoBack}"><span></span></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button-clear ion-social-usd" ng-click="goToWallet()"></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
 	<ion-content scroll="false">
 		<div class="yprofile dashboard">
 			<div class="pofilePic">
@@ -6,8 +15,8 @@
 				<div class="yAnswerStatus">My Questions</div>
 				<label class="item item-input item-search" for="search">
 			    <input type="text" placeholder="Search" ng-model="search.searchInput" name="search">
-					<div ng-click="clearData()"><i class="icon ion-android-cancel placeholder-icon"></i></div>
 			  </label>
+			  <i class="icon ion-close-round placeholder-icon" ng-click="clearSearch()"></i>
 			</div>
 		</div>
 	</ion-content>
@@ -17,20 +26,20 @@
 		</div>
 		<div class="questionFound marginLRMinus21" ng-if="!noQuestionFound">
 			<ion-list>
-        <div ng-repeat="group in groups" class="questions" ng-click="toggleGroup(group,$index)" ng-class="{active: isGroupShown(group)}">
+        <div ng-repeat="group in groups | filter:search.searchInput" class="questions" ng-click="goToQuestion(group.id)">
           <div class="question"> <span>Q{{$index+1}}.</span>{{group.question}}
-        		<i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-down' : 'ion-ios-arrow-up'" ng-show="group.answer"></i>
+        		<!-- <i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-down' : 'ion-ios-arrow-up'" ng-show="group.answer"></i> -->
         	</div>
           
-          <div class="answer" ng-class="{activeAnswer:isGroupShown(group)}">
+          <div class="answer">
           	<p>{{group.answer ? group.answer: "Will be answered next 24 hrs."}}</p>
-	          <div class="answerRating" ng-show="group.answer">
+	          <!-- <div class="answerRating" ng-show="group.answer">
 		          <i class="icon ion-ios-heart checked"></i>
 		          <i class="icon ion-ios-heart checked"></i>
 		          <i class="icon ion-ios-heart checked"></i>
 		          <i class="icon ion-ios-heart unchecked"></i>
 		          <i class="icon ion-ios-heart unchecked"></i>
-		        </div>
+		        </div> -->
 		       </div>
         </div>
         <div class="payTogetMore">
@@ -40,7 +49,7 @@
 		</div>
 	</ion-content>
 	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}">
-		<!-- <i class="icon ion-ios-compose-outline"></i> -->
-		<img src="img/flyout_icon.jpg" />
+		<i class="icon ion-ios-compose-outline"></i>
+		<!-- <img src="img/flyout_icon.jpg" /> -->
 	</div>
 </ion-view>

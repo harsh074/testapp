@@ -69,6 +69,11 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
           localStorage.setItem("name",$scope.editProfileData.name);
           $scope.$emit("updateEditProfileFirstUser");
           $state.go('app.profile');
+          window.plugins.nativepagetransitions.slide(
+            {"direction":"right"},
+            function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+            function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+          );
         },function(data){
           $scope.hideLoader();
           console.log(data);
@@ -78,6 +83,11 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
     
     $scope.cancelEditProfile = function(){
       $state.go('app.profile');
+      window.plugins.nativepagetransitions.slide(
+        {"direction":"right"},
+        function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+        function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+      );
     }
 
     var zod_signs = ["capricorn" , "aquarius", "pisces", "aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius"];

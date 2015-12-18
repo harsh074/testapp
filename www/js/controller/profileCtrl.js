@@ -14,6 +14,11 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   	if(!data.dob || !data.birthPlace || !data.birthTime){
   		CONSTANT.isComingFromSignUp = true;
   		$state.go('app.editProfile');
+      window.plugins.nativepagetransitions.slide(
+        {"direction":"left"},
+        function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+        function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+      );
   	}else{
   		$scope.hideLoader();
   		$scope.profileInfo = angular.copy($rootScope.profileData);
@@ -27,11 +32,21 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   $scope.profileEdit = function(){
   	$scope.showLoader();
     $state.go('app.editProfile');
+    window.plugins.nativepagetransitions.slide(
+      {"direction":"left"},
+      function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+      function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+    );
   }
 
   $scope.askQuestion = function(){
     $scope.showLoader();
   	$state.go('app.askQuestion');
+    window.plugins.nativepagetransitions.slide(
+      {"direction":"left"},
+      function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+      function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+    );
   }
 
   $scope.calculateAge = function calculateAge(birthday) { // birthday is a date

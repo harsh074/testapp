@@ -1,6 +1,15 @@
-<ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">	
+<ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
+	<ion-nav-bar class="bar-assertive-900">
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-disabled="isComingFromSignUp"></button>
+      <button class="customMenuBtn" ng-class="{'is-active':shouldGoBack}"><span></span></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button-clear ion-social-usd" ng-click="goToWallet()"></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>	
 	<ion-content scroll="false" class="ion-content-askQuestion">
-		<div class="bar-subHeader paddingLRPlus21">
+		<div class="shortHeader">
 			<h1 class="title">Wallet Details</h1>
 		</div>
 	</ion-content>
@@ -19,7 +28,7 @@
 		</div>
 	</ion-content>
 	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}">
-		<!-- <i class="icon ion-ios-compose-outline"></i> -->
-		<img src="img/flyout_icon.jpg" />
+		<i class="icon ion-ios-compose-outline"></i>
+		<!-- <img src="img/flyout_icon.jpg" /> -->
 	</div>
 </ion-view>

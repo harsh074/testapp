@@ -1,4 +1,4 @@
-askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$ionicScrollDelegate','$timeout', function($scope, $state, utility,$ionicScrollDelegate,$timeout){
+askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','$stateParams', function($scope, $state, utility,$timeout,$stateParams){
 
 	$scope.noQuestionFound = false;
 	$scope.search = {"searchInput":""};
@@ -11,7 +11,12 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$ionicScrol
 
   $scope.askQuestion = function(){
     $scope.showLoader();
-  	$state.go('app.askQuestion')
+  	$state.go('app.askQuestion');
+    window.plugins.nativepagetransitions.slide(
+      {"direction":"left"},
+      function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+      function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+    );
   }
 
   utility.getUserQuestions()
@@ -27,42 +32,53 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$ionicScrol
   	console.log(data);
   });
 
-  // $scope.groups = [{
-  //   "question":"Tell future?",
-  //   "answer":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.",
-  //   "rating":4
-  // },{
-  //   "question":"Tell future?",
-  //   "answer":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.",
-  //   "rating":4
-  // }];
+  /*$scope.groups = [{
+    "question":"Tell future?",
+    "answer":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.",
+    "rating":4
+  },{
+    "question":"Tell future?",
+    "answer":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.",
+    "rating":4
+  }];*/
 
   $scope.showLimit = 100;
-  $scope.toggleGroup = function(group,$index) {
-  	$timeout(function(){
-  		$ionicScrollDelegate.$getByHandle('mainScroll').resize();
-  		if($index>0){
-  			var topScrollPosition = $index*155;
-  			$ionicScrollDelegate.$getByHandle('mainScroll').scrollTo(0, topScrollPosition, true);
-  		}
-  	}, 10);
-    if ($scope.isGroupShown(group)) {
-      $scope.shownGroup = null;
-      $scope.showLimit = 100;
-    } else {
-    	if(group.answer){
-    		$scope.showLimit = group.answer.length+1;
-      	$scope.shownGroup = group;
-    	}
-    }
-  };
-  $scope.isGroupShown = function(group) {
-    return $scope.shownGroup === group;
-  };
+  $scope.goToQuestion = function(id){
+    $scope.showLoader();
+    $timeout(function(){
+      $stateParams.id = id;
+      $state.go('app.singlequestion',$stateParams);
+      window.plugins.nativepagetransitions.slide(
+        {"direction":"left"},
+        function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+        function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+      );
+    }, 500);
+  }
+  // $scope.toggleGroup = function(group,$index) {
+  // 	$timeout(function(){
+  // 		$ionicScrollDelegate.$getByHandle('mainScroll').resize();
+  // 		if($index>0){
+  // 			var topScrollPosition = $index*155;
+  // 			$ionicScrollDelegate.$getByHandle('mainScroll').scrollTo(0, topScrollPosition, true);
+  // 		}
+  // 	}, 10);
+  //   if ($scope.isGroupShown(group)) {
+  //     $scope.shownGroup = null;
+  //     $scope.showLimit = 100;
+  //   } else {
+  //   	if(group.answer){
+  //   		$scope.showLimit = group.answer.length+1;
+  //     	$scope.shownGroup = group;
+  //   	}
+  //   }
+  // };
+  // $scope.isGroupShown = function(group) {
+  //   return $scope.shownGroup === group;
+  // };
 
   $scope.clearSearch = function(){
-		// $scope.data.search = "harsh";
-		console.log($scope.search.searchInput);
+		$scope.search.searchInput = "";
 	};
 
 }]);
