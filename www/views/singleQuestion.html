@@ -2,33 +2,66 @@
 	<ion-content scroll="false">
 		<div class="shortHeader">
 			<h1 class="title">View Question</h1>
+      <!-- <div class="shortHeaderBtn" ng-click="removeQuestion()" ng-if="loginType=='user'">
+        <a class="shortHeaderIcon"><i class="icon ion-android-delete"></i></a>
+      </div> -->
+      <div class="shortHeaderCustomBtn" ng-if="loginType=='monk' && question.status == 'underObservation'">
+        <!-- <a class="shortHeaderIcon"><i class="icon ion-paper-airplane"></i></a> -->
+        <button class="button button-custom button-small" ng-click="postAnswer()">Answer</button>
+      </div>
 		</div>
 	</ion-content>
 	<ion-content class="row singleQuestion dashboardData paddingLRPlus21" scroll="true" delegate-handle="mainScroll">
 		<div class="questionData">
       <div class="question">{{question.question}}</div>
       <div class="middleSec">
-      	<p class="answer">{{question.answer ? question.answer: "Will be answered next 24 hrs."}}</p>
-      	<p class="yogiName" ng-if="question.monkName">Answered by {{question.monkName ? question.monkName: "Sunil"}}</p>
+      	<p class="answer" ng-if="loginType=='user'">{{question.answer ? question.answer: "Will be answered next 24 hrs."}}</p>
+        <p class="answer" ng-if="loginType=='monk' && question.status=='answered'">{{question.answer}}</p>
+        <p class="answer" ng-if="loginType=='monk' && question.status=='underObservation'">{{writtenAnswer}}</p>
+      	<p class="yogiName" ng-if="question.monkName && loginType=='user'">Answered by {{question.monkName ? question.monkName: "Sunil"}}</p>
      	</div>
-      <div class="subBottom">
+      <div class="subBottom" ng-if="loginType=='user'">
       	<p class="tagName">Tag : <span>{{question.questionTag}}</span></p>
-      	<p class="questionTime" ng-if="question.status=='answered' || question.status=='rated'">Answered 3 hrs ago</p>
-      	<p class="questionTime"ng-if="question.status=='asked'">Asked 3 hrs ago</p>
+      	<p class="questionTime" ng-if="question.status=='answered' || question.status=='rated'">Answered {{question.askedOn | timeago}}</p>
+      	<p class="questionTime"ng-if="question.status=='asked'">Asked {{question.askedOn | timeago}}</p>
       	<p class="ratingQuestion" ng-if="question.status=='answered' || question.status=='rated'">How Satisfied are you ?</p>
       	<div class="answerRating" ng-if="question.status=='answered' || question.status=='rated'">
-          <!-- <i class="icon ion-android-star checked"></i>
-          <i class="icon ion-android-star checked"></i>
-          <i class="icon ion-android-star checked"></i>
-          <i class="icon ion-android-star unchecked"></i>
-          <i class="icon ion-android-star unchecked"></i> -->
           <rating ng-model="question.rating" max="5" ng-click="rateQuestion()"></rating>
         </div>
       </div>
+      <div class="subBottom" ng-if="loginType=='monk'">
+        <p class="tagName">Tag : <span>{{question.questionTag}}</span></p>
+        <p class="questionTime">{{question.askedOn | timeago}}</p>
+
+        <div class="row">
+          <div class="col">Name:&nbsp;<span>{{question.name.split(' ')[0]}}</span></div>
+          <div class="col">Time:&nbsp;<span>{{question.birthTime | date : 'h:mm a'}}</span></div>
+        </div>
+        <div class="row">
+          <div class="col">DOB:&nbsp;<span>{{question.dob | date : 'dd-MM-yyyy'}}</span></div>
+          <div class="col">Age:&nbsp;<span>{{question.dob | ageFilter}} Years</span></div>
+        </div>
+        <div class="row">
+          <div class="col">Gender:&nbsp;<span>{{question.gender}}</span></div>
+          <div class="col">Place:&nbsp;<span>{{question.birthPlace}}</span></div>
+        </div>
+        <div class="row">
+          <div class="col col-44" ng-if="question.status=='asked' || question.status=='underObservation'">
+            <button class="button button-custom button-small" ng-if="question.status=='asked'" ng-click="acceptQuestion()">Accept</button>
+            <button class="button button-custom button-small" ng-if="question.status=='underObservation'" ng-click="openWriteModal()">Write Answer</button>
+
+          </div>
+          <div class="col">
+            <button class="button button-custom button-small" ng-click="userLogin()">User Details</button>
+          </div>
+        </div>
+
+        <!-- <p class="writtenAnswer">{{writtenAnswer}}</p> -->
+      </div>
 		</div> 
 	</ion-content>
-	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}">
-		<i class="icon ion-ios-compose-outline"></i>
+	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user'">
+		<i class="icon ion-android-add"></i>
 		<!-- <img src="img/flyout_icon.jpg" /> -->
 	</div>
 </ion-view>

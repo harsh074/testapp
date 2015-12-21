@@ -1,12 +1,9 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
   <ion-content scroll="false" class="ion-content-askQuestion">
     <div class="shortHeader">
-      <!-- <div class="askQuestionBtn backBtn" ng-click="cancelEditProfile()">
-        <a class="askBtnIcon"><i class="icon ion-android-arrow-back"></i></a>
-      </div> -->
       <h1 class="title">Profile Details</h1>
-      <div class="askQuestionBtn" ng-click="saveEditProfile()">
-        <a class="askBtnIcon"><i class="icon ion-ios-download"></i></a>
+      <div class="shortHeaderBtn" ng-click="saveEditProfile()">
+        <a class="shortHeaderIcon"><i class="icon ion-ios-download"></i></a>
       </div>
     </div>
   </ion-content>
@@ -14,17 +11,28 @@
 		<div class="list editProfile">
       <ion-md-input placeholder="Name" autofocus hightlight-color="calm" type="text" ng-model="editProfileData.name"></ion-md-input>
 
-      <!-- <ion-md-input placeholder="Email" hightlight-color="custom" type="email" ng-model="editProfileData.email"></ion-md-input> -->
+      <ion-md-input placeholder="Mobile" hightlight-color="custom" type="number" ng-model="editProfileData.mobile" ng-if="loginType=='user'"></ion-md-input>
 
-      <ion-md-input placeholder="Mobile" hightlight-color="custom" type="number" ng-model="editProfileData.mobile"></ion-md-input>
+      <ion-md-input placeholder="Birth Place" hightlight-color="custom" type="text" ng-model="editProfileData.birthPlace" ng-if="loginType=='user'"></ion-md-input>
 
-      <ion-md-input placeholder="Birth Place" hightlight-color="custom" type="text" ng-model="editProfileData.birthPlace"></ion-md-input>
+      <ion-md-input placeholder="Birth Time" hightlight-color="custom" type="time" ng-model="editProfileData.birthTime" ng-if="loginType=='user'"></ion-md-input>
 
-      <ion-md-input placeholder="Birth Time" hightlight-color="custom" type="time" ng-model="editProfileData.birthTime"></ion-md-input>
+      <ion-md-input placeholder="Phone" hightlight-color="custom" type="number" ng-model="editProfileData.phone" ng-if="loginType=='monk'"></ion-md-input>
+
+      <ion-md-input placeholder="Education" hightlight-color="custom" type="text" ng-model="editProfileData.education" ng-if="loginType=='monk'"></ion-md-input>
+
+      <ion-md-input placeholder="Residence" hightlight-color="custom" type="text" ng-model="editProfileData.residence" ng-if="loginType=='monk'"></ion-md-input>
+      
+      <ion-md-input placeholder="Experience" hightlight-color="custom" type="number" ng-model="editProfileData.experience" ng-if="loginType=='monk'"></ion-md-input>
+
+      <div class="textareaLable" ng-if="loginType == 'monk'">Bio</div>
+      <div class="item textarea" ng-if="loginType=='monk'">
+        <textarea id="bioTextarea" name="bioTextarea" ng-model="editProfileData.bio" placeholder="About Me..." ng-keyup="expandText()" ng-keydown="expandText()" style="width:100%"></textarea>
+      </div>
 
       <!-- <ion-md-input placeholder="Age" hightlight-color="custom" type="number"></ion-md-input> -->
       
-      <label class="item item-input item-calender">
+      <label class="item item-input item-calender" ng-if="loginType=='user'">
       	<ionic-datepicker input-obj="datepickerObject">
 				  <button class="button button-custom-small button-light"> 
             <span class="dateObject" ng-if="!showDate">{{datepickerObject.titleLabel}}</span>
@@ -33,18 +41,19 @@
           </button>
 				</ionic-datepicker>
       </label>
-		  <label class="item item-input item-select">
+
+		  <label class="item item-input item-select" ng-if="loginType=='user'">
         <select name="gender" ng-model="editProfileData.gender" required="">
             <option value="" disabled>Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
-            <option value="other">Other</option>
         </select>
       </label>
+
+
 			<!-- <div class="button-bar btn-two">
 			  <a class="button button-custom button-askmonk" ng-click="cancelEditProfile()">Cancel</a>
         <a class="button button-custom button-askmonk" ng-click="saveEditProfile()">Save</a>
-
 			</div> -->
     </div>
 	</ion-content>

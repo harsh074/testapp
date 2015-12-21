@@ -1,16 +1,27 @@
-askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootScope','utility', function($scope,$state,CONSTANT,$rootScope,utility){
+askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootScope','utility','$timeout', function($scope,$state,CONSTANT,$rootScope,utility,$timeout){
   if($scope.authenticated){
 
+    $scope.$on('$ionicView.enter', function(){
+      $scope.showLoader();
+    });
+    $scope.loginType = CONSTANT.loginType;
+
+    $timeout(function(){
+      $scope.hideLoader();  
+    }, 400);
+
     $scope.showDate = false;
-    
+
     if(CONSTANT.isComingFromSignUp){
       $scope.$emit("updateEditProfileFirstUser");
     }
 
     if($rootScope.profileData){
       $scope.editProfileData = angular.copy($rootScope.profileData);
-      $scope.editProfileData.birthTime = new Date($scope.editProfileData.birthTime);
-      $scope.showDate = true;
+      if($scope.loginType == "user"){
+        $scope.editProfileData.birthTime = new Date($scope.editProfileData.birthTime);
+        $scope.showDate = true;
+      }
     }else if(localStorage.getItem("profileData")){
       $scope.editProfileData = JSON.parse(localStorage.getItem("profileData"));
     }else{
@@ -42,8 +53,6 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       dateFormat: 'dd-MM-yyyy', //Optional
       closeOnSelect: false //Optional
     };
-
-    $scope.hideLoader();
     
     function datePickerCallback(val){
       // console.log(val);
@@ -56,38 +65,58 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       $scope.editProfileData.dob = angular.copy($scope.datepickerObject.inputDate);
     }
 
+    $scope.expandText = function(){
+      var element = document.getElementById("bioTextarea");
+      element.style.height =  element.scrollHeight + "px";
+    }
+
     $scope.saveEditProfile = function(){
       $scope.showLoader();
-      if(!$scope.editProfileData.dob || !$scope.editProfileData.birthPlace || !$scope.editProfileData.birthTime){
-        $scope.showMessage("All fields are required");
-        return;
+      if($scope.loginType == 'user'){
+        if(!$scope.editProfileData.dob || !$scope.editProfileData.birthPlace || !$scope.editProfileData.birthTime){
+          $scope.showMessage("All fields are required");
+          return;
+        }else{
+          utility.updateUserProfile(getMoonSign($scope.editProfileData))
+          .then(function(data){
+            $scope.hideLoader();
+            CONSTANT.isComingFromSignUp = false;
+            localStorage.removeItem("profileData");
+            localStorage.setItem("name",$scope.editProfileData.name);
+            $scope.$emit("updateEditProfileFirstUser");
+            $state.go('app.profile');
+            $scope.transitionAnimation('left',180);
+          },function(data){
+            $scope.hideLoader();
+            console.log(data);
+          });
+        }
       }else{
-        utility.updateUserProfile(getMoonSign($scope.editProfileData))
-        .then(function(data){
-          CONSTANT.isComingFromSignUp = false;
-          localStorage.removeItem("profileData");
-          localStorage.setItem("name",$scope.editProfileData.name);
-          $scope.$emit("updateEditProfileFirstUser");
-          $state.go('app.profile');
-          window.plugins.nativepagetransitions.slide(
-            {"direction":"right"},
-            function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-            function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-          );
-        },function(data){
-          $scope.hideLoader();
-          console.log(data);
-        });
+        if(!$scope.editProfileData.name || !$scope.editProfileData.phone || !$scope.editProfileData.education || !$scope.editProfileData.residence || !$scope.editProfileData.experience){
+          $scope.showMessage("All fields are required");
+          return;
+        }else{
+          utility.updateMonkProfile(getMoonSign($scope.editProfileData))
+          .then(function(data){
+            $scope.hideLoader();
+            CONSTANT.isComingFromSignUp = false;
+            localStorage.removeItem("profileData");
+            localStorage.setItem("name",$scope.editProfileData.name);
+            $scope.$emit("updateEditProfileFirstUser");
+            $state.go('app.profile');
+            $scope.transitionAnimation('left',180);
+          },function(data){
+            $scope.hideLoader();
+            console.log(data);
+          });
+        }
       }
+
     }
     
     $scope.cancelEditProfile = function(){
       $state.go('app.profile');
-      window.plugins.nativepagetransitions.slide(
-        {"direction":"right"},
-        function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-        function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-      );
+      $scope.transitionAnimation('left',180);
     }
 
     var zod_signs = ["capricorn" , "aquarius", "pisces", "aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius"];

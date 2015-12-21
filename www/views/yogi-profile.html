@@ -16,12 +16,7 @@
 			<div class="subHeaderBottomContent">
 				<div class="userName">{{monkProfileData.name}}</div>
 				<div class="yRating">
-					<!-- <i class="ion-ios-star"></i>
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star-half"></i>
-					<i class="ion-ios-star-outline"></i> -->
-					<rating ng-model="monkProfileData.rating" max="5"></rating>
+					<rating ng-model="monkProfileData.rating" max="5" readonly="true"></rating>
 				</div>
 			</div>
 		</div>
@@ -40,7 +35,7 @@
 		  <dd>{{monkProfileData.residence}}</dd>
 		</dl>
 		<dl>
-		  <dt>Astrologer</dt>
+		  <dt>Experience</dt>
 		  <dd>{{monkProfileData.experience}} Years</dd>
 		</dl>
 		<dl>

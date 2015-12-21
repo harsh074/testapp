@@ -1,5 +1,5 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
-	<ion-content scroll="false" class="ion-content-askQuestion">
+	<ion-content scroll="false">
 		<div class="shortHeader">
 			<h1 class="title">Wallet Details</h1>
 		</div>
@@ -18,8 +18,8 @@
 			</table>
 		</div>
 	</ion-content>
-	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}">
-		<i class="icon ion-ios-compose-outline"></i>
+	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user'">
+		<i class="icon ion-android-add"></i>
 		<!-- <img src="img/flyout_icon.jpg" /> -->
 	</div>
 </ion-view>

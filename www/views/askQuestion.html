@@ -1,12 +1,9 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
-	<ion-content scroll="false" class="ion-content-askQuestion">
+	<ion-content scroll="false">
 		<div class="shortHeader">
-			<!-- <div class="askQuestionBtn backBtn" ng-click="cancelAskQuestion()">
-        <a class="askBtnIcon"><i class="icon ion-android-arrow-back"></i></a>
-      </div> -->
 			<h1 class="title">Ask Question</h1>
-			<div class="askQuestionBtn" ng-click="askQuestionButton()">
-			  <a class="askBtnIcon"><i class="icon ion-paper-airplane"></i></a>
+			<div class="shortHeaderBtn" ng-click="openAskQuestion()">
+			  <a class="shortHeaderIcon"><i class="icon ion-paper-airplane"></i></a>
 			</div>
 		</div>
 	</ion-content>
@@ -25,7 +22,7 @@
 					<ion-radio ng-model="askQuestion.question" ng-value="question" ng-change="clearQuestionOnOther()">{{question}}</ion-radio>
 				</div>
 				<div class="item textarea" ng-if="!showQuestion || showOnOtherQuestion">
-					<textarea id="askQuestionTextarea" name="askQuestionTextarea" focus-me ng-model="askOtherQuestion.question" placeholder="Write the question that you wish to compose..." ng-keyup="expandText()" ng-keydown="expandText()"></textarea>
+					<textarea id="askQuestionTextarea" name="askQuestionTextarea" focus-me ng-model="askOtherQuestion.question" placeholder="Write the question that you wish to ask..." ng-keyup="expandText()" ng-keydown="expandText()"></textarea>
 				</div>
 			</div>
 

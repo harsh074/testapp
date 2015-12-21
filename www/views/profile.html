@@ -7,50 +7,74 @@
 				</div>
 				<div class="yAnswerStatus">
 					<button class="button button-custom-small button-askmonk profileEditBtn" ng-click="profileEdit()"> Edit Profile</button>
-					<div class="statics userProfile">
-						<span class="answered">Asked<br/>{{profileInfo.totalQuestionsAsked ? profileInfo.totalQuestionsAsked : 0}}</span>
-						<span class="views">Wallet<br/>Rs. {{profileInfo.walletMoney ? profileInfo.walletMoney : 0}}</span>
+					<div class="statics" ng-class="{'userProfile':loginType=='user'}">
+						<span class="answered" ng-if="loginType=='user'">Asked<br/>{{profileInfo.totalQuestionsAsked ? profileInfo.totalQuestionsAsked : 0}}</span>
+						<span class="views" ng-if="loginType=='user'">Wallet<br/>Rs. {{profileInfo.walletMoney ? profileInfo.walletMoney : 0}}</span>
+						<span class="answered" ng-if="loginType=='monk'">Answered<br/>{{profileInfo.questionsAnswered ? profileInfo.questionsAnswered : 0}} </span>
+						<span class="views" ng-if="loginType=='monk'">Profile Views<br/>{{profileInfo.profileViews ? profileInfo.profileViews : 0}} </span>
 					</div>
 				</div>
 			</div>
 			<div class="subHeaderBottomContent">
 				<div class="userName">{{profileInfo.name}}</div>
+				<div class="yRating" ng-if="loginType=='monk'">
+					<rating ng-model="profileInfo.rating" max="5" readonly="true"></rating>
+				</div>
 			</div>
 		</div>
 	</ion-content>
 	<ion-content class="row profileData paddingLRPlus21" scroll="false">
-		<dl>
-		  <dt>Birth Date</dt>
-		  <dd>{{profileInfo.dob | date : 'dd-MM-yyyy'}}</dd>
-		</dl>
-		<dl>
-		  <dt>Birth Place</dt>
-		  <dd>{{profileInfo.birthPlace}}</dd>
-		</dl>
-		<dl>
-		  <dt>Birth Time</dt>
-		  <dd>{{profileInfo.birthTime | date : 'h:mm a'}}</dd>
-		</dl>
-		<dl>
-		  <dt>Gender</dt>
-		  <dd>{{profileInfo.gender}}</dd>
-		</dl>
-		<dl>
-		  <dt>Zodiac</dt>
-		  <dd>{{profileInfo.moonSign}}</dd>
-		</dl>
-		<dl>
-		  <dt>Age</dt>
-		  <dd>{{profileInfo.dob | ageFilter}}</dd>
-		</dl>
-		
-		<!-- <dl>
-		  <dt>Bio:</dt>
-		  <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.</dd>
-		</dl> -->
+		<div ng-if="loginType=='user'">
+			<dl>
+			  <dt>Email</dt>
+			  <dd class="email">{{profileInfo.email}}</dd>
+			</dl>
+			<dl>
+			  <dt>Birth Date</dt>
+			  <dd>{{profileInfo.dob | date : 'dd-MM-yyyy'}}</dd>
+			</dl>
+			<dl>
+			  <dt>Birth Place</dt>
+			  <dd>{{profileInfo.birthPlace}}</dd>
+			</dl>
+			<dl>
+			  <dt>Birth Time</dt>
+			  <dd>{{profileInfo.birthTime | date : 'h:mm a'}}</dd>
+			</dl>
+			<dl>
+			  <dt>Gender</dt>
+			  <dd>{{profileInfo.gender}}</dd>
+			</dl>
+			<dl>
+			  <dt>Zodiac</dt>
+			  <dd>{{profileInfo.moonSign}}</dd>
+			</dl>
+			<dl>
+			  <dt>Age</dt>
+			  <dd>{{profileInfo.dob | ageFilter}}</dd>
+			</dl>
+		</div>
+		<div ng-if="loginType=='monk'">
+			<dl>
+			  <dt>Education</dt>
+			  <dd>{{profileInfo.education}}</dd>
+			</dl>
+			<dl>
+			  <dt>Residence</dt>
+			  <dd>{{profileInfo.residence}}</dd>
+			</dl>
+			<dl>
+			  <dt>Experience</dt>
+			  <dd>{{profileInfo.experience}} Years</dd>
+			</dl>
+			<dl>
+			  <dt>About Me</dt>
+			  <dd class="bio">{{profileInfo.bio}}</dd>
+			</dl>
+		</div>
 	</ion-content>
-	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}">
-		<i class="icon ion-ios-compose-outline"></i>
+	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user'">
+		<i class="icon ion-android-add"></i>
 		<!-- <img src="img/flyout_icon.jpg" /> -->
 	</div>
 </ion-view>

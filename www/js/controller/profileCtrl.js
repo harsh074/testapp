@@ -3,9 +3,11 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   $scope.floatingBtnAction = false;
 	$scope.$on('$ionicView.enter', function(){
     $scope.floatingBtnAction = true;
+    $scope.showLoader();
   });
-  $scope.showLoader();
-  if(localStorage.getItem('loginType') == "user"){
+  $scope.loginType = CONSTANT.loginType;
+
+  if($scope.loginType == "user"){
     utility.getUserProfile()
     .then(function(data){
       localStorage.setItem("email",data.email);
@@ -15,11 +17,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     	if(!data.dob || !data.birthPlace || !data.birthTime){
     		CONSTANT.isComingFromSignUp = true;
     		$state.go('app.editProfile');
-        window.plugins.nativepagetransitions.slide(
-          {"direction":"left"},
-          function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-          function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-        );
+        $scope.transitionAnimation('left');
     	}else{
     		$scope.hideLoader();
     		$scope.profileInfo = angular.copy($rootScope.profileData);
@@ -32,22 +30,18 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   }else{
     utility.getMonkProfile()
     .then(function(data){
-      localStorage.setItem("email",data.email);
-      localStorage.setItem("name",data.name);
       $scope.$emit("updateSideMenuName",data);
       $rootScope.profileData = data;
-      if(!data.dob || !data.birthPlace || !data.birthTime){
+      if(!data.name || !data.phone || !data.education || !data.residence || !data.experience){
         CONSTANT.isComingFromSignUp = true;
         $state.go('app.editProfile');
-        window.plugins.nativepagetransitions.slide(
-          {"direction":"left"},
-          function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-          function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-        );
+        $scope.transitionAnimation('left');
       }else{
         $scope.hideLoader();
+        localStorage.setItem("email",data.email);
+        localStorage.setItem("name",data.name);
         $scope.profileInfo = angular.copy($rootScope.profileData);
-        $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
+        $scope.profileImage = 'http://askmonk.in/mImages/'+$scope.profileInfo.email.split('@')[0].toLowerCase()+'.jpg';
       }
     },function(data){
       $scope.hideLoader();
@@ -56,23 +50,13 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   }
   
   $scope.profileEdit = function(){
-  	$scope.showLoader();
     $state.go('app.editProfile');
-    window.plugins.nativepagetransitions.slide(
-      {"direction":"left"},
-      function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-      function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-    );
+    $scope.transitionAnimation('left',300);
   }
 
   $scope.askQuestion = function(){
-    $scope.showLoader();
   	$state.go('app.askQuestion');
-    window.plugins.nativepagetransitions.slide(
-      {"direction":"left"},
-      function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-      function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-    );
+    $scope.transitionAnimation('left',180)
   }
 
   $scope.calculateAge = function calculateAge(birthday) { // birthday is a date

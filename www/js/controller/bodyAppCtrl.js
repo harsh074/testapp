@@ -7,21 +7,24 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state', function($scope,
 		}
  	});
 
+  $scope.$on("writeAnswerActive", function() {
+    $scope.isComingFromSignUp = CONSTANT.isComingFromSignUp;
+    if(CONSTANT.isComingFromSignUp){
+      $scope.showMessage('Write your answer');
+    }
+  });
+
  	$scope.sideMenuName = localStorage.getItem("name");
   $scope.$on("updateSideMenuName",function(evt,data){
     $scope.sideMenuName = localStorage.getItem("name");
   });
   $scope.goToWallet = function(){
     $state.go("app.wallet");
-    window.plugins.nativepagetransitions.slide(
-      {"direction":"left"},
-      function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-      function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-    );
+    $scope.transitionAnimation('left',160);
   };
 }]);
 
-askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','CONSTANT','$ionicLoading','$timeout','$ionicHistory','$state','$ionicSideMenuDelegate', function($scope,utility,CONSTANT,$rootScope,CONSTANT,$ionicLoading,$timeout,$ionicHistory,$state,$ionicSideMenuDelegate){
+askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','CONSTANT','$ionicLoading','$timeout','$ionicHistory','$state','$ionicSideMenuDelegate','$ionicPlatform','$stateParams', function($scope,utility,CONSTANT,$rootScope,CONSTANT,$ionicLoading,$timeout,$ionicHistory,$state,$ionicSideMenuDelegate,$ionicPlatform,$stateParams){
 	document.addEventListener("deviceready", onDeviceReady, false);
   $scope.showArrow = false;
 
@@ -48,7 +51,7 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
   $scope.showLoader = function(duration) {
     $ionicLoading.show({
       animation: 'fade-in',
-      showBackdrop: true,
+      showBackdrop: false,
       template:'<ion-spinner icon="ripple" class="spinner-askmonk"></ion-spinner>'
     });
   };
@@ -61,26 +64,58 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     // }
   };
 
+  $scope.transitionAnimation = function(value,timer){
+    $timeout(function(){
+      window.plugins.nativepagetransitions.slide(
+        {"direction":value},
+        function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+        function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+      );
+    }, timer?timer:500);
+  };
+
+  $scope.transitionAnimationUp = function(timer){
+    $timeout(function(){
+      window.plugins.nativepagetransitions.slide(
+        {"direction":"up"},
+        function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+        function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+      );
+    }, timer?timer:500);
+  }
+
   $scope.hamburgerBtnEvent = function(){
     if($state.current.name == 'app.editProfile' || $state.current.name == 'app.askQuestion' || $state.current.name == 'app.yprofile' || $state.current.name == 'app.singlequestion'){
       $timeout(function(){
         $ionicHistory.goBack();
-        window.plugins.nativepagetransitions.slide(
-          {"direction":"right"},
-          function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-          function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-        );
+        if($ionicHistory.viewHistory.backView == null && $state.current.name == 'app.singlequestion'){
+          $state.go('app.dashboard');
+        }
       }, 300);
+      $scope.transitionAnimation('right',300);
     }else{
       
       $ionicSideMenuDelegate.toggleLeft();
     }
   }
   $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-     if(toState.name == 'app.editProfile' || toState.name == 'app.askQuestion' || toState.name == 'app.yprofile' || toState.name == 'app.singlequestion'){
+    // if(localStorage.getItem('questionStatus') == 'underObservation'){
+    //   $stateParams.id = localStorage.getItem('questionId');
+    //   $state.go('app.singlequestion',$stateParams);
+    //   $scope.transitionAnimation('left',180);
+    // }
+    if(toState.name == 'app.editProfile' || toState.name == 'app.askQuestion' || toState.name == 'app.yprofile' || toState.name == 'app.singlequestion'){
       $scope.showArrow = true;
     }else{
       $scope.showArrow = false;
     }
   });
+
+  CONSTANT.loginType = localStorage.getItem('loginType');
+
+  // $ionicPlatform.registerBackButtonAction(function() {
+  //   if($ionicHistory.currentStateName() == "login"){
+
+  //   }
+  // }, 100);
 }]);

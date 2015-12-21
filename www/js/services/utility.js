@@ -56,13 +56,6 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'method':"POST",
         'url':"/users/logout",
         'params': {"access_token":localStorage.getItem('token')},
-      }).then(function(data){
-        localStorage.removeItem('token');
-        localStorage.removeItem('userId');
-        localStorage.removeItem("profileData");
-        localStorage.removeItem("name");
-        delete $http.defaults.headers.common.Authorization;
-        $state.go('login');
       });
     },
     getAllQuestion: function(){
@@ -130,12 +123,12 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
       });
     },
     monkLogin:function(args){
-       return this.request({
+      return this.request({
        'method': "POST",
        'url': "/monks/login/",
        'data':args
       }).then(function(data){
-       if(!utility.use_session){
+        if(!utility.use_session){
           $http.defaults.headers.common.Authorization = 'Basic ' + data.id;
           localStorage.setItem('token',data.id);
           localStorage.setItem('userId',data.userId);
@@ -145,7 +138,37 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
     getMonkProfile:function(){
       return this.request({
         'method':"GET",
-        'url':'/monks/getMonkDetails/'+localStorage.getItem('userId')
+        'url':'/monks/findMonk/'+localStorage.getItem('userId')
+      });
+    },
+    updateMonkProfile:function(args){
+      return this.request({
+        'method':"PUT",
+        'url':"/monks/"+localStorage.getItem('userId'),
+        'data':args,
+        'params': {"access_token":localStorage.getItem('token')}
+      });
+    },
+    getQuestionOnStatus:function(args){
+       return this.request({
+        'method':"GET",
+        'url':"/questions/getStatusQuestions/"+args
+        // 'params': {"access_token":localStorage.getItem('token')}
+      });
+    },
+    acceptQuestionMonk:function(args){
+      return this.request({
+        'method':"POST",
+        'url':"/questions/acceptQuestion/",
+        'data':args
+      })
+    },
+    submitAnswer:function(args){
+      return this.request({
+        'method':"POST",
+        'url':"/monks/answerQuestion/",
+        'data':args,
+        'params': {"access_token":localStorage.getItem('token')}
       });
     },
     initialize: function(url, sessions, scope, rootScope){

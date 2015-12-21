@@ -1,6 +1,9 @@
-askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScrollDelegate','$timeout','CONSTANT', function($scope, $state,utility,$ionicScrollDelegate,$timeout,CONSTANT){
+askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScrollDelegate','$timeout','CONSTANT','$ionicPopup', function($scope, $state,utility,$ionicScrollDelegate,$timeout,CONSTANT,$ionicPopup){
 
-	$scope.showLoader();
+	$scope.$on('$ionicView.enter', function(){
+    $scope.showLoader();
+  });
+  
 	$scope.showQuestion = true;
 	$scope.askQuestion = {"email":localStorage.getItem('email'), "userId":localStorage.getItem('userId'),"question":"","questionTag":"","walletMoney":0}
 	$scope.askOtherQuestion = {"question":null};
@@ -52,6 +55,35 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 		element.style.height =  element.scrollHeight + "px";
 	}
 
+	$scope.openAskQuestion = function(){
+		var confirmPopup = $ionicPopup.show({
+	    cssClass:"ios",
+	    title: 'Going further would send the answer to the user.',
+	    template:'Do u wish to continue ?',
+	    buttons: [
+	      {text: 'Yes',type:'button-ios button-clear',
+	        onTap: function(e) {
+	          return true;
+	        }
+	      },
+	      {text:'No',type:'button-ios button-clear',
+	        onTap: function(e) {
+	          return false;
+	        }
+	      }
+	    ]
+	  });
+	  // angular.element(document.getElementByClassName('backdrop').style('opacity',1));
+	  confirmPopup.then(function(res) {
+	    if(res) {
+	      console.log('You are sure');
+	     	$scope.askQuestionButton();
+	    } else {
+	      console.log('You are not sure');
+	    }
+	  });
+	}
+
 	$scope.askQuestionButton = function(){
 		$scope.showLoader();
 		if($scope.askOtherQuestion.question){
@@ -64,17 +96,13 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 			utility.askQuestion($scope.askQuestion)
 			.then(function(data){
 				$state.go('app.dashboard');
-				window.plugins.nativepagetransitions.slide(
-				  {"direction":"left"},
-				  function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-				  function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-				);
+				$scope.transitionAnimation('left');
 			},function(data){
 				$scope.showMessage(data.error.message);
 				$scope.hideLoader();
 			});
 		}else{
-			return;
+			$scope.hideLoader();
 		}
 	}
 

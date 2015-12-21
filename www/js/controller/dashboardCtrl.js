@@ -1,4 +1,4 @@
-askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','$stateParams', function($scope, $state, utility,$timeout,$stateParams){
+askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','$stateParams','CONSTANT', function($scope, $state, utility,$timeout,$stateParams,CONSTANT){
 
 	$scope.noQuestionFound = false;
 	$scope.search = {"searchInput":""};
@@ -8,29 +8,76 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
     $scope.floatingBtnAction = true;
     $scope.showLoader();
   });
+  $scope.loginType = CONSTANT.loginType;
 
   $scope.askQuestion = function(){
-    $scope.showLoader();
   	$state.go('app.askQuestion');
-    window.plugins.nativepagetransitions.slide(
-      {"direction":"left"},
-      function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-      function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-    );
+    $scope.transitionAnimation('left',180);
   }
 
-  utility.getUserQuestions()
-  .then(function(data){
-  	console.log(data);
-    $scope.hideLoader();
-    if(data.length>0){
-      $scope.groups = data;
+  $scope.doRefresh = function() {
+    $scope.showLoader();
+    $scope.$broadcast('scroll.refreshComplete');    
+    if($scope.loginType == "user"){
+      utility.getUserQuestions()
+      .then(function(data){
+        console.log(data);
+        $scope.hideLoader();
+        if(data.length>0){
+          $scope.groups = data;
+        }else{
+          $scope.noQuestionFound = true
+        }
+      },function(data){
+        $scope.hideLoader();
+        console.log(data);
+      });
     }else{
-      $scope.noQuestionFound = true
+      utility.getQuestionOnStatus('asked')
+      .then(function(data){
+        console.log(data);
+        $scope.hideLoader();
+        if(data.length>0){
+          $scope.groups = data;
+        }else{
+          $scope.noQuestionFound = true
+        }
+      },function(data){
+        $scope.hideLoader();
+        console.log(data);
+      });
     }
-  },function(data){
-  	console.log(data);
-  });
+  };
+
+  if($scope.loginType == "user"){
+    utility.getUserQuestions()
+    .then(function(data){
+    	console.log(data);
+      $scope.hideLoader();
+      if(data.length>0){
+        $scope.groups = data;
+      }else{
+        $scope.noQuestionFound = true
+      }
+    },function(data){
+      $scope.hideLoader();
+    	console.log(data);
+    });
+  }else{
+    utility.getQuestionOnStatus('asked')
+    .then(function(data){
+      console.log(data);
+      $scope.hideLoader();
+      if(data.length>0){
+        $scope.groups = data;
+      }else{
+        $scope.noQuestionFound = true
+      }
+    },function(data){
+      $scope.hideLoader();
+      console.log(data);
+    });
+  }
 
   /*$scope.groups = [{
     "question":"Tell future?",
@@ -44,38 +91,31 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
 
   $scope.showLimit = 100;
   $scope.goToQuestion = function(id){
-    $scope.showLoader();
-    $timeout(function(){
-      $stateParams.id = id;
-      $state.go('app.singlequestion',$stateParams);
-      window.plugins.nativepagetransitions.slide(
-        {"direction":"left"},
-        function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-        function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-      );
-    }, 500);
+    $stateParams.id = id;
+    $state.go('app.singlequestion',$stateParams);
+    $scope.transitionAnimation('left',180);
   }
-  // $scope.toggleGroup = function(group,$index) {
-  // 	$timeout(function(){
-  // 		$ionicScrollDelegate.$getByHandle('mainScroll').resize();
-  // 		if($index>0){
-  // 			var topScrollPosition = $index*155;
-  // 			$ionicScrollDelegate.$getByHandle('mainScroll').scrollTo(0, topScrollPosition, true);
-  // 		}
-  // 	}, 10);
-  //   if ($scope.isGroupShown(group)) {
-  //     $scope.shownGroup = null;
-  //     $scope.showLimit = 100;
-  //   } else {
-  //   	if(group.answer){
-  //   		$scope.showLimit = group.answer.length+1;
-  //     	$scope.shownGroup = group;
-  //   	}
-  //   }
-  // };
-  // $scope.isGroupShown = function(group) {
-  //   return $scope.shownGroup === group;
-  // };
+  /* $scope.toggleGroup = function(group,$index) {
+  	$timeout(function(){
+  		$ionicScrollDelegate.$getByHandle('mainScroll').resize();
+  		if($index>0){
+  			var topScrollPosition = $index*155;
+  			$ionicScrollDelegate.$getByHandle('mainScroll').scrollTo(0, topScrollPosition, true);
+  		}
+  	}, 10);
+    if ($scope.isGroupShown(group)) {
+      $scope.shownGroup = null;
+      $scope.showLimit = 100;
+    } else {
+    	if(group.answer){
+    		$scope.showLimit = group.answer.length+1;
+      	$scope.shownGroup = group;
+    	}
+    }
+  };
+  $scope.isGroupShown = function(group) {
+    return $scope.shownGroup === group;
+  };*/
 
   $scope.clearSearch = function(){
 		$scope.search.searchInput = "";

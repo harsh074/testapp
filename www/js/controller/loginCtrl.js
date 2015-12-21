@@ -1,17 +1,17 @@
-askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ionicScrollDelegate','$timeout','$rootScope', function($scope, $state,utility,CONSTANT,$ionicScrollDelegate,$timeout,$rootScope) {
+askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ionicScrollDelegate','$timeout','$rootScope','$stateParams', function($scope, $state,utility,CONSTANT,$ionicScrollDelegate,$timeout,$rootScope,$stateParams){
   if(!$scope.authenticated){
     $scope.activeUserTab = true;
     $scope.activeMonkTab = false;
     $scope.monkTab = true;
-
+    $scope.hideLoader();
     // $scope.args = {"email":"harsh.agarwal1112@gmail.com","password":"password"};
     // $scope.argsSignup = {"name":"harsh","email":"harsh@gmail.com","password":"password"};
     // $scope.conpassword = {"pass":"password"};
 
-    $scope.args = {"email":"","password":""};
+    $scope.args = {"email":"","password":"","ttl": 435456000000};
     $scope.argsSignup = {"name":"","email":"","password":""};
     $scope.conpassword = {"pass":""};
-    $scope.argsMonk = {"email":"","password":""};
+    $scope.argsMonk = {"email":"","password":"","ttl": 435456000000};
 
     $scope.userLoginForm =function() {
       $scope.activeUserTab = true;
@@ -32,28 +32,31 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       .then(function(data){
         $scope.setAuth(true);
         localStorage.setItem('loginType',"user");
+        CONSTANT.loginType = "user";
         $state.go('app.profile');
-        window.plugins.nativepagetransitions.slide(
-          {"direction":"left"},
-          function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-          function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-        );
+        $scope.hideLoader();
+        $scope.transitionAnimation('left',300);
+        
       },function(data){
         $scope.hideLoader();
         $scope.showMessage(data.error.message);
       });
     }
     $scope.monkLogin = function(){
+      $scope.showLoader();
+      if(CONSTANT.isDevice){
+        cordova.plugins.Keyboard.close();
+      }
       utility.monkLogin($scope.argsMonk)
       .then(function(data){
         $scope.setAuth(true);
         $state.go('app.profile');
         localStorage.setItem('loginType',"monk");
-        window.plugins.nativepagetransitions.slide(
-          {"direction":"left"},
-          function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-          function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-        );
+        CONSTANT.loginType = "monk";
+        $scope.hideLoader();
+        if(CONSTANT.isDevice){
+          $scope.transitionAnimation('left',300);
+        }
       },function(data){
         $scope.hideLoader();
         $scope.showMessage(data.error.message);
@@ -103,11 +106,8 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
             localStorage.setItem("profileData", JSON.stringify(data));
             $scope.setAuth(true);
             $state.go('app.editProfile');
-            window.plugins.nativepagetransitions.slide(
-              {"direction":"left"},
-              function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-              function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-            );
+            $scope.hideLoader();
+            $scope.transitionAnimation('left');
           },function(data){
             $scope.hideLoader();
             $scope.showMessage(data.error.message);
@@ -123,12 +123,12 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         return;
       }
     }
+  }else if(localStorage.getItem('questionStatus') == "underObeservation"){
+    $stateParams.id = localStorage.getItem('questionId');
+    $state.go('app.singlequestion',$stateParams);
+    $scope.transitionAnimation('left',180);
   }else{
     $state.go('app.profile');
-    window.plugins.nativepagetransitions.slide(
-      {"direction":"left"},
-      function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-      function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-    );
+    $scope.transitionAnimation('left',180);
   }
 }]);
