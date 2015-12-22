@@ -26,7 +26,7 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams', function($ionicPlatfor
     // ionic.Platform.isFullScreen = false;
     // ionic.Platform.showStatusBar(true);
     // then override any default you want
-    window.plugins.nativepagetransitions.globalOptions.duration = 150;
+    window.plugins.nativepagetransitions.globalOptions.duration = 100;
     window.plugins.nativepagetransitions.globalOptions.androiddelay = 0;
     // window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 4;
     // these are used for slide left/right only currently

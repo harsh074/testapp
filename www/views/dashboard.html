@@ -5,36 +5,87 @@
 				<!-- <div class="avatar"><i class="ion-person"></i></div> -->
 				<div class="yAnswerStatus" ng-if="loginType=='user'">My Questions <span>Pull to refresh</span></div>
 				<div class="yAnswerStatus" ng-if="loginType=='monk'">Open Questions <span>Pull to refresh</span></div>
-				<label class="item item-input item-search" for="search">
+				<!-- <label class="item item-input item-search" for="search">
 			    <input type="text" placeholder="Search" ng-model="search.searchInput" name="search">
 			  </label>
-			  <i class="icon ion-close-round placeholder-icon" ng-click="clearSearch()"></i>
+			  <i class="icon ion-close-round placeholder-icon" ng-click="clearSearch()"></i> -->
 			</div>
 		</div>
 	</ion-content>
-	<ion-content class="row dashboardData paddingLRPlus21" scroll="true" delegate-handle="mainScroll">
+	<ion-content class="row dashboardData " scroll="true" delegate-handle="mainScroll">
 		<ion-refresher on-refresh="doRefresh()" spinner="none"></ion-refresher>
-		<div class="noQuestionFound" ng-if="noQuestionFound && loginType=='user'">
-			<a ng-click="askQuestion()" href="">Ask first question for free</a>
-		</div>
-		<div class="questionFound marginLRMinus21" ng-if="!noQuestionFound">
-			<ion-list>
-        <div ng-repeat="group in groups | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)">
-          <div class="question"> <span>Q{{$index+1}}.</span>{{group.question}}
-        		<!-- <i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-down' : 'ion-ios-arrow-up'" ng-show="group.answer"></i> -->
-        	</div>
-          
-          <div class="answer">
-          	<p ng-if="loginType=='user'">{{group.answer ? group.answer: "Will be answered next 24 hrs."}}</p>
-          	<p class="questionTag" ng-if="loginType=='monk'">{{group.questionTag}}</p>
-          	<p class="postedUser" ng-if="loginType=='monk'">Posted {{group.askedOn | timeago}}</p>
-		       </div>
-        </div>
-        <div class="payTogetMore" ng-if="groups.length<=2 && loginType=='user'">
-	      	<a ui-sref="app.wallet">Pay to get more answers.</a>
-	      </div>
-      </ion-list>
-		</div>
+		
+		<ion-slide-box show-pager="false" ion-slide-tabs>
+      <ion-slide ion-slide-tab-label="OPEN">
+      	<div class="noQuestionFound" ng-if="noQuestionFound && loginType=='user'">
+					<a ng-click="askQuestion()" href="">Ask first question for free</a>
+				</div>
+				<div class="questionFound" ng-if="!noQuestionFound">
+					<ion-list>
+		        <div ng-repeat="group in groups | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='asked'">
+		          <div class="question" > <span>Q.</span>{{group.question}}
+		        		<!-- <i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-down' : 'ion-ios-arrow-up'" ng-show="group.answer"></i> -->
+		        	</div>
+		          
+		          <div class="answer">
+		          	<p ng-if="loginType=='user'">{{group.answer ? group.answer: "Will be answered next 24 hrs."}}</p>
+		          	<p class="questionTag" ng-if="loginType=='monk'">{{group.questionTag}}</p>
+		          	<p class="postedUser" ng-if="loginType=='monk'">Posted {{group.askedOn | timeago}}</p>
+				       </div>
+		        </div>
+		        <div class="payTogetMore" ng-if="groups.length<=2 && loginType=='user'">
+			      	<a ui-sref="app.wallet">Pay to get more answers.</a>
+			      </div>
+	      	</ion-list>
+				</div>
+    	</ion-slide>
+      <ion-slide ion-slide-tab-label="ANSWERED">
+      	<div class="noQuestionFound" ng-if="noQuestionFound && loginType=='user'">
+					<a ng-click="askQuestion()" href="">Ask first question for free</a>
+				</div>
+				<div class="questionFound" ng-if="!noQuestionFound">
+					<ion-list>
+		        <div ng-repeat="group in groups | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='answered'">
+		          <div class="question" > <span>Q.</span>{{group.question}}
+		        		<!-- <i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-down' : 'ion-ios-arrow-up'" ng-show="group.answer"></i> -->
+		        	</div>
+		          
+		          <div class="answer">
+		          	<p ng-if="loginType=='user'">{{group.answer ? group.answer: "Will be answered next 24 hrs."}}</p>
+		          	<p class="questionTag" ng-if="loginType=='monk'">{{group.questionTag}}</p>
+		          	<p class="postedUser" ng-if="loginType=='monk'">Posted {{group.askedOn | timeago}}</p>
+				       </div>
+		        </div>
+		        <div class="payTogetMore" ng-if="groups.length<=2 && loginType=='user'">
+			      	<a ui-sref="app.wallet">Pay to get more answers.</a>
+			      </div>
+	      	</ion-list>
+				</div>
+      </ion-slide>
+      <ion-slide ion-slide-tab-label="RATED">
+      	<div class="noQuestionFound" ng-if="noQuestionFound && loginType=='user'">
+					<a ng-click="askQuestion()" href="">Ask first question for free</a>
+				</div>
+				<div class="questionFound" ng-if="!noQuestionFound">
+					<ion-list>
+		        <div ng-repeat="group in groups | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='rated'">
+		          <div class="question"> <span>Q.</span>{{group.question}}
+		        		<!-- <i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-down' : 'ion-ios-arrow-up'" ng-show="group.answer"></i> -->
+		        	</div>
+		          
+		          <div class="answer">
+		          	<p ng-if="loginType=='user'">{{group.answer ? group.answer: "Will be answered next 24 hrs."}}</p>
+		          	<p class="questionTag" ng-if="loginType=='monk'">{{group.questionTag}}</p>
+		          	<p class="postedUser" ng-if="loginType=='monk'">Posted {{group.askedOn | timeago}}</p>
+				       </div>
+		        </div>
+		        <div class="payTogetMore" ng-if="groups.length<=2 && loginType=='user'">
+			      	<a ui-sref="app.wallet">Pay to get more answers.</a>
+			      </div>
+	      	</ion-list>
+				</div>
+    	</ion-slide>
+    </ion-slide-box>
 	</ion-content>
 	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user'">
 		<i class="icon ion-android-add"></i>

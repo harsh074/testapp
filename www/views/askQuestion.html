@@ -19,7 +19,7 @@
 
 			<div class="categoryQuestion">
 				<div ng-if="showQuestion" ng-repeat="question in preffredQuestion track by $index">
-					<ion-radio ng-model="askQuestion.question" ng-value="question" ng-change="clearQuestionOnOther()">{{question}}</ion-radio>
+					<ion-radio ng-model="askQuestion.question" ng-value="question" ng-change="clearQuestionOnOther()" ng-class="{'active':question=='Other'}">{{question}}</ion-radio>
 				</div>
 				<div class="item textarea" ng-if="!showQuestion || showOnOtherQuestion">
 					<textarea id="askQuestionTextarea" name="askQuestionTextarea" focus-me ng-model="askOtherQuestion.question" placeholder="Write the question that you wish to ask..." ng-keyup="expandText()" ng-keydown="expandText()"></textarea>
