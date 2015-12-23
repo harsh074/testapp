@@ -42,7 +42,7 @@ askmonkApp.directive('ionSlideTabs', ['$timeout', '$compile', '$interval', '$ion
 				slider = angular.element(element);
 
 				var compiled = $compile(tabsBar);
-				slider.parent().prepend(tabsBar);
+				slider.parent().parent().prepend(tabsBar);
 				compiled(scope);
 
 				//get Tabs DOM Elements
@@ -66,7 +66,6 @@ askmonkApp.directive('ionSlideTabs', ['$timeout', '$compile', '$interval', '$ion
 					}
 
 				}
-
 
 				addEvents();
 				setTabBarWidth();
@@ -109,7 +108,7 @@ askmonkApp.directive('ionSlideTabs', ['$timeout', '$compile', '$interval', '$ion
 
 			};
 
-			var addTabTouchAnimation = function(event, currentElement) {
+			/*var addTabTouchAnimation = function(event, currentElement) {
 
 				var ink = angular.element(currentElement[0].querySelector(".ink"));
 
@@ -135,7 +134,7 @@ askmonkApp.directive('ionSlideTabs', ['$timeout', '$compile', '$interval', '$ion
 				ink.css("top", y + 'px');
 				ink.css("left", x + 'px');
 				ink.addClass("animate");
-			}
+			}*/
 
 			var slideToCurrentPosition = function() {
 
@@ -164,9 +163,7 @@ askmonkApp.directive('ionSlideTabs', ['$timeout', '$compile', '$interval', '$ion
 
 				slideTabs.removeClass("tab-active");
 				targetTab.addClass("tab-active");
-
 			}
-
 
 			var setIndicatorPosition = function(currentSlideIndex, targetSlideIndex, position, slideDirection) {
 
@@ -213,13 +210,13 @@ askmonkApp.directive('ionSlideTabs', ['$timeout', '$compile', '$interval', '$ion
 
 				if (options.slideTabsScrollable && ionicScrollDelegate) {
 					var scrollOffset = 40;
-					ionicScrollDelegate.scrollTo(indicatorPos - scrollOffset, 0, false);
+					ionicScrollDelegate.scrollTo(0, 0, false);
+					$ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
 				}
-
 			}
 
 			scope.onTabTabbed = function(event, index) {
-				addTabTouchAnimation(event, angular.element(event.currentTarget));
+				// addTabTouchAnimation(event, angular.element(event.currentTarget));
 				ionicSlideBoxDelegate.slide(index);
 				slideToCurrentPosition();
 			}
@@ -236,7 +233,6 @@ askmonkApp.directive('ionSlideTabs', ['$timeout', '$compile', '$interval', '$ion
 					slideToCurrentPosition();
 					setTabBarWidth()
 				})
-
 			}
 
 			scope.onSlideChange = function(slideIndex) {

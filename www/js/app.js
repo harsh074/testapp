@@ -1,4 +1,4 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating']);
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','jett.ionic.filter.bar']);
 
 askmonkApp.run(['$ionicPlatform','$state','$stateParams', function($ionicPlatform,$state,$stateParams){
   if(!localStorage.getItem('token')){
@@ -36,9 +36,11 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams', function($ionicPlatfor
   });
 }]);
 
-askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider', function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
+askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider','$ionicFilterBarConfigProvider', function($stateProvider, $urlRouterProvider,$ionicConfigProvider,$ionicFilterBarConfigProvider) {
   $ionicConfigProvider.views.transition('none');
   $ionicConfigProvider.views.swipeBackEnabled(false);
+
+   $ionicFilterBarConfigProvider.theme('stable');
 
   $stateProvider
 

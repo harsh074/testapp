@@ -3,16 +3,17 @@
 		<div class="yprofile dashboard">
 			<div class="pofilePic">
 				<!-- <div class="avatar"><i class="ion-person"></i></div> -->
-				<div class="yAnswerStatus" ng-if="loginType=='user'">My Questions <span>Pull to refresh</span></div>
-				<div class="yAnswerStatus" ng-if="loginType=='monk'">Open Questions <span>Pull to refresh</span></div>
+				<div class="yAnswerStatus" ng-if="loginType=='user'">My Questions <span>(Pull to refresh)</span></div>
+				<div class="yAnswerStatus" ng-if="loginType=='monk'">Open Questions <span>(Pull to refresh)</span></div>
 				<!-- <label class="item item-input item-search" for="search">
 			    <input type="text" placeholder="Search" ng-model="search.searchInput" name="search">
-			  </label>
-			  <i class="icon ion-close-round placeholder-icon" ng-click="clearSearch()"></i> -->
+			  </label> -->
+			  <!-- <i class="icon ion-close-round placeholder-icon" ng-click="clearSearch()"></i> -->
+			  <button class="button button-icon icon ion-ios-search-strong searchBar" ng-click="showFilterBar()"></button>
 			</div>
 		</div>
 	</ion-content>
-	<ion-content class="row dashboardData " scroll="true" delegate-handle="mainScroll">
+	<ion-content class="row dashboardData" scroll="true" delegate-handle="mainScroll">
 		<ion-refresher on-refresh="doRefresh()" spinner="none"></ion-refresher>
 		
 		<ion-slide-box show-pager="false" ion-slide-tabs>
@@ -27,15 +28,16 @@
 		        		<!-- <i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-down' : 'ion-ios-arrow-up'" ng-show="group.answer"></i> -->
 		        	</div>
 		          
-		          <div class="answer">
-		          	<p ng-if="loginType=='user'">{{group.answer ? group.answer: "Will be answered next 24 hrs."}}</p>
-		          	<p class="questionTag" ng-if="loginType=='monk'">{{group.questionTag}}</p>
-		          	<p class="postedUser" ng-if="loginType=='monk'">Posted {{group.askedOn | timeago}}</p>
-				       </div>
+		          	<div class="answer">
+		          		<p class="showAnswer" ng-if="loginType=='user'">{{group.answer ? group.answer: "Will be answered next 24 hrs."}}</p>
+		          		<p class="questionTag" ng-if="loginType=='monk'">{{group.questionTag}}</p>
+		          		<p class="postedTime" ng-if="loginType=='monk'">Posted {{group.askedOn | timeago}}</p>
+				       	</div>
+				       	<p class="postedUser" ng-if="loginType=='monk'">Posted by {{group.name}}</p>
 		        </div>
-		        <div class="payTogetMore" ng-if="groups.length<=2 && loginType=='user'">
+		        <!-- <div class="payTogetMore" ng-if="groups.length<=2 && loginType=='user'">
 			      	<a ui-sref="app.wallet">Pay to get more answers.</a>
-			      </div>
+			      </div> -->
 	      	</ion-list>
 				</div>
     	</ion-slide>
@@ -56,9 +58,9 @@
 		          	<p class="postedUser" ng-if="loginType=='monk'">Posted {{group.askedOn | timeago}}</p>
 				       </div>
 		        </div>
-		        <div class="payTogetMore" ng-if="groups.length<=2 && loginType=='user'">
+		        <!-- <div class="payTogetMore" ng-if="groups.length<=2 && loginType=='user'">
 			      	<a ui-sref="app.wallet">Pay to get more answers.</a>
-			      </div>
+			      </div> -->
 	      	</ion-list>
 				</div>
       </ion-slide>
@@ -79,9 +81,9 @@
 		          	<p class="postedUser" ng-if="loginType=='monk'">Posted {{group.askedOn | timeago}}</p>
 				       </div>
 		        </div>
-		        <div class="payTogetMore" ng-if="groups.length<=2 && loginType=='user'">
+		        <!-- <div class="payTogetMore" ng-if="groups.length<=2 && loginType=='user'">
 			      	<a ui-sref="app.wallet">Pay to get more answers.</a>
-			      </div>
+			      </div> -->
 	      	</ion-list>
 				</div>
     	</ion-slide>

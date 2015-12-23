@@ -1,8 +1,8 @@
-askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','$stateParams','CONSTANT', function($scope, $state, utility,$timeout,$stateParams,CONSTANT){
+askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','$stateParams','CONSTANT','$ionicFilterBar', function($scope, $state, utility,$timeout,$stateParams,CONSTANT,$ionicFilterBar){
 
 	$scope.noQuestionFound = false;
 	$scope.search = {"searchInput":""};
-
+  var filterBarInstance;
   $scope.floatingBtnAction = false;
   $scope.$on('$ionicView.enter', function(){
     $scope.floatingBtnAction = true;
@@ -17,7 +17,11 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
 
   $scope.doRefresh = function() {
     $scope.showLoader();
-    $scope.$broadcast('scroll.refreshComplete');    
+    $scope.$broadcast('scroll.refreshComplete');
+    if (filterBarInstance) {
+      filterBarInstance();
+      filterBarInstance = null;
+    }
     if($scope.loginType == "user"){
       utility.getUserQuestions()
       .then(function(data){
@@ -47,6 +51,18 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
         console.log(data);
       });
     }
+  };
+
+  $scope.showFilterBar = function () {
+    filterBarInstance = $ionicFilterBar.show({
+      items: $scope.groups,
+      update: function (filteredItems, filterText) {
+        $scope.groups = filteredItems;
+        if (filterText) {
+          console.log(filterText);
+        }
+      }
+    });
   };
 
   if($scope.loginType == "user"){
