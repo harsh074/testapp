@@ -1,5 +1,6 @@
 askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state', function($scope,CONSTANT,$state){
 	$scope.isComingFromSignUp = CONSTANT.isComingFromSignUp;
+  
 	$scope.$on("updateEditProfileFirstUser", function() {
 		$scope.isComingFromSignUp = CONSTANT.isComingFromSignUp;
 		if(CONSTANT.isComingFromSignUp){
@@ -16,6 +17,7 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state', function($scope,
 
  	$scope.sideMenuName = localStorage.getItem("name");
   $scope.$on("updateSideMenuName",function(evt,data){
+    $scope.loginType = CONSTANT.loginType;
     $scope.sideMenuName = localStorage.getItem("name");
   });
   $scope.goToWallet = function(){
@@ -31,7 +33,7 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
   function onDeviceReady() {
   	console.log('deviceReady');
   }
-	
+  
 	utility.initialize(CONSTANT.baseUrl, false, $scope, $rootScope);
 
 	$scope.showMessage = function(message) {
@@ -88,9 +90,9 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     if($state.current.name == 'app.editProfile' || $state.current.name == 'app.askQuestion' || $state.current.name == 'app.yprofile' || $state.current.name == 'app.singlequestion'){
       $timeout(function(){
         $ionicHistory.goBack();
-        if($ionicHistory.viewHistory.backView == null && $state.current.name == 'app.singlequestion'){
-          $state.go('app.dashboard');
-        }
+        // if($ionicHistory.viewHistory.backView == null && $state.current.name == 'app.singlequestion'){
+        //   $state.go('app.dashboard');
+        // }
       }, 300);
       $scope.transitionAnimation('right',300);
     }else{
@@ -104,6 +106,9 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     //   $state.go('app.singlequestion',$stateParams);
     //   $scope.transitionAnimation('left',180);
     // }
+    if(fromState.name != "app.yprofile" && toState.name != 'app.askQuestion'){
+      localStorage.removeItem('directQuestion');
+    }
     if(toState.name == 'app.editProfile' || toState.name == 'app.askQuestion' || toState.name == 'app.yprofile' || toState.name == 'app.singlequestion'){
       $scope.showArrow = true;
     }else{

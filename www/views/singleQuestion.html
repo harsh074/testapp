@@ -13,13 +13,17 @@
 	</ion-content>
 	<ion-content class="row singleQuestion dashboardData paddingLRPlus21" scroll="true" delegate-handle="mainScroll">
 		<div class="questionData">
+      
       <div class="question">{{question.question}}</div>
+
       <div class="middleSec">
       	<p class="answer" ng-if="loginType=='user'">{{question.answer ? question.answer: "Will be answered next 24 hrs."}}</p>
-        <p class="answer" ng-if="loginType=='monk' && question.status=='answered'">{{question.answer}}</p>
+        <p class="answer" ng-if="loginType=='monk' && (question.status=='answered' || question.status=='rated')">{{question.answer}}</p>
         <p class="answer" ng-if="loginType=='monk' && question.status=='underObservation'">{{writtenAnswer}}</p>
       	<p class="yogiName" ng-if="question.monkName && loginType=='user'">Answered by {{question.monkName ? question.monkName: "Sunil"}}</p>
      	</div>
+
+      <!-- User Bottom -->
       <div class="subBottom" ng-if="loginType=='user'">
       	<p class="tagName">Tag : <span>{{question.questionTag}}</span></p>
       	<p class="questionTime" ng-if="question.status=='answered' || question.status=='rated'">Answered {{question.askedOn | timeago}}</p>
@@ -29,6 +33,8 @@
           <rating ng-model="question.rating" max="5" ng-click="rateQuestion()"></rating>
         </div>
       </div>
+
+      <!-- Monk Bottom -->
       <div class="subBottom" ng-if="loginType=='monk'">
         <p class="tagName">Tag : <span>{{question.questionTag}}</span></p>
         <p class="questionTime">{{question.askedOn | timeago}}</p>
@@ -52,11 +58,15 @@
 
           </div>
           <div class="col">
-            <button class="button button-custom button-small" ng-click="userLogin()">User Details</button>
+            <button class="button button-custom button-small" ng-click="userDetail()">User Details</button>
           </div>
         </div>
-
-        <!-- <p class="writtenAnswer">{{writtenAnswer}}</p> -->
+        <div class="row">
+          <p style="font-size: 18px;margin-top: 5px;" ng-if="question.status=='rated'">Here is your rating.</p>
+          <div class="answerRating" ng-if="question.status=='rated'">
+            <rating ng-model="question.rating" max="5" readonly="true" ng-click="rateQuestion()"></rating>
+          </div>
+        </div>
       </div>
 		</div> 
 	</ion-content>
@@ -65,4 +75,3 @@
 		<!-- <img src="img/flyout_icon.jpg" /> -->
 	</div>
 </ion-view>
-        

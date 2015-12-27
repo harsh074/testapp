@@ -50,6 +50,17 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
       hardwareBackButtonClose: true
     });
   }
+  
+  $scope.userDetail = function(){
+    $ionicModal.fromTemplateUrl('views/userDetailModal.html', function (modal) {
+      $scope.userDetailModal = modal;
+      $scope.userDetailModal.show();
+    }, {
+      scope: $scope,
+      animation: 'slide-in-up'
+    });
+  }
+
   $scope.acceptQuestion = function(){
     utility.acceptQuestionMonk({"userId":$scope.question.userId,"email":$scope.question.email,"id":$scope.question.id,"monkId":localStorage.getItem('userId'),"monkEmail":localStorage.getItem('email'),"status": "asked"})
     .then(function(data){
@@ -70,7 +81,6 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
       $scope.writeAnswerModal.remove();
     }
   }
-
   $scope.postAnswer = function(){
     if(localStorage.getItem('answer') != ""){
       $scope.question.answer = localStorage.getItem('answer');
@@ -116,6 +126,17 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
       });
     }
   }
+
+
+  $scope.closeModal = function(){
+    if($scope.userDetailModal && $scope.userDetailModal.isShown()){
+      $scope.userDetailModal.remove();
+    }
+    if($scope.writeAnswerModal && $scope.writeAnswerModal.isShown()){
+      $scope.writeAnswerModal.remove();
+    }
+  }
+  
 }]);
 
 askmonkApp.controller('writeAnswerModalPopupCtrl', ['$scope','$timeout', function($scope,$timeout){
@@ -134,4 +155,9 @@ askmonkApp.controller('writeAnswerModalPopupCtrl', ['$scope','$timeout', functio
     var element = document.getElementById("writeAnswerTextarea");
     element.style.height =  element.scrollHeight + "px";
   }
+}]);
+
+askmonkApp.controller('userDetailModalPopupCtrl', ['$scope','utility','getMoonSign', function($scope,utility,getMoonSign){
+    $scope.profileInfo = angular.copy(getMoonSign($scope.question));
+    $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
 }]);

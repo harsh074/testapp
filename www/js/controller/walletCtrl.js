@@ -13,7 +13,7 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT', fun
   }
 
   if($scope.loginType == 'user'){
-		utility.getUserProfile()
+		utility.getUserProfile(localStorage.getItem('userId'))
 		.then(function(data){
 			$scope.userProfileData = data;
 			$scope.hideLoader();

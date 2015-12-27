@@ -91,6 +91,9 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 			$scope.askQuestion.question = angular.copy($scope.askOtherQuestion.question);
 			$scope.hideLoader();
 		}
+		if(localStorage.getItem('directQuestion')){
+			angular.extend($scope.askQuestion, JSON.parse(localStorage.getItem('directQuestion')));
+		}
 
 		if($scope.askQuestion.question){
 			utility.askQuestion($scope.askQuestion)

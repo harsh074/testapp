@@ -1,10 +1,9 @@
-<ion-view class="home-view" ng-controller="writeAnswerModalPopupCtrl">
+<ion-modal-view ng-controller="writeAnswerModalPopupCtrl">
 	<ion-nav-bar class="bar-assertive-900">
 		<ion-nav-buttons side="left">
 			<button class="customMenuBtn is-active" ng-click="closeWriteAnswerPopup()"><span></span></button>
 			<b>Write Answer</b>
 		</ion-nav-buttons>
-		<!-- <ion-nav-title><i class='logoSideMenu'></i></ion-nav-title> -->
 		<ion-nav-buttons side="right">
 			<button class="button button-clear" ng-click="closeWriteAnswerPopup()"><b>Done</b></button>
 		</ion-nav-buttons>
@@ -14,4 +13,4 @@
 	   	<textarea id="writeAnswerTextarea" name="writeAnswerTextarea" focus-me ng-model="writeAnswerTextarea.answer" placeholder="Write your answer" ng-keyup="expandText()" ng-keydown="expandText()"></textarea>
 	   </div>
 	</ion-content>
-</ion-view>
+</ion-modal-view>

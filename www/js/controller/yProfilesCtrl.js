@@ -1,10 +1,11 @@
-askmonkApp.controller('yProfilesCtrl', ['$scope','$state','utility','$stateParams', function($scope,$state,utility,$stateParams){
+askmonkApp.controller('yProfilesCtrl', ['$scope','$state','utility','$stateParams','CONSTANT', function($scope,$state,utility,$stateParams,CONSTANT){
 
   $scope.floatingBtnAction = false;
   $scope.$on('$ionicView.enter', function(){
     $scope.floatingBtnAction = true;
     $scope.showLoader();
   });
+  $scope.loginType = CONSTANT.loginType;
 
 	utility.getAllMonks()
 	.then(function(data){

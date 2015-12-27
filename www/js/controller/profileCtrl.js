@@ -8,7 +8,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   $scope.loginType = CONSTANT.loginType;
 
   if($scope.loginType == "user"){
-    utility.getUserProfile()
+    utility.getUserProfile(localStorage.getItem('userId'))
     .then(function(data){
       localStorage.setItem("email",data.email);
       localStorage.setItem("name",data.name);
@@ -65,19 +65,3 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     return Math.abs(ageDate.getUTCFullYear() - 1970);
 	}
 }]);
-
-askmonkApp.filter('ageFilter', function() {
-  function calculateAge(birthday) { // birthday is a date
-  	// console.log(birthday.getTime());
-  	if(birthday){
-  		birthday = new Date(birthday);
-    	var ageDifMs = Date.now() - birthday.getTime();
-    	var ageDate = new Date(ageDifMs); // miliseconds from epoch
-    	return Math.abs(ageDate.getUTCFullYear() - 1970);
-  	}
-  }
-
-  return function(birthdate) { 
-    return calculateAge(birthdate);
-  };
-});

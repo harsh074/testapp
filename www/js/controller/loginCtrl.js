@@ -36,7 +36,6 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         $state.go('app.profile');
         $scope.hideLoader();
         $scope.transitionAnimation('left',300);
-        
       },function(data){
         $scope.hideLoader();
         $scope.showMessage(data.error.message);

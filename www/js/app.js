@@ -1,4 +1,4 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','jett.ionic.filter.bar']);
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox']);
 
 askmonkApp.run(['$ionicPlatform','$state','$stateParams', function($ionicPlatform,$state,$stateParams){
   if(!localStorage.getItem('token')){
@@ -19,8 +19,8 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams', function($ionicPlatfor
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if(window.StatusBar) {
-      window.StatusBar.styleDefault();
-      // window.StatusBar.overlaysWebView(true);
+      // window.StatusBar.styleDefault();
+      window.StatusBar.overlaysWebView(true);
       window.StatusBar.backgroundColorByHexString('#00BCD2');
     }
     // ionic.Platform.isFullScreen = false;
@@ -36,11 +36,9 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams', function($ionicPlatfor
   });
 }]);
 
-askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider','$ionicFilterBarConfigProvider', function($stateProvider, $urlRouterProvider,$ionicConfigProvider,$ionicFilterBarConfigProvider) {
+askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider', function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
   $ionicConfigProvider.views.transition('none');
   $ionicConfigProvider.views.swipeBackEnabled(false);
-
-   $ionicFilterBarConfigProvider.theme('stable');
 
   $stateProvider
 
@@ -85,6 +83,16 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
       'menuContent': {
         templateUrl: "views/yogi-profile.html",
         controller: 'yProfileCtrl'
+      }
+    }
+  })
+  .state('app.directQuestion', {
+    url: "/direct-question",
+    cache: false,
+    views: {
+      'menuContent': {
+        templateUrl: "views/direct-question.html",
+        controller: 'directQuestionCtrl'
       }
     }
   })

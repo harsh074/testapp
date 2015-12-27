@@ -58,6 +58,22 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'params': {"access_token":localStorage.getItem('token')},
       });
     },
+    changeUserPassword:function(args){
+      return this.request({
+        'method':"POST",
+        'url':"/users/changePassword/",
+        'data':args,
+        'params': {"access_token":localStorage.getItem('token'),"email":localStorage.getItem('email')}
+      });
+    },
+    changeMonkPassword:function(args){
+      return this.request({
+        'method':"POST",
+        'url':"/monks/changeMonkPassword/",
+        'data':args,
+        'params': {"access_token":localStorage.getItem('token'),"email":localStorage.getItem('email')}
+      });
+    },
     getAllQuestion: function(){
       return this.request({
         'method': "GET",
@@ -76,10 +92,10 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'url':"/questions/"+id
       });
     },
-    getUserProfile: function(){
+    getUserProfile: function(args){
       return this.request({
         'method':"GET",
-        'url':'/users/findUser/'+localStorage.getItem('userId')
+        'url':'/users/findUser/'+args
       });
     },
     updateUserProfile:function(args){
@@ -156,6 +172,12 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         // 'params': {"access_token":localStorage.getItem('token')}
       });
     },
+    getMonkAnsweredQuestion:function(){
+      return this.request({
+        'method':"GET",
+        'url':"/questions/findMonkQuestions/"+localStorage.getItem('userId')
+      });
+    },
     acceptQuestionMonk:function(args){
       return this.request({
         'method':"POST",
@@ -170,6 +192,12 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'data':args,
         'params': {"access_token":localStorage.getItem('token')}
       });
+    },
+    getDirectQuestion:function(){
+      return this.request({
+        'method':"GET",
+        'url':"/questions/directQuestions/"+localStorage.getItem('userId')
+      })
     },
     initialize: function(url, sessions, scope, rootScope){
       this.API_URL = url;

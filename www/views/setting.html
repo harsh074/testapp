@@ -1,8 +1,15 @@
-<ion-view view-title="<i class='logoSideMenu'></i>">
-	<ion-content has-subheader="false">
-		<div class="settingCtrl padding">
-			<button class="button button-custom button-full" ng-click="logout()">Logout</button>
-			<p>v.201511271230</p>
+<ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
+	<ion-content scroll="false">
+		<div class="shortHeader">
+			<h1 class="title">Settings</h1>
+		</div>
+	</ion-content>
+	<ion-content scroll="true" class="settingCtrl">
+		<div>
+			<button class="button button-full" ng-click="aboutUs()">About</button>
+			<button class="button button-full" ng-click="privacyPolicy()">Privacy Policy</button>
+			<button class="button button-full" ng-click="changePassword()">Change Password</button>
+			<button class="button button-full" ng-click="logout()">Logout</button>
 		</div>
 	</ion-content>
 </ion-view>
