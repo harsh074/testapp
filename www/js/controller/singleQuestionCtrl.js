@@ -62,6 +62,7 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
   }
 
   $scope.acceptQuestion = function(){
+    $scope.showLoader();
     utility.acceptQuestionMonk({"userId":$scope.question.userId,"email":$scope.question.email,"id":$scope.question.id,"monkId":localStorage.getItem('userId'),"monkEmail":localStorage.getItem('email'),"status": "asked"})
     .then(function(data){
       CONSTANT.isComingFromSignUp = true;
@@ -69,10 +70,13 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
       $scope.question = angular.copy(data);
       localStorage.setItem('questionStatus',$scope.question.status);
       localStorage.setItem('questionId',$scope.question.id);
-      $scope.openWriteModal();
-      console.log(data);
+      $scope.hideLoader();
+      $timeout(function(){
+        $scope.openWriteModal();
+      }, 100);
+      console.log(data,"success");
     },function(data){
-      console.log(data);
+      console.log(data,"error");
     })
   }
   $scope.closeAnswerPopup = function(){
@@ -143,12 +147,15 @@ askmonkApp.controller('writeAnswerModalPopupCtrl', ['$scope','$timeout', functio
   $scope.writeAnswerTextarea = {'answer':""};
   $timeout(function(){
     cordova.plugins.Keyboard.show();
-  }, 200);
+  }, 670);
   if(localStorage.getItem('answer')){
     $scope.writeAnswerTextarea.answer = localStorage.getItem('answer');
   }
   $scope.closeWriteAnswerPopup = function(){
-     $scope.closeAnswerPopup();
+    cordova.plugins.Keyboard.close();
+    $timeout(function(){
+      $scope.closeAnswerPopup();
+    }, 250);
   }
   $scope.expandText = function(){
     localStorage.setItem('answer',$scope.writeAnswerTextarea.answer);

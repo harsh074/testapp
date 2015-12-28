@@ -1,5 +1,6 @@
 askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state', function($scope,CONSTANT,$state){
 	$scope.isComingFromSignUp = CONSTANT.isComingFromSignUp;
+  $scope.loginType = CONSTANT.loginType;
   
 	$scope.$on("updateEditProfileFirstUser", function() {
 		$scope.isComingFromSignUp = CONSTANT.isComingFromSignUp;

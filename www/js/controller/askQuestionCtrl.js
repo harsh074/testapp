@@ -58,7 +58,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	$scope.openAskQuestion = function(){
 		var confirmPopup = $ionicPopup.show({
 	    cssClass:"ios",
-	    title: 'Going further would send the answer to the user.',
+	    title: 'Going further would send the question to the astrologers.',
 	    template:'Do u wish to continue ?',
 	    buttons: [
 	      {text: 'Yes',type:'button-ios button-clear',

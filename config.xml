@@ -9,9 +9,9 @@
     </author>
   <content src="index.html"/>
   <access origin="*"/>
-  <preference name="StatusBarOverlaysWebView" value="true" />
-  <preference name="StatusBarBackgroundColor" value="#00BCD2"/>
-  <preference name="StatusBarStyle" value="lightcontent" />
+  <preference name="StatusBarOverlaysWebView" value="true"/>
+  <preference name="StatusBarBackgroundColor" value="#2B5D80"/>
+  <preference name="StatusBarStyle" value="lightcontent"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
