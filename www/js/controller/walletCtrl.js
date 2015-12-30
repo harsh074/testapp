@@ -32,6 +32,32 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT', fun
 		});
 	}
 
+	$scope.options = function(args){
+	 	var data = {
+	  	description: args.name,
+	    currency: 'INR',
+	    key: 'rzp_test_2jGmoGfR3KHvoA',
+	    amount: args.amount*100,
+	    name: 'Askmonk',
+	    prefill: {email:$scope.userProfileData.email, name:$scope.userProfileData.name},
+	    theme: {color: '#00BCD2'}
+	  }
+	  return data;
+	}
+
+  var successCallback = function(payment_id) {
+    alert('payment_id: ' + payment_id);
+  }
+
+  var cancalCallback = function(error) {
+    alert(error.description + ' (Error '+error.code+')');
+  }
+	
+	$scope.getPayment = function(args){
+		// console.log(args,$scope.userProfileData);
+  	RazorpayCheckout.open($scope.options(args), successCallback, cancalCallback);
+  }
+
 	utility.getPacks()
 	.then(function(data){
 		$scope.packs = data;

@@ -7,7 +7,7 @@
 	<ion-content scroll="true" class="row questionBottom paddingLRPlus21">
 		<div class="walletManagement">
 			<p class="showMoney">Present Wallet Money : Rs {{userProfileData.walletMoney ? userProfileData.walletMoney : 0}}</p>
-			<table class="packs" ng-repeat="pack in packs">				
+			<table class="packs" ng-repeat="pack in packs" ng-click="getPayment(pack)">
 				<tr>
 					<td rowspan="2" class="packName">{{pack.name}}</td>
 					<td><span class="preText">Amount (Rs): </span><span class="preTextValues">{{pack.amount}}</span></td>
