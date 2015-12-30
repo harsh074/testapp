@@ -10323,16 +10323,15 @@ ion-side-menu .has-header {
   background-color: #F9F9F9; }
   .settingCtrl button.button-full {
     background-color: #fff;
-    color: #696969;
+    color: #797979;
     text-align: left;
     font-size: 18px;
     padding: 0px 19px;
-    margin: 0px;
-    border-bottom: 0; }
+    margin: 3px 0px;
+    border: 0;
+    box-shadow: 0 3px 10px #ABABAB; }
     .settingCtrl button.button-full:first-child {
       margin: 11px 0 0; }
-    .settingCtrl button.button-full:last-child {
-      border-bottom: 1px solid #696969; }
     .settingCtrl button.button-full:hover {
       color: #696969; }
     .settingCtrl button.button-full.activated {
