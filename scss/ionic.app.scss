@@ -555,7 +555,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd{
     	padding-top:15px;
 			.question{
         position: relative;
-		    padding: 0px 0px 20px 0px;
+		    padding: 10px 0px 20px 0px;
 		    font-weight: bold;
 		    font-size: 24px;
         line-height: 24px;
@@ -603,41 +603,37 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd{
 					  background: none;
 					  padding: 5px;
 					  color: $red;
+					  &:first-child{
+					  	padding-left:0;
+					  }
 					}
 					ul.rating li i {
 					  font-size: 30px;
 					}
-					// i{
-					// 	padding-right: 3px;
-					// 	float: left;
-					// 	font-size: 30px;
-					// 	&.checked{
-					// 		color: $red;
-					// 	}
-					// 	&.unchecked{
-					// 		color: #FFF1D7;
-					// 	}
-					// }
 				}
 				.row{
 					padding:5px 0px;
 					font-size: 15px;
 					&:nth-child(3){
-						margin-top: 10px;
+						margin-top: 15px;
+					}
+					&:nth-last-child(2){
+						margin-top:5px;
+						.col + .col{
+							button{
+								float:right;
+							}
+						}
 					}
 					&:last-child{
 						margin-top: 10px;
-						.col:last-child{
-							button{
-						    float: right;
-							}
-						}
 					}
 					.col:first-child{
 						padding-left:0px;
 					}
 					.col:last-child{
 						padding-right:0px;
+						
 					}
 					.col{
 						span{

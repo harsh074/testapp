@@ -21,7 +21,7 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams', function($ionicPlatfor
     if(window.StatusBar) {
       // window.StatusBar.styleDefault();
       window.StatusBar.overlaysWebView(true);
-      window.StatusBar.backgroundColorByHexString('#2B5D80');
+      window.StatusBar.backgroundColorByHexString('#95AEC0');  //#2B5D80
     }
     // ionic.Platform.isFullScreen = false;
     // ionic.Platform.showStatusBar(true);

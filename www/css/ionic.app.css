@@ -9571,7 +9571,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd {
     padding-top: 15px; }
     .home-view .singleQuestion .questionData .question {
       position: relative;
-      padding: 0px 0px 20px 0px;
+      padding: 10px 0px 20px 0px;
       font-weight: bold;
       font-size: 24px;
       line-height: 24px; }
@@ -9612,17 +9612,21 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd {
           background: none;
           padding: 5px;
           color: #CC333C; }
+          .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li:first-child {
+            padding-left: 0; }
         .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li i {
           font-size: 30px; }
       .home-view .singleQuestion .questionData .subBottom .row {
         padding: 5px 0px;
         font-size: 15px; }
         .home-view .singleQuestion .questionData .subBottom .row:nth-child(3) {
-          margin-top: 10px; }
+          margin-top: 15px; }
+        .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) {
+          margin-top: 5px; }
+          .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) .col + .col button {
+            float: right; }
         .home-view .singleQuestion .questionData .subBottom .row:last-child {
           margin-top: 10px; }
-          .home-view .singleQuestion .questionData .subBottom .row:last-child .col:last-child button {
-            float: right; }
         .home-view .singleQuestion .questionData .subBottom .row .col:first-child {
           padding-left: 0px; }
         .home-view .singleQuestion .questionData .subBottom .row .col:last-child {
