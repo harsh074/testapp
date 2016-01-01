@@ -25,9 +25,6 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
 
     $scope.userLogin = function(){
       $scope.showLoader();
-      if(CONSTANT.isDevice){
-        cordova.plugins.Keyboard.close();
-      }
       utility.login($scope.args)
       .then(function(data){
         $scope.setAuth(true);

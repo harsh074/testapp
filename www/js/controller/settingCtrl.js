@@ -69,12 +69,38 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
   }
 }]);
 
-askmonkApp.controller('changePasswordModalCtrl', ['$scope','utility','CONSTANT', function($scope,utility,CONSTANT){
+askmonkApp.controller('changePasswordModalCtrl', ['$scope','utility','CONSTANT','$ionicPopup', function($scope,utility,CONSTANT,$ionicPopup){
 
   $scope.model = {"password":""};
   $scope.args = {"con_password":""};
   // $scope.loginType = CONSTANT.loginType;
-
+  $scope.passwordChangePopup = function(formData){
+    var confirmPopup = $ionicPopup.show({
+        cssClass:"ios",
+        title: 'Do you want to change your password?',
+        // template:'Do u wish to continue ?',
+        buttons: [
+          {text: 'Yes',type:'button-ios button-clear',
+            onTap: function(e) {
+              return true;
+            }
+          },
+          {text:'No',type:'button-ios button-clear',
+            onTap: function(e) {
+              return false;
+            }
+          }
+        ]
+      });
+      confirmPopup.then(function(res) {
+        if(res) {
+          console.log('You are sure');
+          $scope.passwordChange(formData);
+        } else {
+          console.log('You are not sure');
+        }
+      });
+  }
   $scope.passwordChange = function(formData) {
     if(!$scope.model.password || !$scope.args.con_password){
       $scope.showMessage("All fields are required");
@@ -83,20 +109,27 @@ askmonkApp.controller('changePasswordModalCtrl', ['$scope','utility','CONSTANT',
     if($scope.model.password !== $scope.args.con_password){
       $scope.showMessage("Passwords don't match");
     }else{
+      $scope.showLoader();
       if (CONSTANT.loginType=='user') {
         utility.changeUserPassword($scope.model)
         .then(function(data) {
+          $scope.hideLoader();
           console.log(data,"success");
           $scope.closeModal();
+          $scope.showMessage("Password change successfully");
         }, function(data) {
+          $scope.hideLoader();
           console.log(data,"errors");
         });
       }else{
         utility.changeMonkPassword($scope.model)
         .then(function(data) {
+          $scope.hideLoader();
           console.log(data,"success");
           $scope.closeModal();
+          $scope.showMessage("Password change successfully");
         }, function(data) {
+          $scope.hideLoader();
           console.log(data,"errors");
         });
       }

@@ -9130,8 +9130,26 @@ a.button {
   font-weight: normal;
   font-style: normal; }
 
-body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd {
+body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, input, button, select, textarea {
   font-family: Avenir-Medium; }
+
+.menuOpenBackground {
+  opacity: 0;
+  display: none; }
+
+.menu-open .menuOpenBackground {
+  opacity: 0.3;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 11; }
 
 .welcome-view {
   background-image: url("../img/bg_login/bg_login-5x.png");
@@ -9425,10 +9443,12 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd {
     line-height: 23px; }
     .home-view .dashboard .yAnswerStatus .aboutQuestion {
       display: inline-block;
-      font-size: 16px;
+      font-size: 20px;
       line-height: 20px;
       width: 35%;
       white-space: nowrap; }
+      .home-view .dashboard .yAnswerStatus .aboutQuestion .pullToRefresh {
+        font-size: 12px; }
     .home-view .dashboard .yAnswerStatus .searchBar {
       float: right;
       line-height: 45px;
@@ -9495,7 +9515,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd {
     font-size: 20px;
     padding-top: 40px; }
   .home-view .dashboardData .questionFound .questions {
-    padding: 10px 18px;
+    padding: 18px;
     border-bottom: 1px solid #ddd; }
     .home-view .dashboardData .questionFound .questions.active {
       background-color: #F7F7F7; }
@@ -9531,12 +9551,12 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd {
         -webkit-box-orient: vertical;
         color: #2B5D80;
         font-size: 15px;
-        margin-bottom: 0;
-        white-space: nowrap; }
+        margin-bottom: 0; }
         .home-view .dashboardData .questionFound .questions .answer p.questionTag {
           display: inline-block;
           color: #CC333C;
-          text-transform: capitalize; }
+          text-transform: capitalize;
+          white-space: nowrap; }
         .home-view .dashboardData .questionFound .questions .answer p.postedTime {
           display: inline-block;
           white-space: nowrap;
@@ -9563,6 +9583,9 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd {
 .home-view .directQuestion .pofilePic {
   padding: 10px 18px; }
 
+.home-view .directQuestion .yAnswerStatus .searchBar {
+  width: 50%; }
+
 .home-view .singleQuestion {
   top: 100px;
   z-index: 1;
@@ -9574,7 +9597,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd {
       padding: 10px 0px 20px 0px;
       font-weight: bold;
       font-size: 24px;
-      line-height: 24px; }
+      line-height: 30px; }
       .home-view .singleQuestion .questionData .question span {
         position: absolute;
         left: 0; }
@@ -9622,9 +9645,12 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd {
         .home-view .singleQuestion .questionData .subBottom .row:nth-child(3) {
           margin-top: 15px; }
         .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) {
-          margin-top: 5px; }
+          margin-top: 8px; }
           .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) .col + .col button {
             float: right; }
+          .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) .col button {
+            padding: 4px 27px;
+            font-size: 16px; }
         .home-view .singleQuestion .questionData .subBottom .row:last-child {
           margin-top: 10px; }
         .home-view .singleQuestion .questionData .subBottom .row .col:first-child {
@@ -10067,8 +10093,8 @@ ion-side-menu .has-header {
   .askQuestionForm .categoryQuestion label {
     border-width: 1px 0px;
     font-size: 17px; }
-    .askQuestionForm .categoryQuestion label.active {
-      font-weight: bold; }
+    .askQuestionForm .categoryQuestion label.activeTextarea {
+      margin-bottom: 55px; }
     .askQuestionForm .categoryQuestion label .radio-icon {
       margin-right: 4px; }
   .askQuestionForm .categoryQuestion .item-content {
@@ -10078,7 +10104,9 @@ ion-side-menu .has-header {
 
 .askQuestionForm .textarea {
   border-width: 1px 0px 0px;
-  padding: 10px; }
+  padding: 10px;
+  position: fixed;
+  width: 100%; }
   .askQuestionForm .textarea #askQuestionTextarea {
     width: 100%;
     padding: 2px 10px;
@@ -10092,6 +10120,27 @@ ion-side-menu .has-header {
     .askQuestionForm .textarea #askQuestionTextarea::-moz-placeholder {
       font-style: italic; }
     .askQuestionForm .textarea #askQuestionTextarea:-ms-input-placeholder {
+      font-style: italic; }
+
+.askQuestiontextarea {
+  border-width: 1px 0px 0px;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 0; }
+  .askQuestiontextarea #askQuestionTextarea {
+    width: 100%;
+    padding: 2px 10px;
+    font-size: 17px;
+    height: 40px;
+    line-height: 21px; }
+    .askQuestiontextarea #askQuestionTextarea::-webkit-input-placeholder {
+      font-style: italic; }
+    .askQuestiontextarea #askQuestionTextarea:-moz-placeholder {
+      font-style: italic; }
+    .askQuestiontextarea #askQuestionTextarea::-moz-placeholder {
+      font-style: italic; }
+    .askQuestiontextarea #askQuestionTextarea:-ms-input-placeholder {
       font-style: italic; }
 
 .questionBottom {
@@ -10135,9 +10184,20 @@ ion-side-menu .has-header {
     padding: 10px; }
     .writeAnswer .textarea #writeAnswerTextarea {
       width: 100%;
-      padding: 2px 10px;
+      padding: 10px;
       font-size: 17px;
       height: 150px; }
+
+.writeAnswerModalPopup {
+  background-color: #2B5D80; }
+  .writeAnswerModalPopup .button {
+    margin-top: 0;
+    min-width: 28px;
+    min-height: 30px;
+    font-size: 15px;
+    line-height: 35px;
+    height: 35px;
+    padding: 1px 17px; }
 
 .spinner svg {
   width: 80px;
@@ -10196,8 +10256,7 @@ ion-side-menu .has-header {
   color: inherit;
   text-align: center;
   font-size: 15px;
-  overflow: auto;
-  border-bottom: 1px solid #c8c7cc; }
+  overflow: auto; }
 
 .ios .popup-buttons {
   display: -webkit-box;
@@ -10210,7 +10269,8 @@ ion-side-menu .has-header {
   -ms-flex-direction: row;
   flex-direction: row;
   padding: 0px;
-  min-height: 47px; }
+  min-height: 47px;
+  border-top: 1px solid #c8c7cc; }
   .ios .popup-buttons :first-child {
     font-weight: bold;
     border-left: 0; }
@@ -10227,7 +10287,7 @@ ion-side-menu .has-header {
   flex: 1;
   border-radius: 0;
   font-size: 17px;
-  min-height: 44px;
+  min-height: 47px;
   border-right: 1px solid #c8c7cc;
   color: #3474e1; }
 
@@ -10242,12 +10302,12 @@ ion-side-menu .has-header {
   position: relative;
   background-color: #2B5D80; }
   .tabbed-slidebox .tsb-icons a {
-    height: 48px;
-    line-height: 48px;
+    height: 45px;
+    line-height: 45px;
     text-align: center;
     float: left;
     margin: 0;
-    padding: 0 12px 20px 12px;
+    padding: 0 12px 12px;
     font-size: 14px;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.6);
@@ -10320,18 +10380,17 @@ ion-side-menu .has-header {
 
 .settingCtrl {
   margin-top: 60px;
-  background-color: #F9F9F9; }
+  background-color: #fff; }
   .settingCtrl button.button-full {
     background-color: #fff;
     color: #797979;
     text-align: left;
     font-size: 18px;
     padding: 0px 19px;
-    margin: 3px 0px;
-    border: 0;
-    box-shadow: 0 3px 10px #ABABAB; }
+    margin: -1px 0px; }
     .settingCtrl button.button-full:first-child {
-      margin: 11px 0 0; }
+      margin: 11px 0 0;
+      border-top-width: 0; }
     .settingCtrl button.button-full:hover {
       color: #696969; }
     .settingCtrl button.button-full.activated {
@@ -10470,4 +10529,6 @@ ion-side-menu .has-header {
 
 @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
   .floatingButton {
-    line-height: 70px; } }
+    line-height: 67px; }
+  .welcome-view .authFields .inputFields label .md-input:focus ~ .highlight-custom.password {
+    height: 2px; } }

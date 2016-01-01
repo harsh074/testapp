@@ -1,27 +1,48 @@
 askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScrollDelegate','$timeout','CONSTANT','$ionicPopup', function($scope, $state,utility,$ionicScrollDelegate,$timeout,CONSTANT,$ionicPopup){
 
 	$scope.$on('$ionicView.enter', function(){
-    $scope.showLoader();
+    // $scope.showLoader();
   });
-  
+  var element, otherQuestionMargin;
+  window.addEventListener('native.keyboardshow', keyboardHandler);
+  window.addEventListener('native.keyboardhide', keyboardHandler);
+  function keyboardHandler(e){
+    // if(e.type=="native.keyboardshow"){
+    // }else{
+    // }
+    $timeout(function(){
+			$ionicScrollDelegate.$getByHandle('scrollHandle').resize();
+      $ionicScrollDelegate.$getByHandle('scrollHandle').scrollBottom(true);
+		}, 150);
+  }
+
 	$scope.showQuestion = true;
 	$scope.askQuestion = {"email":localStorage.getItem('email'), "userId":localStorage.getItem('userId'),"question":"","questionTag":"","walletMoney":0}
 	$scope.askOtherQuestion = {"question":null};
+	$scope.showOnOtherQuestion = false;
 	
-	utility.getAllQuestion()
-	.then(function(data){
+	if(localStorage.getItem('tagQuestion')){
+		$scope.questions = JSON.parse(localStorage.getItem('tagQuestion'));
 		$scope.hideLoader();
-		$scope.questions = data;
-	},function(data){
-		$scope.hideLoader();
-		console.log(data);
-	});
+	}else{
+		utility.getAllQuestion()
+		.then(function(data){
+			$scope.hideLoader();
+			$scope.questions = data;
+			localStorage.setItem('tagQuestion',JSON.stringify(data));
+		},function(data){
+			$scope.hideLoader();
+			console.log(data);
+		});
+	}
 
 	$scope.askQuestionCategory = function($index,selectedCategory){
+		$scope.askQuestion.question = "";
+		$scope.showOnOtherQuestion = false;
 		if(selectedCategory != "other"){
 			$scope.askOtherQuestion.question = null;
 			$scope.showQuestion = true;
-			$scope.preffredQuestion = $scope.questions[selectedCategory];
+			$scope.preffredQuestion = angular.copy($scope.questions[selectedCategory]);
 			$timeout(function(){
 				$ionicScrollDelegate.$getByHandle('scrollHandle').resize();
 			}, 250);
@@ -34,25 +55,30 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	}
 
 	$scope.clearQuestionOnOther = function(){
-		$ionicScrollDelegate.$getByHandle('scrollHandle').resize();
+		// $ionicScrollDelegate.$getByHandle('scrollHandle').resize();
 		if($scope.askQuestion.question == $scope.preffredQuestion[$scope.preffredQuestion.length-1]){
 			$scope.askOtherQuestion.question = null;
 			$scope.showOnOtherQuestion = true;
-			$timeout(function(){
-				cordova.plugins.Keyboard.show();
-			}, 200);
+      // $ionicScrollDelegate.$getByHandle('scrollHandle').scrollBottom(true);
+
 		}else{
 			$scope.askOtherQuestion.question = null;
 			$scope.showOnOtherQuestion = false;
 			$timeout(function(){
 				$ionicScrollDelegate.$getByHandle('scrollHandle').resize();
 			}, 250);
+			angular.element(otherQuestionMargin).css('margin-bottom',"0px")
 		}
 	}
 
-	$scope.expandText = function(){
-		var element = document.getElementById("askQuestionTextarea");
-		element.style.height =  element.scrollHeight + "px";
+	$scope.expandText = function($event){
+		element = document.getElementById("askQuestionTextarea");
+		otherQuestionMargin = document.getElementsByClassName('activeTextarea');
+		angular.element(otherQuestionMargin).css('margin-bottom',(element.scrollHeight+15)+"px")
+		$timeout(function(){
+    	$ionicScrollDelegate.$getByHandle('scrollHandle').resize();
+			$ionicScrollDelegate.$getByHandle('scrollHandle').scrollBottom(true);
+		}, 10);
 	}
 
 	$scope.openAskQuestion = function(){

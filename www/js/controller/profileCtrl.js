@@ -4,6 +4,9 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
 	$scope.$on('$ionicView.enter', function(){
     $scope.floatingBtnAction = true;
     $scope.showLoader();
+    if(CONSTANT.isDevice){
+      cordova.plugins.Keyboard.close();
+    }
   });
   $scope.loginType = CONSTANT.loginType;
 

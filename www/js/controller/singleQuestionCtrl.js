@@ -145,17 +145,14 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
 
 askmonkApp.controller('writeAnswerModalPopupCtrl', ['$scope','$timeout', function($scope,$timeout){
   $scope.writeAnswerTextarea = {'answer':""};
-  $timeout(function(){
-    cordova.plugins.Keyboard.show();
-  }, 670);
   if(localStorage.getItem('answer')){
     $scope.writeAnswerTextarea.answer = localStorage.getItem('answer');
   }
   $scope.closeWriteAnswerPopup = function(){
-    cordova.plugins.Keyboard.close();
     $timeout(function(){
       $scope.closeAnswerPopup();
     }, 250);
+    cordova.plugins.Keyboard.close();
   }
   $scope.expandText = function(){
     localStorage.setItem('answer',$scope.writeAnswerTextarea.answer);

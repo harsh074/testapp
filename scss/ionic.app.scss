@@ -26,17 +26,28 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   font-style: normal;
 }
 
-
-// $RobotoDraftFontPath: "../lib/robotodraft/fonts"; // REMINDER: edit as appropriate!
-// $RobotoDraftFontName: "RobotoDraft";
-// $RobotoDraftFontVersion: "1.0.0";
-// @import "www/lib/robotodraft/sass/robotodraft";    // REMINDER: edit as appropriate!
-
-body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd{
+body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,textarea{
 	font-family:Avenir-Medium;
 	// font-weight:300;
 }
-
+.menuOpenBackground{
+	opacity: 0;
+	display:none;
+}
+.menu-open .menuOpenBackground{
+  opacity: 0.3;
+  background-color: rgb(0, 0, 0);
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 11;
+}
 .welcome-view{
 	background-image:url('../img/bg_login/bg_login-5x.png');
 	background-size: cover;
@@ -367,10 +378,13 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd{
 	    line-height: 23px;
 	    .aboutQuestion{
 	    	display: inline-block;
-		    font-size: 16px;
+		    font-size: 20px;
   			line-height: 20px;
   			width: 35%;
   			white-space:nowrap;
+  			.pullToRefresh{
+		    	font-size: 12px;
+  			}
 	    }
 	    .searchBar{
 	    	float: right;
@@ -452,7 +466,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd{
     }
     .questionFound{
   		.questions{
-	    	padding: 10px 18px;
+	    	padding: 18px;
   			border-bottom: 1px solid #ddd;
   			// min-height: 115px;
   			&.active{
@@ -500,13 +514,14 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd{
 				    color: $top-portion-color;
 				    font-size: 15px;
 				    margin-bottom: 0;
-				    white-space:nowrap;
+				    // white-space:nowrap;
 		      	// padding: 10px 0px 0px 25px;
 			      // @include justify-content(center);
 				    &.questionTag{
 				    	display: inline-block;
 				    	color: $red;
 				    	text-transform: capitalize;
+				    	white-space:nowrap;
 				    }
 				    &.postedTime{
 				    	display: inline-block;
@@ -546,6 +561,9 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd{
   	.pofilePic{
   		padding: 10px 18px;
   	}
+  	.yAnswerStatus .searchBar{
+  		width:50%;
+  	}
   }
   .singleQuestion{
     top: 100px;
@@ -558,7 +576,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd{
 		    padding: 10px 0px 20px 0px;
 		    font-weight: bold;
 		    font-size: 24px;
-        line-height: 24px;
+        line-height: 30px;
 		    span{
 	  	    position: absolute;
 					left: 0;
@@ -618,10 +636,16 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd{
 						margin-top: 15px;
 					}
 					&:nth-last-child(2){
-						margin-top:5px;
+						margin-top:8px;
 						.col + .col{
 							button{
 								float:right;
+							}
+						}
+						.col{
+							button{
+								padding: 4px 27px;
+								font-size:16px;
 							}
 						}
 					}
@@ -1159,8 +1183,8 @@ ion-side-menu .has-header{
 		label{
 			border-width:1px 0px;
 			font-size: 17px;
-			&.active{
-				font-weight: bold;
+			&.activeTextarea{
+				margin-bottom: 55px;
 			}
 			.radio-icon{
 				margin-right: 4px;
@@ -1175,6 +1199,8 @@ ion-side-menu .has-header{
   .textarea{
   	border-width: 1px 0px 0px;
   	padding:10px;
+  	position: fixed;
+  	width:100%;
   	#askQuestionTextarea{
   		width: 100%;
   		padding: 2px 10px;
@@ -1196,6 +1222,33 @@ ion-side-menu .has-header{
   	}
   }
 }
+
+.askQuestiontextarea{
+  	border-width: 1px 0px 0px;
+  	padding:10px;
+  	position: fixed;
+  	width:100%;
+  	bottom:0;
+  	#askQuestionTextarea{
+  		width: 100%;
+  		padding: 2px 10px;
+  		font-size: 17px;
+  		height: 40px;
+  		line-height: 21px;
+  		&::-webkit-input-placeholder {
+		  	font-style: italic;
+			}
+			&:-moz-placeholder {
+		  	font-style: italic;
+			}
+			&::-moz-placeholder {
+			  font-style: italic;
+			}
+			&:-ms-input-placeholder {  
+			  font-style: italic;
+			}
+  	}
+  }
 .questionBottom{
 	top:105px;
 	padding:0px;
@@ -1232,12 +1285,25 @@ ion-side-menu .has-header{
     padding: 10px;
     #writeAnswerTextarea{
     	width: 100%;
-	    padding: 2px 10px;
+	    padding: 10px;
 	    font-size: 17px;
 	    height: 150px;
     }
 	}
 }
+.writeAnswerModalPopup{
+	background-color:$top-portion-color;
+	.button{
+    margin-top: 0;
+    min-width: 28px;
+    min-height: 30px;
+    font-size: 15px;
+    line-height: 35px;
+    height: 35px;
+    padding: 1px 17px;
+	}
+}
+
 // For spinner
 .spinner{
 	svg {
@@ -1265,6 +1331,7 @@ ion-side-menu .has-header{
   max-width: 44.3333%;
 }
 
+// Popup like ios
 .ios{
 	.popup{
     border-radius: 13px;
@@ -1301,8 +1368,6 @@ ion-side-menu .has-header{
     text-align: center;
     font-size: 15px;
     overflow: auto;
-    border-bottom: 1px solid rgb(200, 199, 204);
-
 	}
 	.popup-buttons {
     display: -webkit-box;
@@ -1316,6 +1381,7 @@ ion-side-menu .has-header{
     flex-direction: row;
     padding:0px;
     min-height: 47px;
+    border-top: 1px solid rgb(200, 199, 204);
     :first-child {
 	    font-weight: bold;
 	    border-left: 0;
@@ -1334,7 +1400,7 @@ ion-side-menu .has-header{
     flex: 1;
     border-radius: 0;
     font-size: 17px;
-    min-height: 44px;
+    min-height: 47px;
     border-right: 1px solid rgb(200, 199, 204);
     color: rgb(52, 116, 225);
 	}
@@ -1353,12 +1419,12 @@ ion-side-menu .has-header{
     position: relative;
 		background-color:$top-portion-color;
 		a {
-			height: 48px;
-      line-height: 48px;
+			height: 45px;
+      line-height: 45px;
       text-align: center;
       float: left;
       margin: 0;
-      padding: 0 12px 20px 12px;
+      padding: 0 12px 12px;
       font-size: 14px;
       text-transform: uppercase;
       color: rgba(255,255,255,0.6);
@@ -1448,18 +1514,17 @@ ion-side-menu .has-header{
 // Settings
 .settingCtrl{
 	margin-top:60px;
-  background-color: #F9F9F9;
+  background-color: #fff;
 	button.button-full{
     background-color: #fff;
     color: #797979;
     text-align:left;
     font-size: 18px;
     padding:0px 19px;
-    margin: 3px 0px;
-    border: 0;
-    box-shadow:0 3px 10px #ABABAB;
+    margin: -1px 0px;
     &:first-child{
     	margin: 11px 0 0;
+    	border-top-width:0;
     }
     &:last-child{
 	    // border-bottom: 1px solid #696969;
@@ -1654,6 +1719,9 @@ ion-side-menu .has-header{
 //HTC One, Samsung Galaxy S5, OnePlus One
 @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3){
 	.floatingButton{
-		line-height: 70px;
+		line-height: 67px;
+	}
+	.welcome-view .authFields .inputFields label .md-input:focus ~ .highlight-custom.password{
+		height:2px;
 	}
 }

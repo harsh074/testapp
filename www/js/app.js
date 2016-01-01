@@ -1,16 +1,13 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox']);
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic']);
 
-askmonkApp.run(['$ionicPlatform','$state','$stateParams', function($ionicPlatform,$state,$stateParams){
+askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT', function($ionicPlatform,$state,$stateParams,CONSTANT){
   if(!localStorage.getItem('token')){
     $state.go('login');
-    // $scope.transitionAnimation('left',180);
   }else if(localStorage.getItem('questionStatus') == 'underObservation'){
     $stateParams.id = localStorage.getItem('questionId');
     $state.go('app.singlequestion',$stateParams);
-    // $scope.transitionAnimation('left',180);
   }else{
     $state.go('app.profile');
-    // $scope.transitionAnimation('left',180);
   }
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -21,18 +18,20 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams', function($ionicPlatfor
     if(window.StatusBar) {
       // window.StatusBar.styleDefault();
       window.StatusBar.overlaysWebView(true);
-      window.StatusBar.backgroundColorByHexString('#95AEC0');  //#2B5D80
+      window.StatusBar.backgroundColorByHexString('#000');  //#2B5D80
     }
+    CONSTANT.isDevice = ionic.Platform.device().available;
     // ionic.Platform.isFullScreen = false;
     // ionic.Platform.showStatusBar(true);
     // then override any default you want
-    window.plugins.nativepagetransitions.globalOptions.duration = 100;
-    window.plugins.nativepagetransitions.globalOptions.androiddelay = 0;
-    // window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 4;
-    // these are used for slide left/right only currently
-    window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 0;
-    window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 0;
-    
+    if(CONSTANT.isDevice){
+      window.plugins.nativepagetransitions.globalOptions.duration = 100;
+      window.plugins.nativepagetransitions.globalOptions.androiddelay = 0;
+      // window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 4;
+      // these are used for slide left/right only currently
+      window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 0;
+      window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 0;
+    }
   });
 }]);
 

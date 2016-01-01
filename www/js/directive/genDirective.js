@@ -19,16 +19,29 @@
 // }]);
 
 
-askmonkApp.directive('focusMe', function($timeout,$ionicScrollDelegate) {
+askmonkApp.directive('focusMe', ['$timeout','$ionicScrollDelegate', function($timeout,$ionicScrollDelegate) {
   return {
     link: function(scope, element, attrs) {
       $timeout(function() {
         element[0].focus();
-        $ionicScrollDelegate.$getByHandle('scrollHandle').resize();
-      },250);
+        $timeout(function(){
+          $ionicScrollDelegate.$getByHandle('scrollHandle').resize();
+          $ionicScrollDelegate.$getByHandle('scrollHandle').scrollBottom(true);
+        }, 200);
+      },100);
     }
   };
-});
+}]);
+
+askmonkApp.directive('writeAnswer', ['$timeout', function($timeout) {
+  return {
+    link: function(scope, element, attrs) {
+      $timeout(function() {
+        element[0].focus();
+      },420);
+    }
+  };
+}]);
 
 askmonkApp.filter("timeago", function () {
   //time: the time
