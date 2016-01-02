@@ -49,11 +49,11 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
 
   $scope.doRefresh = function() {
     $scope.showLoader();
-    $scope.$broadcast('scroll.refreshComplete');
     if($scope.loginType == "user"){
       utility.getUserQuestions()
       .then(function(data){
         console.log(data);
+        $scope.$broadcast('scroll.refreshComplete');
         $scope.hideLoader();
         if(data.length>0){
           $scope.groups = data;
@@ -67,6 +67,7 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
     }else{
       utility.getQuestionOnStatus('asked')
       .then(function(data){
+        $scope.$broadcast('scroll.refreshComplete');
         $scope.hideLoader();
         console.log(data);
         if(data.length>0){
@@ -81,13 +82,14 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
     }
   };
 
+  // For monk
   $scope.doRefreshOnAnsweredTab = function(){
     $scope.showLoader();
-    $scope.$broadcast('scroll.refreshComplete');
     if($scope.loginType == "user"){
       utility.getUserQuestions()
       .then(function(data){
         console.log(data);
+        $scope.$broadcast('scroll.refreshComplete');
         $scope.hideLoader();
         if(data.length>0){
           $scope.groups = data;
@@ -101,6 +103,7 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
     }else{
       utility.getMonkAnsweredQuestion()
       .then(function(data){
+        $scope.$broadcast('scroll.refreshComplete');
         $scope.hideLoader();
         $scope.questionAnswered = data;
       },function(data){
@@ -165,5 +168,6 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
 
   $scope.clearSearch = function(){
 		$scope.search.searchInput = "";
+    $scope.showClear = false;
 	};
 }]);

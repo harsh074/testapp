@@ -101,6 +101,8 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
             $rootScope.token = localStorage.getItem('token');
             localStorage.setItem("profileData", JSON.stringify(data));
             $scope.setAuth(true);
+            localStorage.setItem('loginType',"user");
+            CONSTANT.loginType = "user";
             $state.go('app.editProfile');
             $scope.hideLoader();
             $scope.transitionAnimation('left');

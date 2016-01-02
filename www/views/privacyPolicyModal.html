@@ -1,4 +1,4 @@
-<ion-modal-view>
+<ion-modal-view class="home-view">
 	<ion-header-bar class="bar-assertive-900">
 		<div class="buttons buttons-left header-item"><span class="left-buttons">
       <button class="customMenuBtn is-active" ng-click="closeModal()"><span></span></button>
@@ -8,11 +8,13 @@
       <button class="button-clear ion-social-usd" ng-disabled="true" ng-click="goToWallet()"></button>
     </span></div>
   </ion-header-bar>
-  <ion-content scroll="true" has-bouncing="false" class="home-view">
+  <ion-content scroll="false">
 		<div class="shortHeader">
 			<h1 class="title">Privacy Policy</h1>
 		</div>
-		<div class="privacyPolicy">
+	</ion-content>
+  <ion-content scroll="true" has-bouncing="false" class="privacyPolicy">
+		<div>
 
 			<h2> Privacy Policies </h2>
 

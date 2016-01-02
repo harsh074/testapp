@@ -15,7 +15,15 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    "com.ionic.keyboard"
+    "com.ionic.keyboard",
+    "https://github.com/razorpay/razorpay-cordova.git",
+    "https://github.com/harsh-iomedia/cordova-cache.git",
+    "com.telerik.plugins.nativepagetransitions",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-x-toast",
+    "https://github.com/apache/cordova-plugin-device.git",
+    "org.apache.cordova.statusbar",
+    "https://github.com/harsh-iomedia/cordova-cache.git"
   ],
   "cordovaPlatforms": [
     "android"

@@ -9494,7 +9494,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         position: absolute;
         font-size: 16px;
         z-index: 1000;
-        top: 15px;
+        top: 10px;
         right: 15px;
         color: white;
         background-color: #2B5D80;
@@ -9580,89 +9580,91 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     .home-view .dashboardData .questionFound .questions:last-child {
       margin-bottom: 47px; }
 
-.home-view .directQuestion .pofilePic {
-  padding: 10px 18px; }
+.home-view .directQuestion .dashboard {
+  height: 62px; }
+  .home-view .directQuestion .dashboard .pofilePic {
+    padding: 14px 18px 5px; }
+  .home-view .directQuestion .dashboard .yAnswerStatus .searchBar {
+    width: 50%; }
 
-.home-view .directQuestion .yAnswerStatus .searchBar {
-  width: 50%; }
+.home-view .directQuestionContent {
+  top: 107px; }
 
 .home-view .singleQuestion {
-  top: 100px;
+  top: 113px;
   z-index: 1;
   font-size: 18px; }
-  .home-view .singleQuestion .questionData {
-    padding-top: 15px; }
-    .home-view .singleQuestion .questionData .question {
-      position: relative;
-      padding: 10px 0px 20px 0px;
-      font-weight: bold;
-      font-size: 24px;
-      line-height: 30px; }
-      .home-view .singleQuestion .questionData .question span {
-        position: absolute;
-        left: 0; }
-    .home-view .singleQuestion .questionData .middleSec {
+  .home-view .singleQuestion .questionData .question {
+    position: relative;
+    padding: 3px 0px 20px 0px;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px; }
+    .home-view .singleQuestion .questionData .question span {
+      position: absolute;
+      left: 0; }
+  .home-view .singleQuestion .questionData .middleSec {
+    display: inline-block;
+    width: 100%; }
+    .home-view .singleQuestion .questionData .middleSec .answer {
+      font-size: 18px;
+      padding-bottom: 30px;
+      margin-bottom: 0px; }
+    .home-view .singleQuestion .questionData .middleSec .yogiName {
+      text-align: right;
+      font-size: 15px;
+      margin-bottom: 0px; }
+  .home-view .singleQuestion .questionData .subBottom {
+    padding-top: 3px; }
+    .home-view .singleQuestion .questionData .subBottom .tagName {
+      display: inline-block; }
+      .home-view .singleQuestion .questionData .subBottom .tagName span {
+        color: #CC333C; }
+    .home-view .singleQuestion .questionData .subBottom .questionTime {
       display: inline-block;
-      width: 100%; }
-      .home-view .singleQuestion .questionData .middleSec .answer {
-        font-size: 18px;
-        padding-bottom: 30px;
-        margin-bottom: 0px; }
-      .home-view .singleQuestion .questionData .middleSec .yogiName {
-        text-align: right;
-        font-size: 15px;
-        margin-bottom: 0px; }
-    .home-view .singleQuestion .questionData .subBottom {
-      padding-top: 3px; }
-      .home-view .singleQuestion .questionData .subBottom .tagName {
-        display: inline-block; }
-        .home-view .singleQuestion .questionData .subBottom .tagName span {
-          color: #CC333C; }
-      .home-view .singleQuestion .questionData .subBottom .questionTime {
-        display: inline-block;
-        float: right;
-        font-size: 15px;
-        white-space: nowrap;
-        color: #2B5D80; }
-      .home-view .singleQuestion .questionData .subBottom .ratingQuestion {
-        padding-top: 40px;
-        font-size: 19px; }
-      .home-view .singleQuestion .questionData .subBottom .answerRating {
-        display: inline-block; }
-        .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li {
-          display: inline;
-          border: 0px;
-          background: none;
-          padding: 5px;
-          color: #CC333C; }
-          .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li:first-child {
-            padding-left: 0; }
-        .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li i {
-          font-size: 30px; }
-      .home-view .singleQuestion .questionData .subBottom .row {
-        padding: 5px 0px;
-        font-size: 15px; }
-        .home-view .singleQuestion .questionData .subBottom .row:nth-child(3) {
-          margin-top: 15px; }
-        .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) {
-          margin-top: 8px; }
-          .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) .col + .col button {
-            float: right; }
-          .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) .col button {
-            padding: 4px 27px;
-            font-size: 16px; }
-        .home-view .singleQuestion .questionData .subBottom .row:last-child {
-          margin-top: 10px; }
-        .home-view .singleQuestion .questionData .subBottom .row .col:first-child {
-          padding-left: 0px; }
-        .home-view .singleQuestion .questionData .subBottom .row .col:last-child {
-          padding-right: 0px; }
-        .home-view .singleQuestion .questionData .subBottom .row .col span {
-          color: #00BCD2; }
-        .home-view .singleQuestion .questionData .subBottom .row .col button {
-          margin-top: 0px; }
-      .home-view .singleQuestion .questionData .subBottom .writtenAnswer {
+      float: right;
+      font-size: 15px;
+      white-space: nowrap;
+      color: #2B5D80; }
+    .home-view .singleQuestion .questionData .subBottom .ratingQuestion {
+      padding-top: 40px;
+      font-size: 19px; }
+    .home-view .singleQuestion .questionData .subBottom .answerRating {
+      display: inline-block; }
+      .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li {
+        display: inline;
+        border: 0px;
+        background: none;
+        padding: 5px;
+        color: #CC333C; }
+        .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li:first-child {
+          padding-left: 0; }
+      .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li i {
+        font-size: 30px; }
+    .home-view .singleQuestion .questionData .subBottom .row {
+      padding: 5px 0px;
+      font-size: 15px; }
+      .home-view .singleQuestion .questionData .subBottom .row:nth-child(3) {
+        margin-top: 15px; }
+      .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) {
+        margin-top: 8px; }
+        .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) .col + .col button {
+          float: right; }
+        .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) .col button {
+          padding: 4px 27px;
+          font-size: 16px; }
+      .home-view .singleQuestion .questionData .subBottom .row:last-child {
         margin-top: 10px; }
+      .home-view .singleQuestion .questionData .subBottom .row .col:first-child {
+        padding-left: 0px; }
+      .home-view .singleQuestion .questionData .subBottom .row .col:last-child {
+        padding-right: 0px; }
+      .home-view .singleQuestion .questionData .subBottom .row .col span {
+        color: #00BCD2; }
+      .home-view .singleQuestion .questionData .subBottom .row .col button {
+        margin-top: 0px; }
+    .home-view .singleQuestion .questionData .subBottom .writtenAnswer {
+      margin-top: 10px; }
 
 .home-view ion-content.row .scroll {
   width: 100%;
@@ -10185,8 +10187,9 @@ ion-side-menu .has-header {
     .writeAnswer .textarea #writeAnswerTextarea {
       width: 100%;
       padding: 10px;
-      font-size: 17px;
-      height: 150px; }
+      font-size: 18px;
+      height: 150px;
+      line-height: 23px; }
 
 .writeAnswerModalPopup {
   background-color: #2B5D80; }
@@ -10221,6 +10224,48 @@ ion-side-menu .has-header {
   -ms-flex: 0 0 44.3333%;
   flex: 0 0 44.3333%;
   max-width: 44.3333%; }
+
+.scroll-refresher {
+  background: #ffffff;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 36%, #e5e5e5 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ffffff 36%, #e5e5e5 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffffff 36%, #e5e5e5 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 );
+  /* IE6-9 */ }
+  .scroll-refresher .ionic-refresher-content.ionic-refresher-with-text {
+    bottom: 5px; }
+  .scroll-refresher .icon-pulling {
+    display: inline-block;
+    width: auto;
+    margin-right: 10px; }
+  .scroll-refresher .ionic-refresher-content .text-pulling {
+    display: inline-flex;
+    vertical-align: text-bottom;
+    line-height: 36px; }
+    .scroll-refresher .ionic-refresher-content .text-pulling:before {
+      content: "Pull to refresh..."; }
+  .scroll-refresher.active .text-pulling:before {
+    content: "Release to refresh..."; }
+  .scroll-refresher.active.refreshing .icon-refreshing {
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: text-bottom;
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: refresh-spin;
+    animation-name: refresh-spin; }
+  .scroll-refresher.active.refreshing .text-refreshing {
+    display: inline-flex;
+    vertical-align: text-bottom;
+    line-height: 36px; }
 
 .ios .popup {
   border-radius: 13px;
@@ -10381,22 +10426,31 @@ ion-side-menu .has-header {
 .settingCtrl {
   margin-top: 60px;
   background-color: #fff; }
+  .settingCtrl .list {
+    padding: 1px 15px; }
   .settingCtrl button.button-full {
     background-color: #fff;
     color: #797979;
     text-align: left;
     font-size: 18px;
-    padding: 0px 19px;
+    padding: 5px 19px;
     margin: -1px 0px; }
     .settingCtrl button.button-full:first-child {
-      margin: 11px 0 0;
       border-top-width: 0; }
     .settingCtrl button.button-full:hover {
       color: #696969; }
     .settingCtrl button.button-full.activated {
-      background-color: #ECECEC;
+      background-color: #EBEBEB;
       border: none;
       box-shadow: none; }
+    .settingCtrl button.button-full i.icon {
+      width: 22px;
+      display: inline-block;
+      text-align: center;
+      color: #727A7D; }
+    .settingCtrl button.button-full span {
+      margin-left: 30px;
+      color: #2C2C2C; }
   .settingCtrl .bottomPart {
     position: absolute;
     bottom: 0;
@@ -10430,8 +10484,9 @@ ion-side-menu .has-header {
     color: #828282; }
 
 .privacyPolicy {
-  padding: 20px 18px 0px;
-  text-align: left; }
+  padding: 5px 18px 0px;
+  text-align: left;
+  top: 113px; }
   .privacyPolicy h2, .privacyPolicy h3 {
     color: #00BCD2; }
 

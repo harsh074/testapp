@@ -33,6 +33,15 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
 
   function onDeviceReady() {
   	console.log('deviceReady');
+    document.addEventListener("online", onlineHandler, false);
+    document.addEventListener("offline", offlineHandler, false);
+  }
+  function offlineHandler() {
+    $scope.showMessage("Internet Connectivity error please try again");
+  }
+  function onlineHandler() {
+    console.log('online');
+
   }
   
 	utility.initialize(CONSTANT.baseUrl, false, $scope, $rootScope);
@@ -60,11 +69,11 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
   };
   $scope.hideLoader = function(){
     $ionicLoading.hide();
-    // function success (status) { };
-    // function error (status) { };
-    // if(ionic.Platform.isAndroid()){
-      // window.cache.clear( success, error );
-    // }
+    function success (status) {};
+    function error (status) {};
+    if(CONSTANT.isDevice){
+      window.cache.clear(success, error);
+    }
   };
 
   $scope.transitionAnimation = function(value,timer){

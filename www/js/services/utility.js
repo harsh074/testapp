@@ -113,6 +113,13 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'data':args
       });
     },
+    askDirectQuestion:function(args){
+      return this.request({
+        'method':"POST",
+        'url':"/questions/askDirect",
+        'data':args
+      });
+    },
     getPacks:function(){
       return this.request({
         'method':"GET",

@@ -15,7 +15,7 @@ askmonkApp.controller('yProfileCtrl', ['$scope','$state','$stateParams','utility
 		});
 
 		$scope.askQuestion = function(){
-			localStorage.setItem('directQuestion',JSON.stringify({'monkId':$scope.monkProfileData.id,'monkName':$scope.monkProfileData.name,"monkEmail":$scope.monkProfileData.email}));
+			localStorage.setItem('directQuestion',JSON.stringify({'monkId':$scope.monkProfileData.id,'monkName':$scope.monkProfileData.name,"monkEmail":$scope.monkProfileData.email,"isDirect":true}));
 	  	$state.go('app.askQuestion');
     	$scope.transitionAnimation('left',180);
 	  }

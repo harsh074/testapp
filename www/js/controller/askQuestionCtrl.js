@@ -17,7 +17,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
   }
 
 	$scope.showQuestion = true;
-	$scope.askQuestion = {"email":localStorage.getItem('email'), "userId":localStorage.getItem('userId'),"question":"","questionTag":"","walletMoney":0}
+	$scope.askQuestion = {"email":localStorage.getItem('email'), "userId":localStorage.getItem('userId'),"question":"","questionTag":"","isDirect":false}
 	$scope.askOtherQuestion = {"question":null};
 	$scope.showOnOtherQuestion = false;
 	
@@ -122,14 +122,25 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 		}
 
 		if($scope.askQuestion.question){
-			utility.askQuestion($scope.askQuestion)
-			.then(function(data){
-				$state.go('app.dashboard');
-				$scope.transitionAnimation('left');
-			},function(data){
-				$scope.showMessage(data.error.message);
-				$scope.hideLoader();
-			});
+			if(localStorage.getItem('directQuestion')){
+				utility.askDirectQuestion($scope.askQuestion)
+				.then(function(data){
+					$state.go('app.dashboard');
+					$scope.transitionAnimation('left');
+				},function(data){
+					$scope.showMessage(data.error.message);
+					$scope.hideLoader();
+				});
+			}else{
+				utility.askQuestion($scope.askQuestion)
+				.then(function(data){
+					$state.go('app.dashboard');
+					$scope.transitionAnimation('left');
+				},function(data){
+					$scope.showMessage(data.error.message);
+					$scope.hideLoader();
+				});
+			}
 		}else{
 			$scope.hideLoader();
 		}

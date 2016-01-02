@@ -1,4 +1,4 @@
-askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootScope','$http','$state','$templateCache','$ionicModal', function($scope,utility,$ionicHistory,$rootScope,$http,$state,$templateCache,$ionicModal){
+askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootScope','$http','$state','$templateCache','$ionicModal','$ionicPopup', function($scope,utility,$ionicHistory,$rootScope,$http,$state,$templateCache,$ionicModal,$ionicPopup){
 
   $scope.aboutUs = function(){
     $ionicModal.fromTemplateUrl('views/aboutUsModal.html', function (modal) {
@@ -27,6 +27,34 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     }, {
       scope: $scope,
       animation: 'slide-in-up'
+    });
+  }
+
+  $scope.logOut = function(){
+    var confirmPopup = $ionicPopup.show({
+      cssClass:"ios",
+      title: 'Do you want to logout of askmonk?',
+      // template:'Do u wish to continue ?',
+      buttons: [
+        {text: 'Yes',type:'button-ios button-clear',
+          onTap: function(e) {
+            return true;
+          }
+        },
+        {text:'No',type:'button-ios button-clear',
+          onTap: function(e) {
+            return false;
+          }
+        }
+      ]
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+        console.log('You are sure');
+        $scope.logout();
+      } else {
+        console.log('You are not sure');
+      }
     });
   }
 
@@ -76,30 +104,30 @@ askmonkApp.controller('changePasswordModalCtrl', ['$scope','utility','CONSTANT',
   // $scope.loginType = CONSTANT.loginType;
   $scope.passwordChangePopup = function(formData){
     var confirmPopup = $ionicPopup.show({
-        cssClass:"ios",
-        title: 'Do you want to change your password?',
-        // template:'Do u wish to continue ?',
-        buttons: [
-          {text: 'Yes',type:'button-ios button-clear',
-            onTap: function(e) {
-              return true;
-            }
-          },
-          {text:'No',type:'button-ios button-clear',
-            onTap: function(e) {
-              return false;
-            }
+      cssClass:"ios",
+      title: 'Do you want to change your password?',
+      // template:'Do u wish to continue ?',
+      buttons: [
+        {text: 'Yes',type:'button-ios button-clear',
+          onTap: function(e) {
+            return true;
           }
-        ]
-      });
-      confirmPopup.then(function(res) {
-        if(res) {
-          console.log('You are sure');
-          $scope.passwordChange(formData);
-        } else {
-          console.log('You are not sure');
+        },
+        {text:'No',type:'button-ios button-clear',
+          onTap: function(e) {
+            return false;
+          }
         }
-      });
+      ]
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+        console.log('You are sure');
+        $scope.passwordChange(formData);
+      } else {
+        console.log('You are not sure');
+      }
+    });
   }
   $scope.passwordChange = function(formData) {
     if(!$scope.model.password || !$scope.args.con_password){

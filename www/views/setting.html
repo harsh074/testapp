@@ -6,10 +6,21 @@
 	</ion-content>
 	<ion-content scroll="false" class="settingCtrl">
 		<div>
-			<button class="button button-full" ng-click="aboutUs()">About</button>
-			<button class="button button-full" ng-click="privacyPolicy()">Privacy Policy</button>
-			<button class="button button-full" ng-click="changePassword()">Change Password</button>
-			<button class="button button-full" ng-click="logout()">Logout</button>
+			<div class="list">
+				<div class="list-item">
+					<button class="button button-full" ng-click="aboutUs()"><i class="icon ion-information-circled"></i><span>About</span></button>
+				</div>
+				<div class="list-item">
+					
+					<button class="button button-full" ng-click="privacyPolicy()"><i class="icon ion-android-lock"></i><span>Privacy Policy</span></button>
+				</div>
+				<div class="list-item">
+					<button class="button button-full" ng-click="changePassword()"><i class="icon ion-key"></i><span>Change Password</span></button>
+				</div>
+				<div class="list-item">
+					<button class="button button-full" ng-click="logOut()"><i class="icon ion-power"></i><span>Logout</span></button>
+				</div>
+			</div>
 		</div>
 		<div class="bottomPart">
 			<p>Version 1.0.0</p>
