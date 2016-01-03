@@ -83,6 +83,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
             CONSTANT.isComingFromSignUp = false;
             localStorage.removeItem("profileData");
             localStorage.setItem("name",$scope.editProfileData.name);
+            localStorage.setItem("profile",JSON.stringify(data));
             $scope.$emit("updateEditProfileFirstUser");
             $state.go('app.profile');
             $scope.transitionAnimation('left',180);
@@ -102,6 +103,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
             CONSTANT.isComingFromSignUp = false;
             localStorage.removeItem("profileData");
             localStorage.setItem("name",$scope.editProfileData.name);
+            localStorage.setItem("profile",JSON.stringify(data));
             $scope.$emit("updateEditProfileFirstUser");
             $state.go('app.profile');
             $scope.transitionAnimation('left',180);

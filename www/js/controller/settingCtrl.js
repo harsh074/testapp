@@ -20,6 +20,11 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     });
   }
 
+  $scope.openBlog = function(){
+    window.open('https://askmonkblog.wordpress.com', '_system', 'location=yes'); 
+    return false;
+  }
+
   $scope.changePassword = function(){
     $ionicModal.fromTemplateUrl('views/changePasswordModal.html', function (modal) {
       $scope.changePasswordModal = modal;
@@ -76,6 +81,7 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
       localStorage.removeItem("name");
       localStorage.removeItem("email");
       localStorage.removeItem('loginType');
+      localStorage.removeItem("profile");
       $scope.loginType = localStorage.getItem('loginType');
       delete $http.defaults.headers.common.Authorization;
     },function(data){

@@ -1,4 +1,4 @@
-askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT', function($scope,utility,$state,CONSTANT){
+askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$timeout', function($scope,utility,$state,CONSTANT,$timeout){
 	
 	$scope.floatingBtnAction = false;
   $scope.$on('$ionicView.enter', function(){
@@ -11,25 +11,31 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT', fun
   	$state.go('app.askQuestion');
 		$scope.transitionAnimation('left',180);
   }
-
-  if($scope.loginType == 'user'){
-		utility.getUserProfile(localStorage.getItem('userId'))
-		.then(function(data){
-			$scope.userProfileData = data;
-			$scope.hideLoader();
-		},function(data){
-			console.log(data);
-			$scope.hideLoader();
-		});
-	}else{
-		utility.getMonkProfile()
-		.then(function(data){
-			$scope.userProfileData = data;
-			$scope.hideLoader();
-		},function(data){
-			console.log(data);
-			$scope.hideLoader();
-		});
+  if(localStorage.getItem("profile")){
+    $scope.userProfileData = JSON.parse(localStorage.getItem("profile"));
+    $timeout(function(){
+      $scope.hideLoader();
+    }, 100);
+  }else{
+	  if($scope.loginType == 'user'){
+			utility.getUserProfile(localStorage.getItem('userId'))
+			.then(function(data){
+				$scope.userProfileData = data;
+				$scope.hideLoader();
+			},function(data){
+				console.log(data);
+				$scope.hideLoader();
+			});
+		}else{
+			utility.getMonkProfile()
+			.then(function(data){
+				$scope.userProfileData = data;
+				$scope.hideLoader();
+			},function(data){
+				console.log(data);
+				$scope.hideLoader();
+			});
+		}
 	}
 
 	$scope.options = function(args){

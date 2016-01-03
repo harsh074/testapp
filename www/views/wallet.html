@@ -5,7 +5,7 @@
 		</div>
 	</ion-content>
 	<ion-content scroll="true" class="row questionBottom paddingLRPlus21">
-		<div class="walletManagement">
+		<div class="walletManagement" ng-if="loginType == 'user'">
 			<p class="showMoney">Present Wallet Money : Rs {{userProfileData.walletMoney ? userProfileData.walletMoney : 0}}</p>
 			<table class="packs" ng-repeat="pack in packs" ng-click="getPayment(pack)">
 				<tr>
@@ -16,6 +16,11 @@
 					<td><span class="preText">Questions : </span><span class="preTextQuestion">{{pack.questions}}</span></td>
 				</tr>
 			</table>
+		</div>
+		<div class="showMonkWallet" ng-if="loginType == 'monk'">
+			<p class="rupee">Rs.</p>
+			<p class="money">{{userProfileData.walletMoney ? userProfileData.walletMoney : 0}}</p>
+			<p class="aboutMoney">Present Wallet Money</p>
 		</div>
 	</ion-content>
 	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user'">

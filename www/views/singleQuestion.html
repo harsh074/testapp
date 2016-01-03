@@ -20,14 +20,15 @@
       	<p class="answer" ng-if="loginType=='user'">{{question.answer ? question.answer: "Will be answered next 24 hrs."}}</p>
         <p class="answer" ng-if="loginType=='monk' && (question.status=='answered' || question.status=='rated')">{{question.answer}}</p>
         <p class="answer" ng-if="loginType=='monk' && question.status=='underObservation'">{{writtenAnswer}}</p>
-      	<p class="yogiName" ng-if="question.monkName && loginType=='user'">Answered by {{question.monkName ? question.monkName: "Sunil"}}</p>
+        <p class="yogiName" ng-if="question.monkName && loginType=='user' && (question.status=='answered' || question.status=='rated')">Answered by {{question.monkName ? question.monkName: "Sunil"}}</p>
+      	<p class="yogiName" ng-if="question.monkName && loginType=='user' && (question.status=='direct' || question.status=='asked')">Asked to {{question.monkName ? question.monkName: "Sunil"}}</p>
      	</div>
 
       <!-- User Bottom -->
       <div class="subBottom" ng-if="loginType=='user'">
       	<p class="tagName">Tag : <span>{{question.questionTag}}</span></p>
       	<p class="questionTime" ng-if="question.status=='answered' || question.status=='rated'">Answered {{question.askedOn | timeago}}</p>
-      	<p class="questionTime"ng-if="question.status=='asked'">Asked {{question.askedOn | timeago}}</p>
+      	<p class="questionTime"ng-if="question.status=='asked' || question.status=='direct'">Asked {{question.askedOn | timeago}}</p>
       	<p class="ratingQuestion" ng-if="question.status=='answered' || question.status=='rated'">How Satisfied are you ?</p>
       	<div class="answerRating" ng-if="question.status=='answered' || question.status=='rated'">
           <rating ng-model="question.rating" max="5" ng-click="rateQuestion()"></rating>
@@ -52,8 +53,8 @@
           <div class="col">Place:&nbsp;<span>{{question.birthPlace}}</span></div>
         </div>
         <div class="row">
-          <div class="col" ng-if="question.status=='asked' || question.status=='underObservation'">
-            <button class="button button-custom button-small" ng-if="question.status=='asked'" ng-click="acceptQuestion()">Accept</button>
+          <div class="col" ng-if="question.status=='asked' || question.status=='underObservation' || question.status=='direct'">
+            <button class="button button-custom button-small" ng-if="question.status=='asked' || question.status=='direct'" ng-click="acceptQuestion()">Accept</button>
             <button class="button button-custom button-small" ng-if="question.status=='underObservation'" ng-click="openWriteModal()">Write Answer</button>
           </div>
           <div class="col">

@@ -23,11 +23,11 @@ askmonkApp.controller('directQuestionCtrl', ['$scope','utility','$state','$state
   });
 
   $scope.doRefresh = function() {
-    $scope.showLoader();
-    $scope.$broadcast('scroll.refreshComplete');
+    // $scope.showLoader();
     utility.getDirectQuestion()
     .then(function(data){
-      $scope.hideLoader();
+      // $scope.hideLoader();
+      $scope.$broadcast('scroll.refreshComplete');
       console.log(data);
       if(data.length>0){
         $scope.groups = data;
@@ -56,6 +56,7 @@ askmonkApp.controller('directQuestionCtrl', ['$scope','utility','$state','$state
   }
 
   $scope.clearSearch = function(){
+    $scope.showClear = false;
     $scope.search.searchInput = "";
   };
 }]);

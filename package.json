@@ -23,7 +23,8 @@
     "cordova-plugin-x-toast",
     "https://github.com/apache/cordova-plugin-device.git",
     "org.apache.cordova.statusbar",
-    "https://github.com/harsh-iomedia/cordova-cache.git"
+    "https://github.com/harsh-iomedia/cordova-cache.git",
+    "https://github.com/harsh-iomedia/cordova-inappbrowser.git"
   ],
   "cordovaPlatforms": [
     "android"
