@@ -467,18 +467,11 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     	}
     }
     .questionFound{
-    	&.monk{
-    		.questions{
-	    		&:nth-last-child(2){
-	  				margin-bottom: 45px;
-	  			}
-	  		}
-    	}
   		.questions{
 	    	padding: 18px;
   			border-bottom: 1px solid #ddd;
   			&:nth-last-child(2){
-  				margin-bottom: 25px;
+  				margin-bottom: 45px;
   			}
   			&.active{
   				background-color:#F7F7F7;
@@ -562,21 +555,18 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 						}
 					}
 				}
-				&:last-child{
-					margin-bottom: 47px;
-				}
   		}
     }
     .noStatusQuestion{
     	text-align: center;
-    	color: #8c8c8c;
+    	color: #AAA;
     	padding-top: 33%;
     	i{
     		font-size:100px;
     	}
     	.noQuestionTitle{
-    		font-size: 24px;
-    		margin-top: 10px;
+    		font-size: 22px;
+    		margin-top: 5px;
     	}
     }
   }
@@ -596,6 +586,13 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	}
 	.directQuestionContent{
   	top:107px;
+  	.questionFound{
+  		.questions{
+				&:nth-last-child(2){
+  				margin-bottom: 0px;
+  			}
+  		}
+  	}
   }
   .singleQuestion{
     top: 105px;
@@ -604,7 +601,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     .questionData{
 			.question{
         position: relative;
-		    padding: 3px 0px 20px 0px;
+		    padding: 10px 0px 20px 0px;
 		    font-weight: bold;
 		    font-size: 24px;
         line-height: 30px;
@@ -620,6 +617,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			    font-size: 18px;
 			    padding-bottom: 30px;
 			    margin-bottom: 0px;
+	        line-height: 24px;
 				}
 				.yogiName{
     	    text-align: right;
@@ -646,6 +644,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 				}
 				.answerRating{
 					display: inline-block;
+					padding-bottom:10px;
 					ul.rating li {
 					  display: inline;
 					  border: 0px;

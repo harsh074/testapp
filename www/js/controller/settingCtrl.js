@@ -76,12 +76,13 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
       var currentPageTemplate = $state.current.templateUrl;
       $templateCache.remove(currentPageTemplate);
       $rootScope.profileData = null;
-      localStorage.removeItem('token');
-      localStorage.removeItem('userId');
-      localStorage.removeItem("name");
-      localStorage.removeItem("email");
-      localStorage.removeItem('loginType');
-      localStorage.removeItem("profile");
+      // localStorage.removeItem('token');
+      // localStorage.removeItem('userId');
+      // localStorage.removeItem("name");
+      // localStorage.removeItem("email");
+      // localStorage.removeItem('loginType');
+      // localStorage.removeItem("profile");
+      localStorage.clear();
       $scope.loginType = localStorage.getItem('loginType');
       delete $http.defaults.headers.common.Authorization;
     },function(data){

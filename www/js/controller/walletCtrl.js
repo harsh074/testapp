@@ -38,6 +38,8 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
 		}
 	}
 
+
+	// Razorpay payment gateway
 	$scope.options = function(args){
 	 	var data = {
 	  	description: args.name,
@@ -50,25 +52,28 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
 	  }
 	  return data;
 	}
-
   var successCallback = function(payment_id) {
     alert('payment_id: ' + payment_id);
   }
-
   var cancalCallback = function(error) {
     alert(error.description + ' (Error '+error.code+')');
-  }
-	
+  }	
 	$scope.getPayment = function(args){
 		// console.log(args,$scope.userProfileData);
   	RazorpayCheckout.open($scope.options(args), successCallback, cancalCallback);
   }
 
-	utility.getPacks()
-	.then(function(data){
-		$scope.packs = data;
-	},function(data){
-		console.log(data);
-	});
+
+  if(localStorage.getItem('packs')){
+  	$scope.packs = JSON.parse(localStorage.getItem('packs'));
+  }else{
+		utility.getPacks()
+		.then(function(data){
+			localStorage.setItem('packs',JSON.stringify(data));
+			$scope.packs = data;
+		},function(data){
+			console.log(data);
+		});
+	}
   
 }]);

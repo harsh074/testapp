@@ -46,7 +46,7 @@
 	          <div class="noQuestionFound" ng-if="noQuestionFound && loginType=='user'">
 							<a ng-click="askQuestion()" href="">Ask first question for free</a>
 						</div>
-						<div class="questionFound" ng-if="!noQuestionFound" ng-class="{'monk':loginType=='monk'}">
+						<div class="questionFound" ng-if="!noQuestionFound">
 							<ion-list>
 				        <div ng-repeat="group in question.askedQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='asked' || group.status=='direct'">
 				          <div class="question">{{group.question}}</div>
@@ -61,7 +61,8 @@
 
 				        <div ng-switch="(question.askedQuestion | filter:search.searchInput).length">
 				        	<div class="noStatusQuestion" ng-switch-when="0">
-				        		<i class="icon ion-eye-disabled"></i>
+				        		<!-- <i class="icon ion-eye-disabled"></i> -->
+				        		<img src="img/icon.png" width="100px" />
 				        		<p class="noQuestionTitle">No Asked Question</p>
 				        	</div>
 				        </div>
@@ -85,7 +86,7 @@
 							<!-- <a ng-click="askQuestion()" href="">Ask first question for free</a> -->
 							<p>You have not answered a question. Please answer a question.</p>
 						</div>
-						<div class="questionFound" ng-if="!noQuestionFound" ng-class="{'monk':loginType=='monk'}">
+						<div class="questionFound" ng-if="!noQuestionFound">
 							<ion-list>
 				        <div ng-repeat="group in question.answeredQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='answered' && loginType=='user'">
 				          <div class="question">{{group.question}}</div>
@@ -107,7 +108,8 @@
 
 				        <div ng-switch="(question.answeredQuestion | filter:search.searchInput).length">
 					        <div class="noStatusQuestion" ng-switch-when="0">
-					        	<i class="icon ion-eye-disabled"></i>
+					        	<!-- <i class="icon ion-eye-disabled"></i> -->
+				        		<img src="img/icon.png" width="100px" />
 					        	<p class="noQuestionTitle">No Answered Question</p>
 					        </div>
 					      </div>
@@ -126,7 +128,7 @@
 	          <div class="noQuestionFound" ng-if="noQuestionFound && loginType=='user'">
 							<a ng-click="askQuestion()" href="">Ask first question for free</a>
 						</div>
-						<div class="questionFound" ng-if="!noQuestionFound" ng-class="{'monk':loginType=='monk'}">
+						<div class="questionFound" ng-if="!noQuestionFound">
 							<ion-list>
 				        <div ng-repeat="group in question.ratedQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='rated' && loginType=='user'">
 				          <div class="question">{{group.question}}</div>
@@ -149,7 +151,8 @@
 				        </div>
 				        <div ng-switch="(question.ratedQuestion | filter:search.searchInput).length">
 					        <div class="noStatusQuestion" ng-switch-when="0">
-					        	<i class="icon ion-eye-disabled"></i>
+					        	<!-- <i class="icon ion-eye-disabled"></i> -->
+				        		<img src="img/icon.png" width="100px" />
 					        	<p class="noQuestionTitle">No Rated Question</p>
 					        </div>
 					      </div>
