@@ -74,6 +74,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       $scope.showLoader();
       if($scope.loginType == 'user'){
         if(!$scope.editProfileData.dob || !$scope.editProfileData.birthPlace || !$scope.editProfileData.birthTime){
+          $scope.hideLoader();
           $scope.showMessage("All fields are required");
           return;
         }else{
@@ -94,6 +95,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
         }
       }else{
         if(!$scope.editProfileData.name || !$scope.editProfileData.phone || !$scope.editProfileData.education || !$scope.editProfileData.residence || !$scope.editProfileData.experience){
+          $scope.hideLoader();
           $scope.showMessage("All fields are required");
           return;
         }else{

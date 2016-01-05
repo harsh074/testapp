@@ -15,6 +15,9 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT', function($i
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
+    if(window.MobileAccessibility){
+      window.MobileAccessibility.usePreferredTextZoom(false);
+    }
     if(window.StatusBar) {
       // window.StatusBar.styleDefault();
       window.StatusBar.overlaysWebView(true);
