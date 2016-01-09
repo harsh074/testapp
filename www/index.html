@@ -48,5 +48,11 @@
 		<script src="js/directive/genDirective.js"></script>
 		<script src="js/directive/genFilters.js"></script>
 		<!-- // <script src="js/directive/slidingTabsDirective.js"></script> -->
+		<script type="text/javascript">
+			function handleOpenURL(url) {
+    		// console.log("received url: " + url);
+    		sessionStorage.setItem('redirectFromUrl',url);
+  		}
+		</script>
   </body>
 </html>

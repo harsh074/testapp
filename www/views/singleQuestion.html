@@ -54,7 +54,7 @@
         </div>
         <div class="row">
           <div class="col" ng-if="question.status=='asked' || question.status=='underObservation' || question.status=='direct'">
-            <button class="button button-custom button-small" ng-if="question.status=='asked' || question.status=='direct'" ng-click="acceptQuestion()">Accept</button>
+            <button class="button button-custom button-small" ng-if="question.status=='asked' || question.status=='direct'" ng-click="askBeforeAccept()">Accept</button>
             <button class="button button-custom button-small" ng-if="question.status=='underObservation'" ng-click="openWriteModal()">Write Answer</button>
           </div>
           <div class="col">

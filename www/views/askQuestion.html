@@ -5,6 +5,13 @@
 			<div class="shortHeaderBtn" ng-click="openAskQuestion()">
 			  <a class="shortHeaderIcon"><i class="icon ion-paper-airplane"></i></a>
 			</div>
+			<div class="selectTimeQuestion">
+				<label class="selectTimeLabel"><!-- item item-input item-select -->
+					<select name="questionTime" ng-model="askQuestion.moneyType" required>
+						<option ng-repeat="(key,value) in timeLineJson" ng-selected="{{6 == value.durationMonths}}" value="{{key}}">{{value.durationMonths | timeLineFiter}}</option>
+					</select>
+				</label>
+			</div>
 		</div>
 	</ion-content>
 	<ion-content scroll="true" class="row questionBottom" delegate-handle="scrollHandle">

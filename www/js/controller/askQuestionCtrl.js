@@ -7,9 +7,6 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
   window.addEventListener('native.keyboardshow', keyboardHandler);
   window.addEventListener('native.keyboardhide', keyboardHandler);
   function keyboardHandler(e){
-    // if(e.type=="native.keyboardshow"){
-    // }else{
-    // }
     $timeout(function(){
 			$ionicScrollDelegate.$getByHandle('scrollHandle').resize();
       $ionicScrollDelegate.$getByHandle('scrollHandle').scrollBottom(true);
@@ -17,11 +14,31 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
   }
 
 	$scope.showQuestion = true;
-	$scope.askQuestion = {"email":localStorage.getItem('email'), "userId":localStorage.getItem('userId'),"question":"","questionTag":"","isDirect":false}
+	$scope.askQuestion = {"email":localStorage.getItem('email'), "userId":localStorage.getItem('userId'),"question":"","questionTag":"","isDirect":false,"moneyType":"basic"}
 	$scope.askOtherQuestion = {"question":null};
 	$scope.showOnOtherQuestion = false;
+
+	if($scope.loginType == 'user'){
+    utility.getUserCount()
+    .then(function(data){
+      $scope.getUserCount = data;
+    },function(data){
+      console.log(data);
+    });
+		if(!localStorage.timelineJson){
+			utility.getTimeLineJson()
+	    .then(function(data){
+	    	$scope.timeLineJson = data;
+	      localStorage.setItem('timelineJson',JSON.stringify(data));
+	    },function(data){
+	      console.log(data);
+	    });
+		}else{
+			$scope.timeLineJson = JSON.parse(localStorage.timelineJson);
+		}
+	}
 	
-	if(localStorage.getItem('tagQuestion')){
+	if(localStorage.tagQuestion){
 		$scope.questions = JSON.parse(localStorage.getItem('tagQuestion'));
 		$scope.hideLoader();
 	}else{
@@ -82,6 +99,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	}
 
 	$scope.openAskQuestion = function(){
+		console.log($scope.askQuestion.moneyTime);
 		var confirmPopup = $ionicPopup.show({
 	    cssClass:"ios",
 	    title: 'Going further would send the question to the astrologers.',
@@ -103,7 +121,12 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	  confirmPopup.then(function(res) {
 	    if(res) {
 	      console.log('You are sure');
-	     	$scope.askQuestionButton();
+	      if($scope.getUserCount.emailVerified){
+	     		$scope.askQuestionButton();
+	      }else{
+	      	// console.log("Please verify your email");
+	      	$scope.showMessage("Please verify your email");
+	      }
 	    } else {
 	      console.log('You are not sure');
 	    }
@@ -125,8 +148,18 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 			if(localStorage.getItem('directQuestion')){
 				utility.askDirectQuestion($scope.askQuestion)
 				.then(function(data){
-					$state.go('app.dashboard');
-					$scope.transitionAnimation('left');
+					utility.getUserCount()
+					.then(function(data1){
+						var profileData = JSON.parse(localStorage.profile);
+						profileData.totalQuestionsAsked = data1.totalQuestionsAsked;
+						profileData.walletMoney = data1.walletMoney;
+						localStorage.profile = JSON.stringify(profileData);
+						$state.go('app.dashboard');
+						$scope.transitionAnimation('left');
+					},function(data1){
+						$scope.showMessage(data1.error.message);
+						$scope.hideLoader();
+					});
 				},function(data){
 					$scope.showMessage(data.error.message);
 					$scope.hideLoader();
@@ -134,8 +167,18 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 			}else{
 				utility.askQuestion($scope.askQuestion)
 				.then(function(data){
-					$state.go('app.dashboard');
-					$scope.transitionAnimation('left');
+					utility.getUserCount()
+					.then(function(data1){
+						var profileData = JSON.parse(localStorage.profile);
+						profileData.totalQuestionsAsked = data1.totalQuestionsAsked;
+						profileData.walletMoney = data1.walletMoney;
+						localStorage.profile = JSON.stringify(profileData);
+						$state.go('app.dashboard');
+						$scope.transitionAnimation('left');
+					},function(data1){
+						$scope.showMessage(data1.error.message);
+						$scope.hideLoader();
+					});
 				},function(data){
 					$scope.showMessage(data.error.message);
 					$scope.hideLoader();
@@ -150,3 +193,13 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 		$state.go('app.dashboard');
 	}
 }]);
+
+askmonkApp.filter('timeLineFiter', function(){
+	return function(input){
+		if(input>6){
+			return parseInt(input/12)==1?parseInt(input/12)+'  Year':parseInt(input/12)+'  Years';
+		}else{
+			return input+' Months';
+		}
+	}
+});

@@ -1,6 +1,6 @@
 var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic']);
 
-askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT', function($ionicPlatform,$state,$stateParams,CONSTANT){
+askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT', function($ionicPlatform,$state,$stateParams,CONSTANT){  
   if(!localStorage.getItem('token')){
     $state.go('login');
   }else if(localStorage.getItem('questionStatus') == 'underObservation'){

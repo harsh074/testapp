@@ -3,6 +3,8 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     $scope.activeUserTab = true;
     $scope.activeMonkTab = false;
     $scope.monkTab = true;
+    $scope.userForgetPasswordShow = false;
+    $scope.monkForgetPasswordShow = false;
     $scope.hideLoader();
     // $scope.args = {"email":"harsh.agarwal1112@gmail.com","password":"password"};
     // $scope.argsSignup = {"name":"harsh","email":"harsh@gmail.com","password":"password"};
@@ -16,50 +18,19 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     $scope.userLoginForm =function() {
       $scope.activeUserTab = true;
       $scope.activeMonkTab = false;
+      $scope.userForgetPasswordShow = false;
+      $scope.monkForgetPasswordShow = false;
+      $scope.args.email = '';
+      $scope.argsMonk.email = '';
     }
-
     $scope.monkLoginForm =function() {
       $scope.activeUserTab = false;
       $scope.activeMonkTab = true;
+      $scope.userForgetPasswordShow = false;
+      $scope.monkForgetPasswordShow = false;
+      $scope.args.email = '';
+      $scope.argsMonk.email = '';
     }
-
-    $scope.userLogin = function(){
-      $scope.showLoader();
-      utility.login($scope.args)
-      .then(function(data){
-        $scope.setAuth(true);
-        localStorage.setItem('loginType',"user");
-        CONSTANT.loginType = "user";
-        $state.go('app.profile');
-        $scope.hideLoader();
-        $scope.transitionAnimation('left',300);
-      },function(data){
-        $scope.hideLoader();
-        $scope.showMessage(data.error.message);
-      });
-    }
-    $scope.monkLogin = function(){
-      $scope.showLoader();
-      if(CONSTANT.isDevice){
-        cordova.plugins.Keyboard.close();
-      }
-      utility.monkLogin($scope.argsMonk)
-      .then(function(data){
-        $scope.setAuth(true);
-        $state.go('app.profile');
-        localStorage.setItem('loginType',"monk");
-        CONSTANT.loginType = "monk";
-        $scope.hideLoader();
-        if(CONSTANT.isDevice){
-          $scope.transitionAnimation('left',300);
-        }
-      },function(data){
-        $scope.hideLoader();
-        $scope.showMessage(data.error.message);
-      });
-      // $state.go('app.yprofile');
-    }
-
     $scope.signUpTab = function(){
       $scope.monkTab = false; 
       $scope.signUptab = true;
@@ -74,6 +45,52 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         $ionicScrollDelegate.$getByHandle('loginScroll').scrollTo(0, 0, true);
       }, 10);
     }
+    $scope.forgetUserPasswordTab = function(){
+      $scope.userForgetPasswordShow = true;
+      $scope.args.email = '';
+    }
+    $scope.forgetMonkPasswordTab = function(){
+      $scope.monkForgetPasswordShow = true;
+      $scope.argsMonk.email = '';
+    }
+    $scope.userLogin = function(){
+      $scope.showLoader();
+      utility.login($scope.args)
+      .then(function(data){
+        $scope.setAuth(true);
+        localStorage.setItem('loginType',"user");
+        CONSTANT.loginType = "user";
+        $state.go('app.profile');
+        $scope.hideLoader();
+        $scope.transitionAnimation('left',480);
+      },function(data){
+        $scope.hideLoader();
+        $scope.showMessage(data.error.message);
+      });
+    }
+    
+    $scope.monkLogin = function(){
+      $scope.showLoader();
+      if(CONSTANT.isDevice){
+        cordova.plugins.Keyboard.close();
+      }
+      utility.monkLogin($scope.argsMonk)
+      .then(function(data){
+        $scope.setAuth(true);
+        $state.go('app.profile');
+        localStorage.setItem('loginType',"monk");
+        CONSTANT.loginType = "monk";
+        $scope.hideLoader();
+        if(CONSTANT.isDevice){
+          $scope.transitionAnimation('left',480);
+        }
+      },function(data){
+        $scope.hideLoader();
+        $scope.showMessage(data.error.message);
+      });
+      // $state.go('app.yprofile');
+    }
+    
     $scope.userSignUp = function(formData){
       if($scope.conpassword.pass != ""){
         if($scope.argsSignup.password != $scope.conpassword.pass){
@@ -121,7 +138,33 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         return;
       }
     }
-  }else if(localStorage.getItem('questionStatus') == "underObeservation"){
+
+    $scope.userForgetPassword = function(){
+      $scope.showLoader();
+      utility.forgetUserPassword($scope.args.email)
+      .then(function(data){
+        $scope.hideLoader();
+        $scope.userLoginForm();
+        $scope.showMessage('Mail sent');
+      },function(data){
+        $scope.hideLoader();
+        console.log(data);
+      });
+    }
+    $scope.monkForgetPassword = function(){
+      $scope.showLoader();
+      utility.forgetMonkPassword($scope.argsMonk.email)
+      .then(function(data){
+        $scope.hideLoader();
+        $scope.monkLoginForm();
+        $scope.showMessage('Mail sent');
+      },function(data){
+        $scope.hideLoader();
+        console.log(data);
+      });
+    }
+  }
+  else if(localStorage.getItem('questionStatus') == "underObeservation"){
     $stateParams.id = localStorage.getItem('questionId');
     $state.go('app.singlequestion',$stateParams);
     $scope.transitionAnimation('left',180);

@@ -79,6 +79,34 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
       console.log(data,"error");
     })
   }
+
+  $scope.askBeforeAccept = function(){
+    var confirmPopup = $ionicPopup.show({
+      cssClass:"ios",
+      title: 'After accepting a question answering it is mandatory.',
+      template:'Do u want to proceed ?',
+      buttons: [
+        {text: 'Yes',type:'button-ios button-clear',
+          onTap: function(e) {
+            return true;
+          }
+        },
+        {text:'No',type:'button-ios button-clear',
+          onTap: function(e) {
+            return false;
+          }
+        }
+      ]
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+        $scope.acceptQuestion();
+      } else {
+        console.log('You are not sure');
+      }
+    });
+  }
+
   $scope.closeAnswerPopup = function(){
     $scope.writtenAnswer = localStorage.getItem('answer');
     if ($scope.writeAnswerModal && $scope.writeAnswerModal.isShown()) {

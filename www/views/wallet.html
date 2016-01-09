@@ -6,20 +6,26 @@
 	</ion-content>
 	<ion-content scroll="true" class="row questionBottom paddingLRPlus21">
 		<div class="walletManagement" ng-if="loginType == 'user'">
-			<p class="showMoney">Present Wallet Money : Rs {{userProfileData.walletMoney ? userProfileData.walletMoney : 0}}</p>
+			<p class="showMoney">Present Wallet Money : Rs {{walletMoney ? walletMoney : 0}}</p>
+			<div class="customAddMoney">
+				<form name="customAddMoney" class="form form-horizontal" ng-submit="addCustomMoney(customAddMoney)" novalidate>
+					<ion-md-input name="addMoney" type="text" placeholder="Rs." highlight-color="calm" ng-pattern="/^[0-9]+$/" ng-model="money.customMoney"></ion-md-input>
+					<button class="button button-custom button-small" type="submit">Add</button>
+				</form>
+			</div>
 			<table class="packs" ng-repeat="pack in packs" ng-click="getPayment(pack)">
 				<tr>
 					<td rowspan="2" class="packName">{{pack.name}}</td>
-					<td><span class="preText">Amount (Rs): </span><span class="preTextValues">{{pack.amount}}</span></td>
+					<td rowspan="2"><span class="preText">Amount (Rs): </span><span class="preTextValues">{{pack.amount}}</span></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td><span class="preText">Questions : </span><span class="preTextQuestion">{{pack.questions}}</span></td>
-				</tr>
+				</tr> -->
 			</table>
 		</div>
 		<div class="showMonkWallet" ng-if="loginType == 'monk'">
 			<p class="rupee">Rs.</p>
-			<p class="money">{{userProfileData.walletMoney ? userProfileData.walletMoney : 0}}</p>
+			<p class="money">{{walletMoney ? walletMoney : 0}}</p>
 			<p class="aboutMoney">Present Wallet Money</p>
 		</div>
 	</ion-content>

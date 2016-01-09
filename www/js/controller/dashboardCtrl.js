@@ -1,5 +1,9 @@
 askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','$stateParams','CONSTANT','$ionicSlideBoxDelegate','$ionicGesture','$ionicScrollDelegate', function($scope, $state, utility,$timeout,$stateParams,CONSTANT,$ionicSlideBoxDelegate,$ionicGesture,$ionicScrollDelegate){
 
+  if(localStorage.questionStatus == 'underObservation'){
+    $scope.showArrow = true;
+    $state.go('app.singlequestion',{id:localStorage.questionId});
+  }
 	$scope.noQuestionFound = false;
 	$scope.search = {"searchInput":""};
   $scope.question = {"askedQuestion":[],"answeredQuestion":[],"ratedQuestion":[]};

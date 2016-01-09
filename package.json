@@ -24,7 +24,8 @@
     "https://github.com/apache/cordova-plugin-device.git",
     "org.apache.cordova.statusbar",
     "https://github.com/harsh-iomedia/cordova-cache.git",
-    "https://github.com/harsh-iomedia/cordova-inappbrowser.git"
+    "https://github.com/harsh-iomedia/cordova-inappbrowser.git",
+    "https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin.git --variable URL_SCHEME=askmonk"
   ],
   "cordovaPlatforms": [
     "android"

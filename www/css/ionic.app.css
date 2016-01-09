@@ -9171,7 +9171,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     background-repeat: no-repeat;
     background-position: center; }
   .welcome-view .top-content .app-tagline {
-    font-size: 26px;
+    font-size: 25px;
     margin-top: 0px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.95); }
@@ -9188,7 +9188,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         border-color: #888;
         border-width: 1.5px 1.5px 0px 1.5px;
         color: #fff;
-        font-size: 17px;
+        font-size: 16px;
         margin-bottom: -0px; }
         .welcome-view .authFields .loginTab .userTab.active, .welcome-view .authFields .loginTab .monkTab.active {
           background-color: rgba(43, 93, 128, 0.6); }
@@ -9196,6 +9196,13 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       float: right;
       margin-top: 45px;
       color: #fff;
+      text-decoration: none;
+      white-space: nowrap; }
+    .welcome-view .authFields .forgetPassword {
+      display: block;
+      float: none;
+      margin-top: 20px;
+      color: white;
       text-decoration: none;
       white-space: nowrap; }
     .welcome-view .authFields .inputFields {
@@ -9222,7 +9229,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         .welcome-view .authFields .inputFields label .md-input:focus ~ .input-label, .welcome-view .authFields .inputFields label .md-input.used ~ .input-label {
           -webkit-transform: translate3d(0, -60px, 0) scale(1);
           transform: translate3d(0, -60px, 0) scale(1);
-          font-size: 14px;
+          font-size: 13px;
           opacity: 1;
           line-height: 35px; }
         .welcome-view .authFields .inputFields label .input-label {
@@ -9231,7 +9238,8 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
           letter-spacing: 2px;
           opacity: 1 !important;
           filter: alpha(opacity=100);
-          color: #fff !important; }
+          color: #fff !important;
+          font-size: 15px; }
         .welcome-view .authFields .inputFields label .highlight-custom {
           background-color: #fff;
           left: -1px;
@@ -9253,7 +9261,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
 .textareaLable {
   color: #aaaaaa;
   opacity: 0.5;
-  font-size: 16px;
+  font-size: 15px;
   padding: 20px 0px 5px 5px; }
 
 .button.button-custom {
@@ -9263,7 +9271,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   border-color: transparent;
   color: #fff;
   border-radius: 0px;
-  font-size: 15px; }
+  font-size: 14px; }
   .button.button-custom.active, .button.button-custom.activated {
     border-color: transparent;
     background-color: #00BCD2;
@@ -9273,7 +9281,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   padding: 4px 13px;
   min-width: 28px;
   min-height: 30px;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 26px;
   border-radius: 0px; }
   .button.button-custom-small.active, .button.button-custom-small.activated {
@@ -9282,10 +9290,10 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     box-shadow: inset 0 1px 4px transparent; }
   .button.button-custom-small .dateObject {
     float: left;
-    font-size: 15px; }
+    font-size: 14px; }
   .button.button-custom-small .ion-android-calendar {
     margin-left: 12px;
-    font-size: 25px;
+    font-size: 24px;
     float: right; }
 
 .button.button-askmonk {
@@ -9309,7 +9317,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     float: left;
     height: 100%;
     margin: 0px;
-    font-size: 20px;
+    font-size: 19px;
     line-height: 58px;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -9328,7 +9336,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     display: flex;
     float: right;
     height: 58px;
-    width: 58px;
+    width: 40px;
     -webkit-box-align: center;
     -ms-flex-align: center;
     -webkit-align-items: center;
@@ -9361,6 +9369,61 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     justify-content: flex-end; }
     .home-view .shortHeader .shortHeaderCustomBtn .button.button-custom {
       margin-top: 0; }
+  .home-view .shortHeader .selectTimeQuestion {
+    display: flex;
+    height: 58px;
+    width: 132px;
+    float: right;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    -webkit-justify-content: flex-end;
+    -moz-justify-content: flex-end;
+    justify-content: flex-end; }
+    .home-view .shortHeader .selectTimeQuestion .selectTimeLabel {
+      padding-left: 0px;
+      border-width: 0px;
+      display: inline-block;
+      width: 100%;
+      height: 30px;
+      float: right;
+      position: relative;
+      background-color: transparent; }
+      .home-view .shortHeader .selectTimeQuestion .selectTimeLabel:after {
+        content: "\f3b3";
+        position: absolute;
+        right: 10px;
+        top: 0px;
+        display: inline-block;
+        font-family: "Ionicons";
+        speak: none;
+        font-size: 22px; }
+      .home-view .shortHeader .selectTimeQuestion .selectTimeLabel select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        border: none;
+        text-indent: 0;
+        white-space: nowrap;
+        cursor: pointer;
+        padding: 4px 33px 4px 18px;
+        height: 30px;
+        width: 100%;
+        max-width: 100%;
+        direction: ltr;
+        font-size: 16px;
+        background: transparent;
+        color: white; }
+        .home-view .shortHeader .selectTimeQuestion .selectTimeLabel select option {
+          color: black; }
 
 .home-view .yprofile {
   height: 150px;
@@ -9384,7 +9447,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         vertical-align: top; }
   .home-view .yprofile .yAnswerStatus {
     display: inline-block;
-    font-size: 20px;
+    font-size: 19px;
     width: 69%;
     margin-left: 20px;
     white-space: nowrap; }
@@ -9392,7 +9455,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       min-height: 0px;
       line-height: 22px;
       margin-top: 5px;
-      font-size: 16px;
+      font-size: 15px;
       display: block;
       width: 100%;
       padding: 3px 13px; }
@@ -9400,7 +9463,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         color: #000;
         float: left; }
     .home-view .yprofile .yAnswerStatus .statics {
-      font-size: 16px;
+      font-size: 15px;
       padding: 5px 14px 0px;
       text-align: center; }
       .home-view .yprofile .yAnswerStatus .statics.userProfile {
@@ -9415,7 +9478,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     padding-top: 15px; }
     .home-view .yprofile .subHeaderBottomContent .userName {
       text-transform: capitalize;
-      font-size: 16px;
+      font-size: 15px;
       display: inline-block;
       padding-left: 18px;
       color: white;
@@ -9443,12 +9506,12 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     line-height: 23px; }
     .home-view .dashboard .yAnswerStatus .aboutQuestion {
       display: inline-block;
-      font-size: 20px;
+      font-size: 19px;
       line-height: 20px;
       width: 35%;
       white-space: nowrap; }
       .home-view .dashboard .yAnswerStatus .aboutQuestion .pullToRefresh {
-        font-size: 12px; }
+        font-size: 11px; }
     .home-view .dashboard .yAnswerStatus .searchBar {
       float: right;
       line-height: 45px;
@@ -9466,19 +9529,19 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
           padding-top: 0px; }
           .home-view .dashboard .yAnswerStatus .searchBar .item-search input[type="text"]::-webkit-input-placeholder {
             font-style: italic;
-            font-size: 16px;
+            font-size: 15px;
             color: white; }
           .home-view .dashboard .yAnswerStatus .searchBar .item-search input[type="text"]:-moz-placeholder {
             font-style: italic;
-            font-size: 16px;
+            font-size: 15px;
             color: white; }
           .home-view .dashboard .yAnswerStatus .searchBar .item-search input[type="text"]::-moz-placeholder {
             font-style: italic;
-            font-size: 16px;
+            font-size: 15px;
             color: white; }
           .home-view .dashboard .yAnswerStatus .searchBar .item-search input[type="text"]:-ms-input-placeholder {
             font-style: italic;
-            font-size: 16px;
+            font-size: 15px;
             color: white; }
         .home-view .dashboard .yAnswerStatus .searchBar .item-search:after {
           content: "";
@@ -9488,11 +9551,11 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
           margin-right: 4px;
-          font-size: 22px;
+          font-size: 21px;
           color: white; }
       .home-view .dashboard .yAnswerStatus .searchBar .placeholder-icon {
         position: absolute;
-        font-size: 16px;
+        font-size: 15px;
         z-index: 1000;
         top: 10px;
         right: 15px;
@@ -9504,7 +9567,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
 .home-view .dashboardData {
   top: 100px;
   z-index: 1;
-  font-size: 18px;
+  font-size: 17px;
   padding: 0px; }
   .home-view .dashboardData .noQuestionFound {
     margin-top: 30px; }
@@ -9512,7 +9575,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     color: #1464F6;
     text-align: center;
     display: block;
-    font-size: 20px;
+    font-size: 19px;
     padding-top: 40px; }
   .home-view .dashboardData .questionFound .questions {
     padding: 18px;
@@ -9552,7 +9615,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         color: #2B5D80;
-        font-size: 14px;
+        font-size: 13px;
         margin-bottom: 0; }
         .home-view .dashboardData .questionFound .questions .answer p.questionTag {
           display: inline-block;
@@ -9567,7 +9630,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       white-space: nowrap;
       padding-left: 23px;
       margin-bottom: 0px;
-      font-size: 14px;
+      font-size: 13px;
       color: #2B5D80;
       display: inline-block; }
     .home-view .dashboardData .questionFound .questions .answerRating {
@@ -9586,7 +9649,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     .home-view .dashboardData .noStatusQuestion i {
       font-size: 100px; }
     .home-view .dashboardData .noStatusQuestion .noQuestionTitle {
-      font-size: 22px;
+      font-size: 21px;
       margin-top: 5px; }
 
 .home-view .directQuestion .dashboard {
@@ -9606,12 +9669,12 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
 .home-view .singleQuestion {
   top: 105px;
   z-index: 1;
-  font-size: 18px; }
+  font-size: 17px; }
   .home-view .singleQuestion .questionData .question {
     position: relative;
     padding: 10px 0px 20px 0px;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 23px;
     line-height: 30px; }
     .home-view .singleQuestion .questionData .question span {
       position: absolute;
@@ -9620,29 +9683,30 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     display: inline-block;
     width: 100%; }
     .home-view .singleQuestion .questionData .middleSec .answer {
-      font-size: 18px;
+      font-size: 17px;
       padding-bottom: 30px;
       margin-bottom: 0px;
       line-height: 24px; }
     .home-view .singleQuestion .questionData .middleSec .yogiName {
       text-align: right;
-      font-size: 15px;
+      font-size: 14px;
       margin-bottom: 0px; }
   .home-view .singleQuestion .questionData .subBottom {
     padding-top: 3px; }
     .home-view .singleQuestion .questionData .subBottom .tagName {
-      display: inline-block; }
+      display: inline-block;
+      white-space: nowrap; }
       .home-view .singleQuestion .questionData .subBottom .tagName span {
         color: #CC333C; }
     .home-view .singleQuestion .questionData .subBottom .questionTime {
       display: inline-block;
       float: right;
-      font-size: 15px;
+      font-size: 14px;
       white-space: nowrap;
       color: #2B5D80; }
     .home-view .singleQuestion .questionData .subBottom .ratingQuestion {
       padding-top: 40px;
-      font-size: 19px; }
+      font-size: 18px; }
     .home-view .singleQuestion .questionData .subBottom .answerRating {
       display: inline-block;
       padding-bottom: 10px; }
@@ -9658,7 +9722,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         font-size: 30px; }
     .home-view .singleQuestion .questionData .subBottom .row {
       padding: 5px 0px;
-      font-size: 15px; }
+      font-size: 14px; }
       .home-view .singleQuestion .questionData .subBottom .row:nth-child(3) {
         margin-top: 15px; }
       .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) {
@@ -9667,7 +9731,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
           float: right; }
         .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) .col button {
           padding: 4px 27px;
-          font-size: 16px; }
+          font-size: 15px; }
       .home-view .singleQuestion .questionData .subBottom .row:last-child {
         margin-top: 10px; }
       .home-view .singleQuestion .questionData .subBottom .row .col:first-child {
@@ -9696,20 +9760,30 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
 .home-view .walletManagement {
   padding-top: 15px; }
   .home-view .walletManagement .showMoney {
-    font-size: 18px; }
+    font-size: 17px; }
+  .home-view .walletManagement .customAddMoney .item-md-label {
+    padding: 23px 0px 0px 5px;
+    border-width: 0px 0px 1px 0px;
+    display: inline-block;
+    width: 72%; }
+    .home-view .walletManagement .customAddMoney .item-md-label input {
+      color: black; }
+  .home-view .walletManagement .customAddMoney button {
+    float: right;
+    margin-top: 27px; }
   .home-view .walletManagement table.packs {
     width: 100%;
-    height: 90px;
+    height: 80px;
     background-color: #2B5D80;
     margin: 20px 0px;
     color: white; }
     .home-view .walletManagement table.packs td {
       vertical-align: middle;
-      font-size: 16px; }
+      font-size: 15px; }
       .home-view .walletManagement table.packs td.packName {
         width: 56%;
         padding-left: 15px;
-        font-size: 20px; }
+        font-size: 19px; }
       .home-view .walletManagement table.packs td .preText {
         color: #00BCD2;
         text-align: left; }
@@ -9727,12 +9801,12 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     margin: 50px 0; }
   .home-view .showMonkWallet .rupee {
     font-weight: bold;
-    font-size: 46px; }
+    font-size: 45px; }
   .home-view .showMonkWallet .money {
     font-weight: bold;
-    font-size: 50px; }
+    font-size: 49px; }
   .home-view .showMonkWallet .aboutMoney {
-    font-size: 20px; }
+    font-size: 19px; }
 
 .home-view .yogiTileProfile {
   top: 106px;
@@ -9750,12 +9824,10 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       color: white;
       border-radius: 3px;
       box-shadow: 1px 2px 1px rgba(185, 185, 185, 0.9); }
-      .home-view .yogiTileProfile .allTile .tile:nth-child(odd) {
-        margin-right: 3px; }
       .home-view .yogiTileProfile .allTile .tile:nth-child(even) {
-        margin-left: 3px; }
+        float: right; }
       .home-view .yogiTileProfile .allTile .tile:nth-child(n+3) {
-        margin-top: 6px; }
+        margin-top: 8px; }
       .home-view .yogiTileProfile .allTile .tile .imagePic {
         height: 78px;
         width: 78px;
@@ -9771,25 +9843,25 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         padding: 5px 0px 0px;
         color: #00BCD2; }
         .home-view .yogiTileProfile .allTile .tile .name p {
-          font-size: 18px;
+          font-size: 17px;
           margin-bottom: 5px;
           letter-spacing: 1px; }
       .home-view .yogiTileProfile .allTile .tile .place p {
         margin-bottom: 5px; }
       .home-view .yogiTileProfile .allTile .tile .statics {
-        font-size: 15px; }
+        font-size: 14px; }
         .home-view .yogiTileProfile .allTile .tile .statics .answered {
           display: inline-block;
           padding-right: 7px; }
           .home-view .yogiTileProfile .allTile .tile .statics .answered span {
             color: #00BCD2;
-            font-size: 13px; }
+            font-size: 12px; }
         .home-view .yogiTileProfile .allTile .tile .statics .accepted {
           display: inline-block;
           padding-left: 7px; }
           .home-view .yogiTileProfile .allTile .tile .statics .accepted span {
             color: #00BCD2;
-            font-size: 13px; }
+            font-size: 12px; }
 
 .bar-assertive-900 {
   box-shadow: 1px 1px rgba(0, 0, 0, 0.15);
@@ -9867,7 +9939,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       transform: translateX(12px) translateY(-1px) rotate(-45deg);
       -webkit-transform: translateX(12px) translateY(-1px) rotate(-45deg); }
     .bar-assertive-900 .customMenuBtn + b {
-      font-size: 19px;
+      font-size: 18px;
       width: 100px;
       color: white;
       line-height: 39px;
@@ -9879,17 +9951,18 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     border-style: solid;
     border-color: transparent; }
   .bar-assertive-900 .ion-social-usd {
-    font-size: 23px;
+    font-size: 22px;
     color: white !important;
-    padding: 0px 11px 0px 19px; }
+    padding: 0px 11px 0px 19px;
+    line-height: 37px; }
 
 .logoSideMenu {
   background-image: url("../img/logo-bar-header.png");
   width: 100%;
-  height: 80%;
+  height: 75%;
   background-size: contain;
   display: inline-block;
-  margin-top: 1px;
+  margin-top: 3px;
   background-position: center 3px;
   background-repeat: no-repeat; }
 
@@ -9898,9 +9971,9 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   .menu .item-content {
     padding: 0px 0px 0px 15px; }
   .menu span {
-    font-size: 16px; }
+    font-size: 15px; }
     .menu span i {
-      font-size: 26px;
+      font-size: 25px;
       padding-right: 25px;
       padding-left: 13px;
       vertical-align: middle; }
@@ -9908,7 +9981,8 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     padding: 20px 20px 20px 2px;
     display: inline-block;
     border-bottom: 2px solid rgba(220, 220, 220, 0.5);
-    width: 100%; }
+    width: 100%;
+    font-size: 14px; }
   .menu.profile span i {
     color: #F10100; }
   .menu.dashboard span i {
@@ -9943,7 +10017,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
 
 dl {
   width: 100%;
-  font-size: 17px; }
+  font-size: 16px; }
   dl dt {
     width: 100px;
     display: inline-block;
@@ -9992,12 +10066,12 @@ dl {
     border-radius: 50%;
     margin: 40px 10px 0px 20px;
     color: #fff;
-    font-size: 35px;
+    font-size: 34px;
     border: 5px solid #fff;
     display: inline-block; }
   .shortSideMenuProfile .sProfileName {
     margin: 70px 0px;
-    font-size: 20px;
+    font-size: 19px;
     color: #fff;
     width: 160px;
     display: inline-block;
@@ -10022,7 +10096,7 @@ ion-side-menu .has-header {
       .editProfile .item-md-label .md-input:focus ~ .input-label, .editProfile .item-md-label .md-input.used ~ .input-label {
         -webkit-transform: translate3d(0, -50px, 0) scale(1);
         transform: translate3d(0, -50px, 0) scale(1);
-        font-size: 14px; }
+        font-size: 13px; }
     .editProfile .item-md-label .input-label {
       color: #aaa; }
     .editProfile .item-md-label .highlight-calm {
@@ -10060,7 +10134,7 @@ ion-side-menu .has-header {
         padding-left: 5px; }
   .editProfile .btn-two .button {
     margin-top: 15px;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 35px;
     min-height: 35px; }
     .editProfile .btn-two .button:first-child {
@@ -10089,7 +10163,7 @@ ion-side-menu .has-header {
     text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 30px;
     overflow: hidden;
@@ -10115,7 +10189,7 @@ ion-side-menu .has-header {
   width: 100%;
   max-width: 100%;
   direction: ltr;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold; }
 
 .askQuestionForm .categoryQuestion {
@@ -10123,7 +10197,7 @@ ion-side-menu .has-header {
   width: 100%; }
   .askQuestionForm .categoryQuestion label {
     border-width: 1px 0px;
-    font-size: 17px; }
+    font-size: 16px; }
     .askQuestionForm .categoryQuestion label.activeTextarea {
       margin-bottom: 55px; }
     .askQuestionForm .categoryQuestion label .radio-icon {
@@ -10141,7 +10215,7 @@ ion-side-menu .has-header {
   .askQuestionForm .textarea #askQuestionTextarea {
     width: 100%;
     padding: 2px 10px;
-    font-size: 17px;
+    font-size: 16px;
     height: 100px;
     line-height: 21px; }
     .askQuestionForm .textarea #askQuestionTextarea::-webkit-input-placeholder {
@@ -10162,7 +10236,7 @@ ion-side-menu .has-header {
   .askQuestiontextarea #askQuestionTextarea {
     width: 100%;
     padding: 2px 10px;
-    font-size: 17px;
+    font-size: 16px;
     height: 40px;
     line-height: 21px; }
     .askQuestiontextarea #askQuestionTextarea::-webkit-input-placeholder {
@@ -10189,7 +10263,7 @@ ion-side-menu .has-header {
   border-radius: 50%;
   right: 20px;
   bottom: -100px;
-  font-size: 35px;
+  font-size: 32px;
   transition: all 0.4s linear;
   z-index: 13;
   -webkit-box-align: center;
@@ -10216,7 +10290,7 @@ ion-side-menu .has-header {
     .writeAnswer .textarea #writeAnswerTextarea {
       width: 100%;
       padding: 10px;
-      font-size: 18px;
+      font-size: 17px;
       height: 150px;
       line-height: 23px; }
 
@@ -10228,7 +10302,7 @@ ion-side-menu .has-header {
       margin-top: 0;
       min-width: 28px;
       min-height: 30px;
-      font-size: 15px;
+      font-size: 14px;
       line-height: 32px;
       height: 32px;
       padding: 0 15px; }
@@ -10324,7 +10398,7 @@ ion-side-menu .has-header {
 
 .ios .popup-title {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 17px;
   margin: 12px 0 0 0;
   padding: 0; }
 
@@ -10332,7 +10406,7 @@ ion-side-menu .has-header {
   padding: 0px 16px 18px;
   color: inherit;
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
   overflow: auto; }
 
 .ios .popup-buttons {
@@ -10363,7 +10437,7 @@ ion-side-menu .has-header {
   -ms-flex: 1;
   flex: 1;
   border-radius: 0;
-  font-size: 17px;
+  font-size: 18px;
   min-height: 47px;
   border-right: 1px solid #c8c7cc;
   color: #3474e1; }
@@ -10385,7 +10459,7 @@ ion-side-menu .has-header {
     float: left;
     margin: 0;
     padding: 0 12px 12px;
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.6);
     -webkit-transition: color 0.25s ease-in-out;
@@ -10449,7 +10523,7 @@ ion-side-menu .has-header {
     display: inline-block;
     margin-top: 12px;
     padding-left: 13px;
-    font-size: 16px;
+    font-size: 15px;
     white-space: nowrap; }
 
 .userDetailModal .bottomPart {
@@ -10462,8 +10536,8 @@ ion-side-menu .has-header {
     background-color: #fff;
     color: #727A7D;
     text-align: left;
-    font-size: 18px;
-    padding: 10px 18px;
+    font-size: 15px;
+    padding: 6px 18px;
     margin: 0;
     border-bottom-color: #dddddd; }
     .settingCtrl button.button-full:first-child {
@@ -10494,13 +10568,13 @@ ion-side-menu .has-header {
     border-bottom: 1px solid #e2e2e2; }
     .aboutUs .topPart h2 {
       margin-top: 0;
-      font-size: 26px; }
+      font-size: 25px; }
     .aboutUs .topPart p {
-      font-size: 17px;
+      font-size: 16px;
       color: #828282; }
     .aboutUs .topPart .websiteLink {
       text-decoration: none;
-      font-size: 20px;
+      font-size: 19px;
       color: #00bcd2; }
   .aboutUs .middlePart {
     padding: 10px 18px;
@@ -10544,7 +10618,7 @@ ion-side-menu .has-header {
       .changePasswordModal .inputFields .item-md-label .md-input:focus ~ .input-label, .changePasswordModal .inputFields .item-md-label .md-input.used ~ .input-label {
         -webkit-transform: translate3d(0, -60px, 0) scale(1);
         transform: translate3d(0, -60px, 0) scale(1);
-        font-size: 14px;
+        font-size: 13px;
         opacity: 1;
         line-height: 35px; }
     .changePasswordModal .inputFields .item-md-label .input-label {
@@ -10613,7 +10687,7 @@ ion-side-menu .has-header {
     right: 0; }
   .editProfile .btn-two .button {
     line-height: 32px;
-    font-size: 15px; }
+    font-size: 14px; }
   .home-view .yprofile .pofilePic {
     padding: 17px 18px 0; }
   .home-view .yprofile .yRating i {
@@ -10623,7 +10697,5 @@ ion-side-menu .has-header {
     padding-right: 18px; } }
 
 @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
-  .floatingButton {
-    line-height: 67px; }
   .welcome-view .authFields .inputFields label .md-input:focus ~ .highlight-custom.password {
     height: 2px; } }

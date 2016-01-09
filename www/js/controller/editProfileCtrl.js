@@ -10,6 +10,14 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       $scope.hideLoader();  
     }, 400);
 
+    if($scope.loginType == 'user'){
+      utility.getUserCount()
+      .then(function(data){
+        $scope.getUserCount = data;
+      },function(data){
+        console.log(data);
+      });
+    }
     $scope.showDate = false;
 
     if(CONSTANT.isComingFromSignUp){
@@ -87,6 +95,9 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
             localStorage.setItem("profile",JSON.stringify(data));
             $scope.$emit("updateEditProfileFirstUser");
             $state.go('app.profile');
+            if(!$scope.getUserCount.emailVerified){
+              $scope.showMessage("Email Send. Please Verify!");
+            }
             $scope.transitionAnimation('left',180);
           },function(data){
             $scope.hideLoader();

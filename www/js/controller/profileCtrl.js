@@ -20,7 +20,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     }
     $timeout(function(){
       $scope.hideLoader();
-    }, 100);
+    }, 200);
   }else{
     if($scope.loginType == "user"){
       utility.getUserProfile(localStorage.getItem('userId'))
@@ -65,6 +65,30 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
         console.log(data);
       });
     }
+  }
+
+  if($scope.loginType == 'user'){
+    utility.getUserCount()
+    .then(function(data){
+      $scope.getUserCount = data;
+    },function(data){
+      console.log(data);
+    });
+    if(!localStorage.timelineJson){      
+      utility.getTimeLineJson()
+      .then(function(data){
+        localStorage.setItem('timelineJson',JSON.stringify(data));
+      },function(data){
+        console.log(data);
+      });
+    }
+  }else{
+    utility.getMonkCount()
+    .then(function(data){
+      $scope.getMonkCount = data;
+    },function(data){
+      console.log(data);
+    });
   }
   
   $scope.profileEdit = function(){

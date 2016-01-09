@@ -7,12 +7,12 @@ askmonkApp.controller('yProfilesCtrl', ['$scope','$state','utility','$stateParam
   });
   $scope.loginType = CONSTANT.loginType;
 
-  if(localStorage.getItem('monksProfiles')){
-    $scope.monksProfiles = JSON.parse(localStorage.getItem('monksProfiles'));
-    $timeout(function(){
-      $scope.hideLoader();    
-    }, 100);
-  }else{
+  // if(localStorage.getItem('monksProfiles')){
+  //   $scope.monksProfiles = JSON.parse(localStorage.getItem('monksProfiles'));
+  //   $timeout(function(){
+  //     $scope.hideLoader();    
+  //   }, 100);
+  // }else{
   	utility.getAllMonks()
   	.then(function(data){
       localStorage.setItem('monksProfiles',JSON.stringify(data));
@@ -21,7 +21,7 @@ askmonkApp.controller('yProfilesCtrl', ['$scope','$state','utility','$stateParam
   	},function(data){
   		console.log(data,"error");
   	});
-  }
+  // }
 
   $scope.goToYogiProfile = function(id){
   	$stateParams.id = id;

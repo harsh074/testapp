@@ -35,13 +35,18 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
   	console.log('deviceReady');
     document.addEventListener("online", onlineHandler, false);
     document.addEventListener("offline", offlineHandler, false);
+    $timeout(function(){
+      // console.log(sessionStorage.redirectFromUrl);
+      if(sessionStorage.redirectFromUrl){
+        $state.go('app.singlequestion',{id:sessionStorage.redirectFromUrl.split('askmonk://')[1]});
+      }
+    }, 300);
   }
   function offlineHandler() {
     $scope.showMessage("Internet Connectivity error please try again");
   }
   function onlineHandler() {
     console.log('online');
-
   }
   
 	utility.initialize(CONSTANT.baseUrl, false, $scope, $rootScope);
@@ -110,12 +115,8 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
       $ionicSideMenuDelegate.toggleLeft();
     }
   }
+
   $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-    // if(localStorage.getItem('questionStatus') == 'underObservation'){
-    //   $stateParams.id = localStorage.getItem('questionId');
-    //   $state.go('app.singlequestion',$stateParams);
-    //   $scope.transitionAnimation('left',180);
-    // }
     if(fromState.name != "app.yprofile" && toState.name != 'app.askQuestion'){
       localStorage.removeItem('directQuestion');
     }

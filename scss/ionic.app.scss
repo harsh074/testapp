@@ -75,7 +75,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			background-position: center;
 		}		
 		.app-tagline{
-			font-size: 26px;
+			font-size: 25px;
 			margin-top: 0px;
 			font-weight: 500;
 			color: rgba($welcome-color, 0.95);
@@ -94,7 +94,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 				border-color: #888;
 				border-width: 1.5px 1.5px 0px 1.5px;
 				color: #fff;
-				font-size: 17px;
+				font-size: 16px;
 				margin-bottom: -0px;
 				&.active{
 					background-color:$background-color2;
@@ -107,6 +107,14 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			color: #fff;
 			text-decoration: none;
 			white-space: nowrap;
+		}
+		.forgetPassword{
+	    display: block;
+	    float: none;
+	    margin-top: 20px;
+	    color: rgb(255, 255, 255);
+	    text-decoration: none;
+	    white-space: nowrap;
 		}
 		.inputFields{
 			border:1px solid #888;
@@ -145,7 +153,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 					&:focus~.input-label, &.used~.input-label{
 						-webkit-transform: translate3d(0,-60px,0) scale(1);
 						transform: translate3d(0,-60px,0) scale(1);
-						font-size: 14px;
+						font-size: 13px;
 						opacity: 1;
 						line-height: 35px;
 					}
@@ -157,6 +165,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 					opacity: 1 !important;
 					filter: alpha(opacity=100);
 					color: #fff !important;
+					font-size: 15px;
 				}
 				.highlight-custom{
 					background-color:#fff;
@@ -187,7 +196,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 .textareaLable{
   color: rgb(170, 170, 170);
   opacity: 0.5;
-  font-size: 16px;
+  font-size: 15px;
   padding: 20px 0px 5px 5px;
 }
 .button.button-custom{
@@ -197,7 +206,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	border-color: transparent;
 	color: #fff;
 	border-radius:0px;
-	font-size:15px;
+	font-size:14px;
 	&.active, &.activated {
 		border-color: transparent;
 		background-color: $background-color;
@@ -205,26 +214,26 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	}
 }
 .button.button-custom-small{
-		padding: 4px 13px;
-		min-width: 28px;
-		min-height: 30px;
-		font-size: 12px;
-		line-height: 26px;
-		border-radius:0px;
-		&.active, &.activated {
-			border-color: transparent;
-			background-color: $background-color;
-			box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0);
-		}
-		.dateObject{
-	    float: left;
-    	font-size: 15px;
-		}
-		.ion-android-calendar{
-			margin-left: 12px;
-	    font-size: 25px;
-    	float: right;
-		}
+	padding: 4px 13px;
+	min-width: 28px;
+	min-height: 30px;
+	font-size: 11px;
+	line-height: 26px;
+	border-radius:0px;
+	&.active, &.activated {
+		border-color: transparent;
+		background-color: $background-color;
+		box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0);
+	}
+	.dateObject{
+    float: left;
+  	font-size: 14px;
+	}
+	.ion-android-calendar{
+		margin-left: 12px;
+    font-size: 24px;
+  	float: right;
+	}
 }
 .button.button-askmonk{
 	border-color: $background-color;
@@ -248,7 +257,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			float: left;
 			height: 100%;
 			margin:0px;
-			font-size: 20px;
+			font-size: 19px;
 	    line-height: 58px;
 	    @include align-items(center);
 	    @include justify-content(center);
@@ -260,7 +269,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		  display: flex;
 	    float: right;
 	    height: 58px;
-	    width: 58px;
+	    width: 40px;
 	  	@include align-items(center);
 	  	@include justify-content(flex-end);
 	    .shortHeaderIcon{
@@ -282,6 +291,58 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	  	.button.button-custom{
 	  		margin-top: 0;
 	  	}
+		}
+		.selectTimeQuestion{
+		  display: flex;
+		  height: 58px;
+		  width:132px;
+			float:right;
+			@include align-items(center);
+	  	@include justify-content(flex-end);
+	  	.selectTimeLabel{
+  	    padding-left: 0px;
+		    border-width: 0px;
+		    display: inline-block;
+		    width: 100%;
+		    height: 30px;
+		    float: right;
+		    position: relative;
+		    background-color: rgba(0, 0, 0, 0);
+		    &:after{
+		    	content:"\f3b3";
+    	    position: absolute;
+			    right: 10px;
+			    top: 0px;
+			    display: inline-block;
+			    font-family: "Ionicons";
+			    speak: none;
+			    font-size: 22px;
+		    }
+		  	select{
+		  		-webkit-appearance: none;
+			    -moz-appearance: none;
+			    appearance: none;
+			    position: absolute;
+			    top: 0;
+			    bottom: 0;
+			    right: 0;
+			    border: none;
+			    text-indent: 0;
+			    white-space: nowrap;
+			    cursor: pointer;
+  		    padding: 4px 33px 4px 18px;
+			    height: 30px;
+			    width: 100%;
+			    max-width: 100%;
+			    direction: ltr;
+			    font-size: 16px;
+			    background: rgba(0, 0, 0, 0);
+			    color: rgb(255, 255, 255);
+			    option{
+			    	color:black;
+			    }
+		  	}
+		  }
 		}
 	}
 	.yprofile{
@@ -309,7 +370,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		}
 		.yAnswerStatus{
 			display: inline-block;
-			font-size: 20px;
+			font-size: 19px;
 			width: 69%;
 			margin-left: 20px;
 			white-space: nowrap;
@@ -317,7 +378,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		    min-height: 0px;
 		    line-height: 22px;
 		    margin-top: 5px;
-        font-size: 16px;
+        font-size: 15px;
         display: block;
         width: 100%;
         padding:3px 13px;
@@ -327,7 +388,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		    }
 			}
 			.statics{
-				font-size: 16px;
+				font-size: 15px;
 		    padding: 5px 14px 0px;
 		    text-align: center;
 		    &.userProfile{
@@ -347,7 +408,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			padding-top: 15px;
 			.userName{
 		    text-transform: capitalize;
-			  font-size: 16px;
+			  font-size: 15px;
 			  display: inline-block;
 	      padding-left: 18px;
     		color: rgb(255, 255, 255);
@@ -380,12 +441,12 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	    line-height: 23px;
 	    .aboutQuestion{
 	    	display: inline-block;
-		    font-size: 20px;
+		    font-size: 19px;
   			line-height: 20px;
   			width: 35%;
   			white-space:nowrap;
   			.pullToRefresh{
-		    	font-size: 12px;
+		    	font-size: 11px;
   			}
 	    }
 	    .searchBar{
@@ -405,22 +466,22 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	    			padding-top:0px;
 	    			&::-webkit-input-placeholder {
 					  	font-style: italic;
-					  	font-size: 16px;
+					  	font-size: 15px;
 					  	color: white;
 						}
 						&:-moz-placeholder {
 					  	font-style: italic;
-					  	font-size: 16px;
+					  	font-size: 15px;
 					  	color: white;
 						}
 						&::-moz-placeholder {
 						  font-style: italic;
-						  font-size: 16px;
+						  font-size: 15px;
 					  	color: white;
 						}
 						&:-ms-input-placeholder {  
 						  font-style: italic;
-						  font-size: 16px;
+						  font-size: 15px;
 					  	color: white;
 						}
 	    		}
@@ -432,13 +493,13 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 				    -webkit-font-smoothing: antialiased;
 				    -moz-osx-font-smoothing: grayscale;
 				    margin-right: 4px;
-				    font-size: 22px;
+				    font-size: 21px;
 				    color: white;
 					}
 				}
 				.placeholder-icon{
 					position: absolute;
-			    font-size: 16px;
+			    font-size: 15px;
 			    z-index: 1000;
 			    top: 10px;
 				  right: 15px;
@@ -453,7 +514,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	.dashboardData{
     top: 100px;
     z-index: 1;
-    font-size: 18px;
+    font-size: 17px;
     padding:0px;
     .noQuestionFound{
     	margin-top: 30px;
@@ -462,7 +523,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	    	color: $anchor-color;
 		    text-align: center;
 		    display: block;
-		    font-size: 20px;
+		    font-size: 19px;
 		    padding-top: 40px;
     	}
     }
@@ -516,7 +577,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 				    -webkit-line-clamp: 2;
 				    -webkit-box-orient: vertical;
 				    color: $top-portion-color;
-				    font-size: 14px;
+				    font-size: 13px;
 				    margin-bottom: 0;
 				    // white-space:nowrap;
 		      	// padding: 10px 0px 0px 25px;
@@ -538,7 +599,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
   				white-space: nowrap;
 			    padding-left: 23px;
 			    margin-bottom: 0px;
-			    font-size: 14px;
+			    font-size: 13px;
 		     	color: $top-portion-color;
 		     	display: inline-block;
   			}
@@ -565,7 +626,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     		font-size:100px;
     	}
     	.noQuestionTitle{
-    		font-size: 22px;
+    		font-size: 21px;
     		margin-top: 5px;
     	}
     }
@@ -597,13 +658,13 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
   .singleQuestion{
     top: 105px;
     z-index: 1;
-    font-size: 18px;
+    font-size: 17px;
     .questionData{
 			.question{
         position: relative;
 		    padding: 10px 0px 20px 0px;
 		    font-weight: bold;
-		    font-size: 24px;
+		    font-size: 23px;
         line-height: 30px;
 		    span{
 	  	    position: absolute;
@@ -614,14 +675,14 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	    	display: inline-block;
 			  width: 100%;
 				.answer{
-			    font-size: 18px;
+			    font-size: 17px;
 			    padding-bottom: 30px;
 			    margin-bottom: 0px;
 	        line-height: 24px;
 				}
 				.yogiName{
     	    text-align: right;
-			    font-size: 15px;
+			    font-size: 14px;
 			    margin-bottom: 0px;
 		    }
 			}
@@ -629,18 +690,19 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 				padding-top: 3px;
 				.tagName{
 					display: inline-block;
+					white-space: nowrap;
 					span{color: $red;}
 				}
 				.questionTime{
 					display: inline-block;
 			    float: right;
-			    font-size: 15px;
+			    font-size: 14px;
 			    white-space: nowrap;
 			    color: $top-portion-color;
 				}
 				.ratingQuestion{
 					padding-top:40px;
-					font-size: 19px;
+					font-size: 18px;
 				}
 				.answerRating{
 					display: inline-block;
@@ -661,7 +723,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 				}
 				.row{
 					padding:5px 0px;
-					font-size: 15px;
+					font-size: 14px;
 					&:nth-child(3){
 						margin-top: 15px;
 					}
@@ -675,7 +737,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 						.col{
 							button{
 								padding: 4px 27px;
-								font-size:16px;
+								font-size:15px;
 							}
 						}
 					}
@@ -723,21 +785,36 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	.walletManagement{
 		padding-top:15px;
 		.showMoney{
-			font-size: 18px;
+			font-size: 17px;
+		}
+		.customAddMoney{
+			.item-md-label{
+		    padding: 23px 0px 0px 5px;
+		    border-width: 0px 0px 1px 0px;
+		    display: inline-block;
+		    width: 72%;
+		    input{
+		    	color: rgb(0, 0, 0);
+		    }
+			}
+			button{
+				float:right;
+				margin-top: 27px;
+			}
 		}
 		table.packs{
 			width: 100%;
-			height: 90px;
+			height: 80px;
 			background-color: $top-portion-color;
 	    margin: 20px 0px;
 	    color: rgb(255, 255, 255);
 	    td{
 	    	vertical-align: middle;
-	    	font-size: 16px;
+	    	font-size: 15px;
 	    	&.packName{
 	    		width: 56%;
 	    		padding-left:15px;
-	    		    font-size: 20px;
+  		    font-size: 19px;
 	    	}
 	    	.preText{
 	    		color: $background-color;
@@ -762,14 +839,14 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		}
 		.rupee{
 			font-weight: bold;
-			font-size: 46px;
+			font-size: 45px;
 		}
 		.money{
 			font-weight: bold;
-			font-size: 50px;
+			font-size: 49px;
 		}
 		.aboutMoney{
-			font-size: 20px;
+			font-size: 19px;
 		}
 	}
 	.yogiTileProfile{
@@ -788,14 +865,11 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		    color: white;
 		    border-radius: 3px;
 	    	box-shadow: 1px 2px 1px rgba(185, 185, 185, 0.9);
-		    &:nth-child(odd) {
-			    margin-right: 3px;
-				}
 				&:nth-child(even) {
-			    margin-left: 3px;
+			    float: right;
 				}
 				&:nth-child(n+3){
-					margin-top:6px;
+					margin-top:8px;
 				}
 
 		    .imagePic{
@@ -815,7 +889,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		    	padding:5px 0px 0px;
 		    	color: $background-color;
 		    	p{
-		    		font-size: 18px;
+		    		font-size: 17px;
 	    			margin-bottom: 5px;
 	    			letter-spacing: 1px; 
 		    	}
@@ -826,13 +900,13 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		    	}
 		    }
 		    .statics{
-		    	font-size: 15px;
+		    	font-size: 14px;
 					.answered{
 						display: inline-block;
 				    padding-right: 7px;
 				    span{
 				    	color: $background-color;
-				    	font-size: 13px;
+				    	font-size: 12px;
 				    }
 					}
 					.accepted{
@@ -840,7 +914,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 				    padding-left: 7px;
 				    span{
 				    	color: $background-color;
-				    	font-size: 13px;
+				    	font-size: 12px;
 				    }
 					}
 		    }
@@ -936,7 +1010,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		  -webkit-transform: translateX(12px) translateY(-1px) rotate(-45deg);
 		}
 		+ b{
-	    font-size: 19px;
+	    font-size: 18px;
   	  width: 100px;
     	color: rgb(255, 255, 255);
     	line-height: 39px;
@@ -951,18 +1025,19 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		border-color: transparent;
 	}
 	.ion-social-usd{
-	  font-size: 23px;
+	  font-size: 22px;
 	  color: rgb(255, 255, 255) !important;
 	  padding: 0px 11px 0px 19px;
+    line-height: 37px;
 	}
 }
 .logoSideMenu{
 	background-image: url('../img/logo-bar-header.png');
 	width: 100%;
-	height: 80%;
+	height: 75%;
 	background-size: contain;
 	display: inline-block;
-	margin-top: 1px;
+	margin-top: 3px;
 	background-position:center 3px;
 	background-repeat:no-repeat;
 }
@@ -972,9 +1047,9 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		padding:0px 0px 0px 15px;
 	}
 	span{
-		font-size: 16px;
+		font-size: 15px;
 		i{
-			font-size: 26px;
+			font-size: 25px;
 			padding-right: 25px;
 			padding-left: 13px;
 			vertical-align: middle;
@@ -985,6 +1060,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		display: inline-block;
 		border-bottom: 2px solid rgba(220, 220, 220, 0.5);
 		width: 100%;
+		font-size: 14px;
 	}
 	&.profile span i {
 		color:#F10100;
@@ -1027,7 +1103,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 }
 dl{
 	width:100%;
-	font-size:17px;
+	font-size:16px;
 	dt{
 		width: 100px;
 		display: inline-block;
@@ -1075,13 +1151,13 @@ dl{
 		margin: 40px 10px 0px 20px;
 		// background-color: $top-portion-color;
 		color: #fff;
-		font-size: 35px;
+		font-size: 34px;
 		border: 5px solid #fff;
 		display: inline-block;
 	}
 	.sProfileName{
 		margin: 70px 0px;
-		font-size: 20px;
+		font-size: 19px;
 		color: #fff;
 		width: 160px;
 		display: inline-block;
@@ -1108,7 +1184,7 @@ ion-side-menu .has-header{
 			&:focus~.input-label, &.used~.input-label{
 				-webkit-transform: translate3d(0,-50px,0) scale(1);
 				transform: translate3d(0,-50px,0) scale(1);
-				font-size: 14px;
+				font-size: 13px;
 			}
 		}
 		.input-label{
@@ -1158,7 +1234,7 @@ ion-side-menu .has-header{
 	.btn-two{
 		.button{
 			margin-top: 15px;
-			font-size: 16px;
+			font-size: 15px;
       line-height: 35px;
     	min-height: 35px;
 			&:first-child{
@@ -1193,7 +1269,7 @@ ion-side-menu .has-header{
     text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 30px;
     overflow: hidden;
@@ -1222,7 +1298,7 @@ ion-side-menu .has-header{
     width: 100%;
     max-width: 100%;
     direction: ltr;
-    font-size: 17px;
+    font-size: 16px;
   	font-weight: bold;
   }
   .categoryQuestion{
@@ -1230,7 +1306,7 @@ ion-side-menu .has-header{
 		width: 100%;
 		label{
 			border-width:1px 0px;
-			font-size: 17px;
+			font-size: 16px;
 			&.activeTextarea{
 				margin-bottom: 55px;
 			}
@@ -1252,7 +1328,7 @@ ion-side-menu .has-header{
   	#askQuestionTextarea{
   		width: 100%;
   		padding: 2px 10px;
-  		font-size: 17px;
+  		font-size: 16px;
   		height: 100px;
   		line-height: 21px;
   		&::-webkit-input-placeholder {
@@ -1280,7 +1356,7 @@ ion-side-menu .has-header{
 	#askQuestionTextarea{
 		width: 100%;
 		padding: 2px 10px;
-		font-size: 17px;
+		font-size: 16px;
 		height: 40px;
 		line-height: 21px;
 		&::-webkit-input-placeholder {
@@ -1312,7 +1388,7 @@ ion-side-menu .has-header{
   border-radius: 50%;
   right: 20px;
   bottom: -100px;
-  font-size: 35px;
+  font-size: 32px;
   transition: all 0.4s linear;
   z-index: 13;
  	@include align-items(center);
@@ -1334,7 +1410,7 @@ ion-side-menu .has-header{
     #writeAnswerTextarea{
     	width: 100%;
 	    padding: 10px;
-	    font-size: 18px;
+	    font-size: 17px;
 	    height: 150px;
 	    line-height: 23px;
     }
@@ -1348,7 +1424,7 @@ ion-side-menu .has-header{
 	    margin-top: 0;
 	    min-width: 28px;
 	    min-height: 30px;
-	    font-size: 15px;
+	    font-size: 14px;
 	    line-height: 32px;
 	    height: 32px;
 	    padding: 0 15px;
@@ -1462,7 +1538,7 @@ ion-side-menu .has-header{
 	}
 	.popup-title {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 17px;
     margin:12px 0 0 0;
     padding: 0;
 	}
@@ -1470,7 +1546,7 @@ ion-side-menu .has-header{
 		padding: 0px 16px 18px;
     color: inherit;
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
     overflow: auto;
 	}
 	.popup-buttons {
@@ -1503,7 +1579,7 @@ ion-side-menu .has-header{
     -ms-flex: 1;
     flex: 1;
     border-radius: 0;
-    font-size: 17px;
+    font-size: 18px;
     min-height: 47px;
     border-right: 1px solid rgb(200, 199, 204);
     color: rgb(52, 116, 225);
@@ -1529,7 +1605,7 @@ ion-side-menu .has-header{
       float: left;
       margin: 0;
       padding: 0 12px 12px;
-      font-size: 14px;
+      font-size: 13px;
       text-transform: uppercase;
       color: rgba(255,255,255,0.6);
       @include transition(color .25s ease-in-out);
@@ -1606,7 +1682,7 @@ ion-side-menu .has-header{
 	    display: inline-block;
 	    margin-top: 12px;
 	    padding-left: 13px;
-	    font-size: 16px;
+	    font-size: 15px;
 	    white-space: nowrap;
     }
 	}
@@ -1623,8 +1699,8 @@ ion-side-menu .has-header{
     background-color: #fff;
     color: #727A7D;
     text-align:left;
-    font-size: 18px;
-    padding:10px 18px;
+    font-size: 15px;
+    padding:6px 18px;
     margin: 0;
     border-bottom-color: rgb(221, 221, 221);
     &:first-child{
@@ -1664,15 +1740,15 @@ ion-side-menu .has-header{
     border-bottom: 1px solid #e2e2e2;
 		h2{
 			margin-top: 0;
-			font-size: 26px;
+			font-size: 25px;
 		}
 		p{
-			font-size: 17px;
+			font-size: 16px;
 	    color: #828282;
 		}
 		.websiteLink{
 			text-decoration: none;
-	    font-size: 20px;
+	    font-size: 19px;
 	    color: rgb(0, 188, 210);
 		}
 	}
@@ -1728,7 +1804,7 @@ ion-side-menu .has-header{
 				&:focus~.input-label, &.used~.input-label{
 					-webkit-transform: translate3d(0,-60px,0) scale(1);
 					transform: translate3d(0,-60px,0) scale(1);
-					font-size: 14px;
+					font-size: 13px;
 					opacity: 1;
 					line-height: 35px;
 				}
@@ -1831,7 +1907,7 @@ ion-side-menu .has-header{
 
 	.editProfile .btn-two .button{
 		line-height: 32px;
-    font-size: 15px;
+    font-size: 14px;
 	}
 	.home-view {
 		.yprofile{
@@ -1851,9 +1927,6 @@ ion-side-menu .has-header{
 
 //HTC One, Samsung Galaxy S5, OnePlus One
 @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3){
-	.floatingButton{
-		line-height: 67px;
-	}
 	.welcome-view .authFields .inputFields label .md-input:focus ~ .highlight-custom.password{
 		height:2px;
 	}

@@ -8,10 +8,10 @@
 				<div class="yAnswerStatus">
 					<button class="button button-custom-small button-askmonk profileEditBtn" ng-click="profileEdit()"> Edit Profile</button>
 					<div class="statics" ng-class="{'userProfile':loginType=='user'}">
-						<span class="answered" ng-if="loginType=='user'">Asked<br/>{{profileInfo.totalQuestionsAsked ? profileInfo.totalQuestionsAsked : 0}}</span>
-						<span class="views" ng-if="loginType=='user'">Wallet<br/>Rs. {{profileInfo.walletMoney ? profileInfo.walletMoney : 0}}</span>
-						<span class="answered" ng-if="loginType=='monk'">Answered<br/>{{profileInfo.questionsAnswered ? profileInfo.questionsAnswered : 0}} </span>
-						<span class="views" ng-if="loginType=='monk'">Profile Views<br/>{{profileInfo.profileViews ? profileInfo.profileViews : 0}} </span>
+						<span class="answered" ng-if="loginType=='user'">Asked<br/>{{getUserCount.totalQuestionsAsked ? getUserCount.totalQuestionsAsked : 0}}</span>
+						<span class="views" ng-if="loginType=='user'">Wallet<br/>Rs. {{getUserCount.walletMoney ? getUserCount.walletMoney : 0}}</span>
+						<span class="answered" ng-if="loginType=='monk'">Answered<br/>{{getMonkCount.questionsAnswered ? getMonkCount.questionsAnswered : 0}} </span>
+						<span class="views" ng-if="loginType=='monk'">Profile Views<br/>{{getMonkCount.profileViews ? getMonkCount.profileViews : 0}} </span>
 					</div>
 				</div>
 			</div>
