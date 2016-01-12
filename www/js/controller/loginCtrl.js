@@ -169,7 +169,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     $state.go('app.singlequestion',$stateParams);
     $scope.transitionAnimation('left',180);
   }else{
-    $state.go('app.profile');
+    $state.go('app.dashboard');
     $scope.transitionAnimation('left',180);
   }
 }]);

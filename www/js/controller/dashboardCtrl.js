@@ -88,7 +88,9 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
   if($scope.loginType == "user"){
     utility.getUserQuestions()
     .then(function(data){
-      $scope.hideLoader();
+      $timeout(function(){
+        $scope.hideLoader();
+      });
       if(data.length>0){
         $scope.questionSorted(data);
         // $scope.groups = data;
@@ -110,7 +112,9 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
       }
       utility.getMonkAnsweredQuestion()
       .then(function(data1){
-        $scope.hideLoader();
+        $timeout(function(){
+          $scope.hideLoader();
+        });
         // $scope.questionAnswered = data1;
         $scope.questionSortedMonk(data1.concat(data),null);
       },function(data1){

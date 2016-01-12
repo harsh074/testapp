@@ -37,7 +37,7 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     document.addEventListener("offline", offlineHandler, false);
     $timeout(function(){
       // console.log(sessionStorage.redirectFromUrl);
-      if(sessionStorage.redirectFromUrl){
+      if(sessionStorage.redirectFromUrl && localStorage.token){
         $state.go('app.singlequestion',{id:sessionStorage.redirectFromUrl.split('askmonk://')[1]});
       }
     }, 300);
@@ -48,6 +48,14 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
   function onlineHandler() {
     console.log('online');
   }
+  
+  // $ionicPlatform.onHardwareBackButton(function() {
+  //   if($ionicHistory.currentStateName() == "login"){
+
+  //   }else{
+  //     $ionicHistory.goBack();
+  //   }
+  // }, 100);
   
 	utility.initialize(CONSTANT.baseUrl, false, $scope, $rootScope);
 
@@ -128,10 +136,4 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
   });
 
   CONSTANT.loginType = localStorage.getItem('loginType');
-
-  // $ionicPlatform.registerBackButtonAction(function() {
-  //   if($ionicHistory.currentStateName() == "login"){
-
-  //   }
-  // }, 100);
 }]);

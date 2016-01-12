@@ -7,7 +7,17 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
   });
   $scope.loginType = CONSTANT.loginType;
   $scope.money = {'customMoney':"100"};
-
+  window.addEventListener('native.keyboardshow', keyboardHandler);
+  window.addEventListener('native.keyboardhide', keyboardHandler);
+  function keyboardHandler(e){
+    if(e.type=="native.keyboardshow"){
+    	$timeout(function(){
+      	$scope.floatingBtnAction = false;
+      }, 200);
+    }else{
+      $scope.floatingBtnAction = true;
+    }
+  }
   $scope.askQuestion = function(){
   	$state.go('app.askQuestion');
 		$scope.transitionAnimation('left',180);
@@ -16,7 +26,7 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
     $scope.walletMoney = JSON.parse(localStorage.getItem("profile")).walletMoney;
     $timeout(function(){
       $scope.hideLoader();
-    }, 100);
+    }, 200);
   }else{
 	  if($scope.loginType == 'user'){
 			utility.getUserProfile(localStorage.getItem('userId'))

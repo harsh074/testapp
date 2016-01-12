@@ -7,15 +7,13 @@
 			</div>
 			<div class="selectTimeQuestion">
 				<label class="selectTimeLabel"><!-- item item-input item-select -->
-					<select name="questionTime" ng-model="askQuestion.moneyType" required>
-						<option ng-repeat="(key,value) in timeLineJson" ng-selected="{{6 == value.durationMonths}}" value="{{key}}">{{value.durationMonths | timeLineFiter}}</option>
+					<select name="questionTime" ng-model="askQuestion.moneyType" required ng-disabled="!(getUserCount && getUserCount.totalQuestionsAsked)">
+						<option ng-repeat="(key,value) in timeLineJson" ng-selected="{{12 == value.durationMonths}}" value="{{key}}">{{value.durationMonths | timeLineFiter}}</option>
 					</select>
 				</label>
 			</div>
 		</div>
-	</ion-content>
-	<ion-content scroll="true" class="row questionBottom" delegate-handle="scrollHandle">
-		<div id="askQuestionForm" class="askQuestionForm list">
+		<div class="askQuestionForm">
 			<label class="item item-input item-select">
 				<select name="questionCategory" ng-model="askQuestion.questionTag" required ng-change="askQuestionCategory($event, askQuestion.questionTag)">
 					<option value="" disabled selected>Question Related To </option>
@@ -23,6 +21,17 @@
 					<option value="other">Other</option>
 				</select>
 			</label>
+		</div>
+	</ion-content>
+	<ion-content scroll="true" class="row askQuestionBottom" delegate-handle="scrollHandle">
+		<div id="askQuestionForm" class="askQuestionForm list">
+			<!-- <label class="item item-input item-select">
+				<select name="questionCategory" ng-model="askQuestion.questionTag" required ng-change="askQuestionCategory($event, askQuestion.questionTag)">
+					<option value="" disabled selected>Question Related To </option>
+					<option ng-repeat="(key,value) in questions" value="{{key}}">{{key}}</option>
+					<option value="other">Other</option>
+				</select>
+			</label> -->
 
 			<div class="categoryQuestion">
 				<div ng-if="showQuestion" ng-repeat="question in preffredQuestion track by $index">
@@ -30,9 +39,32 @@
 				</div>
 			</div>
 		</div>
+		<div class="matchMaking editProfile paddingLRPlus21" ng-if="askQuestion.questionTag == 'Match Making'">
+			<form novalidate>
+				<ion-md-input placeholder="Partner Name" highlight-color="calm" ng-model="args.partnerName" type="text" required></ion-md-input>
+				<ion-md-input placeholder="Partner Birth Place" highlight-color="calm" ng-model="args.partnerBirthPlace" type="text" required></ion-md-input>
+				<ion-md-input placeholder="Partner Birth Time" hightlight-color="calm" type="time" ng-model="args.partnerBirthTime" required></ion-md-input>
+				<label class="item item-input item-calender">
+	      	<ionic-datepicker input-obj="datepickerObject">
+					  <button class="button button-custom-small button-light"> 
+	            <span class="dateObject" ng-if="!showDate">{{datepickerObject.titleLabel}}</span>
+	            <span class="dateObject" ng-if="showDate">{{datepickerObject.inputDate | date:'dd - MM - yyyy'}}</span>
+	            <i class="ion-android-calendar"></i>
+	          </button>
+					</ionic-datepicker>
+	      </label>
+				<label class="item item-input item-select">
+	        <select name="gender" ng-model="args.partnerGender" required>
+	            <option value="" disabled>Gender</option>
+	            <option value="male">Male</option>
+	            <option value="female">Female</option>
+	        </select>
+	      </label>
+			</form>
+		</div>
 	</ion-content>
 	
-	<div class="item askQuestiontextarea" ng-if="!showQuestion || showOnOtherQuestion">
+	<div class="item askQuestiontextarea" ng-if="!showQuestion || showOnOtherQuestion || askQuestion.questionTag == 'Match Making'">
 		<textarea id="askQuestionTextarea" class="animate msd-elastic" name="askQuestionTextarea" focus-me ng-model="askOtherQuestion.question" placeholder="Write the question that you wish to ask..." ng-keyup="expandText($event)" ng-keydown="expandText($event)"></textarea>
 	</div>
 </ion-view>

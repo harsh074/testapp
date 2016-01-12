@@ -28,7 +28,8 @@
       <div class="subBottom" ng-if="loginType=='user'">
       	<p class="tagName">Tag : <span>{{question.questionTag}}</span></p>
       	<p class="questionTime" ng-if="question.status=='answered' || question.status=='rated'">Answered {{question.askedOn | timeago}}</p>
-      	<p class="questionTime"ng-if="question.status=='asked' || question.status=='direct'">Asked {{question.askedOn | timeago}}</p>
+      	<p class="questionTime" ng-if="question.status=='asked' || question.status=='direct'">Asked {{question.askedOn | timeago}}</p>
+        <p class="moneyType" ng-if="question.predictionDurationMonths">Prediction uptil {{question.predictionDurationMonths | timeLineFiter}}</p>
       	<p class="ratingQuestion" ng-if="question.status=='answered' || question.status=='rated'">How Satisfied are you ?</p>
       	<div class="answerRating" ng-if="question.status=='answered' || question.status=='rated'">
           <rating ng-model="question.rating" max="5" ng-click="rateQuestion()"></rating>
@@ -39,7 +40,7 @@
       <div class="subBottom" ng-if="loginType=='monk'">
         <p class="tagName">Tag : <span>{{question.questionTag}}</span></p>
         <p class="questionTime">{{question.askedOn | timeago}}</p>
-
+        <p class="moneyType" ng-if="question.predictionDurationMonths">Prediction uptil {{question.predictionDurationMonths | timeLineFiter}}</p>
         <div class="row">
           <div class="col">Name:&nbsp;<span>{{question.name.split(' ')[0]}}</span></div>
           <div class="col">Time:&nbsp;<span>{{question.birthTime | date : 'h:mm a'}}</span></div>

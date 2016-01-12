@@ -356,9 +356,11 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 				height: 75px;
 				width: 75px;
 				display: inline-block;
-				background-color: white;
+				// background-color: white;
 				border-radius:50%;
 				vertical-align: top;
+		    background-image: url("../img/default1.jpg");
+    		background-size: auto 100%;
 				img{
 			    height: 75px;
 					width: 75px;
@@ -502,7 +504,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			    font-size: 15px;
 			    z-index: 1000;
 			    top: 10px;
-				  right: 15px;
+				  right: 12px;
 				  color: rgb(255, 255, 255);
 				  background-color:$top-portion-color;
 				  height: 36px;
@@ -693,6 +695,11 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 					white-space: nowrap;
 					span{color: $red;}
 				}
+				.moneyType{
+			    font-size: 14px;
+			    white-space: nowrap;
+			    color:$top-portion-color;
+				}
 				.questionTime{
 					display: inline-block;
 			    float: right;
@@ -869,7 +876,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			    float: right;
 				}
 				&:nth-child(n+3){
-					margin-top:8px;
+					margin-top:10px;
 				}
 
 		    .imagePic{
@@ -1024,21 +1031,33 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		border-style: solid;
 		border-color: transparent;
 	}
-	.ion-social-usd{
+	.ion-wallet{
 	  font-size: 22px;
 	  color: rgb(255, 255, 255) !important;
 	  padding: 0px 11px 0px 19px;
     line-height: 37px;
+    &:before{
+			content:'';
+			background-image:url('../img/wallet-topbar.png');
+			width: 21px;
+			height: 21px;
+			position: absolute;
+			background-size: contain;
+			top: 9px;
+			left: 7px;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
 	}
 }
 .logoSideMenu{
-	background-image: url('../img/logo-bar-header.png');
+	background-image: url('../img/logo.png');
 	width: 100%;
-	height: 75%;
-	background-size: contain;
+	height: 70%;
+	background-size: auto 100%;
 	display: inline-block;
-	margin-top: 3px;
-	background-position:center 3px;
+	margin-top: 4px;
+	background-position:center;
 	background-repeat:no-repeat;
 }
 .menu{
@@ -1073,6 +1092,20 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	}
 	&.wallet span i {
 		color:#30B195;
+		position: relative;
+		padding-right: 50px;
+		&:before{
+			content:'';
+			background-image:url('../img/wallet-sidemenu.png');
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			background-size: contain;
+			top: 0px;
+			left: 13px;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
 	}
 	&.yprofile span i {
 		color:#67D5E4;
@@ -1081,12 +1114,12 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		&:before{
 			content:'';
 			background-image:url('../img/monks.png');
-			width: 25px;
-			height: 25px;
+			width: 22px;
+			height: 22px;
 			position: absolute;
 			background-size: contain;
 			top: 0px;
-			left: 7px;
+			left: 13px;
 			background-repeat: no-repeat;
 			background-position: center;
 		}
@@ -1278,6 +1311,7 @@ ion-side-menu .has-header{
     height: 43px;
   }
 }
+
 .askQuestionForm{
 	.item-select{
 		padding-left: 0px;
@@ -1285,21 +1319,22 @@ ion-side-menu .has-header{
     display: inline-block;
     width: 100%;
     height: 46px;
+  	background-color:#F5F5F5;
     float: right;
-    margin-top: 10px;
     &:after {
 	    right: 25px;
-	    top: 42%;
+	    top: 50%;
 		}
 	}
 	select {
-    padding: 4px 33px 4px 14px;
-    height: 34px;
+    padding: 12px 33px 4px 14px;
+    height: 38px;
     width: 100%;
     max-width: 100%;
     direction: ltr;
     font-size: 16px;
   	font-weight: bold;
+  	background-color:#F5F5F5;
   }
   .categoryQuestion{
 		display: inline-block;
@@ -1346,7 +1381,6 @@ ion-side-menu .has-header{
   	}
   }
 }
-
 .askQuestiontextarea{
 	border-width: 1px 0px 0px;
 	padding:10px;
@@ -1373,6 +1407,14 @@ ion-side-menu .has-header{
 		}
 	}
 }
+.matchMaking{
+	margin-top:-40px;
+}
+.askQuestionBottom{
+	top:148px;
+	padding:0px;
+}
+
 .questionBottom{
 	top:105px;
 	padding:0px;
@@ -1605,7 +1647,7 @@ ion-side-menu .has-header{
       float: left;
       margin: 0;
       padding: 0 12px 12px;
-      font-size: 13px;
+      font-size: 12px;
       text-transform: uppercase;
       color: rgba(255,255,255,0.6);
       @include transition(color .25s ease-in-out);

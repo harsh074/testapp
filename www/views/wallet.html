@@ -9,7 +9,7 @@
 			<p class="showMoney">Present Wallet Money : Rs {{walletMoney ? walletMoney : 0}}</p>
 			<div class="customAddMoney">
 				<form name="customAddMoney" class="form form-horizontal" ng-submit="addCustomMoney(customAddMoney)" novalidate>
-					<ion-md-input name="addMoney" type="text" placeholder="Rs." highlight-color="calm" ng-pattern="/^[0-9]+$/" ng-model="money.customMoney"></ion-md-input>
+					<ion-md-input name="addMoney" type="tel" placeholder="Rs." highlight-color="calm" ng-pattern="/^[0-9]+$/" ng-model="money.customMoney"></ion-md-input>
 					<button class="button button-custom button-small" type="submit">Add</button>
 				</form>
 			</div>
@@ -31,6 +31,5 @@
 	</ion-content>
 	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user'">
 		<i class="icon ion-android-add"></i>
-		<!-- <img src="img/flyout_icon.jpg" /> -->
 	</div>
 </ion-view>

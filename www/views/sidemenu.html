@@ -6,7 +6,7 @@
         <button class="customMenuBtn" ng-click="hamburgerBtnEvent()" ng-disabled="isComingFromSignUp" ng-class="{'is-active':showArrow}"><span></span></button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-        <button class="button-clear ion-social-usd" ng-disabled="isComingFromSignUp" ng-click="goToWallet()"></button>
+        <button class="button-clear ion-wallet" ng-disabled="isComingFromSignUp" ng-click="goToWallet()"></button>
       </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
@@ -31,7 +31,7 @@
             <span class="menuList">Dashboard</span>
           </ion-item>
           <ion-item menu-close ui-sref="app.wallet" class="menu wallet">
-            <span><i class="ion-pricetags"></i></span>
+            <span><i class="ion-wallet"></i></span>
             <span class="menuList">Wallet</span>
           </ion-item>
           <ion-item menu-close ui-sref="app.yprofiles" class="menu yprofile" ng-if="loginType=='user'">

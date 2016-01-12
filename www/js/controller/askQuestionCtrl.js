@@ -13,10 +13,44 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 		}, 150);
   }
 
+  $scope.args = {"partnerName":"","partnerBirthPlace":"","partnerBirthTime":"","partnerDOB":"","partnerGender":""};
 	$scope.showQuestion = true;
-	$scope.askQuestion = {"email":localStorage.getItem('email'), "userId":localStorage.getItem('userId'),"question":"","questionTag":"","isDirect":false,"moneyType":"basic"}
+	$scope.askQuestion = {"email":localStorage.getItem('email'), "userId":localStorage.getItem('userId'),"question":"","questionTag":"","isDirect":false,"moneyType":"1yearly"}
 	$scope.askOtherQuestion = {"question":null};
 	$scope.showOnOtherQuestion = false;
+
+	$scope.datepickerObject = {
+    titleLabel: 'DOB',
+    todayLabel: 'Today',
+    closeLabel: 'Close',
+    setLabel: 'Set',
+    setButtonType : 'button-askmonk',
+    todayButtonType : 'button-askmonk',
+    closeButtonType : 'button-askmonk',
+    inputDate: $scope.args.partnerDOB ? new Date($scope.args.partnerDOB):new Date(),
+    mondayFirst: true,
+    templateType: 'popup',
+    showTodayButton: 'false',
+    modalHeaderColor: 'bar-positive',
+    modalFooterColor: 'bar-positive',
+    from: new Date(1940, 1, 1),
+    to: new Date(),
+    callback: function (val) {
+      datePickerCallback(val);
+    },
+    dateFormat: 'dd-MM-yyyy',
+    closeOnSelect: false
+  };
+  
+  function datePickerCallback(val){
+    $scope.showDate = true;
+    if(val){
+      $scope.datepickerObject.inputDate = val;
+    }else{
+      $scope.datepickerObject.inputDate = new Date();
+    }
+    $scope.args.partnerDOB = angular.copy($scope.datepickerObject.inputDate);
+  }
 
 	if($scope.loginType == 'user'){
     utility.getUserCount()
@@ -99,7 +133,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	}
 
 	$scope.openAskQuestion = function(){
-		console.log($scope.askQuestion.moneyTime);
+		console.log($scope.askQuestion.moneyType);
 		var confirmPopup = $ionicPopup.show({
 	    cssClass:"ios",
 	    title: 'Going further would send the question to the astrologers.',
@@ -143,7 +177,15 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 		if(localStorage.getItem('directQuestion')){
 			angular.extend($scope.askQuestion, JSON.parse(localStorage.getItem('directQuestion')));
 		}
-
+		if($scope.askQuestion.questionTag == "Match Making"){
+			if(!$scope.args.partnerName || !$scope.args.partnerBirthPlace || !$scope.args.partnerBirthTime || !$scope.args.partnerDOB || !$scope.args.partnerGender){
+				$scope.hideLoader();
+				$scope.showMessage("All fields are required");
+				return;
+			}else{
+				$scope.askQuestion.matchMakingDetails = angular.copy($scope.args);
+			}
+		}
 		if($scope.askQuestion.question){
 			if(localStorage.getItem('directQuestion')){
 				utility.askDirectQuestion($scope.askQuestion)

@@ -1,5 +1,7 @@
 askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeout','$stateParams','CONSTANT','$ionicModal','$ionicPopup', function($scope, $state, utility,$timeout,$stateParams,CONSTANT,$ionicModal,$ionicPopup){
-
+  if(!$scope.authenticated){
+    $state.go('login');
+  }
   $scope.floatingBtnAction = false;
   $scope.$on('$ionicView.enter', function(){
     $scope.floatingBtnAction = true;
@@ -135,6 +137,10 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
       });
       confirmPopup.then(function(res) {
         if(res) {
+          if($scope.question.answer.length<100){
+            $scope.showMessage("Minimum character length is 100.");
+            return;
+          }
           $scope.showLoader();
           console.log('You are sure');
           utility.submitAnswer($scope.question)

@@ -46,6 +46,8 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     }else{
       utility.getMonkProfile()
       .then(function(data){
+        localStorage.setItem("email",data.email);
+        localStorage.setItem("name",data.name);
         $scope.$emit("updateSideMenuName",data);
         $rootScope.profileData = data;
         if(!data.name || !data.phone || !data.education || !data.residence || !data.experience){
@@ -54,8 +56,6 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
           $scope.transitionAnimation('left');
         }else{
           $scope.hideLoader();
-          localStorage.setItem("email",data.email);
-          localStorage.setItem("name",data.name);
           localStorage.setItem("profile",JSON.stringify(data));
           $scope.profileInfo = angular.copy($rootScope.profileData);
           $scope.profileImage = 'http://askmonk.in/mImages/'+$scope.profileInfo.email.split('@')[0].toLowerCase()+'.jpg';

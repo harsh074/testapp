@@ -59,7 +59,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
         datePickerCallback(val);
       },
       dateFormat: 'dd-MM-yyyy', //Optional
-      closeOnSelect: false //Optional
+      closeOnSelect: true //Optional
     };
     
     function datePickerCallback(val){

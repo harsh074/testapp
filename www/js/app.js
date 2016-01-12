@@ -1,13 +1,13 @@
 var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic']);
 
-askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT', function($ionicPlatform,$state,$stateParams,CONSTANT){  
+askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', function($ionicPlatform,$state,$stateParams,CONSTANT,$timeout){  
   if(!localStorage.getItem('token')){
     $state.go('login');
   }else if(localStorage.getItem('questionStatus') == 'underObservation'){
     $stateParams.id = localStorage.getItem('questionId');
     $state.go('app.singlequestion',$stateParams);
   }else{
-    $state.go('app.profile');
+    $state.go('app.dashboard');
   }
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -23,6 +23,15 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT', function($i
       window.StatusBar.overlaysWebView(true);
       window.StatusBar.backgroundColorByHexString('#000');  //#2B5D80
     }
+    $timeout(function(){
+      if (navigator && navigator.splashscreen) {
+        navigator.splashscreen.hide();
+      }
+      if (window.navigator && window.navigator.splashscreen) {
+        window.navigator.splashscreen.hide();
+      }
+    },2000);
+
     CONSTANT.isDevice = ionic.Platform.device().available;
     // ionic.Platform.isFullScreen = false;
     // ionic.Platform.showStatusBar(true);
