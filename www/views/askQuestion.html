@@ -39,32 +39,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="matchMaking editProfile paddingLRPlus21" ng-if="askQuestion.questionTag == 'Match Making'">
-			<form novalidate>
-				<ion-md-input placeholder="Partner Name" highlight-color="calm" ng-model="args.partnerName" type="text" required></ion-md-input>
-				<ion-md-input placeholder="Partner Birth Place" highlight-color="calm" ng-model="args.partnerBirthPlace" type="text" required></ion-md-input>
-				<ion-md-input placeholder="Partner Birth Time" hightlight-color="calm" type="time" ng-model="args.partnerBirthTime" required></ion-md-input>
-				<label class="item item-input item-calender">
-	      	<ionic-datepicker input-obj="datepickerObject">
-					  <button class="button button-custom-small button-light"> 
-	            <span class="dateObject" ng-if="!showDate">{{datepickerObject.titleLabel}}</span>
-	            <span class="dateObject" ng-if="showDate">{{datepickerObject.inputDate | date:'dd - MM - yyyy'}}</span>
-	            <i class="ion-android-calendar"></i>
-	          </button>
-					</ionic-datepicker>
-	      </label>
-				<label class="item item-input item-select">
-	        <select name="gender" ng-model="args.partnerGender" required>
-	            <option value="" disabled>Gender</option>
-	            <option value="male">Male</option>
-	            <option value="female">Female</option>
-	        </select>
-	      </label>
-			</form>
+		<div class="matchMaking paddingLRPlus21" ng-if="askQuestion.questionTag == 'Match Making'">
+			<p>Partner Details</p><button class="button button-custom button-small" ng-click="addPartnerDetailsModal()">Add</button>
 		</div>
 	</ion-content>
 	
 	<div class="item askQuestiontextarea" ng-if="!showQuestion || showOnOtherQuestion || askQuestion.questionTag == 'Match Making'">
-		<textarea id="askQuestionTextarea" class="animate msd-elastic" name="askQuestionTextarea" focus-me ng-model="askOtherQuestion.question" placeholder="Write the question that you wish to ask..." ng-keyup="expandText($event)" ng-keydown="expandText($event)"></textarea>
+		<textarea id="askQuestionTextarea" class="animate msd-elastic" name="askQuestionTextarea" focus-me ng-model="askOtherQuestion.question" placeholder="Write the question that you wish to ask..."></textarea>
 	</div>
 </ion-view>

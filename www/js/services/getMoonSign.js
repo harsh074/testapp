@@ -2,7 +2,7 @@ askmonkApp.factory('getMoonSign', function(){
 	
 	return function getMoonSign(data){
 		var zod_signs = ["capricorn" , "aquarius", "pisces", "aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius"];
-    var dob = new Date(data.dob);
+    var dob = new Date(data.dob?data.dob:data.partnerDOB);
     var dobDate = dob.getDate();
     var dobMonth = dob.getMonth();
 

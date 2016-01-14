@@ -2,9 +2,9 @@
 	<ion-content scroll="false">
 		<div class="shortHeader">
 			<h1 class="title">View Question</h1>
-      <!-- <div class="shortHeaderBtn" ng-click="removeQuestion()" ng-if="loginType=='user'">
-        <a class="shortHeaderIcon"><i class="icon ion-android-delete"></i></a>
-      </div> -->
+      <div class="shortHeaderBtn" ng-if="loginType=='user'">
+        <a class="shortHeaderIcon" ng-if="question.questionTag=='Match Making'" ng-click="viewPartnerDetails()"><i class="icon ion-person-add"></i></a>
+      </div>
       <div class="shortHeaderCustomBtn" ng-if="loginType=='monk' && question.status == 'underObservation'">
         <!-- <a class="shortHeaderIcon"><i class="icon ion-paper-airplane"></i></a> -->
         <button class="button button-custom button-small" ng-click="postAnswer()">Answer</button>

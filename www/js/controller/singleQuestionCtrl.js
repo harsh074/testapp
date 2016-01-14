@@ -29,6 +29,16 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
   	console.log(data);
   });
 
+  $scope.viewPartnerDetails = function(){
+     $ionicModal.fromTemplateUrl('views/viewPartnerDetailModal.html', function (modal) {
+      $scope.viewPartnerDetailModal = modal;
+      $scope.viewPartnerDetailModal.show();
+    }, {
+      scope: $scope,
+      animation: 'slide-in-up'
+    });
+  }
+
   $scope.rateQuestion = function(){
     console.log($scope.question);
     utility.ratingQuestion({"userId":localStorage.getItem('userId'),"email":$scope.question.email,"id":$scope.question.id,"status":$scope.question.status,"rating":$scope.question.rating})
@@ -115,6 +125,7 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
       $scope.writeAnswerModal.remove();
     }
   }
+
   $scope.postAnswer = function(){
     if(localStorage.getItem('answer') != ""){
       $scope.question.answer = localStorage.getItem('answer');
@@ -165,7 +176,6 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     }
   }
 
-
   $scope.closeModal = function(){
     if($scope.userDetailModal && $scope.userDetailModal.isShown()){
       $scope.userDetailModal.remove();
@@ -173,6 +183,13 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     if($scope.writeAnswerModal && $scope.writeAnswerModal.isShown()){
       $scope.writeAnswerModal.remove();
     }
+    if($scope.viewPartnerDetailModal && $scope.viewPartnerDetailModal.isShown()){
+      $scope.viewPartnerDetailModal.remove();
+    }
+  }
+  $scope.goToWalletFromModal = function(){
+    $scope.closeModal();
+    $state.go('app.wallet');
   }
   
 }]);
@@ -196,6 +213,11 @@ askmonkApp.controller('writeAnswerModalPopupCtrl', ['$scope','$timeout', functio
 }]);
 
 askmonkApp.controller('userDetailModalPopupCtrl', ['$scope','utility','getMoonSign', function($scope,utility,getMoonSign){
-    $scope.profileInfo = angular.copy(getMoonSign($scope.question));
-    $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
+  $scope.profileInfo = angular.copy(getMoonSign($scope.question));
+  $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
+}]);
+
+askmonkApp.controller('viewPartnerDetailModalCtrl', ['$scope','getMoonSign', function($scope,getMoonSign){
+  $scope.partnerProfileInfo = angular.copy(getMoonSign($scope.question.matchMakingDetails));
+  $scope.partnerProfileImage = 'img/moonSign/'+$scope.partnerProfileInfo.moonSign+'.png';;
 }]);

@@ -9348,7 +9348,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     -moz-justify-content: flex-end;
     justify-content: flex-end; }
     .home-view .shortHeader .shortHeaderBtn .shortHeaderIcon i {
-      font-size: 30px;
+      font-size: 28px;
       color: #fff; }
   .home-view .shortHeader .shortHeaderCustomBtn {
     height: 58px;
@@ -9477,6 +9477,16 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         float: right; }
   .home-view .yprofile .subHeaderBottomContent {
     padding-top: 15px; }
+    .home-view .yprofile .subHeaderBottomContent .avaliableStatus {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: #9E9E9E;
+      border-radius: 50%;
+      margin-right: -15px;
+      margin-left: 15px; }
+      .home-view .yprofile .subHeaderBottomContent .avaliableStatus.available {
+        background-color: #33cd5f; }
     .home-view .yprofile .subHeaderBottomContent .userName {
       text-transform: capitalize;
       font-size: 15px;
@@ -9982,6 +9992,9 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   background-position: center;
   background-repeat: no-repeat; }
 
+.platform-android .bar .title {
+  left: 54px !important; }
+
 .menu {
   border: none; }
   .menu .item-content {
@@ -10207,7 +10220,8 @@ ion-side-menu .has-header {
   width: 100%;
   height: 46px;
   background-color: #F5F5F5;
-  float: right; }
+  float: right;
+  margin: 0; }
   .askQuestionForm .item-select:after {
     right: 25px;
     top: 50%; }
@@ -10247,7 +10261,9 @@ ion-side-menu .has-header {
     padding: 2px 10px;
     font-size: 16px;
     height: 100px;
-    line-height: 21px; }
+    line-height: 21px;
+    max-height: 125px;
+    overflow-y: scroll !important; }
     .askQuestionForm .textarea #askQuestionTextarea::-webkit-input-placeholder {
       font-style: italic; }
     .askQuestionForm .textarea #askQuestionTextarea:-moz-placeholder {
@@ -10268,7 +10284,9 @@ ion-side-menu .has-header {
     padding: 2px 10px;
     font-size: 16px;
     height: 40px;
-    line-height: 21px; }
+    line-height: 21px;
+    max-height: 125px;
+    overflow-y: scroll !important; }
     .askQuestiontextarea #askQuestionTextarea::-webkit-input-placeholder {
       font-style: italic; }
     .askQuestiontextarea #askQuestionTextarea:-moz-placeholder {
@@ -10279,7 +10297,19 @@ ion-side-menu .has-header {
       font-style: italic; }
 
 .matchMaking {
-  margin-top: -40px; }
+  margin-top: -15px; }
+  .matchMaking p {
+    font-size: 16px;
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: top;
+    line-height: 30px; }
+  .matchMaking .button.button-custom {
+    float: right;
+    margin-top: 0; }
+
+.partnerDetails {
+  top: 105px; }
 
 .askQuestionBottom {
   top: 148px;
@@ -10565,6 +10595,9 @@ ion-side-menu .has-header {
 
 .userDetailModal .bottomPart {
   padding: 15px 18px; }
+
+.partnerDetailModal .topPart .userInfo {
+  line-height: 50px; }
 
 .settingCtrl {
   margin-top: 60px;

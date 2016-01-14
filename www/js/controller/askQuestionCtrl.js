@@ -1,4 +1,4 @@
-askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScrollDelegate','$timeout','CONSTANT','$ionicPopup', function($scope, $state,utility,$ionicScrollDelegate,$timeout,CONSTANT,$ionicPopup){
+askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScrollDelegate','$timeout','CONSTANT','$ionicPopup','$ionicModal', function($scope, $state,utility,$ionicScrollDelegate,$timeout,CONSTANT,$ionicPopup,$ionicModal){
 
 	$scope.$on('$ionicView.enter', function(){
     // $scope.showLoader();
@@ -122,14 +122,15 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 		}
 	}
 
-	$scope.expandText = function($event){
-		element = document.getElementById("askQuestionTextarea");
-		otherQuestionMargin = document.getElementsByClassName('activeTextarea');
-		angular.element(otherQuestionMargin).css('margin-bottom',(element.scrollHeight+15)+"px")
-		$timeout(function(){
-    	$ionicScrollDelegate.$getByHandle('scrollHandle').resize();
-			$ionicScrollDelegate.$getByHandle('scrollHandle').scrollBottom(true);
-		}, 10);
+	$scope.addPartnerDetailsModal = function(){
+		$ionicModal.fromTemplateUrl('views/partnerDetailsModal.html', function (modal) {
+      $scope.partnerDetailsModal = modal;
+      $scope.partnerDetailsModal.show();
+    },{
+      scope: $scope,
+      animation: 'slide-in-up',
+      hardwareBackButtonClose: true
+    });
 	}
 
 	$scope.openAskQuestion = function(){
@@ -180,7 +181,8 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 		if($scope.askQuestion.questionTag == "Match Making"){
 			if(!$scope.args.partnerName || !$scope.args.partnerBirthPlace || !$scope.args.partnerBirthTime || !$scope.args.partnerDOB || !$scope.args.partnerGender){
 				$scope.hideLoader();
-				$scope.showMessage("All fields are required");
+				$scope.addPartnerDetailsModal();
+				$scope.showMessage("Partner details are required");
 				return;
 			}else{
 				$scope.askQuestion.matchMakingDetails = angular.copy($scope.args);
@@ -228,12 +230,23 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 			}
 		}else{
 			$scope.hideLoader();
+			$scope.showMessage("Please ask the desired question");
 		}
 	}
 
 	$scope.cancelAskQuestion = function(){
 		$state.go('app.dashboard');
 	}
+
+	$scope.closeModal = function(){
+    if($scope.partnerDetailsModal && $scope.partnerDetailsModal.isShown()){
+      $scope.partnerDetailsModal.remove();
+    }
+  }
+  $scope.goToWalletFromModal = function(){
+  	$scope.closeModal();
+  	$state.go('app.wallet');
+  }
 }]);
 
 askmonkApp.filter('timeLineFiter', function(){
@@ -245,3 +258,7 @@ askmonkApp.filter('timeLineFiter', function(){
 		}
 	}
 });
+
+askmonkApp.controller('partnerDetailsModal', ['$scope', function($scope){
+
+}]);

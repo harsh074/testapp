@@ -1,47 +1,46 @@
-<ion-modal-view ng-controller="userDetailModalPopupCtrl">
+<ion-modal-view ng-controller="viewPartnerDetailModalCtrl">
 	<ion-header-bar class="bar-assertive-900">
 		<div class="buttons buttons-left header-item"><span class="left-buttons">
       <button class="customMenuBtn is-active" ng-click="closeModal()"><span></span></button>
     </span></div>
     <div class="title title-left header-item" style="left: 75px; right: 68px;"><i class="logoSideMenu"></i></div>
     <div class="buttons buttons-right header-item"><span class="right-buttons">
-      <button class="button-clear ion-wallet" ng-disabled="true" ng-click="goToWallet()"></button>
+      <button class="button-clear ion-wallet" ng-click="goToWalletFromModal()"></button>
     </span></div>
   </ion-header-bar>
-	<ion-content scroll="false" class="has-header userDetailModal">
+	<ion-content scroll="false" class="has-header userDetailModal partnerDetailModal">
 	  <div class="topPart">
       <div class="avatar">
-        <img ng-src="{{profileImage}}"><!-- http://askmonk.in/mImages/skmagon.jpg -->
+        <img ng-src="{{partnerProfileImage}}"><!-- http://askmonk.in/mImages/skmagon.jpg -->
       </div>
       <div class="userInfo">
-        <p>{{profileInfo.name}}</p>
-        <p>{{profileInfo.email}}</p>
+        <p>{{partnerProfileInfo.partnerName}}</p>
       </div>
     </div>
     <div class="bottomPart">
       <dl>
         <dt>Birth Date</dt>
-        <dd>{{profileInfo.dob | date : 'dd-MM-yyyy'}}</dd>
+        <dd>{{partnerProfileInfo.partnerDOB | date : 'dd-MM-yyyy'}}</dd>
       </dl>
       <dl>
         <dt>Birth Place</dt>
-        <dd>{{profileInfo.birthPlace}}</dd>
+        <dd>{{partnerProfileInfo.partnerBirthPlace}}</dd>
       </dl>
       <dl>
         <dt>Birth Time</dt>
-        <dd>{{profileInfo.birthTime | date : 'h:mm a'}}</dd>
+        <dd>{{partnerProfileInfo.partnerBirthTime | date : 'h:mm a'}}</dd>
       </dl>
       <dl>
         <dt>Gender</dt>
-        <dd>{{profileInfo.gender}}</dd>
+        <dd>{{partnerProfileInfo.partnerGender}}</dd>
       </dl>
       <dl>
         <dt>Zodiac</dt>
-        <dd>{{profileInfo.moonSign}}</dd>
+        <dd>{{partnerProfileInfo.moonSign}}</dd>
       </dl>
       <dl>
         <dt>Age</dt>
-        <dd>{{profileInfo.dob | ageFilter}}</dd>
+        <dd>{{partnerProfileInfo.partnerDOB | ageFilter}}</dd>
       </dl>
     </div>
 	</ion-content>

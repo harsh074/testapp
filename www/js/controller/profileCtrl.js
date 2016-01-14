@@ -100,10 +100,4 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   	$state.go('app.askQuestion');
     $scope.transitionAnimation('left',180)
   }
-
-  $scope.calculateAge = function calculateAge(birthday) { // birthday is a date
-    var ageDifMs = Date.now() - birthday.getTime();
-    var ageDate = new Date(ageDifMs); // miliseconds from epoch
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
-	}
 }]);

@@ -274,7 +274,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	  	@include justify-content(flex-end);
 	    .shortHeaderIcon{
 	    	i{
-	    		font-size:30px;
+	    		font-size:28px;
 	    		color: #fff;
 	    	}
 	    }
@@ -408,6 +408,18 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		}
 		.subHeaderBottomContent{
 			padding-top: 15px;
+			.avaliableStatus{
+				display:inline-block;
+		    width: 10px;
+		    height: 10px;
+		    background-color:#9E9E9E;
+		    border-radius: 50%;
+		    margin-right: -15px;
+		    margin-left: 15px;
+		    &.available{
+		    	background-color: #33cd5f;
+		    }
+			}
 			.userName{
 		    text-transform: capitalize;
 			  font-size: 15px;
@@ -1060,6 +1072,9 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	background-position:center;
 	background-repeat:no-repeat;
 }
+.platform-android .bar .title{
+	left:54px !important;
+}
 .menu{
 	border:none;
 	.item-content{
@@ -1321,6 +1336,7 @@ ion-side-menu .has-header{
     height: 46px;
   	background-color:#F5F5F5;
     float: right;
+    margin: 0;
     &:after {
 	    right: 25px;
 	    top: 50%;
@@ -1366,6 +1382,8 @@ ion-side-menu .has-header{
   		font-size: 16px;
   		height: 100px;
   		line-height: 21px;
+	    max-height: 125px;
+    	overflow-y: scroll !important;
   		&::-webkit-input-placeholder {
 		  	font-style: italic;
 			}
@@ -1393,6 +1411,8 @@ ion-side-menu .has-header{
 		font-size: 16px;
 		height: 40px;
 		line-height: 21px;
+		max-height: 125px;
+  	overflow-y: scroll !important;
 		&::-webkit-input-placeholder {
 	  	font-style: italic;
 		}
@@ -1408,7 +1428,21 @@ ion-side-menu .has-header{
 	}
 }
 .matchMaking{
-	margin-top:-40px;
+	margin-top:-15px;
+	p{
+		font-size: 16px;
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: top;
+    line-height: 30px;
+	}
+	.button.button-custom{
+    float: right;
+    margin-top: 0;
+	}
+}
+.partnerDetails{
+	top:105px;
 }
 .askQuestionBottom{
 	top:148px;
@@ -1730,6 +1764,14 @@ ion-side-menu .has-header{
 	}
 	.bottomPart{
     padding: 15px 18px;
+	}
+}
+
+.partnerDetailModal{
+	.topPart{
+		.userInfo{
+			line-height: 50px;
+		}
 	}
 }
 
