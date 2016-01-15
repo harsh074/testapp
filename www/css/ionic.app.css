@@ -9981,6 +9981,34 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       left: 7px;
       background-repeat: no-repeat;
       background-position: center; }
+  .bar-assertive-900 .monkAvaliableButton {
+    margin-top: 3px;
+    padding-right: 17px; }
+    .bar-assertive-900 .monkAvaliableButton input:checked + .track {
+      border-color: #2B5D80;
+      background-color: #2B5D80; }
+      .bar-assertive-900 .monkAvaliableButton input:checked + .track:before {
+        content: "ON";
+        left: 15px; }
+      .bar-assertive-900 .monkAvaliableButton input:checked + .track .handle {
+        -webkit-transform: translate3d(35px, 0, 0);
+        transform: translate3d(35px, 0, 0); }
+    .bar-assertive-900 .monkAvaliableButton .track {
+      height: 22px;
+      width: 60px;
+      background-color: #E6E6E6; }
+      .bar-assertive-900 .monkAvaliableButton .track:before {
+        content: "Off";
+        content: "OFF";
+        position: absolute;
+        right: 26px;
+        font-size: 11px;
+        line-height: 20px; }
+      .bar-assertive-900 .monkAvaliableButton .track .handle {
+        width: 24px;
+        height: 24px;
+        top: 3px;
+        left: 6px; }
 
 .logoSideMenu {
   background-image: url("../img/logo.png");
@@ -9992,7 +10020,10 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   background-position: center;
   background-repeat: no-repeat; }
 
-.platform-android .bar .title {
+.monk .bar .title {
+  left: 64px !important; }
+
+.user .bar .title {
   left: 54px !important; }
 
 .menu {

@@ -24,13 +24,29 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
   	console.log(data);
     $scope.hideLoader();
     $scope.question = data;
+    if($scope.question.status == "underObservation"){
+      var alertPopup = $ionicPopup.alert({
+        cssClass:"ios",
+        title: 'This question is already taken. Please try another question',
+        buttons: [
+          {text: 'Ok',type:'button-ios button-clear',
+            onTap: function(e) {
+              return true;
+            }
+          }
+        ]
+      });
+      alertPopup.then(function(res) {
+        $state.go('app.dashboard');
+      });
+    }
   },function(data){
     $scope.hideLoader();
   	console.log(data);
   });
 
   $scope.viewPartnerDetails = function(){
-     $ionicModal.fromTemplateUrl('views/viewPartnerDetailModal.html', function (modal) {
+    $ionicModal.fromTemplateUrl('views/viewPartnerDetailModal.html', function (modal) {
       $scope.viewPartnerDetailModal = modal;
       $scope.viewPartnerDetailModal.show();
     }, {

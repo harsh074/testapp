@@ -156,7 +156,15 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
       });
     },
 
-
+    //monks Data
+    updateMonkAvailableStatus:function(args){
+      return this.request({
+        'method':"POST",
+        'url':"/api/monks/availableStatus",
+        'data':args,
+        'params': {"access_token":localStorage.getItem('token')}
+      });
+    },
     monkLogin:function(args){
       return this.request({
        'method': "POST",

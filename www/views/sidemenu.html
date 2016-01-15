@@ -1,12 +1,18 @@
 <ion-side-menus enable-menu-with-back-views="true">
   <ion-side-menu-content drag-content="true">
     <div class="menuOpenBackground"></div>
-    <ion-nav-bar class="bar-assertive-900">
+    <ion-nav-bar class="bar-assertive-900" ng-class="loginType">
       <ion-nav-buttons side="left">
         <button class="customMenuBtn" ng-click="hamburgerBtnEvent()" ng-disabled="isComingFromSignUp" ng-class="{'is-active':showArrow}"><span></span></button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-        <button class="button-clear ion-wallet" ng-disabled="isComingFromSignUp" ng-click="goToWallet()"></button>
+        <button class="button-clear ion-wallet" ng-disabled="isComingFromSignUp" ng-click="goToWallet()" ng-if="loginType=='user'"></button>
+        <label class="toggle monkAvaliableButton" ng-if="loginType=='monk'">
+          <input type="checkbox" ng-model="profileData.isAvailable" ng-change="changeAvaliableStatus()">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
       </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>

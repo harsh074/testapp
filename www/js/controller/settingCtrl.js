@@ -1,4 +1,4 @@
-askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootScope','$http','$state','$templateCache','$ionicModal','$ionicPopup', function($scope,utility,$ionicHistory,$rootScope,$http,$state,$templateCache,$ionicModal,$ionicPopup){
+askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootScope','$http','$state','$templateCache','$ionicModal','$ionicPopup','CONSTANT', function($scope,utility,$ionicHistory,$rootScope,$http,$state,$templateCache,$ionicModal,$ionicPopup,CONSTANT){
 
   $scope.aboutUs = function(){
     $ionicModal.fromTemplateUrl('views/aboutUsModal.html', function (modal) {
@@ -9,6 +9,7 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
       animation: 'slide-in-up'
     });
   }
+  $scope.loginType = CONSTANT.loginType;
 
   $scope.privacyPolicy = function(){
     $ionicModal.fromTemplateUrl('views/privacyPolicyModal.html', function (modal) {
@@ -56,7 +57,17 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     confirmPopup.then(function(res) {
       if(res) {
         console.log('You are sure');
-        $scope.logout();
+        if($scope.loginType == 'monk'){
+          var monkProfile = JSON.parse(localStorage.profile);
+          utility.updateMonkAvailableStatus({id:monkProfile.id,email:monkProfile.email,isAvailable:false})
+          .then(function(data){
+            $scope.logout();
+          },function(data){
+            console.log(data,'error');
+          });
+        }else{
+          $scope.logout();
+        }
       } else {
         console.log('You are not sure');
       }

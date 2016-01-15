@@ -1,4 +1,4 @@
-askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state', function($scope,CONSTANT,$state){
+askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootScope','$timeout', function($scope,CONSTANT,$state,utility,$rootScope,$timeout){
 	$scope.isComingFromSignUp = CONSTANT.isComingFromSignUp;
   $scope.loginType = CONSTANT.loginType;
   
@@ -25,6 +25,19 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state', function($scope,
     $state.go("app.wallet");
     $scope.transitionAnimation('left',160);
   };
+
+  $timeout(function(){
+    $scope.profileData = JSON.parse(localStorage.profile);
+  });
+  $scope.changeAvaliableStatus = function(){
+    utility.updateMonkAvailableStatus({id:$scope.profileData.id,email:$scope.profileData.email,isAvailable:$scope.profileData.isAvailable})
+    .then(function(data){
+      localStorage.profile = JSON.stringify(data);
+      $rootScope.profileData = angular.copy(data);
+    },function(data){
+      console.log(data,"error");
+    });
+  }
 }]);
 
 askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','CONSTANT','$ionicLoading','$timeout','$ionicHistory','$state','$ionicSideMenuDelegate','$ionicPlatform','$stateParams', function($scope,utility,CONSTANT,$rootScope,CONSTANT,$ionicLoading,$timeout,$ionicHistory,$state,$ionicSideMenuDelegate,$ionicPlatform,$stateParams){
@@ -37,11 +50,17 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     document.addEventListener("offline", offlineHandler, false);
     $timeout(function(){
       // console.log(sessionStorage.redirectFromUrl);
-      if(sessionStorage.redirectFromUrl && localStorage.token){
+      if(sessionStorage.redirectFromUrl.indexOf('redirect/5')>-1){
+        $timeout(function(){
+          $scope.showMessage('Email validated. Happy askmonking');
+        });
+      }else{
         $state.go('app.singlequestion',{id:sessionStorage.redirectFromUrl.split('askmonk://')[1]});
+        
       }
     }, 300);
   }
+
   function offlineHandler() {
     $scope.showMessage("Internet Connectivity error please try again");
   }
