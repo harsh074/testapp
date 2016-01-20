@@ -9531,7 +9531,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       .home-view .dashboard .yAnswerStatus .searchBar .item-search {
         height: 32px;
         border-bottom: 1px solid #dddddd;
-        padding: 0px 0px 2px 7px;
+        padding: 0px 0px 2px 2px;
         background-color: transparent;
         border-width: 0px 0px 1px 0px; }
         .home-view .dashboard .yAnswerStatus .searchBar .item-search input[type="text"] {
@@ -9539,29 +9539,25 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
           padding-right: 0px;
           padding-top: 0px; }
           .home-view .dashboard .yAnswerStatus .searchBar .item-search input[type="text"]::-webkit-input-placeholder {
-            font-style: italic;
             font-size: 15px;
-            color: white; }
+            color: #BFBFBF; }
           .home-view .dashboard .yAnswerStatus .searchBar .item-search input[type="text"]:-moz-placeholder {
-            font-style: italic;
             font-size: 15px;
-            color: white; }
+            color: #BFBFBF; }
           .home-view .dashboard .yAnswerStatus .searchBar .item-search input[type="text"]::-moz-placeholder {
-            font-style: italic;
             font-size: 15px;
-            color: white; }
+            color: #BFBFBF; }
           .home-view .dashboard .yAnswerStatus .searchBar .item-search input[type="text"]:-ms-input-placeholder {
-            font-style: italic;
             font-size: 15px;
-            color: white; }
-        .home-view .dashboard .yAnswerStatus .searchBar .item-search:after {
+            color: #BFBFBF; }
+        .home-view .dashboard .yAnswerStatus .searchBar .item-search:before {
           content: "";
           display: inline-block;
           font-family: "Ionicons";
           line-height: 1;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
-          margin-right: 4px;
+          margin-right: 10px;
           font-size: 21px;
           color: white; }
       .home-view .dashboard .yAnswerStatus .searchBar .placeholder-icon {
@@ -9644,6 +9640,9 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       font-size: 13px;
       color: #2B5D80;
       display: inline-block; }
+    .home-view .dashboardData .questionFound .questions .uptilTime {
+      float: right;
+      padding: 0; }
     .home-view .dashboardData .questionFound .questions .answerRating {
       display: inline-block; }
       .home-view .dashboardData .questionFound .questions .answerRating i {
@@ -9973,8 +9972,8 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     .bar-assertive-900 .ion-wallet:before {
       content: '';
       background-image: url("../img/wallet-topbar.png");
-      width: 21px;
-      height: 21px;
+      width: 20px;
+      height: 20px;
       position: absolute;
       background-size: contain;
       top: 9px;
@@ -10633,7 +10632,7 @@ ion-side-menu .has-header {
 .settingCtrl {
   margin-top: 60px;
   background-color: #fff; }
-  .settingCtrl button.button-full {
+  .settingCtrl .button.button-full {
     background-color: #fff;
     color: #727A7D;
     text-align: left;
@@ -10641,18 +10640,18 @@ ion-side-menu .has-header {
     padding: 6px 18px;
     margin: 0;
     border-bottom-color: #dddddd; }
-    .settingCtrl button.button-full:first-child {
+    .settingCtrl .button.button-full:first-child {
       border-top-width: 0; }
-    .settingCtrl button.button-full:hover {
+    .settingCtrl .button.button-full:hover {
       color: #696969; }
-    .settingCtrl button.button-full.activated {
+    .settingCtrl .button.button-full.activated {
       background-color: #EBEBEB;
       box-shadow: none; }
-    .settingCtrl button.button-full i.icon {
+    .settingCtrl .button.button-full i.icon {
       width: 22px;
       display: inline-block;
       text-align: center; }
-    .settingCtrl button.button-full span {
+    .settingCtrl .button.button-full span {
       margin-left: 30px; }
   .settingCtrl .bottomPart {
     position: absolute;

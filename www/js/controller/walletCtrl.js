@@ -22,33 +22,26 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
   	$state.go('app.askQuestion');
 		$scope.transitionAnimation('left',180);
   }
-  if(localStorage.getItem("profile")){
-    $scope.walletMoney = JSON.parse(localStorage.getItem("profile")).walletMoney;
-    $timeout(function(){
-      $scope.hideLoader();
-    }, 200);
-  }else{
-	  if($scope.loginType == 'user'){
-			utility.getUserProfile(localStorage.getItem('userId'))
-			.then(function(data){
-				$scope.walletMoney = data.walletMoney;
-				$scope.hideLoader();
-			},function(data){
-				console.log(data);
-				$scope.hideLoader();
-			});
-		}else{
-			utility.getMonkProfile()
-			.then(function(data){
-				$scope.walletMoney = data.walletMoney;
-				$scope.hideLoader();
-			},function(data){
-				console.log(data);
-				$scope.hideLoader();
-			});
-		}
-	}
 
+	if($scope.loginType == 'user'){
+    utility.getUserCount()
+    .then(function(data){
+      $scope.walletMoney = data.walletMoney;
+      $scope.hideLoader();
+    },function(data){
+      console.log(data);
+      $scope.hideLoader();
+    });
+  }else{
+    utility.getMonkCount()
+    .then(function(data){
+     $scope.walletMoney = data.walletMoney;
+     $scope.hideLoader();
+    },function(data){
+      console.log(data);
+      $scope.hideLoader();
+    });
+  }
 
 	// Razorpay payment gateway
 	$scope.options = function(args){
@@ -90,6 +83,7 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
 		// console.log(args,$scope.userProfileData);
   	RazorpayCheckout.open($scope.options(args), successCallback, cancalCallback);
   }
+
   $scope.addCustomMoney = function(formData){
   	if(formData.$valid){
   		if($scope.money.customMoney>=100){
@@ -106,13 +100,15 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
   if(localStorage.getItem('packs')){
   	$scope.packs = JSON.parse(localStorage.getItem('packs'));
   }else{
-		utility.getPacks()
-		.then(function(data){
-			localStorage.setItem('packs',JSON.stringify(data));
-			$scope.packs = data;
-		},function(data){
-			console.log(data);
-		});
+  	if($scope.loginType == 'user'){
+			utility.getPacks()
+			.then(function(data){
+				localStorage.setItem('packs',JSON.stringify(data));
+				$scope.packs = data;
+			},function(data){
+				console.log(data);
+			});
+		}
 	}
   
 }]);

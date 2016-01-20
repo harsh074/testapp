@@ -29,7 +29,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
         localStorage.setItem("name",data.name);
         $scope.$emit("updateSideMenuName",data);
       	$rootScope.profileData = data;
-      	if(!data.dob || !data.birthPlace || !data.birthTime){
+      	if(!data.dob || !data.birthPlace || !data.birthTime || !data.gender){
       		CONSTANT.isComingFromSignUp = true;
       		$state.go('app.editProfile');
           $scope.transitionAnimation('left');
@@ -74,7 +74,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     },function(data){
       console.log(data);
     });
-    if(!localStorage.timelineJson){      
+    if(!localStorage.timelineJson){
       utility.getTimeLineJson()
       .then(function(data){
         localStorage.setItem('timelineJson',JSON.stringify(data));

@@ -471,7 +471,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
   			.item-search{
 					height: 32px;
 	    		border-bottom: 1px solid rgb(221, 221, 221);
-	    		padding: 0px 0px 2px 7px;
+	    		padding: 0px 0px 2px 2px;
   		    background-color: rgba(0, 0, 0, 0);
     			border-width: 0px 0px 1px 0px;
 	    		input[type="text"]{
@@ -479,34 +479,30 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	    			padding-right:0px;
 	    			padding-top:0px;
 	    			&::-webkit-input-placeholder {
-					  	font-style: italic;
 					  	font-size: 15px;
-					  	color: white;
+					  	color: #BFBFBF;
 						}
 						&:-moz-placeholder {
-					  	font-style: italic;
 					  	font-size: 15px;
-					  	color: white;
+					  	color: #BFBFBF;
 						}
 						&::-moz-placeholder {
-						  font-style: italic;
 						  font-size: 15px;
-					  	color: white;
+					  	color: #BFBFBF;
 						}
 						&:-ms-input-placeholder {  
-						  font-style: italic;
 						  font-size: 15px;
-					  	color: white;
+					  	color: #BFBFBF;
 						}
 	    		}
-	    		&:after {
+	    		&:before {
 				    content: "";
 				    display: inline-block;
 				    font-family: "Ionicons";
 				    line-height: 1;
 				    -webkit-font-smoothing: antialiased;
 				    -moz-osx-font-smoothing: grayscale;
-				    margin-right: 4px;
+				    margin-right: 10px;
 				    font-size: 21px;
 				    color: white;
 					}
@@ -616,6 +612,10 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			    font-size: 13px;
 		     	color: $top-portion-color;
 		     	display: inline-block;
+  			}
+  			.uptilTime{
+  				float: right;
+    			padding: 0;
   			}
   			.answerRating{
 					display: inline-block;
@@ -1051,8 +1051,8 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     &:before{
 			content:'';
 			background-image:url('../img/wallet-topbar.png');
-			width: 21px;
-			height: 21px;
+			width: 20px;
+			height: 20px;
 			position: absolute;
 			background-size: contain;
 			top: 9px;
@@ -1821,7 +1821,7 @@ ion-side-menu .has-header{
 .settingCtrl{
 	margin-top:60px;
   background-color: #fff;
-	button.button-full{
+	.button.button-full{
     background-color: #fff;
     color: #727A7D;
     text-align:left;

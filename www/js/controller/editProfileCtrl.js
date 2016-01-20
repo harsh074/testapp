@@ -59,7 +59,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
         datePickerCallback(val);
       },
       dateFormat: 'dd-MM-yyyy', //Optional
-      closeOnSelect: true //Optional
+      closeOnSelect: false //Optional
     };
     
     function datePickerCallback(val){
@@ -81,7 +81,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
     $scope.saveEditProfile = function(){
       $scope.showLoader();
       if($scope.loginType == 'user'){
-        if(!$scope.editProfileData.dob || !$scope.editProfileData.birthPlace || !$scope.editProfileData.birthTime){
+        if(!$scope.editProfileData.dob || !$scope.editProfileData.birthPlace || !$scope.editProfileData.birthTime || !$scope.editProfileData.gender){
           $scope.hideLoader();
           $scope.showMessage("All fields are required");
           return;

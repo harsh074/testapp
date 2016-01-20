@@ -57,6 +57,7 @@
 			          		<p class="postedTime" ng-if="loginType=='monk'">Posted {{group.askedOn | timeago}}</p>
 					       	</div>
 					       	<p class="postedUser" ng-if="loginType=='monk'">Posted by {{group.name}}</p>
+					       	<p class="postedUser uptilTime" ng-if="loginType=='monk'">Uptil {{group.predictionDurationMonths | timeLineFiter}}</p>
 				        </div>
 
 				        <div ng-switch="(question.askedQuestion | filter:search.searchInput).length">
@@ -105,6 +106,7 @@
 				          	<p class="postedTime">Posted {{group.askedOn | timeago}}</p>
 						       </div>
 						       <p class="postedUser">Posted by {{group.name}}</p>
+						       <p class="postedUser uptilTime" ng-if="loginType=='monk'">Uptil {{group.predictionDurationMonths | timeLineFiter}}</p>
 				        </div>
 
 				        <div ng-switch="(question.answeredQuestion | filter:search.searchInput).length">
@@ -149,6 +151,7 @@
 				          	<p class="postedTime">Posted {{group.askedOn | timeago}}</p>
 						      </div>
 						      <p class="postedUser" ng-if="loginType=='monk'">Posted by {{group.name}}</p>
+						      <p class="postedUser uptilTime" ng-if="loginType=='monk'">Uptil {{group.predictionDurationMonths | timeLineFiter}}</p>
 				        </div>
 				        <div ng-switch="(question.ratedQuestion | filter:search.searchInput).length">
 					        <div class="noStatusQuestion" ng-switch-when="0">
