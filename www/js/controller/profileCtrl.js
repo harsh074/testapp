@@ -8,6 +8,8 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
       cordova.plugins.Keyboard.close();
     }
   });
+
+
   $scope.loginType = CONSTANT.loginType;
 
   if(localStorage.getItem("profile")){
@@ -100,4 +102,5 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   	$state.go('app.askQuestion');
     $scope.transitionAnimation('left',180)
   }
+
 }]);

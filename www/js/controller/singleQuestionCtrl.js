@@ -54,6 +54,15 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
       animation: 'slide-in-up'
     });
   }
+  $scope.editQuestion = function(){
+    $ionicModal.fromTemplateUrl('views/editQuestionModal.html', function (modal) {
+      $scope.editQuestionModal = modal;
+      $scope.editQuestionModal.show();
+    }, {
+      scope: $scope,
+      animation: 'slide-in-right'
+    });
+  }
 
   $scope.rateQuestion = function(){
     console.log($scope.question);
@@ -192,6 +201,14 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     }
   }
 
+  $scope.closeEditModal = function(data){
+    $scope.question = angular.copy(data);
+    $scope.hideLoader();
+    if($scope.editQuestionModal && $scope.editQuestionModal.isShown()){
+      $scope.editQuestionModal.remove();
+    }
+  }
+
   $scope.closeModal = function(){
     if($scope.userDetailModal && $scope.userDetailModal.isShown()){
       $scope.userDetailModal.remove();
@@ -201,6 +218,9 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     }
     if($scope.viewPartnerDetailModal && $scope.viewPartnerDetailModal.isShown()){
       $scope.viewPartnerDetailModal.remove();
+    }
+    if($scope.editQuestionModal && $scope.editQuestionModal.isShown()){
+      $scope.editQuestionModal.remove();
     }
   }
   $scope.goToWalletFromModal = function(){
@@ -236,4 +256,35 @@ askmonkApp.controller('userDetailModalPopupCtrl', ['$scope','utility','getMoonSi
 askmonkApp.controller('viewPartnerDetailModalCtrl', ['$scope','getMoonSign', function($scope,getMoonSign){
   $scope.partnerProfileInfo = angular.copy(getMoonSign($scope.question.matchMakingDetails));
   $scope.partnerProfileImage = 'img/moonSign/'+$scope.partnerProfileInfo.moonSign+'.png';;
+}]);
+
+askmonkApp.controller('editQuestionModalCtrl', ['$scope','utility', function($scope,utility){
+  $scope.editQuestion = angular.copy($scope.question);
+  console.log($scope.question);
+  if(localStorage.tagQuestion){
+    $scope.questionTag = JSON.parse(localStorage.getItem('tagQuestion'));
+    $scope.hideLoader();
+  }else{
+    utility.getAllQuestion()
+    .then(function(data){
+      $scope.hideLoader();
+      $scope.questionTag = data;
+      localStorage.setItem('tagQuestion',JSON.stringify(data));
+    },function(data){
+      $scope.hideLoader();
+      console.log(data);
+    });
+  }
+
+  $scope.saveEditQuestion = function(){
+    $scope.showLoader();
+    utility.editQuestion($scope.editQuestion)
+    .then(function(data){
+      console.log(data,"success");
+      $scope.closeEditModal(data);
+    },function(data){
+      $scope.hideLoader();
+      console.log(data,"error");
+    })
+  }
 }]);

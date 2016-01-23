@@ -26,6 +26,32 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     return false;
   }
 
+  $scope.helpDesk = function(){
+    window.plugins.socialsharing.shareViaEmail(
+      null,
+      null,
+      ['support@askmonk.in'], // TO: must be null or an array
+      null, // CC: must be null or an array
+      null, // BCC: must be null or an array
+      null, // FILES: null, a string, or an array
+      onSuccess = function(){
+        $scope.showMessage('Please share your query');  
+      },
+      onError = function(e){
+        $scope.showMessage('Something went wrong. Please try again');  
+      }
+    );
+  }
+  $scope.shareWhatsapp = function(){
+    window.plugins.socialsharing.shareViaWhatsApp(
+      'Share Askmonk',
+      'http://askmonk.in/images/askmonk_logo_white.png',
+      'http://askmonk.in',
+      function() {console.log('share ok')},
+      function(errormsg){console.log(errormsg)}
+    );
+  }
+
   $scope.changePassword = function(){
     $ionicModal.fromTemplateUrl('views/changePasswordModal.html', function (modal) {
       $scope.changePasswordModal = modal;
@@ -100,7 +126,6 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
       console.log(data,'error');
     });
   }
-
 
   $scope.closeModal = function(){
     if($scope.aboutUsModal && $scope.aboutUsModal.isShown()){

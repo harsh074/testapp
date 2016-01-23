@@ -96,7 +96,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
             $scope.$emit("updateEditProfileFirstUser");
             $state.go('app.profile');
             if(!$scope.getUserCount.emailVerified){
-              $scope.showMessage("Email Send. Please Verify!");
+              $scope.showMessage("Email Sent. Please Verify!");
             }
             $scope.transitionAnimation('left',180);
           },function(data){

@@ -5,5 +5,6 @@ askmonkApp.constant('CONSTANT', {
   fetchQuestionUrl:'lib/question.json',
   isComingFromSignUp:false,
   isDevice:false,
-  loginType:null
+  loginType:null,
+  pushSenderID:"915609605128"
 });

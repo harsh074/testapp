@@ -6,7 +6,7 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
     $scope.showLoader();
   });
   $scope.loginType = CONSTANT.loginType;
-  $scope.money = {'customMoney':"100"};
+  $scope.money = {'customMoney':"200"};
   window.addEventListener('native.keyboardshow', keyboardHandler);
   window.addEventListener('native.keyboardhide', keyboardHandler);
   function keyboardHandler(e){
@@ -65,7 +65,7 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
 	    utility.addMoney({'userId':localStorage.getItem('userId'),'email':localStorage.getItem('email'),'amount':$scope.amount,'payment_id':payment_id})
 	    .then(function(data){
 	    	$scope.hideLoader();
-	    	$scope.showMessage('Transaction successfull');
+	    	$scope.showMessage('Transaction successful');
 	    	$scope.walletMoney = data.walletMoney;
 				localStorage.profile = JSON.stringify(data);
 	    },function(data){

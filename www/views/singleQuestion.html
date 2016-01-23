@@ -4,6 +4,7 @@
 			<h1 class="title">View Question</h1>
       <div class="shortHeaderBtn" ng-if="loginType=='user'">
         <a class="shortHeaderIcon" ng-if="question.questionTag=='Match Making'" ng-click="viewPartnerDetails()"><i class="icon ion-person-add"></i></a>
+        <a class="shortHeaderIcon" ng-if="question.status=='asked' || question.status=='direct'" ng-click="editQuestion()"><i class="icon ion-edit"></i></a>
       </div>
       <div class="shortHeaderCustomBtn" ng-if="loginType=='monk' && question.status == 'underObservation'">
         <!-- <a class="shortHeaderIcon"><i class="icon ion-paper-airplane"></i></a> -->
@@ -32,8 +33,9 @@
         <p class="moneyType" ng-if="question.predictionDurationMonths">Prediction uptil {{question.predictionDurationMonths | timeLineFiter}}</p>
       	<p class="ratingQuestion" ng-if="question.status=='answered' || question.status=='rated'">How Satisfied are you ?</p>
       	<div class="answerRating" ng-if="question.status=='answered' || question.status=='rated'">
-          <rating ng-model="question.rating" max="5" ng-click="rateQuestion()" ng-show="!question.rating"></rating>
-          <rating ng-model="question.rating" readonly="true" ng-show="question.rating"></rating>
+          <rating ng-model="question.rating" max="5" ng-click="rateQuestion()"></rating>
+          <!-- ng-show="!question.rating" -->
+          <!-- <rating ng-model="question.rating" readonly="true" ng-show="question.rating"></rating> -->
         </div>
       </div>
 

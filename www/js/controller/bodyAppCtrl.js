@@ -25,12 +25,20 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
     $state.go("app.wallet");
     $scope.transitionAnimation('left',160);
   };
-
-  $timeout(function(){
-    $scope.profileData = JSON.parse(localStorage.profile);
-  });
+  if($scope.loginType == 'monk'){
+    $timeout(function(){
+      utility.getMonkCount()
+      .then(function(data){
+        $scope.getMonkCount = data;
+      },function(data){
+        console.log(data);
+      });
+    }, 600);
+  }
+  
   $scope.changeAvaliableStatus = function(){
-    utility.updateMonkAvailableStatus({id:$scope.profileData.id,email:$scope.profileData.email,isAvailable:$scope.profileData.isAvailable})
+    $scope.profileData = JSON.parse(localStorage.profile);
+    utility.updateMonkAvailableStatus({id:$scope.profileData.id,email:$scope.profileData.email,isAvailable:$scope.getMonkCount.isAvailable})
     .then(function(data){
       localStorage.profile = JSON.stringify(data);
       $rootScope.profileData = angular.copy(data);
@@ -49,16 +57,19 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     document.addEventListener("online", onlineHandler, false);
     document.addEventListener("offline", offlineHandler, false);
     $timeout(function(){
-      // console.log(sessionStorage.redirectFromUrl);
+      console.log(sessionStorage.redirectFromUrl,"session");
       if(sessionStorage.redirectFromUrl.indexOf('redirect/5')>-1){
         $timeout(function(){
           $scope.showMessage('Email validated. Happy askmonking');
         });
       }else{
-        $state.go('app.singlequestion',{id:sessionStorage.redirectFromUrl.split('askmonk://')[1]});
-        
+        $state.go('app.singlequestion',{id:sessionStorage.redirectFromUrl.split('askmonk://')[1]}); 
       }
     }, 300);
+
+    if(window.screen && window.screen.lockOrientation){
+      window.screen.lockOrientation('portrait');
+    }
   }
 
   function offlineHandler() {
@@ -68,13 +79,13 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     console.log('online');
   }
   
-  // $ionicPlatform.onHardwareBackButton(function() {
-  //   if($ionicHistory.currentStateName() == "login"){
+  $ionicPlatform.onHardwareBackButton(function() {
+    if($ionicHistory.currentStateName() == "login"){
 
-  //   }else{
-  //     $ionicHistory.goBack();
-  //   }
-  // }, 100);
+    }else{
+      $ionicHistory.goBack();
+    }
+  }, 100);
   
 	utility.initialize(CONSTANT.baseUrl, false, $scope, $rootScope);
 

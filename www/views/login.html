@@ -1,55 +1,125 @@
 <ion-view class="welcome-view" cache-view="false">
-	<div class="bg_white"></div>
-	<ion-content scroll="true" has-bouncing="false" delegate-handle="loginScroll">
-		<div class="top-content row">
-			<div class="app-copy col col-top">
-				<div class="app-logo"><!-- <img src="/img/logo.png" width="100%"> --></div>
-			</div>
+	<ion-slide-box on-slide-changed="slideHasChanged($index)" class="top-content">
+	  <ion-slide>
+	    <div class="box">
+				<div class="app-logo">
+					<img src="img/logo.png">
+					<p class="app-tagline">Predictions just a Question away.</p>
+				</div>
+	    </div>
+	  </ion-slide>
+	  <ion-slide>
+	    <div class="box yellow">
+	    </div>
+	  </ion-slide>
+	  <ion-slide>
+	    <div class="box pink">
+	    </div>
+	  </ion-slide>
+	</ion-slide-box>
+	<div class="bottomContent">
+		<div class="loginTab">
+			<div class="userTab" ng-click="userLoginForm()">USER</div>
+			<div class="monkTab" ng-click="monkLoginForm()">MONK</div>
 		</div>
-		<div class="row row-bottom authFields">
-			<div class="loginTab">
-				<div class="userTab" ng-class="{'active':activeUserTab}" ng-click="userLoginForm()"><span>User</span></div>
-				<div class="monkTab" ng-class="{'active':activeMonkTab}" ng-click="monkLoginForm()" ng-show="monkTab"><span>Monk</span></div>
-			</div>
-			<div class="inputFields" ng-show="activeUserTab" ng-class="{'signUptab':signUptab}">
+	</div>
+	<!-- <div class="top-content">
+		<div class="app-logo"><img src="img/logo.png" width="55%"></div>
+	</div> -->
+	<!-- <div class="row row-bottom authFields">
+		<div class="loginTab">
+			<div class="userTab" ng-class="{'active':activeUserTab}" ng-click="userLoginForm()"><span>User</span></div>
+			<div class="monkTab" ng-class="{'active':activeMonkTab}" ng-click="monkLoginForm()" ng-show="monkTab"><span>Monk</span></div>
+		</div>
+		<div class="inputFields" ng-show="activeUserTab" ng-class="{'signUptab':signUptab}">
+			<form name="myform" class="form form-horizontal" novalidate ng-hide="signUptab">
+				<ion-md-input placeholder="Email" highlight-color="custom" ng-model="args.email" type="email"></ion-md-input>
+				<ion-md-input placeholder="Password" highlight-color="custom password" ng-model="args.password" type="password" ng-if="!userForgetPasswordShow"></ion-md-input>
+				<button class="button button-custom button-small" ng-click="userLogin()" type="submit" ng-if="!userForgetPasswordShow">Login</button>
+				
+				<button class="button button-custom button-small" ng-click="userForgetPassword()" type="submit" ng-if="userForgetPasswordShow">Send Email</button>
+				<a ng-click="userLoginForm()" class="registerWithUs" ng-if="userForgetPasswordShow">Sign In</a>
+
+				<a ng-click="signUpTab()" class="registerWithUs" ng-if="!userForgetPasswordShow">Sign Up</a>
+				<a ng-click="forgetUserPasswordTab()" class="forgetPassword" ng-if="!userForgetPasswordShow">Forget Password ?</a>
+			</form>
+			<form name="registerForm" class="form form-horizontal" ng-submit="userSignUp(registerForm)" novalidate autocomplete="off" ng-show="signUptab">
+				<ion-md-input placeholder="Name" name="name" highlight-color="custom" ng-model="argsSignup.name" type="text"></ion-md-input>
+				<ion-md-input placeholder="Email" ng-pattern="/^\w+([\.+-]?\w+)*@\w+([\.-]?\w+)(\.\w{1,})+$/" name="email" highlight-color="custom" ng-model="argsSignup.email" type="email"></ion-md-input>
+				<ion-md-input placeholder="Password" name="password" highlight-color="custom" ng-model="argsSignup.password" type="password"></ion-md-input>
+				<ion-md-input placeholder="Confirm Password" name="conpassword" highlight-color="custom" ng-model="conpassword.pass" type="password"></ion-md-input>
+				<button class="button button-custom button-small" type="submit">Sign Up</button>
+				<a ng-click="loginTab()" class="registerWithUs">Login</a>
+			</form>
+		</div>
+		<div class="inputFields" ng-hide="activeUserTab">
+			<form name="myform" class="form form-horizontal" novalidate>
+				<ion-md-input placeholder="Email" highlight-color="custom" type="email" ng-pattern="/^\w+([\.+-]?\w+)*@\w+([\.-]?\w+)(\.\w{1,})+$/" name="monkEmail" ng-model="argsMonk.email"></ion-md-input>
+				<ion-md-input placeholder="Password" highlight-color="custom password" type="password" ng-model="argsMonk.password" ng-if="!monkForgetPasswordShow"></ion-md-input>
+				<button class="button button-custom button-small" ng-click="monkLogin()" ng-if="!monkForgetPasswordShow">Login</button>
+				<button class="button button-custom button-small" ng-click="monkForgetPassword()" ng-if="monkForgetPasswordShow">Send Email</button>
+				<a ng-click="forgetMonkPasswordTab()" class="registerWithUs" ng-if="!monkForgetPasswordShow">Forget Password?</a>
+				<a ng-click="monkLoginForm()" class="registerWithUs" ng-if="monkForgetPasswordShow">Sign In</a>
+			</form>
+		</div>
+	</div> -->
+	<!-- <div class="bottom-content row row-bottom">
+		<div class="col col-bottom">
+			<a class="facebook-sign-in button button-full ink" ng-click="facebookSignIn()">
+				Log in with Facebook
+			</a>
+		</div>
+	</div> -->
+</ion-view>
+
+<script id="userLoginModal.html" type="text/ng-template">
+	<ion-modal-view class="loginPages">
+		<ion-header-bar class="loginHeaderBar">
+      <i class="icon ion-android-close" ng-click="closeModal()"></i>
+    </ion-header-bar>
+    <ion-content scroll="false">
+			<div class="inputFields" ng-class="{'signUptab':signUptab}">
 				<form name="myform" class="form form-horizontal" novalidate ng-hide="signUptab">
 					<ion-md-input placeholder="Email" highlight-color="custom" ng-model="args.email" type="email"></ion-md-input>
 					<ion-md-input placeholder="Password" highlight-color="custom password" ng-model="args.password" type="password" ng-if="!userForgetPasswordShow"></ion-md-input>
-					<button class="button button-custom button-small" ng-click="userLogin()" type="submit" ng-if="!userForgetPasswordShow">Login</button>
+					<button class="button button-login" ng-click="userLogin()" type="submit" ng-if="!userForgetPasswordShow">Login</button>
 					
-					<button class="button button-custom button-small" ng-click="userForgetPassword()" type="submit" ng-if="userForgetPasswordShow">Send Email</button>
-					<a ng-click="userLoginForm()" class="registerWithUs" ng-if="userForgetPasswordShow">Sign In</a>
+					<button class="button button-login" ng-click="userForgetPassword()" type="submit" ng-if="userForgetPasswordShow">Send Email</button>
+					<a ng-click="loginTab()" class="backTologin" ng-if="userForgetPasswordShow">Already have an account? Login</a>
 
-					<a ng-click="signUpTab()" class="registerWithUs" ng-if="!userForgetPasswordShow">Sign Up</a>
 					<a ng-click="forgetUserPasswordTab()" class="forgetPassword" ng-if="!userForgetPasswordShow">Forget Password ?</a>
+					<a ng-click="signUpTab()" class="registerWithUs" ng-if="!userForgetPasswordShow">Sign Up</a>
 				</form>
 				<form name="registerForm" class="form form-horizontal" ng-submit="userSignUp(registerForm)" novalidate autocomplete="off" ng-show="signUptab">
 					<ion-md-input placeholder="Name" name="name" highlight-color="custom" ng-model="argsSignup.name" type="text"></ion-md-input>
-					<ion-md-input placeholder="Email" ng-pattern="/^\w+([\.+-]?\w+)*@\w+([\.-]?\w+)(\.\w{1,})+$/" name="email" highlight-color="custom" ng-model="argsSignup.email" type="email"></ion-md-input>
+					<ion-md-input placeholder="Email" ng-pattern="/^\w+([\.+-]?\w+)*@\w+([\.-]?\w+)(\.\w{1,})+$/" name="email" highlight-color="custom" ng-model="argsSignup.email" type="text"></ion-md-input>
 					<ion-md-input placeholder="Password" name="password" highlight-color="custom" ng-model="argsSignup.password" type="password"></ion-md-input>
 					<ion-md-input placeholder="Confirm Password" name="conpassword" highlight-color="custom" ng-model="conpassword.pass" type="password"></ion-md-input>
-					<button class="button button-custom button-small" type="submit">Sign Up</button>
-					<a ng-click="loginTab()" class="registerWithUs">Login</a>
+					<p class="disclaimer">By clicking Sign up, you agree to Askmonk's terms & condition.</p>
+					<button class="button button-login" type="submit">Sign Up</button>
+					<a ng-click="loginTab()" class="backTologin">Already have an account? Login</a>
 				</form>
 			</div>
-			<div class="inputFields" ng-hide="activeUserTab">
+		</ion-content>
+	</ion-modal-view>
+</script>
+
+<script id="monkLoginModal.html" type="text/ng-template">
+	<ion-modal-view class="loginPages">
+		<ion-header-bar class="loginHeaderBar">
+      <i class="icon ion-android-close" ng-click="closeModal()"></i>
+    </ion-header-bar>
+    <ion-content scroll="false">
+			<div class="inputFields">
 				<form name="myform" class="form form-horizontal" novalidate>
 					<ion-md-input placeholder="Email" highlight-color="custom" type="email" ng-pattern="/^\w+([\.+-]?\w+)*@\w+([\.-]?\w+)(\.\w{1,})+$/" name="monkEmail" ng-model="argsMonk.email"></ion-md-input>
 					<ion-md-input placeholder="Password" highlight-color="custom password" type="password" ng-model="argsMonk.password" ng-if="!monkForgetPasswordShow"></ion-md-input>
-					<button class="button button-custom button-small" ng-click="monkLogin()" ng-if="!monkForgetPasswordShow">Login</button>
-					<button class="button button-custom button-small" ng-click="monkForgetPassword()" ng-if="monkForgetPasswordShow">Send Email</button>
-					<a ng-click="forgetMonkPasswordTab()" class="registerWithUs" ng-if="!monkForgetPasswordShow">Forget Password?</a>
-					<a ng-click="monkLoginForm()" class="registerWithUs" ng-if="monkForgetPasswordShow">Sign In</a>
+					<button class="button button-login" ng-click="monkLogin()" ng-if="!monkForgetPasswordShow">M Login</button>
+					<button class="button button-login" ng-click="monkForgetPassword()" ng-if="monkForgetPasswordShow">Send Email</button>
+					<a ng-click="forgetMonkPasswordTab()" class="forgetPassword" ng-if="!monkForgetPasswordShow">Forget Password?</a>
+					<a ng-click="loginMonkTab()" class="backTologin" ng-if="monkForgetPasswordShow">Already have an account? Login</a>
 				</form>
 			</div>
-		</div>
-		<!-- <div class="bottom-content row row-bottom">
-			<div class="col col-bottom">
-				<a class="facebook-sign-in button button-full ink" ng-click="facebookSignIn()">
-					Log in with Facebook
-				</a>
-			</div>
-		</div> -->
-
-	</ion-content>
-</ion-view>
+		</ion-content>
+	</ion-modal-view>
+</script>

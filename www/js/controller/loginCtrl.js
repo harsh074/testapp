@@ -1,7 +1,5 @@
-askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ionicScrollDelegate','$timeout','$rootScope','$stateParams', function($scope, $state,utility,CONSTANT,$ionicScrollDelegate,$timeout,$rootScope,$stateParams){
+askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ionicScrollDelegate','$timeout','$rootScope','$stateParams','$ionicModal', function($scope, $state,utility,CONSTANT,$ionicScrollDelegate,$timeout,$rootScope,$stateParams,$ionicModal){
   if(!$scope.authenticated){
-    $scope.activeUserTab = true;
-    $scope.activeMonkTab = false;
     $scope.monkTab = true;
     $scope.userForgetPasswordShow = false;
     $scope.monkForgetPasswordShow = false;
@@ -15,21 +13,37 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     $scope.conpassword = {"pass":""};
     $scope.argsMonk = {"email":"","password":"","ttl": 435456000000};
 
-    $scope.userLoginForm =function() {
-      $scope.activeUserTab = true;
-      $scope.activeMonkTab = false;
+    $scope.userLoginForm = function() {
       $scope.userForgetPasswordShow = false;
       $scope.monkForgetPasswordShow = false;
       $scope.args.email = '';
       $scope.argsMonk.email = '';
+      if($scope.userLoginModal && $scope.userLoginModal.isShown()){
+        $scope.userLoginModal.remove();
+      }
+      $ionicModal.fromTemplateUrl('userLoginModal.html', function (modal) {
+        $scope.userLoginModal = modal;
+        $scope.userLoginModal.show();
+      }, {
+        scope: $scope,
+        animation: 'slide-in-up'
+      });
     }
     $scope.monkLoginForm =function() {
-      $scope.activeUserTab = false;
-      $scope.activeMonkTab = true;
       $scope.userForgetPasswordShow = false;
       $scope.monkForgetPasswordShow = false;
       $scope.args.email = '';
       $scope.argsMonk.email = '';
+      if($scope.monkLoginModal && $scope.monkLoginModal.isShown()){
+        $scope.monkLoginModal.remove();
+      }
+      $ionicModal.fromTemplateUrl('monkLoginModal.html', function (modal) {
+        $scope.monkLoginModal = modal;
+        $scope.monkLoginModal.show();
+      }, {
+        scope: $scope,
+        animation: 'slide-in-up'
+      });
     }
     $scope.signUpTab = function(){
       $scope.monkTab = false; 
@@ -41,10 +55,14 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     $scope.loginTab = function(){
       $scope.monkTab = true; 
       $scope.signUptab = false;
-      $timeout(function(){
-        $ionicScrollDelegate.$getByHandle('loginScroll').scrollTo(0, 0, true);
-      }, 10);
+      $scope.userForgetPasswordShow = false;
+      $scope.args.email = '';
     }
+    $scope.loginMonkTab = function(){
+      $scope.monkForgetPasswordShow = false;
+      $scope.argsMonk.email = '';
+    }
+
     $scope.forgetUserPasswordTab = function(){
       $scope.userForgetPasswordShow = true;
       $scope.args.email = '';
@@ -58,11 +76,15 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       utility.login($scope.args)
       .then(function(data){
         $scope.setAuth(true);
+        $scope.registerNotificaton();
         localStorage.setItem('loginType',"user");
         CONSTANT.loginType = "user";
         $state.go('app.profile');
         $scope.hideLoader();
         $scope.transitionAnimation('left',480);
+        if($scope.userLoginModal && $scope.userLoginModal.isShown()){
+          $scope.userLoginModal.remove();
+        }
       },function(data){
         $scope.hideLoader();
         $scope.showMessage(data.error.message);
@@ -77,12 +99,16 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       utility.monkLogin($scope.argsMonk)
       .then(function(data){
         $scope.setAuth(true);
+        $scope.registerNotificaton();
         $state.go('app.profile');
         localStorage.setItem('loginType',"monk");
         CONSTANT.loginType = "monk";
         $scope.hideLoader();
         if(CONSTANT.isDevice){
           $scope.transitionAnimation('left',480);
+        }
+        if($scope.monkLoginModal && $scope.monkLoginModal.isShown()){
+          $scope.monkLoginModal.remove();
         }
       },function(data){
         $scope.hideLoader();
@@ -118,11 +144,15 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
             $rootScope.token = localStorage.getItem('token');
             localStorage.setItem("profileData", JSON.stringify(data));
             $scope.setAuth(true);
+            $scope.registerNotificaton();
             localStorage.setItem('loginType',"user");
             CONSTANT.loginType = "user";
             $state.go('app.editProfile');
             $scope.hideLoader();
             $scope.transitionAnimation('left');
+            if($scope.userLoginModal && $scope.userLoginModal.isShown()){
+              $scope.userLoginModal.remove();
+            }
           },function(data){
             $scope.hideLoader();
             $scope.showMessage(data.error.message);
@@ -162,6 +192,51 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         $scope.hideLoader();
         console.log(data);
       });
+    }
+
+    $scope.closeModal = function(){
+      if($scope.userLoginModal && $scope.userLoginModal.isShown()){
+        $scope.userLoginModal.remove();
+      }
+      if($scope.monkLoginModal && $scope.monkLoginModal.isShown()){
+        $scope.monkLoginModal.remove();
+      }
+    }
+
+    $scope.registerNotificaton = function(){
+      if ('android' === device.platform.toLowerCase()) {
+        window.plugins.pushNotification.register(function () {
+        },function () {
+          alert("Push Notification registration FAIL on Android")
+        },{
+          ecb: 'window.onNotificationGCM',
+          senderID: CONSTANT.pushSenderID // Google Project Number.
+        });
+      }
+      // Method to handle device registration for Android.
+      window.onNotificationGCM = function (e) {
+        if('message' == e.event) {
+          console.log(e);
+          if(e.payload.questionId){
+            $state.go('app.singlequestion',{id:e.payload.questionId});
+          }
+        }else if('registered' === e.event) {
+          window.registrationHandler(e.regid);
+        }
+        else if ('error' === e.event) {
+          console.log("error",e);
+        }
+      };
+      window.registrationHandler = function(_deviceId){
+        $scope.deviceInfo = {"deviceType":window.device.platform,"userId":localStorage.userId,"deviceId":_deviceId}
+        alert($scope.deviceInfo);
+        utility.notification($scope.deviceInfo)
+        .then(function(data){
+          console.log("success",data);
+        },function(data){
+          console.log("error",data);
+        }); 
+      }
     }
   }
   else if(localStorage.getItem('questionStatus') == "underObeservation"){

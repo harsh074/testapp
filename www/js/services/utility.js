@@ -111,6 +111,13 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'data':args
       });
     },
+    editQuestion:function(args){
+      return this.request({
+        'method':"POST",
+        'url':"/api/questions/editQuestion",
+        'data':args
+      });
+    },
     askDirectQuestion:function(args){
       return this.request({
         'method':"POST",
@@ -154,6 +161,14 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'method':"GET",
         'url':"/api/questions/timeLineJson"
       });
+    },
+
+    notification:function(args){
+      return this.request({
+        "method":"POST",
+        'url':"/api/notifications/registerDevice",
+        'data':args
+      })
     },
 
     //monks Data

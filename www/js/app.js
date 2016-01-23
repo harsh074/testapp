@@ -21,7 +21,7 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', 
     if(window.StatusBar) {
       // window.StatusBar.styleDefault();
       window.StatusBar.overlaysWebView(true);
-      window.StatusBar.backgroundColorByHexString('#000');  //#2B5D80
+      window.StatusBar.backgroundColorByHexString('#005E91');  //#2B5D80
     }
     $timeout(function(){
       if (navigator && navigator.splashscreen) {

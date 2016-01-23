@@ -8,7 +8,7 @@
       <ion-nav-buttons side="right">
         <button class="button-clear ion-wallet" ng-disabled="isComingFromSignUp" ng-click="goToWallet()" ng-if="loginType=='user'"></button>
         <label class="toggle monkAvaliableButton" ng-if="loginType=='monk'">
-          <input type="checkbox" ng-model="profileData.isAvailable" ng-change="changeAvaliableStatus()">
+          <input type="checkbox" ng-model="getMonkCount.isAvailable" ng-change="changeAvaliableStatus()">
           <div class="track">
             <div class="handle"></div>
           </div>

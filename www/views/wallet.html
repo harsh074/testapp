@@ -25,7 +25,7 @@
 		</div>
 		<div class="showMonkWallet" ng-if="loginType == 'monk'">
 			<p class="rupee">Rs.</p>
-			<p class="money">{{walletMoney ? walletMoney : 0}}</p>
+			<p class="money">{{walletMoney ? walletMoney : 0.00 | number:2}}</p>
 			<p class="aboutMoney">Present Wallet Money</p>
 		</div>
 	</ion-content>
