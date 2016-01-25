@@ -10,7 +10,7 @@
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="StatusBarOverlaysWebView" value="true"/>
-  <preference name="StatusBarBackgroundColor" value="#005E91"/>
+  <preference name="StatusBarBackgroundColor" value="#000"/>
   <preference name="StatusBarStyle" value="lightcontent"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>

@@ -259,6 +259,10 @@ askmonkApp.filter('timeLineFiter', function(){
 	}
 });
 
-askmonkApp.controller('partnerDetailsModal', ['$scope', function($scope){
-
+askmonkApp.controller('partnerDetailsModal', ['$scope','$timeout', function($scope,$timeout){
+	$timeout(function(){
+    if($scope.args.partnerBirthPlace){
+      angular.element(document.getElementsByClassName('ion-google-place')).addClass('used');
+    }
+  }, 50);
 }]);

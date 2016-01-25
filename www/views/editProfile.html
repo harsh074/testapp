@@ -13,13 +13,22 @@
 
       <ion-md-input placeholder="Mobile" hightlight-color="custom" type="number" ng-model="editProfileData.mobile" ng-if="loginType=='user'"></ion-md-input>
 
-      <ion-md-input placeholder="Birth Place" hightlight-color="custom" type="text" ng-model="editProfileData.birthPlace" ng-if="loginType=='user'"></ion-md-input>
+      <!-- <ion-md-input placeholder="Birth Place" hightlight-color="custom" type="text" ng-model="editProfileData.birthPlace" ng-if="loginType=='user'"></ion-md-input> -->
+
+      <label class="item item-input item-md-label" placeholder="Birth Place" hightlight-color="custom" type="text" ng-model="editProfileData.birthPlace" ng-if="loginType=='user'">
+        <ion-google-place ng-model="editProfileData.birthPlace" current-location="false"></ion-google-place>
+        <span class="input-label">Birth Place</span>
+        <div class="highlight highlight-calm"></div>
+      </label>
+      
 
       <ion-md-input placeholder="Birth Time" hightlight-color="custom" type="time" ng-model="editProfileData.birthTime" ng-if="loginType=='user'"></ion-md-input>
 
       <ion-md-input placeholder="Phone" hightlight-color="custom" type="number" ng-model="editProfileData.phone" ng-if="loginType=='monk'"></ion-md-input>
 
       <ion-md-input placeholder="Education" hightlight-color="custom" type="text" ng-model="editProfileData.education" ng-if="loginType=='monk'"></ion-md-input>
+
+      <ion-md-input placeholder="Occupation" hightlight-color="custom" type="text" ng-model="editProfileData.occupation" ng-if="loginType=='monk'"></ion-md-input>
 
       <ion-md-input placeholder="Residence" hightlight-color="custom" type="text" ng-model="editProfileData.residence" ng-if="loginType=='monk'"></ion-md-input>
       

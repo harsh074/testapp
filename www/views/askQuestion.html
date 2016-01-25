@@ -33,12 +33,16 @@
 				</select>
 			</label> -->
 
-			<div class="categoryQuestion">
+			<div class="categoryQuestion" ng-if="preffredQuestion">
 				<div ng-if="showQuestion" ng-repeat="question in preffredQuestion track by $index">
 					<ion-radio ng-model="askQuestion.question" ng-value="question" ng-change="clearQuestionOnOther()" ng-class="{'activeTextarea':question=='Other' && showOnOtherQuestion}">{{question}}</ion-radio>
 				</div>
 			</div>
+			<div class="noTagQuestion" ng-if="!preffredQuestion">
+	  		<img src="img/icon.png" width="100px" />
+	    </div>
 		</div>
+		
 		<div class="matchMaking paddingLRPlus21" ng-if="askQuestion.questionTag == 'Match Making'">
 			<p>Partner Details</p><button class="button button-custom button-small" ng-click="addPartnerDetailsModal()">Add</button>
 		</div>

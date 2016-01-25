@@ -27,19 +27,23 @@
 		  <dt>Name:</dt>
 		  <dd>Sunil Magon</dd>
 		</dl> -->
-		<dl>
+		<dl ng-if="monkProfileData.education">
 		  <dt>Education</dt>
 		  <dd>{{monkProfileData.education}}</dd>
 		</dl>
-		<dl>
+		<dl ng-if="monkProfileData.occupation">
+		  <dt>Occupation</dt>
+		  <dd>{{monkProfileData.occupation}}</dd>
+		</dl>
+		<dl ng-if="monkProfileData.residence">
 		  <dt>Residence</dt>
 		  <dd>{{monkProfileData.residence}}</dd>
 		</dl>
-		<dl>
+		<dl ng-if="monkProfileData.experience">
 		  <dt>Experience</dt>
 		  <dd>{{monkProfileData.experience}} Years</dd>
 		</dl>
-		<dl>
+		<dl ng-if="monkProfileData.bio">
 		  <dt>About Me</dt>
 		  <dd class="bio">{{monkProfileData.bio}}</dd>
 		</dl>

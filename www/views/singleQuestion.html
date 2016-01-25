@@ -18,7 +18,7 @@
       <div class="question">{{question.question}}</div>
 
       <div class="middleSec">
-      	<p class="answer" ng-if="loginType=='user'">{{question.answer ? question.answer: "Will be answered next 24 hrs."}}</p>
+      	<p class="answer" ng-if="loginType=='user'">{{question.answer ? question.answer: "Will be answered next 48 hrs."}}</p>
         <p class="answer" ng-if="loginType=='monk' && (question.status=='answered' || question.status=='rated')">{{question.answer}}</p>
         <p class="answer" ng-if="loginType=='monk' && question.status=='underObservation'">{{writtenAnswer}}</p>
         <p class="yogiName" ng-if="question.monkName && loginType=='user' && (question.status=='answered' || question.status=='rated')">Answered by {{question.monkName ? question.monkName: "Sunil"}}</p>
@@ -64,6 +64,12 @@
           <div class="col">
             <button class="button button-custom button-small" ng-click="userDetail()">User Details</button>
           </div>
+        </div>
+        <div class="row">
+          <!-- <div class="col"></div> -->
+          <!-- <div class="col"> -->
+            <button class="button button-custom button-small partnerDetailBtn" ng-click="viewPartnerDetails()">Partner Details</button>
+          <!-- </div> -->
         </div>
         <div class="row">
           <div class="answerRating col" ng-if="question.status=='rated'">

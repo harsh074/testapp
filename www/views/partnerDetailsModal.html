@@ -21,7 +21,12 @@
 	<ion-content scroll="true" class="editProfile paddingLRPlus21 partnerDetails">
 		<form novalidate>
 			<ion-md-input placeholder="Partner Name" highlight-color="calm" ng-model="args.partnerName" type="text" required></ion-md-input>
-			<ion-md-input placeholder="Partner Birth Place" highlight-color="calm" ng-model="args.partnerBirthPlace" type="text" required></ion-md-input>
+			<!-- <ion-md-input placeholder="Partner Birth Place" highlight-color="calm" ng-model="args.partnerBirthPlace" type="text" required></ion-md-input> -->
+			<label class="item item-input item-md-label" placeholder="Birth Place" hightlight-color="custom" type="text" ng-model="args.partnerBirthPlace" ng-if="loginType=='user'">
+        <ion-google-place ng-model="args.partnerBirthPlace" current-location="false"></ion-google-place>
+        <span class="input-label">Birth Place</span>
+        <div class="highlight highlight-calm"></div>
+      </label>
 			<ion-md-input placeholder="Partner Birth Time" hightlight-color="calm" type="time" ng-model="args.partnerBirthTime" required></ion-md-input>
 			<label class="item item-input item-calender">
 		  	<ionic-datepicker input-obj="datepickerObject">

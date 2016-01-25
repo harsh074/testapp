@@ -55,15 +55,19 @@
 			</dl>
 		</div>
 		<div ng-if="loginType=='monk'">
-			<dl>
+			<dl ng-if="profileInfo.education">
 			  <dt>Education</dt>
 			  <dd>{{profileInfo.education}}</dd>
 			</dl>
-			<dl>
+			<dl ng-if="profileInfo.occupation">
+			  <dt>Occupation</dt>
+			  <dd>{{profileInfo.occupation}}</dd>
+			</dl>
+			<dl ng-if="profileInfo.residence">
 			  <dt>Residence</dt>
 			  <dd>{{profileInfo.residence}}</dd>
 			</dl>
-			<dl>
+			<dl ng-if="profileInfo.experience">
 			  <dt>Experience</dt>
 			  <dd>{{profileInfo.experience}} Years</dd>
 			</dl>

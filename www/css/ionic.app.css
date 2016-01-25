@@ -9396,11 +9396,13 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     -webkit-justify-content: flex-end;
     -moz-justify-content: flex-end;
     justify-content: flex-end; }
-    .home-view .shortHeader .shortHeaderBtn .shortHeaderIcon i {
-      font-size: 28px;
-      color: #fff; }
-      .home-view .shortHeader .shortHeaderBtn .shortHeaderIcon i.ion-edit {
-        font-size: 23px; }
+    .home-view .shortHeader .shortHeaderBtn .shortHeaderIcon {
+      margin-left: 15px; }
+      .home-view .shortHeader .shortHeaderBtn .shortHeaderIcon i {
+        font-size: 24px;
+        color: #fff; }
+        .home-view .shortHeader .shortHeaderBtn .shortHeaderIcon i.ion-edit {
+          font-size: 20px; }
   .home-view .shortHeader .shortHeaderCustomBtn {
     height: 58px;
     line-height: 60px;
@@ -9788,13 +9790,18 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     .home-view .singleQuestion .questionData .subBottom .row {
       padding: 5px 0px;
       font-size: 14px; }
-      .home-view .singleQuestion .questionData .subBottom .row:nth-child(3) {
+      .home-view .singleQuestion .questionData .subBottom .row .partnerDetailBtn {
+        width: 100%;
+        padding: 4px 27px;
+        font-size: 15px;
         margin-top: 15px; }
-      .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) {
+      .home-view .singleQuestion .questionData .subBottom .row:nth-child(4) {
+        margin-top: 15px; }
+      .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(3) {
         margin-top: 8px; }
-        .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) .col + .col button {
+        .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(3) .col + .col button {
           float: right; }
-        .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(2) .col button {
+        .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(3) .col button {
           padding: 4px 27px;
           font-size: 15px; }
       .home-view .singleQuestion .questionData .subBottom .row:last-child {
@@ -9878,13 +9885,14 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   z-index: 1;
   padding-top: 0px; }
   .home-view .yogiTileProfile .allTile {
-    display: block; }
+    display: block;
+    margin-bottom: 10px; }
     .home-view .yogiTileProfile .allTile .tile {
       display: inline-block;
       width: 48.5%;
       margin-top: 8px;
       text-align: center;
-      padding: 15px 0px;
+      padding: 15px 5px;
       background-color: #2B5D80;
       color: white;
       border-radius: 3px;
@@ -9908,7 +9916,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         padding: 5px 0px 0px;
         color: #00BCD2; }
         .home-view .yogiTileProfile .allTile .tile .name p {
-          font-size: 17px;
+          font-size: 16px;
           margin-bottom: 5px;
           letter-spacing: 1px; }
       .home-view .yogiTileProfile .allTile .tile .place p {
@@ -10153,6 +10161,12 @@ dl {
     text-transform: capitalize; }
     dl dd.bio, dl dd.email {
       text-transform: inherit; }
+    dl dd.email {
+      text-overflow: ellipsis;
+      display: -webkit-inline-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden; }
 
 .bar.sideMenuTop {
   height: 194px;
@@ -10215,8 +10229,9 @@ ion-side-menu .has-header {
     .editProfile .item-md-label .md-input {
       color: #000;
       padding-top: 0px;
-      height: 25px; }
-      .editProfile .item-md-label .md-input:focus ~ .input-label, .editProfile .item-md-label .md-input.used ~ .input-label {
+      height: 25px;
+      background-color: transparent; }
+      .editProfile .item-md-label .md-input:focus ~ .input-label, .editProfile .item-md-label .md-input.used ~ .input-label, .editProfile .item-md-label .md-input.ion-google-place.ng-dirty ~ .input-label {
         -webkit-transform: translate3d(0, -50px, 0) scale(1);
         transform: translate3d(0, -50px, 0) scale(1);
         font-size: 13px; }
@@ -10296,7 +10311,7 @@ ion-side-menu .has-header {
 
 .askQuestionForm .item-select {
   padding-left: 0px;
-  border-width: 0px;
+  border-width: 0 0 1px 0;
   display: inline-block;
   width: 100%;
   height: 46px;
@@ -10353,6 +10368,11 @@ ion-side-menu .has-header {
       font-style: italic; }
     .askQuestionForm .textarea #askQuestionTextarea:-ms-input-placeholder {
       font-style: italic; }
+
+.askQuestionForm .noTagQuestion {
+  text-align: center;
+  color: #AAA;
+  padding-top: 33%; }
 
 .askQuestiontextarea {
   border-width: 1px 0px 0px;
@@ -10685,7 +10705,7 @@ ion-side-menu .has-header {
   .editQuestionModal .headerPart {
     font-size: 18px; }
   .editQuestionModal .questionPart {
-    margin-top: 10px; }
+    margin-top: 90px; }
     .editQuestionModal .questionPart .editQuestionTextarea {
       padding: 10px 0 0;
       margin-top: 15px; }
@@ -10698,9 +10718,11 @@ ion-side-menu .has-header {
         max-height: 125px;
         overflow-y: scroll !important; }
   .editQuestionModal .questionTag {
-    margin: 25px 0 0; }
-    .editQuestionModal .questionTag .headerPart {
-      margin-bottom: 20px; }
+    margin-top: 10px; }
+  .editQuestionModal .matchMakingEdit {
+    margin-bottom: 50px; }
+    .editQuestionModal .matchMakingEdit .headerPart {
+      margin-top: 30px; }
 
 .settingCtrl {
   margin-top: 60px;
@@ -10820,6 +10842,30 @@ ion-side-menu .has-header {
   .slide-in-right.ng-leave, .slide-in-right > .ng-leave {
     -webkit-transition: all ease-in-out 250ms;
     transition: all ease-in-out 250ms; }
+
+.ion-google-place-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  display: none; }
+  .ion-google-place-container input.ion-google-place[readonly] {
+    background-color: transparent;
+    cursor: text; }
+  .ion-google-place-container .ionic-google-places {
+    top: 88px; }
+  .ion-google-place-container .bar.item-input-inset {
+    background-color: whitesmoke; }
+    .ion-google-place-container .bar.item-input-inset .item-input-wrapper {
+      background-color: whitesmoke; }
+      .ion-google-place-container .bar.item-input-inset .item-input-wrapper i {
+        font-size: 19px;
+        padding-top: 3px; }
+      .ion-google-place-container .bar.item-input-inset .item-input-wrapper .google-place-search {
+        font-size: 15px;
+        padding-top: 3px; }
 
 /*************** iPhone 5 ***************/
 @media all and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) {

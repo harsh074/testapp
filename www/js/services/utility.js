@@ -44,11 +44,11 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
        'url': "/api/users/login/",
        'data':args
       }).then(function(data){
-       if(!utility.use_session){
+        if(!utility.use_session){
           $http.defaults.headers.common.Authorization = 'Basic ' + data.id;
           localStorage.setItem('token',data.id);
           localStorage.setItem('userId',data.userId);
-       }
+        }
       });
     },
     logout:function(){

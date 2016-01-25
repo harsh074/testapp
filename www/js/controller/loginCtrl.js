@@ -76,7 +76,6 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       utility.login($scope.args)
       .then(function(data){
         $scope.setAuth(true);
-        $scope.registerNotificaton();
         localStorage.setItem('loginType',"user");
         CONSTANT.loginType = "user";
         $state.go('app.profile');
@@ -85,6 +84,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         if($scope.userLoginModal && $scope.userLoginModal.isShown()){
           $scope.userLoginModal.remove();
         }
+        $scope.registerNotificaton();
       },function(data){
         $scope.hideLoader();
         $scope.showMessage(data.error.message);
@@ -99,7 +99,6 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       utility.monkLogin($scope.argsMonk)
       .then(function(data){
         $scope.setAuth(true);
-        $scope.registerNotificaton();
         $state.go('app.profile');
         localStorage.setItem('loginType',"monk");
         CONSTANT.loginType = "monk";
@@ -110,6 +109,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         if($scope.monkLoginModal && $scope.monkLoginModal.isShown()){
           $scope.monkLoginModal.remove();
         }
+        $scope.registerNotificaton();
       },function(data){
         $scope.hideLoader();
         $scope.showMessage(data.error.message);
@@ -144,7 +144,6 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
             $rootScope.token = localStorage.getItem('token');
             localStorage.setItem("profileData", JSON.stringify(data));
             $scope.setAuth(true);
-            $scope.registerNotificaton();
             localStorage.setItem('loginType',"user");
             CONSTANT.loginType = "user";
             $state.go('app.editProfile');
@@ -153,6 +152,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
             if($scope.userLoginModal && $scope.userLoginModal.isShown()){
               $scope.userLoginModal.remove();
             }
+            $scope.registerNotificaton();
           },function(data){
             $scope.hideLoader();
             $scope.showMessage(data.error.message);
@@ -229,7 +229,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       };
       window.registrationHandler = function(_deviceId){
         $scope.deviceInfo = {"deviceType":window.device.platform,"userId":localStorage.userId,"deviceId":_deviceId}
-        alert($scope.deviceInfo);
+        // alert($scope.deviceInfo);
         utility.notification($scope.deviceInfo)
         .then(function(data){
           console.log("success",data);

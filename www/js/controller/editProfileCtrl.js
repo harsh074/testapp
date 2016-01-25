@@ -35,6 +35,12 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
     }else{
       $scope.editProfileData = {};
     }
+    console.log($scope.editProfileData);
+    $timeout(function(){
+      if($scope.editProfileData.birthPlace){
+        angular.element(document.getElementsByClassName('ion-google-place')).addClass('used');
+      }
+    }, 50);
 
     $scope.datepickerObject = {
       titleLabel: 'DOB',  //Optional
