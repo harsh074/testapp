@@ -275,44 +275,47 @@ askmonkApp.controller('editQuestionModalCtrl', ['$scope','utility','$timeout', f
       console.log(data);
     });
   }
-  $scope.editQuestion.matchMakingDetails.partnerBirthTime = angular.copy(new Date($scope.editQuestion.matchMakingDetails.partnerBirthTime));
-  $scope.editQuestion.matchMakingDetails.partnerDOB = angular.copy(new Date($scope.editQuestion.matchMakingDetails.partnerDOB));
-  $timeout(function(){
-    if($scope.editQuestion.matchMakingDetails.partnerBirthPlace){
-      angular.element(document.getElementsByClassName('ion-google-place')).addClass('used');
+
+  if($scope.editQuestion.questionTag == "Match Making"){
+    $scope.editQuestion.matchMakingDetails.partnerBirthTime = angular.copy(new Date($scope.editQuestion.matchMakingDetails.partnerBirthTime));
+    $scope.editQuestion.matchMakingDetails.partnerDOB = angular.copy(new Date($scope.editQuestion.matchMakingDetails.partnerDOB));
+    $timeout(function(){
+      if($scope.editQuestion.matchMakingDetails.partnerBirthPlace){
+        angular.element(document.getElementsByClassName('ion-google-place')).addClass('used');
+      }
+    }, 50);
+    $scope.datepickerObject = {
+      titleLabel: 'DOB',
+      todayLabel: 'Today',
+      closeLabel: 'Close',
+      setLabel: 'Set',
+      setButtonType : 'button-askmonk',
+      todayButtonType : 'button-askmonk',
+      closeButtonType : 'button-askmonk',
+      inputDate: $scope.editQuestion.matchMakingDetails.partnerDOB,
+      mondayFirst: true,
+      templateType: 'popup',
+      showTodayButton: 'false',
+      modalHeaderColor: 'bar-positive',
+      modalFooterColor: 'bar-positive',
+      from: new Date(1940, 1, 1),
+      to: new Date(),
+      callback: function (val) {
+        datePickerCallback(val);
+      },
+      dateFormat: 'dd-MM-yyyy',
+      closeOnSelect: false
+    };
+    
+    function datePickerCallback(val){
+      $scope.showDate = true;
+      if(val){
+        $scope.datepickerObject.inputDate = val;
+      }else{
+        $scope.datepickerObject.inputDate = new Date();
+      }
+      $scope.editQuestion.matchMakingDetails.partnerDOB = angular.copy($scope.datepickerObject.inputDate);
     }
-  }, 50);
-  $scope.datepickerObject = {
-    titleLabel: 'DOB',
-    todayLabel: 'Today',
-    closeLabel: 'Close',
-    setLabel: 'Set',
-    setButtonType : 'button-askmonk',
-    todayButtonType : 'button-askmonk',
-    closeButtonType : 'button-askmonk',
-    inputDate: $scope.editQuestion.matchMakingDetails.partnerDOB,
-    mondayFirst: true,
-    templateType: 'popup',
-    showTodayButton: 'false',
-    modalHeaderColor: 'bar-positive',
-    modalFooterColor: 'bar-positive',
-    from: new Date(1940, 1, 1),
-    to: new Date(),
-    callback: function (val) {
-      datePickerCallback(val);
-    },
-    dateFormat: 'dd-MM-yyyy',
-    closeOnSelect: false
-  };
-  
-  function datePickerCallback(val){
-    $scope.showDate = true;
-    if(val){
-      $scope.datepickerObject.inputDate = val;
-    }else{
-      $scope.datepickerObject.inputDate = new Date();
-    }
-    $scope.editQuestion.matchMakingDetails.partnerDOB = angular.copy($scope.datepickerObject.inputDate);
   }
 
   $scope.saveEditQuestion = function(){
