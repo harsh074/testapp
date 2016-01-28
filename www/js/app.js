@@ -1,6 +1,21 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place']);
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place','angular-jwt','auth0']);
 
-askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', function($ionicPlatform,$state,$stateParams,CONSTANT,$timeout){  
+askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout','auth', function($ionicPlatform,$state,$stateParams,CONSTANT,$timeout,auth){
+
+/*  $rootScope.$on('$locationChangeStart', function() {
+    if (!auth.isAuthenticated) {
+      var token = store.get('token');
+
+      if (token) {
+        if (!jwtHelper.isTokenExpired(token)) {
+          auth.authenticate(store.get('profile'), token);
+        } else {
+          $state.go('login');
+        }
+      }
+    }
+  });*/
+
   if(!localStorage.getItem('token')){
     $state.go('login');
   }else if(localStorage.getItem('questionStatus') == 'underObservation'){
@@ -47,7 +62,14 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', 
   });
 }]);
 
-askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider', function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
+askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider','authProvider','jwtInterceptorProvider','$httpProvider', function($stateProvider, $urlRouterProvider,$ionicConfigProvider,authProvider,jwtInterceptorProvider,$httpProvider) {
+
+  authProvider.init({
+    domain: 'askmonk.au.auth0.com',
+    clientID: 'YYSz6ElDl4UNwCthp2IoV0VAm9AOIqDG',
+    loginUrl: '/login'
+  });
+
   $ionicConfigProvider.views.transition('none');
   $ionicConfigProvider.views.swipeBackEnabled(false);
 
@@ -170,6 +192,10 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   })
   ;
 
+  jwtInterceptorProvider.tokenGetter = function() {
+    return localStorage.getItem('token');
+  };
+  $httpProvider.interceptors.push('jwtInterceptor');
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/welcome');
 }]);

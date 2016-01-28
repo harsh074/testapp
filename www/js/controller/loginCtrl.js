@@ -1,4 +1,4 @@
-askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ionicScrollDelegate','$timeout','$rootScope','$stateParams','$ionicModal', function($scope, $state,utility,CONSTANT,$ionicScrollDelegate,$timeout,$rootScope,$stateParams,$ionicModal){
+askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ionicScrollDelegate','$timeout','$rootScope','$stateParams','$ionicModal','auth', function($scope, $state,utility,CONSTANT,$ionicScrollDelegate,$timeout,$rootScope,$stateParams,$ionicModal,auth){
   if(!$scope.authenticated){
     $scope.monkTab = true;
     $scope.userForgetPasswordShow = false;
@@ -237,6 +237,29 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           console.log("error",data);
         }); 
       }
+    }
+
+    $scope.userGoogleLogin = function(){
+      auth.signin({}, function(profile, token, accessToken, state, refreshToken) {
+        // Success callback
+
+        utility.googleOauth(profile)
+        .then(function(data){
+          console.log("success",data);
+          $scope.showMessage("No error. Success")
+        },function(data){
+          $scope.showMessage(data.error.message);
+
+          console.log("error",data)
+        })
+        localStorage.setItem('authProfile', JSON.stringify(profile));
+        // localStorage.setItem('authToken', token);
+        // localStorage.setItem('authRefreshToken', refreshToken);
+        // $location.path('/');
+      }, function(data) {
+        // Error callback
+        console.log("error",data);
+      });
     }
   }
   else if(localStorage.getItem('questionStatus') == "underObeservation"){

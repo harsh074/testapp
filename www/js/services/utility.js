@@ -51,6 +51,13 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         }
       });
     },
+    googleOauth:function(args){
+      return this.request({
+       'method': "POST",
+       'url': "/googleOAuthLogin/",
+       'data':args
+      });
+    },
     logout:function(){
       return this.request({
         'method':"POST",

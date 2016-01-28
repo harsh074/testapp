@@ -39,6 +39,9 @@
     </ion-header-bar>
     <ion-content scroll="false">
 			<div class="inputFields" ng-class="{'signUptab':signUptab}">
+				<div class="socialLogin">
+				<button class="button button-login" ng-click="userGoogleLogin()">Google Login</button>
+				</div>
 				<form name="myform" class="form form-horizontal" novalidate ng-hide="signUptab">
 					<ion-md-input placeholder="Email" highlight-color="custom" ng-model="args.email" type="email"></ion-md-input>
 					<ion-md-input placeholder="Password" highlight-color="custom password" ng-model="args.password" type="password" ng-if="!userForgetPasswordShow"></ion-md-input>

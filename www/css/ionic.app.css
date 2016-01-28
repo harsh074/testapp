@@ -9491,7 +9491,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       display: inline-block;
       border-radius: 50%;
       vertical-align: top;
-      background-image: url("../img/default1.jpg");
+      background-image: url("../img/default1.png");
       background-size: auto 100%; }
       .home-view .yprofile .pofilePic .avatar img {
         height: 75px;
@@ -9883,7 +9883,8 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
 .home-view .yogiTileProfile {
   top: 106px;
   z-index: 1;
-  padding-top: 0px; }
+  padding: 0 13px;
+  background-color: #eee; }
   .home-view .yogiTileProfile .allTile {
     display: block;
     margin-bottom: 10px; }
@@ -9893,10 +9894,11 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       margin-top: 8px;
       text-align: center;
       padding: 15px 5px;
-      background-color: #2B5D80;
+      background-color: #ffffff;
       color: white;
-      border-radius: 3px;
-      box-shadow: 1px 2px 1px rgba(185, 185, 185, 0.9); }
+      border-radius: 5px;
+      box-shadow: 1px 1px 1px #d8d8d8;
+      border: 1px solid #cacaca; }
       .home-view .yogiTileProfile .allTile .tile:nth-child(even) {
         float: right; }
       .home-view .yogiTileProfile .allTile .tile:nth-child(n+3) {
@@ -9905,7 +9907,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         height: 78px;
         width: 78px;
         display: inline-block;
-        background-image: url("../img/default1.jpg");
+        background-image: url("../img/default1.png");
         border-radius: 50%;
         background-size: contain; }
         .home-view .yogiTileProfile .allTile .tile .imagePic img {
@@ -9913,27 +9915,32 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
           height: 100%;
           border-radius: 50%; }
       .home-view .yogiTileProfile .allTile .tile .name {
-        padding: 5px 0px 0px;
-        color: #00BCD2; }
+        padding: 10px 0px 0px;
+        color: #000; }
         .home-view .yogiTileProfile .allTile .tile .name p {
           font-size: 16px;
           margin-bottom: 5px;
           letter-spacing: 1px; }
       .home-view .yogiTileProfile .allTile .tile .place p {
+        color: #000;
+        margin-top: -4px;
+        font-size: 13px;
         margin-bottom: 5px; }
       .home-view .yogiTileProfile .allTile .tile .statics {
         font-size: 14px; }
         .home-view .yogiTileProfile .allTile .tile .statics .answered {
           display: inline-block;
-          padding-right: 7px; }
+          padding-right: 12px;
+          color: #616161; }
           .home-view .yogiTileProfile .allTile .tile .statics .answered span {
-            color: #00BCD2;
+            color: #D0D0D0;
             font-size: 12px; }
         .home-view .yogiTileProfile .allTile .tile .statics .accepted {
           display: inline-block;
-          padding-left: 7px; }
+          padding-left: 12px;
+          color: #616161; }
           .home-view .yogiTileProfile .allTile .tile .statics .accepted span {
-            color: #00BCD2;
+            color: #D0D0D0;
             font-size: 12px; }
 
 .bar-assertive-900 {
@@ -10931,3 +10938,6 @@ ion-side-menu .has-header {
 @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
   .welcome-view .authFields .inputFields label .md-input:focus ~ .highlight-custom.password {
     height: 2px; } }
+
+.a0-lock-container {
+  pointer-events: auto; }

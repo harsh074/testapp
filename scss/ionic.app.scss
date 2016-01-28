@@ -411,7 +411,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 				// background-color: white;
 				border-radius:50%;
 				vertical-align: top;
-		    background-image: url("../img/default1.jpg");
+		    background-image: url("../img/default1.png");
     		background-size: auto 100%;
 				img{
 			    height: 75px;
@@ -929,7 +929,8 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	.yogiTileProfile{
     top: 106px;
     z-index: 1;
-    padding-top: 0px;
+    padding: 0 13px;
+    background-color:#eee;
 		.allTile{
 			display: block;
 			margin-bottom:10px;
@@ -939,10 +940,11 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	  		margin-top: 8px;
 		    text-align: center;
 		    padding: 15px 5px;
-		    background-color:$top-portion-color;
+		    background-color:#ffffff;
 		    color: white;
-		    border-radius: 3px;
-	    	box-shadow: 1px 2px 1px rgba(185, 185, 185, 0.9);
+  	    border-radius: 5px;
+		    box-shadow: 1px 1px 1px rgb(216, 216, 216);
+		    border: 1px solid rgb(202, 202, 202);
 				&:nth-child(even) {
 			    float: right;
 				}
@@ -954,7 +956,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	  	    height: 78px;
 			    width: 78px;
 			    display: inline-block;
-			    background-image: url('../img/default1.jpg');
+			    background-image: url('../img/default1.png');
 			    border-radius: 50%;
 			    background-size: contain;
 	    		img{
@@ -964,8 +966,8 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	    		}
 		    }
 		    .name{
-		    	padding:5px 0px 0px;
-		    	color: $background-color;
+		    	padding:10px 0px 0px;
+		    	color: #000;
 		    	p{
 		    		font-size: 16px;
 	    			margin-bottom: 5px;
@@ -974,24 +976,29 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		    }
 		    .place{
 		    	p{
-		    		margin-bottom: 5px;
+		    		color: #000;
+				    margin-top: -4px;
+				    font-size: 13px;
+				    margin-bottom:5px;
 		    	}
 		    }
 		    .statics{
 		    	font-size: 14px;
 					.answered{
 						display: inline-block;
-				    padding-right: 7px;
+				    padding-right: 12px;
+				    color: #616161;
 				    span{
-				    	color: $background-color;
+				    	color: #D0D0D0;
 				    	font-size: 12px;
 				    }
 					}
 					.accepted{
 						display: inline-block;
-				    padding-left: 7px;
+				    padding-left: 12px;
+				    color: #616161;
 				    span{
-				    	color: $background-color;
+				    	color: #D0D0D0;
 				    	font-size: 12px;
 				    }
 					}
@@ -2207,4 +2214,9 @@ ion-side-menu .has-header{
 	.welcome-view .authFields .inputFields label .md-input:focus ~ .highlight-custom.password{
 		height:2px;
 	}
+}
+
+
+.a0-lock-container{
+	pointer-events:auto;
 }

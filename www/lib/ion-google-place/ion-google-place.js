@@ -24,14 +24,12 @@ angular.module('ion-google-place', [])
                     scope.locations = [];
                     var geocoder = new google.maps.Geocoder();
                     var searchEventTimeout = undefined;
+
                     var options = {
-                        types:['(cities)'],
+                        types:['(regions)'],
                         componentRestrictions: {country: 'in'}
                     };
-                    // var autocomplete = new google.maps.places();
-
-                    // Autocomplete((document.getElementBy('autocomplete')),options);
-                    // autocomplete.addListener('place_changed', fillInAddress);
+                    var service = new google.maps.places.AutocompleteService();
 
                     scope.displayCurrentLocation = false;
                     scope.currentLocation = scope.currentLocation === "true"? true:false;
@@ -60,7 +58,7 @@ angular.module('ion-google-place', [])
                                         'Use current location',
                                     '</ion-item>',
                                     '<ion-item ng-repeat="location in locations" type="item-text-wrap" ng-click="selectLocation(location)">',
-                                        '{{location.formatted_address}}',
+                                        '{{location.description}}',
                                     '</ion-item>',
                                 '</ion-list>',
                             '</ion-content>',
@@ -77,7 +75,7 @@ angular.module('ion-google-place', [])
                         var searchInputElement = angular.element(el.element.find('input'));
 
                         scope.selectLocation = function(location){
-                            ngModel.$setViewValue(location.formatted_address);
+                            ngModel.$setViewValue(location.description);
                             ngModel.$render();
                             el.element.css('display', 'none');
                             $ionicBackdrop.release();
@@ -129,7 +127,7 @@ angular.module('ion-google-place', [])
                                 });
                         };
 
-                        scope.$watch('searchQuery', function(query){
+                        /*scope.$watch('searchQuery', function(query){
                             if (searchEventTimeout) $timeout.cancel(searchEventTimeout);
                             searchEventTimeout = $timeout(function() {
                                 if(!query) return;
@@ -147,13 +145,26 @@ angular.module('ion-google-place', [])
                                     }
                                 });
                             }, 350); // we're throttling the input by 350ms to be nice to google's API
+                        });*/
+
+                        scope.$watch('searchQuery', function(query){
+                            if (searchEventTimeout) $timeout.cancel(searchEventTimeout);
+                            searchEventTimeout = $timeout(function() {
+                                if(!query) return;
+                                var req = options || {};
+                                req.input = query;
+                                service.getPlacePredictions(req, function(results, status) {
+                                    if (status != google.maps.places.PlacesServiceStatus.OK) {
+                                      console.log(status);
+                                      return;
+                                    }
+                                    scope.$apply(function(){
+                                        scope.locations = results;
+                                    });
+                                });
+                            }, 350);
                         });
                         
-                        // var fillInAddress = function(){
-                        //     var place = autocomplete.getPlace();
-                        //     console.log(place);
-                        // }
-
                         var onClick = function(e){
                             e.preventDefault();
                             e.stopPropagation();

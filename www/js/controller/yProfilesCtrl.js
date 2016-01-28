@@ -1,8 +1,8 @@
 askmonkApp.controller('yProfilesCtrl', ['$scope','$state','utility','$stateParams','CONSTANT','$timeout', function($scope,$state,utility,$stateParams,CONSTANT,$timeout){
 
-  $scope.floatingBtnAction = false;
+  // $scope.floatingBtnAction = false;
   $scope.$on('$ionicView.enter', function(){
-    $scope.floatingBtnAction = true;
+    // $scope.floatingBtnAction = true;
     $scope.showLoader();
   });
   $scope.loginType = CONSTANT.loginType;

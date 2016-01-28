@@ -4,6 +4,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
     $scope.$on('$ionicView.enter', function(){
       $scope.showLoader();
     });
+
     $scope.loginType = CONSTANT.loginType;
 
     $timeout(function(){
