@@ -55,7 +55,7 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
       return this.request({
        'method': "POST",
        'url': "/googleOAuthLogin/",
-       'data':args
+       'params':args
       });
     },
     logout:function(){
@@ -220,17 +220,17 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'params': {"access_token":localStorage.getItem('token')}
       });
     },
-    getQuestionOnStatus:function(args){
+    getQuestionOnStatus:function(args,nextIndex){
       return this.request({
         'method':"GET",
-        'url':"/api/questions/getStatusQuestions/"+args
+        'url':"/api/questions/getStatusQuestions/"+args+'/'+nextIndex
         // 'params': {"access_token":localStorage.getItem('token')}
       });
     },
-    getMonkAnsweredQuestion:function(){
+    getMonkAnsweredQuestion:function(nextIndex){
       return this.request({
         'method':"GET",
-        'url':"/api/questions/findMonkQuestions/"+localStorage.getItem('userId')
+        'url':"/api/questions/findMonkQuestions/"+localStorage.getItem('userId')+'/'+nextIndex
       });
     },
     acceptQuestionMonk:function(args){
@@ -248,10 +248,10 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'params': {"access_token":localStorage.getItem('token')}
       });
     },
-    getDirectQuestion:function(){
+    getDirectQuestion:function(nextIndex){
       return this.request({
         'method':"GET",
-        'url':"/api/questions/directQuestions/"+localStorage.getItem('userId')
+        'url':"/api/questions/directQuestions/"+localStorage.getItem('userId')+'/'+nextIndex
       })
     },
     changeMonkPassword:function(args){

@@ -1250,6 +1250,15 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	&.setting span i {
 		color:#9389FF;
 	}
+	&.horoscope span i{
+		color:#FCB040;
+		&:before{
+			filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	  	-webkit-transform: rotate(270deg);
+	  	-ms-transform: rotate(270deg);
+	  	transform: rotate(270deg);
+		}
+	}
 }
 .profileData{
 	display:inline-block;

@@ -36,6 +36,8 @@
       		<p class="noQuestionTitle" ng-if="loginType=='monk'">No Direct Question</p>
       	</div>
     	</ion-list>
+
+    	<ion-infinite-scroll ng-if="!noMoreQuestion" on-infinite="loadMoreQuestion()" immediate-check="false" icon="ion-loading" distance="10%"></ion-infinite-scroll>
 		</div>
 	</ion-content>
 </ion-view>

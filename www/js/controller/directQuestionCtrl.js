@@ -7,8 +7,11 @@ askmonkApp.controller('directQuestionCtrl', ['$scope','utility','$state','$state
   $scope.$on('$ionicView.enter', function(){
     $scope.showLoader();
   });
+  var indexGetQuestion = 0;
+  $scope.noMoreQuestion = false;
 
-  utility.getDirectQuestion()
+
+  utility.getDirectQuestion(indexGetQuestion)
   .then(function(data){
     $scope.hideLoader();
     console.log(data);
@@ -24,7 +27,10 @@ askmonkApp.controller('directQuestionCtrl', ['$scope','utility','$state','$state
 
   $scope.doRefresh = function() {
     // $scope.showLoader();
-    utility.getDirectQuestion()
+    indexGetQuestion = 0;
+    $scope.noMoreQuestion = false;
+
+    utility.getDirectQuestion(indexGetQuestion)
     .then(function(data){
       // $scope.hideLoader();
       $scope.$broadcast('scroll.refreshComplete');
@@ -38,7 +44,27 @@ askmonkApp.controller('directQuestionCtrl', ['$scope','utility','$state','$state
       $scope.hideLoader();
       console.log(data);
     });
-  };
+  }
+
+  $scope.loadMoreQuestion = function(){
+    indexGetQuestion = indexGetQuestion+10;
+    $scope.showLoader();
+    utility.getDirectQuestion(indexGetQuestion)
+    .then(function(data){
+      $scope.hideLoader();
+      console.log(data,"answered");
+      if(data.length==0 && indexGetQuestion>9){
+        $scope.noMoreQuestion = true;
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      }else{
+        $scope.questionSortedMonk(data,null,null);
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      }
+    },function(data){
+      $scope.hideLoader();
+      console.log(data)
+    });
+  }
 
 
   $scope.goToQuestion = function(id){

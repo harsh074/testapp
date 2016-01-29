@@ -73,6 +73,8 @@
 					      	<a ui-sref="app.wallet">Pay to get more answers.</a>
 					      </div> -->
 			      	</ion-list>
+
+			      	<ion-infinite-scroll ng-if="!noMoreAskedQuestion && loginType=='monk' && showInfinteScroll" on-infinite="loadMoreAskedQuestion()" immediate-check="false" icon="ion-loading" distance="10%"></ion-infinite-scroll>
 						</div>
 					</ion-scroll>
         </ion-slide>
@@ -120,6 +122,8 @@
 					      	<a ui-sref="app.wallet">Pay to get more answers.</a>
 					      </div> -->
 			      	</ion-list>
+
+			      	<ion-infinite-scroll ng-if="!noMoreOtherQuestion && loginType=='monk' && showInfinteScroll" on-infinite="loadMoreOtherQuestion()" immediate-check="false" icon="ion-loading" distance="10%"></ion-infinite-scroll>
 						</div>
 					</ion-scroll>
         </ion-slide>
@@ -161,6 +165,8 @@
 					        </div>
 					      </div>
 			      	</ion-list>
+
+			      	<ion-infinite-scroll ng-if="!noMoreOtherQuestion && loginType=='monk' && showInfinteScroll" on-infinite="loadMoreOtherQuestion()" immediate-check="false" icon="ion-loading" distance="10%"></ion-infinite-scroll>
 						</div>
 					</ion-scroll>
         </ion-slide>
