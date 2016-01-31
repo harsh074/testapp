@@ -14,6 +14,9 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
   }
 
   $scope.loginType = CONSTANT.loginType;
+  $scope.ratingSubmitted = false;
+  $scope.ratingEdit = false;
+
   $scope.askQuestion = function(){
   	$state.go('app.askQuestion');
     $scope.transitionAnimation('left',180);
@@ -64,12 +67,18 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     });
   }
 
+  $scope.ratingEditing = function(){
+    $scope.ratingEdit = true;
+  }
+
   $scope.rateQuestion = function(){
     console.log($scope.question);
     utility.ratingQuestion({"userId":localStorage.getItem('userId'),"email":$scope.question.email,"id":$scope.question.id,"status":$scope.question.status,"rating":$scope.question.rating})
     .then(function(data){
       console.log("success",data);
       $scope.question = angular.copy(data);
+      $scope.ratingSubmitted = true;
+      $scope.ratingEdit = false;
     },function(data){
       console.log(data,"error");
     })
@@ -304,7 +313,7 @@ askmonkApp.controller('editQuestionModalCtrl', ['$scope','utility','$timeout', f
         datePickerCallback(val);
       },
       dateFormat: 'dd-MM-yyyy',
-      closeOnSelect: false
+      closeOnSelect: true
     };
     
     function datePickerCallback(val){

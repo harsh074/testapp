@@ -9310,7 +9310,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   .loginPages .socialLogin {
     text-align: center;
     padding-top: 10px; }
-    .loginPages .socialLogin .googleLoginBtn {
+    .loginPages .socialLogin.googleLoginBtn {
       padding-top: 45px; }
     .loginPages .socialLogin img {
       width: 75%;
@@ -9790,17 +9790,23 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       font-size: 18px; }
     .home-view .singleQuestion .questionData .subBottom .answerRating {
       display: inline-block;
-      padding-bottom: 10px; }
-      .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li {
-        display: inline;
-        border: 0px;
-        background: none;
-        padding: 5px;
-        color: #CC333C; }
-        .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li:first-child {
-          padding-left: 0; }
-      .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li i {
-        font-size: 30px; }
+      padding-bottom: 10px;
+      width: 100%; }
+      .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating {
+        display: inline-block; }
+        .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li {
+          display: inline;
+          border: 0px;
+          background: none;
+          padding: 5px;
+          color: #CC333C; }
+          .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li:first-child {
+            padding-left: 0; }
+          .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li i {
+            font-size: 30px; }
+      .home-view .singleQuestion .questionData .subBottom .answerRating .button.button-custom {
+        margin-top: 3px;
+        float: right; }
     .home-view .singleQuestion .questionData .subBottom .row {
       padding: 5px 0px;
       font-size: 14px; }

@@ -39,7 +39,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
       datePickerCallback(val);
     },
     dateFormat: 'dd-MM-yyyy',
-    closeOnSelect: false
+    closeOnSelect: true
   };
   
   function datePickerCallback(val){

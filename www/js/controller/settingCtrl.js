@@ -43,12 +43,17 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     );
   }
   $scope.shareWhatsapp = function(){
+    $scope.showLoader();
     window.plugins.socialsharing.shareViaWhatsApp(
       'Share Askmonk',
       'http://askmonk.in/images/askmonk_logo_white.png',
       'http://askmonk.in',
-      function() {console.log('share ok')},
+      function() {
+        $scope.hideLoader();
+        console.log('share ok');
+      },
       function(errormsg){
+        $scope.hideLoader();
         $scope.showMessage("Whatsapp is not installed.");
         console.log(errormsg,"error")
       }
@@ -109,13 +114,13 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     .then(function(data){
       $scope.hideLoader();
       $state.go('login');
-      $scope.transitionAnimation('left');
       $scope.setAuth(false);
       $ionicHistory.clearCache();
       $ionicHistory.clearHistory();
       var currentPageTemplate = $state.current.templateUrl;
       $templateCache.remove(currentPageTemplate);
       $rootScope.profileData = null;
+      $scope.transitionAnimation('left',100);
       // localStorage.removeItem('token');
       // localStorage.removeItem('userId');
       // localStorage.removeItem("name");

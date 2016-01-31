@@ -80,7 +80,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         CONSTANT.loginType = "user";
         $state.go('app.profile');
         $scope.hideLoader();
-        $scope.transitionAnimation('left',480);
+        $scope.transitionAnimation('left',400);
         if($scope.userLoginModal && $scope.userLoginModal.isShown()){
           $scope.userLoginModal.remove();
         }
@@ -104,7 +104,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         CONSTANT.loginType = "monk";
         $scope.hideLoader();
         if(CONSTANT.isDevice){
-          $scope.transitionAnimation('left',480);
+          $scope.transitionAnimation('left',400);
         }
         if($scope.monkLoginModal && $scope.monkLoginModal.isShown()){
           $scope.monkLoginModal.remove();

@@ -245,7 +245,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	.socialLogin{
     text-align: center;
     padding-top: 10px;
-    .googleLoginBtn{
+    &.googleLoginBtn{
     	padding-top: 45px;
     }
     img{
@@ -796,18 +796,26 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 				.answerRating{
 					display: inline-block;
 					padding-bottom:10px;
-					ul.rating li {
-					  display: inline;
-					  border: 0px;
-					  background: none;
-					  padding: 5px;
-					  color: $red;
-					  &:first-child{
-					  	padding-left:0;
-					  }
+					width:100%;
+					ul.rating{
+						display:inline-block;
+					 	li {
+						  display: inline;
+						  border: 0px;
+						  background: none;
+						  padding: 5px;
+						  color: $red;
+						  &:first-child{
+						  	padding-left:0;
+						  }
+						  i {
+					  		font-size: 30px;
+							}
+						}
 					}
-					ul.rating li i {
-					  font-size: 30px;
+					.button.button-custom{
+						margin-top:3px;
+						float:right;
 					}
 				}
 				.row{
