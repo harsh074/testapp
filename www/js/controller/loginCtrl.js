@@ -1,4 +1,4 @@
-askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ionicScrollDelegate','$timeout','$rootScope','$stateParams','$ionicModal','auth', function($scope, $state,utility,CONSTANT,$ionicScrollDelegate,$timeout,$rootScope,$stateParams,$ionicModal,auth){
+askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ionicScrollDelegate','$timeout','$rootScope','$stateParams','$ionicModal', function($scope, $state,utility,CONSTANT,$ionicScrollDelegate,$timeout,$rootScope,$stateParams,$ionicModal){
   if(!$scope.authenticated){
     $scope.monkTab = true;
     $scope.userForgetPasswordShow = false;
@@ -218,7 +218,11 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         if('message' == e.event) {
           console.log(e);
           if(e.payload.questionId){
-            $state.go('app.singlequestion',{id:e.payload.questionId});
+            if(e.payload.questionId == 12){
+              $state.go('app.horoscope');
+            }else{
+              $state.go('app.singlequestion',{id:e.payload.questionId});
+            }
           }
         }else if('registered' === e.event) {
           window.registrationHandler(e.regid);
@@ -240,25 +244,42 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     }
 
     $scope.userGoogleLogin = function(){
-      auth.signin({}, function(profile, token, accessToken, state, refreshToken) {
-        // Success callback
-
-        utility.googleOauth(profile)
+      $scope.showLoader();
+      window.plugins.googleplus.login({'iOSApiKey': '915609605128-idn9dp6hnes236v35ko5pjhfmk4m8ap3.apps.googleusercontent.com'},
+      function (obj) {
+      //   alert(JSON.stringify(obj),"success");
+        // var obj = {"email":"harsh.agarwal1112+16@gmail.com","displayName":"harsh9","gender":"male"};
+        utility.googleOauth(obj)
         .then(function(data){
-          console.log("success",data);
-          $scope.showMessage("No error. Success")
+          $scope.setAuth(true);
+          localStorage.setItem('loginType',"user");
+          localStorage.setItem('token',data.id);
+          localStorage.setItem('userId',data.userId);
+          // localStorage.setItem('firstTimeLogin',data.firstTimeLogin)
+          CONSTANT.loginType = "user";
+          if(data.firstTimeLogin){
+            $rootScope.profileData = angular.copy(obj);
+            $rootScope.profileData.name = angular.copy($rootScope.profileData.displayName);
+            CONSTANT.isComingFromSignUp = true;
+            $state.go('app.editProfile');
+          }else{
+            $state.go('app.profile');
+          }
+          $scope.hideLoader();
+          $scope.transitionAnimation('left',480);
+          if($scope.userLoginModal && $scope.userLoginModal.isShown()){
+            $scope.userLoginModal.remove();
+          }
+          $scope.registerNotificaton();
         },function(data){
+          $scope.hideLoader();
           $scope.showMessage(data.error.message);
-
-          console.log("error",data)
-        })
-        localStorage.setItem('authProfile', JSON.stringify(profile));
-        // localStorage.setItem('authToken', token);
-        // localStorage.setItem('authRefreshToken', refreshToken);
-        // $location.path('/');
-      }, function(data) {
-        // Error callback
-        console.log("error",data);
+          console.log("error",data);
+        });
+      },
+      function (msg) {
+        $scope.hideLoader();
+        console.log(JSON.stringify(msg),"error");
       });
     }
   }

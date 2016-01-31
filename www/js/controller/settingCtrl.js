@@ -48,7 +48,10 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
       'http://askmonk.in/images/askmonk_logo_white.png',
       'http://askmonk.in',
       function() {console.log('share ok')},
-      function(errormsg){console.log(errormsg)}
+      function(errormsg){
+        $scope.showMessage("Whatsapp is not installed.");
+        console.log(errormsg,"error")
+      }
     );
   }
 

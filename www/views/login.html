@@ -39,9 +39,6 @@
     </ion-header-bar>
     <ion-content scroll="false">
 			<div class="inputFields" ng-class="{'signUptab':signUptab}">
-				<div class="socialLogin">
-				<button class="button button-login" ng-click="userGoogleLogin()">Google Login</button>
-				</div>
 				<form name="myform" class="form form-horizontal" novalidate ng-hide="signUptab">
 					<ion-md-input placeholder="Email" highlight-color="custom" ng-model="args.email" type="email"></ion-md-input>
 					<ion-md-input placeholder="Password" highlight-color="custom password" ng-model="args.password" type="password" ng-if="!userForgetPasswordShow"></ion-md-input>
@@ -52,6 +49,9 @@
 
 					<a ng-click="forgetUserPasswordTab()" class="forgetPassword" ng-if="!userForgetPasswordShow">Forget Password ?</a>
 					<a ng-click="signUpTab()" class="registerWithUs" ng-if="!userForgetPasswordShow">Sign Up</a>
+					<div class="socialLogin googleLoginBtn" ng-click="userGoogleLogin()">
+						<img src="img/google-login-icon.png" />
+					</div>
 				</form>
 				<form name="registerForm" class="form form-horizontal" ng-submit="userSignUp(registerForm)" novalidate autocomplete="off" ng-show="signUptab">
 					<ion-md-input placeholder="Name" name="name" highlight-color="custom" ng-model="argsSignup.name" type="text"></ion-md-input>
@@ -61,6 +61,9 @@
 					<p class="disclaimer">By clicking Sign up, you agree to Askmonk's terms & condition.</p>
 					<button class="button button-login" type="submit">Sign Up</button>
 					<a ng-click="loginTab()" class="backTologin">Already have an account? Login</a>
+					<div class="socialLogin" ng-click="userGoogleLogin()">
+						<img src="img/google-login-icon.png" />
+					</div>
 				</form>
 			</div>
 		</ion-content>

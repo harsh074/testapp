@@ -58,6 +58,12 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
   bottom: 0;
   z-index: 11;
 }
+.pane{
+	background-color:#eee;
+	ion-content{
+		background-color:#fff;
+	}
+}
 
 @mixin backgroundGradient() {
 	background: #2b5d80;
@@ -235,6 +241,18 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     white-space: nowrap;
     text-align: center;
     display: block;
+	}
+	.socialLogin{
+    text-align: center;
+    padding-top: 10px;
+    .googleLoginBtn{
+    	padding-top: 45px;
+    }
+    img{
+    	width: 75%;
+	    margin-top: 15px;
+	    height: 45px;
+    }
 	}
 }
 .item-md-label input {
@@ -1004,6 +1022,74 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 					}
 		    }
 			}
+		}
+	}
+	.horoscope{
+    top: 106px;
+    z-index: 1;
+    padding: 0 13px;
+    // background-color:#eee;
+		.allTile{
+			display: block;
+			margin-bottom:10px;
+			height:100%;
+			table,tbody{
+	    	height: 100%;
+    		width: 100%;
+    		display: block;
+    		tr{
+    			display: inline-table;
+			    height: 25%;
+			    width: 32%;
+    		}
+			}
+			.tile{
+		    width: 100%;
+	  		margin-top: 8px;
+		    text-align: center;
+		    // padding: 5px;
+		    color: white;
+        // vertical-align: middle;
+  			height: 100%;
+		    .imagePic{
+	  	    height: 68px;
+			    width: 68px;
+			    display: inline-block;
+			    border-radius: 10%;
+	    		.svgImage{
+	    			width:100%;
+	    			padding:12px;
+  			    line-height: 80px;
+	    		}
+		    }
+		    .name{
+		    	color: #000;
+		    	p{
+		    		font-size: 14px;
+	    			margin-bottom: 0px;
+	    			letter-spacing: 1px; 
+		    	}
+		    }
+			}
+		}
+		.detailHoroscope{
+	    display: block;
+    	margin-bottom: 10px;
+    	padding-top:25px;
+    	text-align:center;
+    	.name, .horoscopeTime{
+    		font-size: 26px;
+    		color:$top-portion-color;
+    		margin-bottom:23px;
+    	}
+    	.horoscopeTime{
+    		font-size: 14px;
+    	}
+    	.horoscopeContent{
+		    font-size: 16px;
+    		text-align: justify;
+    		line-height: 25px;
+    	}
 		}
 	}
 }

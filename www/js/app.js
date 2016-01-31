@@ -1,21 +1,6 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place','angular-jwt','auth0']);
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place']);
 
-askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout','auth', function($ionicPlatform,$state,$stateParams,CONSTANT,$timeout,auth){
-
-/*  $rootScope.$on('$locationChangeStart', function() {
-    if (!auth.isAuthenticated) {
-      var token = store.get('token');
-
-      if (token) {
-        if (!jwtHelper.isTokenExpired(token)) {
-          auth.authenticate(store.get('profile'), token);
-        } else {
-          $state.go('login');
-        }
-      }
-    }
-  });*/
-
+askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', function($ionicPlatform,$state,$stateParams,CONSTANT,$timeout){
   if(!localStorage.getItem('token')){
     $state.go('login');
   }else if(localStorage.getItem('questionStatus') == 'underObservation'){
@@ -62,14 +47,7 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout','
   });
 }]);
 
-askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider','authProvider','jwtInterceptorProvider','$httpProvider', function($stateProvider, $urlRouterProvider,$ionicConfigProvider,authProvider,jwtInterceptorProvider,$httpProvider) {
-
-  authProvider.init({
-    domain: 'askmonk.au.auth0.com',
-    clientID: 'YYSz6ElDl4UNwCthp2IoV0VAm9AOIqDG',
-    loginUrl: '/login'
-  });
-
+askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider', function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
   $ionicConfigProvider.views.transition('none');
   $ionicConfigProvider.views.swipeBackEnabled(false);
 
@@ -190,12 +168,18 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
       }
     }
   })
+  .state('app.horoscope',{
+    url:"/dailyHoroscope",
+    cache: false,
+    views:{
+      'menuContent':{
+        templateUrl:"views/allHoroscope.html",
+        controller:"horoscopeCtrl"
+      }
+    }
+  })
   ;
-
-  jwtInterceptorProvider.tokenGetter = function() {
-    return localStorage.getItem('token');
-  };
-  $httpProvider.interceptors.push('jwtInterceptor');
+  
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/welcome');
 }]);

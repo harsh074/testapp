@@ -48,16 +48,21 @@
 						</div>
 						<div class="questionFound">
 							<ion-list>
-				        <div ng-repeat="group in question.askedQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='asked' || group.status=='direct'">
+				        <div ng-repeat="group in question.askedQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="(group.status=='asked' || group.status=='direct') && loginType=='user'">
 				          <div class="question">{{group.question}}</div>
-				          
 			          	<div class="answer">
-			          		<p class="showAnswer" ng-if="loginType=='user'">{{group.answer ? group.answer: "Will be answered next 48 hrs."}}</p>
-			          		<p class="questionTag" ng-if="loginType=='monk'">{{group.questionTag}}</p>
-			          		<p class="postedTime" ng-if="loginType=='monk'">Posted {{group.askedOn | timeago}}</p>
+			          		<p class="showAnswer">{{group.answer ? group.answer: "Will be answered next 48 hrs."}}</p>
 					       	</div>
-					       	<p class="postedUser" ng-if="loginType=='monk'">Posted by {{group.name}}</p>
-					       	<p class="postedUser uptilTime" ng-if="loginType=='monk'">Uptil {{group.predictionDurationMonths | timeLineFiter}}</p>
+				        </div>
+
+				        <div ng-repeat="group in question.askedQuestion | filter:search.searchInput" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='asked' && loginType=='monk'">
+				          <div class="question">{{group.question}}</div>
+			          	<div class="answer">
+			          		<p class="questionTag">{{group.questionTag}}</p>
+			          		<p class="postedTime">Posted {{group.askedOn | timeago}}</p>
+					       	</div>
+					       	<p class="postedUser">Posted by {{group.name}}</p>
+					       	<p class="postedUser uptilTime">Uptil {{group.predictionDurationMonths | timeLineFiter}}</p>
 				        </div>
 
 				        <div ng-switch="(question.askedQuestion | filter:search.searchInput).length">
@@ -100,7 +105,7 @@
 						       </div>
 				        </div>
 
-				        <div ng-repeat="group in question.answeredQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='answered' && loginType=='monk'">
+				        <div ng-repeat="group in question.answeredQuestion | filter:search.searchInput" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='answered' && loginType=='monk'">
 				          <div class="question">{{group.question}}</div>
 				          
 				          <div class="answer">
@@ -147,7 +152,7 @@
 					      	</div>
 				        </div>
 
-				        <div ng-repeat="group in question.ratedQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='rated' && loginType=='monk'">
+				        <div ng-repeat="group in question.ratedQuestion | filter:search.searchInput" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='rated' && loginType=='monk'">
 				          <div class="question">{{group.question}}</div>
 				          
 				          <div class="answer">

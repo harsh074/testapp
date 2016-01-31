@@ -9157,6 +9157,11 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   bottom: 0;
   z-index: 11; }
 
+.pane {
+  background-color: #eee; }
+  .pane ion-content {
+    background-color: #fff; }
+
 .welcome-view {
   background: #2b5d80;
   background: -moz-linear-gradient(top, #00bcd2 0%, #2b5d80 100%);
@@ -9302,6 +9307,15 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     white-space: nowrap;
     text-align: center;
     display: block; }
+  .loginPages .socialLogin {
+    text-align: center;
+    padding-top: 10px; }
+    .loginPages .socialLogin .googleLoginBtn {
+      padding-top: 45px; }
+    .loginPages .socialLogin img {
+      width: 75%;
+      margin-top: 15px;
+      height: 45px; }
 
 .item-md-label input {
   color: #fff;
@@ -9942,6 +9956,59 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
           .home-view .yogiTileProfile .allTile .tile .statics .accepted span {
             color: #D0D0D0;
             font-size: 12px; }
+
+.home-view .horoscope {
+  top: 106px;
+  z-index: 1;
+  padding: 0 13px; }
+  .home-view .horoscope .allTile {
+    display: block;
+    margin-bottom: 10px;
+    height: 100%; }
+    .home-view .horoscope .allTile table, .home-view .horoscope .allTile tbody {
+      height: 100%;
+      width: 100%;
+      display: block; }
+      .home-view .horoscope .allTile table tr, .home-view .horoscope .allTile tbody tr {
+        display: inline-table;
+        height: 25%;
+        width: 32%; }
+    .home-view .horoscope .allTile .tile {
+      width: 100%;
+      margin-top: 8px;
+      text-align: center;
+      color: white;
+      height: 100%; }
+      .home-view .horoscope .allTile .tile .imagePic {
+        height: 68px;
+        width: 68px;
+        display: inline-block;
+        border-radius: 10%; }
+        .home-view .horoscope .allTile .tile .imagePic .svgImage {
+          width: 100%;
+          padding: 12px;
+          line-height: 80px; }
+      .home-view .horoscope .allTile .tile .name {
+        color: #000; }
+        .home-view .horoscope .allTile .tile .name p {
+          font-size: 14px;
+          margin-bottom: 0px;
+          letter-spacing: 1px; }
+  .home-view .horoscope .detailHoroscope {
+    display: block;
+    margin-bottom: 10px;
+    padding-top: 25px;
+    text-align: center; }
+    .home-view .horoscope .detailHoroscope .name, .home-view .horoscope .detailHoroscope .horoscopeTime {
+      font-size: 26px;
+      color: #2B5D80;
+      margin-bottom: 23px; }
+    .home-view .horoscope .detailHoroscope .horoscopeTime {
+      font-size: 14px; }
+    .home-view .horoscope .detailHoroscope .horoscopeContent {
+      font-size: 16px;
+      text-align: justify;
+      line-height: 25px; }
 
 .bar-assertive-900 {
   box-shadow: 1px 1px rgba(0, 0, 0, 0.15);

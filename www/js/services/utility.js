@@ -169,6 +169,12 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'url':"/api/questions/timeLineJson"
       });
     },
+    getHoroscope:function(id){
+      return this.request({
+        'method':"GET",
+        'url':"/dailyHoroscope/"+id
+      });
+    },
 
     notification:function(args){
       return this.request({
