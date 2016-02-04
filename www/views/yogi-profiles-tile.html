@@ -6,22 +6,7 @@
 	</ion-content>
 	<ion-content class="row yogiTileProfile">
 		<div class="allTile">
-			<!-- <div class="tile" ng-click="goToYogiProfile()">
-				<div class="imagePic">
-					<img src="img/monk.jpg" />
-				</div>
-				<div class="name">
-					<p>Sunil Magon</p>
-				</div>
-				<div class="place">
-					<p>place</p>
-				</div>
-				<div class="statics">
-					<div class="answered"><span>Answered</span><br/>20</div>
-					<div class="accepted"><span>Views</span><br/>10</div>
-				</div>
-			</div> -->
-			<div class="tile" ng-repeat="profile in monksProfiles" ng-click="goToYogiProfile(profile.id)">
+			<div class="tile" ng-repeat="profile in monksProfiles" ng-click="goToYogiProfile(profile.id)" ng-show="profile.isExist">
 				<div class="imagePic">
 					<img ng-src="http://askmonk.in/mImages/{{profile.email.split('@')[0].toLowerCase()}}.jpg" />
 				</div>
@@ -38,7 +23,4 @@
 			</div>
 		</div>
 	</ion-content>
-	<!-- <div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user'">
-		<i class="icon ion-android-add"></i>
-	</div> -->
 </ion-view>

@@ -378,7 +378,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		    position: relative;
 		    background-color: rgba(0, 0, 0, 0);
 		    font-size: 16px;
-		    padding-right: 50px;
+		    padding-right: 40px;
 		    &:after{
 		    	content:"\f3b3";
     	    position: absolute;
@@ -920,6 +920,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		.rupee{
 			font-weight: bold;
 			font-size: 45px;
+	    margin-top: 0px;
 		}
 		.money{
 			font-weight: bold;
@@ -927,6 +928,10 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		}
 		.aboutMoney{
 			font-size: 19px;
+	    margin: 35px 0;
+		}
+		.totalEaring{
+			font-size: 30px;
 		}
 	}
 	.yogiTileProfile{
@@ -1356,7 +1361,7 @@ dl{
 		}
 		&.email{
 			text-overflow: ellipsis;
-	    display: -webkit-inline-box;
+	    display: inline-flex;
 	    -webkit-line-clamp: 1;
 	    -webkit-box-orient: vertical;
 	    overflow: hidden;
@@ -1738,11 +1743,11 @@ ion-side-menu .has-header{
 
 // For Ionic Refresher
 .scroll-refresher{
-	background: #ffffff; /* Old browsers */
-	background: -moz-linear-gradient(top,  #ffffff 36%, #e5e5e5 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top,  #ffffff 36%,#e5e5e5 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom,  #ffffff 36%,#e5e5e5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+	background: #ffffff;
+	background: -moz-linear-gradient(top,  #ffffff 36%, #e5e5e5 100%);
+	background: -webkit-linear-gradient(top,  #ffffff 36%,#e5e5e5 100%);
+	background: linear-gradient(to bottom,  #ffffff 36%,#e5e5e5 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 );
 	
 	.ionic-refresher-content.ionic-refresher-with-text{
 		bottom:5px;
@@ -1825,6 +1830,18 @@ ion-side-menu .has-header{
     text-align: center;
     font-size: 14px;
     overflow: auto;
+    .item-md-label{
+	    padding: 23px 0px 0px 5px;
+	    border-width: 0px 0px 1px 0px;
+	    display: inline-block;
+	    width: 100%;
+	    .input-label{
+	    	text-align:left;
+	    }
+	    input{
+    		color: rgb(0, 0, 0);
+	    }
+	  }
 	}
 	.popup-buttons {
     display: -webkit-box;

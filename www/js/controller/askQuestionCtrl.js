@@ -56,7 +56,6 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
     utility.getUserCount()
     .then(function(data){
       $scope.getUserCount = data;
-      $scope.updateVariable();
     },function(data){
       console.log(data);
     });
@@ -88,15 +87,8 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 		});
 	}
 
-	$scope.updateVariable = function(){
-		if(!($scope.getUserCount && $scope.getUserCount.totalQuestionsAsked)){
-			$scope.selectedTimeline = {'value':"basic"};
-			$scope.timeLineValueSelected = "6"
-		}else{
-			$scope.selectedTimeline = {'value':"1yearly"};
-			$scope.timeLineValueSelected = "12"
-		}
-	}
+	$scope.selectedTimeline = {'value':"1yearly"};
+	$scope.timeLineValueSelected = "12"
 	$scope.selectTimelineOption = function(){
 		if(!($scope.getUserCount && $scope.getUserCount.totalQuestionsAsked)){
 			$scope.showMessage('Free question has fixed duration of 6 months.');
@@ -190,6 +182,71 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	    }
 	  });
 	}
+	$scope.money = {"customMoney":""};
+	$scope.options = function(){
+		$scope.amount = $scope.money.customMoney*100;
+		var profileData = JSON.parse(localStorage.profile);
+	 	var data = {
+	  	description: "Ask Question",
+	    currency: 'INR',
+	    key: 'rzp_test_2jGmoGfR3KHvoA',
+	    amount: $scope.amount,
+	    name: 'Askmonk',
+	    prefill: {email:profileData.email,contact:profileData.mobile,name:profileData.name},
+	    theme: {color: '#00BCD2'}
+	  }
+	  return data;
+	}
+	var successCallback = function(payment_id) {
+    // alert('payment_id: ' + payment_id);
+    if(payment_id){
+    	$scope.showLoader();
+	    utility.addMoney({'userId':localStorage.userId,'email':localStorage.email,'amount':$scope.amount,'payment_id':payment_id})
+	    .then(function(data){
+	    	$scope.hideLoader();
+	    	$scope.showMessage('Transaction successful');
+				localStorage.profile = JSON.stringify(data);
+				$scope.askQuestionButton();
+	    },function(data){
+	    	$scope.showMessage('Something went wrong. Try again');
+	    });
+	  }else{
+			$scope.showMessage('Something went wrong. Try again');
+	  }
+  }
+  var cancalCallback = function(error) {
+    // alert(error.description + ' (Error '+error.code+')');
+    $scope.showMessage(error.description);
+  }	
+	$scope.openInsufficientPopup = function(){
+		var confirmPopup = $ionicPopup.show({
+	    cssClass:"ios",
+	    title: 'Insufficient Funds. Please pay to continue asking',
+	    template:'<ion-md-input name="addMoney" type="tel" placeholder="Rs." highlight-color="calm" ng-pattern="/^[0-9]+$/" ng-model="money.customMoney" ng-disabled="true"></ion-md-input>',
+	    scope:$scope,
+	    buttons: [
+	      {text: 'Yes',type:'button-ios button-clear',
+	        onTap: function(e) {
+	          return true;
+	        }
+	      },
+	      {text:'No',type:'button-ios button-clear',
+	        onTap: function(e) {
+	          return false;
+	        }
+	      }
+	    ]
+	  });
+	  // angular.element(document.getElementByClassName('backdrop').style('opacity',1));
+	  confirmPopup.then(function(res) {
+	    if(res) {
+	    	RazorpayCheckout.open($scope.options(), successCallback, cancalCallback);
+	      console.log('You are sure');
+	    } else {
+	      console.log('You are not sure');
+	    }
+	  });
+	}
 
 	$scope.askQuestionButton = function(){
 		$scope.showLoader();
@@ -249,6 +306,15 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 					});
 				},function(data){
 					$scope.hideLoader();
+					if(data.error.message.indexOf('Insufficient Funds') == 0){
+						console.log($scope.getUserCount);
+						if($scope.getUserCount && $scope.getUserCount.walletMoney){
+							$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount - $scope.getUserCount.walletMoney;
+						}else{
+							$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount;
+						}
+						$scope.openInsufficientPopup();
+					}
 					$scope.showMessage(data.error.message);
 				});
 			}

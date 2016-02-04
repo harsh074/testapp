@@ -9460,7 +9460,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       position: relative;
       background-color: transparent;
       font-size: 16px;
-      padding-right: 50px; }
+      padding-right: 40px; }
       .home-view .shortHeader .selectTimeQuestion .selectTimeLabel:after {
         content: "\f3b3";
         position: absolute;
@@ -9872,12 +9872,16 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     margin: 50px 0; }
   .home-view .showMonkWallet .rupee {
     font-weight: bold;
-    font-size: 45px; }
+    font-size: 45px;
+    margin-top: 0px; }
   .home-view .showMonkWallet .money {
     font-weight: bold;
     font-size: 49px; }
   .home-view .showMonkWallet .aboutMoney {
-    font-size: 19px; }
+    font-size: 19px;
+    margin: 35px 0; }
+  .home-view .showMonkWallet .totalEaring {
+    font-size: 30px; }
 
 .home-view .yogiTileProfile {
   top: 106px;
@@ -10229,7 +10233,7 @@ dl {
       text-transform: inherit; }
     dl dd.email {
       text-overflow: ellipsis;
-      display: -webkit-inline-box;
+      display: inline-flex;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       overflow: hidden; }
@@ -10566,15 +10570,10 @@ ion-side-menu .has-header {
 
 .scroll-refresher {
   background: #ffffff;
-  /* Old browsers */
   background: -moz-linear-gradient(top, #ffffff 36%, #e5e5e5 100%);
-  /* FF3.6-15 */
   background: -webkit-linear-gradient(top, #ffffff 36%, #e5e5e5 100%);
-  /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #ffffff 36%, #e5e5e5 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 );
-  /* IE6-9 */ }
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); }
   .scroll-refresher .ionic-refresher-content.ionic-refresher-with-text {
     bottom: 5px; }
   .scroll-refresher .icon-pulling {
@@ -10642,6 +10641,15 @@ ion-side-menu .has-header {
   text-align: center;
   font-size: 14px;
   overflow: auto; }
+  .ios .popup-body .item-md-label {
+    padding: 23px 0px 0px 5px;
+    border-width: 0px 0px 1px 0px;
+    display: inline-block;
+    width: 100%; }
+    .ios .popup-body .item-md-label .input-label {
+      text-align: left; }
+    .ios .popup-body .item-md-label input {
+      color: black; }
 
 .ios .popup-buttons {
   display: -webkit-box;

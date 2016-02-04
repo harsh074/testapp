@@ -24,9 +24,10 @@
 			</table>
 		</div>
 		<div class="showMonkWallet" ng-if="loginType == 'monk'">
+			<p class="aboutMoney">Present Wallet Money</p>
 			<p class="rupee">Rs.</p>
 			<p class="money">{{walletMoney ? walletMoney : 0.00 | number:2}}</p>
-			<p class="aboutMoney">Present Wallet Money</p>
+			<p class="totalEaring">Total Earning : {{totalWalletMoney ? totalWalletMoney : 0.00 | number:2}}</p>
 		</div>
 	</ion-content>
 	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user'">

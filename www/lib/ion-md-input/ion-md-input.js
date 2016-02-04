@@ -37,6 +37,7 @@ angular.module('ionMdInput', [])
         'ng-maxlength': attr.ngMaxlength,
         'ng-pattern': attr.ngPattern,
         'ng-change': attr.ngChange,
+        'ng-disabled': attr.ngDisabled,
         'ng-trim': attr.trim,
         'ng-blur': attr.ngBlur,
         'ng-focus': attr.ngFocus,

@@ -51,15 +51,15 @@
         <p class="moneyType" ng-if="question.predictionDurationMonths">Prediction uptil {{question.predictionDurationMonths | timeLineFiter}}</p>
         <div class="row">
           <div class="col">Name:&nbsp;<span>{{question.name.split(' ')[0]}}</span></div>
-          <div class="col">Time:&nbsp;<span>{{question.birthTime | date : 'h:mm a'}}</span></div>
+          <div class="col">Time:&nbsp;<span>{{question.userBirthTime | date : 'h:mm a'}}</span></div>
         </div>
         <div class="row">
-          <div class="col">DOB:&nbsp;<span>{{question.dob | date : 'dd-MM-yyyy'}}</span></div>
-          <div class="col">Age:&nbsp;<span>{{question.dob | ageFilter}} Years</span></div>
+          <div class="col">DOB:&nbsp;<span>{{question.userDOB | date : 'dd-MM-yyyy'}}</span></div>
+          <div class="col">Age:&nbsp;<span>{{question.userDOB | ageFilter}} Years</span></div>
         </div>
         <div class="row">
-          <div class="col">Gender:&nbsp;<span>{{question.gender}}</span></div>
-          <div class="col">Place:&nbsp;<span>{{question.birthPlace}}</span></div>
+          <div class="col">Gender:&nbsp;<span>{{question.userGender}}</span></div>
+          <div class="col">Place:&nbsp;<span>{{question.userBirthPlace}}</span></div>
         </div>
         <div class="row">
           <div class="col" ng-if="question.status=='asked' || question.status=='underObservation' || question.status=='direct'">

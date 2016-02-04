@@ -58,7 +58,7 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     document.addEventListener("offline", offlineHandler, false);
     $timeout(function(){
       console.log(sessionStorage.redirectFromUrl,"session");
-      if(sessionStorage.redirectFromUrl.indexOf('redirect/5')>-1){
+      if(sessionStorage.redirectFromUrl.split('askmonk://')[1] == 5){
         $timeout(function(){
           $scope.showMessage('Email validated. Happy askmonking');
         });

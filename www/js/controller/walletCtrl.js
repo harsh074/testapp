@@ -35,8 +35,9 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
   }else{
     utility.getMonkCount()
     .then(function(data){
-     $scope.walletMoney = data.walletMoney;
-     $scope.hideLoader();
+      $scope.walletMoney = data.walletMoney;
+      $scope.totalWalletMoney = data.totalWalletMoney;
+      $scope.hideLoader();
     },function(data){
       console.log(data);
       $scope.hideLoader();

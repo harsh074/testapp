@@ -21,19 +21,19 @@
     <div class="bottomPart">
       <dl>
         <dt>Birth Date</dt>
-        <dd>{{profileInfo.dob | date : 'dd-MM-yyyy'}}</dd>
+        <dd>{{profileInfo.userDOB | date : 'dd-MM-yyyy'}}</dd>
       </dl>
       <dl>
         <dt>Birth Place</dt>
-        <dd>{{profileInfo.birthPlace}}</dd>
+        <dd>{{profileInfo.userBirthPlace}}</dd>
       </dl>
       <dl>
         <dt>Birth Time</dt>
-        <dd>{{profileInfo.birthTime | date : 'h:mm a'}}</dd>
+        <dd>{{profileInfo.userBirthTime | date : 'h:mm a'}}</dd>
       </dl>
       <dl>
         <dt>Gender</dt>
-        <dd>{{profileInfo.gender}}</dd>
+        <dd>{{profileInfo.userGender}}</dd>
       </dl>
       <dl>
         <dt>Zodiac</dt>
@@ -41,7 +41,7 @@
       </dl>
       <dl>
         <dt>Age</dt>
-        <dd>{{profileInfo.dob | ageFilter}}</dd>
+        <dd>{{profileInfo.userDOB | ageFilter}}</dd>
       </dl>
     </div>
 	</ion-content>
