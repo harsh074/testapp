@@ -51,7 +51,7 @@
 				        <div ng-repeat="group in question.askedQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="(group.status=='asked' || group.status=='direct') && loginType=='user'">
 				          <div class="question">{{group.question}}</div>
 			          	<div class="answer">
-			          		<p class="showAnswer">{{group.answer ? group.answer: "Will be answered next 48 hrs."}}</p>
+			          		<p class="showAnswer">{{group.answer ? group.answer: "Experts on it! Will be answered soon."}}</p>
 					       	</div>
 				        </div>
 
@@ -101,7 +101,7 @@
 				          <div class="question">{{group.question}}</div>
 				          
 				          <div class="answer">
-				          	<p>{{group.answer ? group.answer: "Will be answered next 48 hrs."}}</p>
+				          	<p>{{group.answer ? group.answer: "Experts on it! Will be answered soon."}}</p>
 						       </div>
 				        </div>
 
@@ -145,7 +145,7 @@
 				        <div ng-repeat="group in question.ratedQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='rated' && loginType=='user'">
 				          <div class="question">{{group.question}}</div>
 				          <div class="answer">
-				          	<p>{{group.answer ? group.answer: "Will be answered next 48 hrs."}}</p>
+				          	<p>{{group.answer ? group.answer: "Experts on it! Will be answered soon."}}</p>
 						      </div>
 						      <div class="payTogetMore" ng-if="groups.length<=2 && loginType=='user'">
 					      		<a ui-sref="app.wallet">Pay to get more answers.</a>

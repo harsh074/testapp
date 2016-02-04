@@ -15,7 +15,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 
   $scope.args = {"partnerName":"","partnerBirthPlace":"","partnerBirthTime":"","partnerDOB":"","partnerGender":""};
 	$scope.showQuestion = true;
-	$scope.askQuestion = {"email":localStorage.getItem('email'), "userId":localStorage.getItem('userId'),"question":"","questionTag":"","isDirect":false,"moneyType":"1yearly"}
+	$scope.askQuestion = {"email":localStorage.getItem('email'), "userId":localStorage.getItem('userId'),"question":"","questionTag":"","isDirect":false,"moneyType":""}
 	$scope.askOtherQuestion = {"question":null};
 	$scope.showOnOtherQuestion = false;
 
@@ -56,6 +56,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
     utility.getUserCount()
     .then(function(data){
       $scope.getUserCount = data;
+      $scope.updateVariable();
     },function(data){
       console.log(data);
     });
@@ -85,6 +86,28 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 			$scope.hideLoader();
 			console.log(data);
 		});
+	}
+
+	$scope.updateVariable = function(){
+		if(!($scope.getUserCount && $scope.getUserCount.totalQuestionsAsked)){
+			$scope.selectedTimeline = {'value':"basic"};
+			$scope.timeLineValueSelected = "6"
+		}else{
+			$scope.selectedTimeline = {'value':"1yearly"};
+			$scope.timeLineValueSelected = "12"
+		}
+	}
+	$scope.selectTimelineOption = function(){
+		if(!($scope.getUserCount && $scope.getUserCount.totalQuestionsAsked)){
+			$scope.showMessage('Free question has fixed duration of 6 months.');
+		}else{
+			$scope.timeLinePopup = $ionicPopup.show({
+		    cssClass:"timelineSelector",
+		    title: 'Duration : Rate Card',
+		    templateUrl:'selectTimelinPopup.html',
+		    scope: $scope
+		  });
+		}
 	}
 
 	$scope.askQuestionCategory = function($index,selectedCategory){
@@ -189,6 +212,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 			}
 		}
 		if($scope.askQuestion.question){
+			$scope.askQuestion.moneyType = angular.copy($scope.selectedTimeline.value);
 			if(localStorage.getItem('directQuestion')){
 				utility.askDirectQuestion($scope.askQuestion)
 				.then(function(data){
@@ -201,12 +225,12 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 						$state.go('app.dashboard');
 						$scope.transitionAnimation('left');
 					},function(data1){
-						$scope.showMessage(data1.error.message);
 						$scope.hideLoader();
+						$scope.showMessage(data1.error.message);
 					});
 				},function(data){
-					$scope.showMessage(data.error.message);
 					$scope.hideLoader();
+					$scope.showMessage(data.error.message);
 				});
 			}else{
 				utility.askQuestion($scope.askQuestion)
@@ -220,12 +244,12 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 						$state.go('app.dashboard');
 						$scope.transitionAnimation('left');
 					},function(data1){
-						$scope.showMessage(data1.error.message);
 						$scope.hideLoader();
+						$scope.showMessage(data1.error.message);
 					});
 				},function(data){
-					$scope.showMessage(data.error.message);
 					$scope.hideLoader();
+					$scope.showMessage(data.error.message);
 				});
 			}
 		}else{
@@ -247,14 +271,22 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
   	$scope.closeModal();
   	$state.go('app.wallet');
   }
+
+  $scope.changePopValue = function(){
+  	$scope.timeLineValueSelected = angular.copy($scope.timeLineJson[$scope.selectedTimeline.value].durationMonths);
+  	// console.log($scope.selectedTimeline.value);
+  	$timeout(function(){
+			$scope.timeLinePopup.close();
+		}, 100);
+  }
 }]);
 
-askmonkApp.filter('timeLineFiter', function(){
+askmonkApp.filter('timeLineFiter',function(){
 	return function(input){
-		if(input>6){
-			return parseInt(input/12)==1?parseInt(input/12)+'  Year':parseInt(input/12)+'  Years';
+		if(input == 6){
+			return '1/2 Year';
 		}else{
-			return input+' Months';
+			return parseInt(input/12)==1?parseInt(input/12)+'  Year':parseInt(input/12)+'  Years';
 		}
 	}
 });

@@ -27,7 +27,8 @@
     "https://github.com/harsh-iomedia/cordova-inappbrowser.git",
     "https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin.git --variable URL_SCHEME=askmonk",
     "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git",
-    "net.yoik.cordova.plugins.screenorientation"
+    "net.yoik.cordova.plugins.screenorientation",
+    "https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git#compiled-googleplayservices-jar"
   ],
   "cordovaPlatforms": [
     "android"

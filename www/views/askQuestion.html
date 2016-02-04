@@ -6,11 +6,7 @@
 			  <a class="shortHeaderIcon"><i class="icon ion-paper-airplane"></i></a>
 			</div>
 			<div class="selectTimeQuestion">
-				<label class="selectTimeLabel"><!-- item item-input item-select -->
-					<select name="questionTime" ng-model="askQuestion.moneyType" required ng-disabled="!(getUserCount && getUserCount.totalQuestionsAsked)">
-						<option ng-repeat="(key,value) in timeLineJson" ng-selected="{{12 == value.durationMonths}}" value="{{key}}">{{value.durationMonths | timeLineFiter}}</option>
-					</select>
-				</label>
+				<div class="selectTimeLabel" ng-click="selectTimelineOption()">{{timeLineValueSelected | timeLineFiter}}</div>
 			</div>
 		</div>
 		<div class="askQuestionForm">
@@ -32,7 +28,6 @@
 					<option value="other">Other</option>
 				</select>
 			</label> -->
-
 			<div class="categoryQuestion" ng-if="preffredQuestion">
 				<div ng-if="showQuestion" ng-repeat="question in preffredQuestion track by $index">
 					<ion-radio ng-model="askQuestion.question" ng-value="question" ng-change="clearQuestionOnOther()" ng-class="{'activeTextarea':question=='Other' && showOnOtherQuestion}">{{question}}</ion-radio>
@@ -52,3 +47,18 @@
 		<textarea id="askQuestionTextarea" class="animate msd-elastic" name="askQuestionTextarea" focus-me ng-model="askOtherQuestion.question" placeholder="Write the question that you wish to ask..."></textarea>
 	</div>
 </ion-view>
+
+<script type="text/ng-template" id="selectTimelinPopup.html">
+	<div class="optionsTimeline" ng-repeat="(key,value) in timeLineJson">
+		<div class="ons-css" ng-click="changePopValue()">
+			<label class="checkboxTimeline" >
+		    <input type="radio" name="timeLineJson" value="{{key}}" ng-model="selectedTimeline.value" ng-change="changePopValue()">
+		    <div class="checkbox__checkmark"></div>
+		    <span class="valueTimeLine">
+		    	<span class="monthDuration">{{value.durationMonths | timeLineFiter}}</span><br>
+		    	(Rs. {{value.amount}})
+		    </span>
+		  </label>
+	  </div>
+	</div>
+</script>

@@ -26,14 +26,14 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
     $scope.transitionAnimation('left',160);
   };
   if($scope.loginType == 'monk'){
-    $timeout(function(){
-      utility.getMonkCount()
-      .then(function(data){
+    utility.getMonkCount()
+    .then(function(data){
+      $timeout(function(){
         $scope.getMonkCount = data;
-      },function(data){
-        console.log(data);
-      });
-    }, 600);
+      }, 600);
+    },function(data){
+      console.log(data);
+    });
   }
   
   $scope.changeAvaliableStatus = function(){
@@ -69,6 +69,47 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
 
     if(window.screen && window.screen.lockOrientation){
       window.screen.lockOrientation('portrait');
+    }
+
+  }
+  
+  $scope.registerNotificaton = function(){
+    if ('android' === device.platform.toLowerCase()) {
+      window.plugins.pushNotification.register(function () {
+      },function () {
+        alert("Push Notification registration FAIL on Android")
+      },{
+        ecb: 'window.onNotificationGCM',
+        senderID: CONSTANT.pushSenderID // Google Project Number.
+      });
+    }
+    // Method to handle device registration for Android.
+    window.onNotificationGCM = function (e) {
+      if('message' == e.event) {
+        console.log(e);
+        if(e.payload.questionId){
+          if(e.payload.questionId == 12){
+            $state.go('app.horoscope');
+          }else{
+            $state.go('app.singlequestion',{id:e.payload.questionId});
+          }
+        }
+      }else if('registered' === e.event) {
+        window.registrationHandler(e.regid);
+      }
+      else if ('error' === e.event) {
+        console.log("error",e);
+      }
+    };
+    window.registrationHandler = function(_deviceId){
+      $scope.deviceInfo = {"deviceType":window.device.platform,"userId":localStorage.userId,"deviceId":_deviceId}
+      // alert($scope.deviceInfo);
+      utility.notification($scope.deviceInfo)
+      .then(function(data){
+        console.log("success",data);
+      },function(data){
+        console.log("error",data);
+      }); 
     }
   }
 

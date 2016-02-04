@@ -9439,7 +9439,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   .home-view .shortHeader .selectTimeQuestion {
     display: flex;
     height: 58px;
-    width: 132px;
+    width: 110px;
     float: right;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -9455,11 +9455,12 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       padding-left: 0px;
       border-width: 0px;
       display: inline-block;
-      width: 100%;
-      height: 30px;
+      width: auto;
       float: right;
       position: relative;
-      background-color: transparent; }
+      background-color: transparent;
+      font-size: 16px;
+      padding-right: 50px; }
       .home-view .shortHeader .selectTimeQuestion .selectTimeLabel:after {
         content: "\f3b3";
         position: absolute;
@@ -9469,28 +9470,6 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         font-family: "Ionicons";
         speak: none;
         font-size: 22px; }
-      .home-view .shortHeader .selectTimeQuestion .selectTimeLabel select {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        border: none;
-        text-indent: 0;
-        white-space: nowrap;
-        cursor: pointer;
-        padding: 4px 33px 4px 18px;
-        height: 30px;
-        width: 100%;
-        max-width: 100%;
-        direction: ltr;
-        font-size: 16px;
-        background: transparent;
-        color: white; }
-        .home-view .shortHeader .selectTimeQuestion .selectTimeLabel select option {
-          color: black; }
 
 .home-view .yprofile {
   height: 150px;
@@ -10696,6 +10675,146 @@ ion-side-menu .has-header {
   min-height: 47px;
   border-right: 1px solid #c8c7cc;
   color: #3474e1; }
+
+.timelineSelector .popup {
+  width: 300px;
+  background-color: rgba(255, 255, 255, 0.95); }
+
+.timelineSelector .popup-head .popup-title {
+  color: #2B5D80;
+  font-size: 20px; }
+
+.timelineSelector .popup-body {
+  overflow: hidden;
+  height: 420px;
+  margin-top: 10px; }
+  .timelineSelector .popup-body .optionsTimeline:first-child .checkboxTimeline:before {
+    height: 0; }
+  .timelineSelector .popup-body .optionsTimeline:last-child .checkboxTimeline:after {
+    height: 0; }
+  .timelineSelector .popup-body .optionsTimeline:nth-child(even) .ons-css .checkboxTimeline .valueTimeLine {
+    float: left; }
+  .timelineSelector .popup-body .ons-css {
+    text-align: center; }
+    .timelineSelector .popup-body .ons-css .checkboxTimeline {
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      cursor: default;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 24px;
+      width: 100%; }
+      .timelineSelector .popup-body .ons-css .checkboxTimeline:before {
+        content: "";
+        height: 40px;
+        display: block;
+        border-style: solid;
+        border-width: 0 0px 0px 1px;
+        position: relative;
+        left: 140px; }
+      .timelineSelector .popup-body .ons-css .checkboxTimeline:after {
+        content: "";
+        height: 35px;
+        display: block;
+        border-style: solid;
+        border-width: 0 0px 0px 1px;
+        position: relative;
+        left: 140px;
+        top: 24px; }
+      .timelineSelector .popup-body .ons-css .checkboxTimeline .checkbox__checkmark {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        display: inline-block;
+        vertical-align: top;
+        cursor: default;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-weight: 400;
+        font-size: 17px;
+        position: absolute;
+        overflow: hidden;
+        width: 24px;
+        height: 24px;
+        left: 129px; }
+        .timelineSelector .popup-body .ons-css .checkboxTimeline .checkbox__checkmark:before {
+          content: '';
+          position: absolute;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+          width: 24px;
+          height: 24px;
+          background: #2B5D80;
+          border: 1px solid #2B5D80;
+          -webkit-border-radius: 16px;
+          border-radius: 16px;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+          left: 0; }
+      .timelineSelector .popup-body .ons-css .checkboxTimeline .valueTimeLine {
+        float: right;
+        padding: 0 20px;
+        bottom: 12px;
+        position: relative; }
+        .timelineSelector .popup-body .ons-css .checkboxTimeline .valueTimeLine .monthDuration {
+          color: #AAAAAA; }
+      .timelineSelector .popup-body .ons-css .checkboxTimeline > input[type="radio"] {
+        position: absolute;
+        overflow: hidden;
+        right: 0px;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        padding: 0;
+        border: 0;
+        opacity: 0.001;
+        z-index: 1;
+        vertical-align: top;
+        outline: none;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 0;
+        width: 0; }
+        .timelineSelector .popup-body .ons-css .checkboxTimeline > input[type="radio"]:checked {
+          background: #00BCD2; }
+          .timelineSelector .popup-body .ons-css .checkboxTimeline > input[type="radio"]:checked + .checkbox__checkmark:before {
+            background: #00BCD2;
+            border: 1px solid #00BCD2; }
+          .timelineSelector .popup-body .ons-css .checkboxTimeline > input[type="radio"]:checked ~ .valueTimeLine {
+            color: #00BCD2; }
+            .timelineSelector .popup-body .ons-css .checkboxTimeline > input[type="radio"]:checked ~ .valueTimeLine .monthDuration {
+              color: #00BCD2; }
+        .timelineSelector .popup-body .ons-css .checkboxTimeline > input[type="radio"]:focus + .checkbox__checkmark:before {
+          -webkit-box-shadow: none;
+          box-shadow: none; }
+        .timelineSelector .popup-body .ons-css .checkboxTimeline > input[type="radio"]:disabled + .checkbox__checkmark {
+          cursor: default;
+          pointer-events: none; }
+          .timelineSelector .popup-body .ons-css .checkboxTimeline > input[type="radio"]:disabled + .checkbox__checkmark:before {
+            background: #909090;
+            border: 1px solid #909090; }
+        .timelineSelector .popup-body .ons-css .checkboxTimeline > input[type="radio"]:disabled:checked + .checkbox__checkmark:before {
+          background-color: #00BCD2;
+          border-color: #00BCD2; }
 
 .tabbed-slidebox .slider {
   height: 100%; }

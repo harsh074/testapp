@@ -203,46 +203,6 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       }
     }
 
-    $scope.registerNotificaton = function(){
-      if ('android' === device.platform.toLowerCase()) {
-        window.plugins.pushNotification.register(function () {
-        },function () {
-          alert("Push Notification registration FAIL on Android")
-        },{
-          ecb: 'window.onNotificationGCM',
-          senderID: CONSTANT.pushSenderID // Google Project Number.
-        });
-      }
-      // Method to handle device registration for Android.
-      window.onNotificationGCM = function (e) {
-        if('message' == e.event) {
-          console.log(e);
-          if(e.payload.questionId){
-            if(e.payload.questionId == 12){
-              $state.go('app.horoscope');
-            }else{
-              $state.go('app.singlequestion',{id:e.payload.questionId});
-            }
-          }
-        }else if('registered' === e.event) {
-          window.registrationHandler(e.regid);
-        }
-        else if ('error' === e.event) {
-          console.log("error",e);
-        }
-      };
-      window.registrationHandler = function(_deviceId){
-        $scope.deviceInfo = {"deviceType":window.device.platform,"userId":localStorage.userId,"deviceId":_deviceId}
-        // alert($scope.deviceInfo);
-        utility.notification($scope.deviceInfo)
-        .then(function(data){
-          console.log("success",data);
-        },function(data){
-          console.log("error",data);
-        }); 
-      }
-    }
-
     $scope.userGoogleLogin = function(){
       $scope.showLoader();
       window.plugins.googleplus.login({'iOSApiKey': '915609605128-idn9dp6hnes236v35ko5pjhfmk4m8ap3.apps.googleusercontent.com'},
