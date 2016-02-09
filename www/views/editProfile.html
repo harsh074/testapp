@@ -20,7 +20,16 @@
         <div class="highlight highlight-calm"></div>
       </label>
       
-      <ion-md-input placeholder="Birth Time" hightlight-color="custom" type="time" ng-model="editProfileData.birthTime" ng-if="loginType=='user'"></ion-md-input>
+      <label class="item item-input item-md-label" placeholder="Birth Time" hightlight-color="custom" type="text" ng-model="editProfileData.birthTime" ng-if="loginType=='user'" ionic-timepicker input-obj="timePickerObject12Hour">
+        <div class="md-input ion-birth-time">{{editProfileData.birthTime | date: 'hh:mm a'}}</div>
+        <span class="input-label">Birth Time</span>
+        <div class="highlight highlight-calm"></div>
+      </label>
+
+      <!-- <ion-md-input placeholder="Birth Time" hightlight-color="custom" type="time" ng-model="editProfileData.birthTime" ng-if="loginType=='user'"></ion-md-input> -->
+    <!--   <>
+        <button class="button button-outline button-positive"> {{ timePickerObject12Hour.inputEpochTime | date: 'hh:mm a'}} </button>
+      </ionic-timepicker> -->
 
       <ion-md-input placeholder="Phone" hightlight-color="custom" type="number" ng-model="editProfileData.phone" ng-if="loginType=='monk'"></ion-md-input>
 

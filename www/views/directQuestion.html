@@ -1,0 +1,44 @@
+<ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
+	<ion-content scroll="false" class="directQuestion">
+		<div class="yprofile dashboard">
+			<div class="pofilePic">
+				<div class="yAnswerStatus">
+					<div class="aboutQuestion">Direct Questions<br /><span class="pullToRefresh">(Pull to refresh)</span></div>
+					<!-- <div class="searchBar">
+						<label class="item item-input item-search" for="search">
+				    	<input type="text" placeholder="Search..." ng-model="search.searchInput" name="search" ng-change="inputSearch()">
+				  	</label>
+				  	<i class="icon ion-close-round placeholder-icon" ng-click="clearSearch()" ng-show="showClear"></i>
+			  	</div> -->
+				</div>
+			</div>
+		</div>
+	</ion-content>
+	<ion-content class="dashboardData directQuestionContent" scroll="true">
+		<ion-refresher on-refresh="doRefresh()" spinner="none" pulling-icon="ion-loop" refreshing-icon="ion-loop" refreshing-text="Loading..."></ion-refresher>
+    <!-- <div class="noQuestionFound" ng-if="noQuestionFound">
+			<a ng-click="askQuestion()" href="">Ask first question for free</a>
+			No Question Found.
+		</div> -->
+		<div class="questionFound">
+			<ion-list>
+        <div ng-repeat="group in groups | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)">
+          <div class="question">{{group.question}}</div>
+
+        	<div class="answer">
+        		<p class="questionTag">{{group.questionTag}}</p>
+        		<p class="postedTime">Posted {{group.askedOn | timeago}}</p>
+	       	</div>
+	       	<p class="postedUser">Posted by {{group.name}}</p>
+	       	<p class="postedUser uptilTime">Uptil {{group.predictionDurationMonths | timeLineFiter}}</p>
+        </div>
+        <div class="noStatusQuestion" ng-if="noQuestionFound">
+      		<img src="img/icon.png" width="100px" />
+      		<p class="noQuestionTitle" ng-if="loginType=='monk'">No Direct Question</p>
+      	</div>
+    	</ion-list>
+
+    	<ion-infinite-scroll ng-if="!noMoreQuestion" on-infinite="loadMoreQuestion()" immediate-check="false" icon="ion-loading" distance="10%"></ion-infinite-scroll>
+		</div>
+	</ion-content>
+</ion-view>

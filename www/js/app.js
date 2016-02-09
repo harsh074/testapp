@@ -1,12 +1,16 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place']);
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place','ionic-timepicker']);
 
 askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', function($ionicPlatform,$state,$stateParams,CONSTANT,$timeout){
   if(!localStorage.getItem('token')){
     $state.go('login');
-  }else if(localStorage.getItem('questionStatus') == 'underObservation'){
+  }else if(!localStorage.profile){
+    $state.go('app.profile');
+  }
+  else if(localStorage.getItem('questionStatus') == 'underObservation'){
     $stateParams.id = localStorage.getItem('questionId');
     $state.go('app.singlequestion',$stateParams);
   }else{
+    console.log("dashboard");
     $state.go('app.dashboard');
   }
   $ionicPlatform.ready(function() {
@@ -102,8 +106,19 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     cache: false,
     views: {
       'menuContent': {
-        templateUrl: "views/direct-question.html",
+        templateUrl: "views/directQuestion.html",
         controller: 'directQuestionCtrl'
+      }
+    }
+  })
+
+  .state('app.openQuestion', {
+    url: "/open-question",
+    cache: false,
+    views: {
+      'menuContent': {
+        templateUrl: "views/openQuestion.html",
+        controller: 'openQuestionCtrl'
       }
     }
   })

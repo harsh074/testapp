@@ -79,7 +79,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		z-index: 2;
 	}
 	.top-content{
-		height:85%;
+		height:90%;
 		.box{
 			.app-logo{
 				padding-top: 32vh;
@@ -97,6 +97,31 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		    letter-spacing: 1px;
 			}
 		}
+		.boxPhone{
+	    background-image: url("../img/ftu/phoneOuterRig1.png");
+	    width: 215px;
+	    margin: auto;
+	    background-size: 100% auto;
+	    height: 415px;
+	    background-repeat: no-repeat;
+	    margin-top: 15px;
+	    overflow:hidden;
+	    .ftuContainer{
+	    	display: block;
+		    width: 193px;
+		    position: relative;
+		    margin: 37px 0 0 11px;
+	    }
+		}
+    .ftuText{
+    	text-align:center;
+    	color: #fff;
+			font-size: 25px;
+	    margin-top: 20px;
+	    padding: 0 20px;
+	    font-family: 'Lobster';
+	    line-height: 30px;
+    }
 	}
 
 	.bottomContent{
@@ -233,6 +258,9 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     padding: 0px 10px;
     text-align: center;
     font-size: 15px;
+    a{
+    	text-decoration:underline;
+    }
 	}
 	.backTologin{
     margin-top: 25px;
@@ -343,7 +371,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	    	i{
 	    		font-size:24px;
 	    		color: #fff;
-	    		&.ion-edit{
+	    		&.ion-edit, &.ion-funnel{
 	    			font-size: 20px;
 	    		}
 	    	}
@@ -391,6 +419,42 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		    }
 		  }
 		}
+	}
+	.disableBack{
+    opacity: 0;
+    display: none;
+    &.active{
+	    opacity: 0.3;
+	    background-color: rgb(0, 0, 0);
+	    width: 100%;
+	    height: 100%;
+	    display: block;
+	    overflow: hidden;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    bottom: 0;
+	    z-index: 11;
+    }
+	}
+	.filterDropDown{
+		z-index: 23;
+    position: absolute;
+    right: 18px;
+    top: 60px;
+    opacity: 0;
+    visibility:hidden;
+    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+	  &.active{
+    	opacity: 1;
+    	visibility:visible;
+    }
+    .list li{
+    	padding:10px 15px;
+    	font-size: 14px;
+    }
 	}
 	.yprofile{
 		height: 150px;
@@ -745,6 +809,9 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     	    text-align: right;
 			    font-size: 14px;
 			    margin-bottom: 0px;
+			    span{
+			    	color:$top-portion-color;
+			    }
 		    }
 			}
 			.subBottom{
@@ -1361,10 +1428,12 @@ dl{
 		}
 		&.email{
 			text-overflow: ellipsis;
-	    display: inline-flex;
+	    display: block;
 	    -webkit-line-clamp: 1;
 	    -webkit-box-orient: vertical;
 	    overflow: hidden;
+      float: right;
+    	white-space: nowrap;
 		}
 	}
 }
@@ -1894,7 +1963,6 @@ ion-side-menu .has-header{
 	}
 	.popup-body{
 		overflow:hidden;
-		height:420px;
 		margin-top:10px;
 		.optionsTimeline{
 			&:first-child .checkboxTimeline{
@@ -1902,7 +1970,7 @@ ion-side-menu .has-header{
 					height:0;
 				}
 			}
-			&:last-child .checkboxTimeline{
+			&:nth-last-child(2) .checkboxTimeline{
 				&:after{
 					height:0;
 				}
@@ -1910,6 +1978,10 @@ ion-side-menu .has-header{
 			&:nth-child(even) .ons-css .checkboxTimeline .valueTimeLine {
 				float:left;
 			}
+		}
+		.noteOptionsTimeLine{
+	    text-align: center;
+    	color: #BFBFBF;
 		}
 		.ons-css{
 			text-align:center;
@@ -2078,7 +2150,7 @@ ion-side-menu .has-header{
       @include transition(color .25s ease-in-out);
       position: relative;
       overflow: hidden;
-      width: 33.20%;
+      width: 100%;
       text-decoration: none;
 			&.active {
 				border-bottom: 3px solid #fff;
@@ -2195,6 +2267,9 @@ ion-side-menu .has-header{
 		.headerPart{
 	    margin-top: 30px;
 		}
+	}
+	.askQuestionForm .item-select{
+		border-width:1px;
 	}
 }
 
@@ -2489,4 +2564,23 @@ ion-side-menu .has-header{
 
 .a0-lock-container{
 	pointer-events:auto;
+}
+
+// ion-timpicker
+.twelveHourTimePickerChildDiv{
+  text-align: center;
+  .row{
+  	padding: 0 5px;
+  }
+}
+.timePickerArrows {
+	.ion-chevron-up:before{
+		font-weight: bold;
+	}
+}
+.bar.bar-stable,.tabs {
+  box-shadow: 0 0 5px #555
+}
+.overflowShow {
+  white-space: normal!important
 }

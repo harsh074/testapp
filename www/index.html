@@ -3,7 +3,7 @@
   <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1">
-	<title>Askmonk : The uber of astrologers</title>
+	<title>Askmonk : Predictions just a question away</title>
 
 
 	<!-- compiled css output -->
@@ -20,6 +20,7 @@
 	<script src="lib/ionic-slide-tab/tabSlideBox.js"></script>
 	<script src="lib/angular-elastic/elastic.js"></script>
 	<script src="lib/ion-google-place/ion-google-place.js"></script>
+	<script src="lib/ionic-timepicker/ionic-timepicker.js"></script>
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBumbTjBfddOU-7vucqeCE2tyJC-gpQpE&libraries=places"></script>
 
@@ -45,6 +46,7 @@
 		<script src="js/controller/dashboardCtrl.js"></script>
 		<script src="js/controller/singleQuestionCtrl.js"></script>
 		<script src="js/controller/directQuestionCtrl.js"></script>
+		<script src="js/controller/openQuestionCtrl.js"></script>
 		<script src="js/controller/horoscopeCtrl.js"></script>
 		<script src="js/services/utility.js"></script>
 		<script src="js/services/getMoonSign.js"></script>
@@ -54,8 +56,12 @@
 		<!-- // <script src="js/directive/slidingTabsDirective.js"></script> -->
 		<script type="text/javascript">
 			function handleOpenURL(url) {
-    		// console.log("received url: " + url);
-    		sessionStorage.setItem('redirectFromUrl',url);
+  			sessionStorage.setItem('redirectFromUrl',url);
+    		if(url.split('askmonk://')[1] == 5){
+    			sessionStorage.setItem('redirectFromUrl',url);
+    		}else{
+    			window.location.hash = "#/app/singlequestion/"+url.split('askmonk://')[1];
+    		}
   		}
 		</script>
   </body>

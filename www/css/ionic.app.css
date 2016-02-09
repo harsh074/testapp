@@ -9171,7 +9171,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   .welcome-view ion-content {
     z-index: 2; }
   .welcome-view .top-content {
-    height: 85%; }
+    height: 90%; }
     .welcome-view .top-content .box .app-logo {
       padding-top: 32vh;
       text-align: center; }
@@ -9184,6 +9184,28 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       font-family: 'Lobster';
       white-space: nowrap;
       letter-spacing: 1px; }
+    .welcome-view .top-content .boxPhone {
+      background-image: url("../img/ftu/phoneOuterRig1.png");
+      width: 215px;
+      margin: auto;
+      background-size: 100% auto;
+      height: 415px;
+      background-repeat: no-repeat;
+      margin-top: 15px;
+      overflow: hidden; }
+      .welcome-view .top-content .boxPhone .ftuContainer {
+        display: block;
+        width: 193px;
+        position: relative;
+        margin: 37px 0 0 11px; }
+    .welcome-view .top-content .ftuText {
+      text-align: center;
+      color: #fff;
+      font-size: 25px;
+      margin-top: 20px;
+      padding: 0 20px;
+      font-family: 'Lobster';
+      line-height: 30px; }
   .welcome-view .bottomContent {
     height: 15%; }
     .welcome-view .bottomContent .loginTab {
@@ -9300,6 +9322,8 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     padding: 0px 10px;
     text-align: center;
     font-size: 15px; }
+    .loginPages .disclaimer a {
+      text-decoration: underline; }
   .loginPages .backTologin {
     margin-top: 25px;
     color: white;
@@ -9415,7 +9439,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       .home-view .shortHeader .shortHeaderBtn .shortHeaderIcon i {
         font-size: 24px;
         color: #fff; }
-        .home-view .shortHeader .shortHeaderBtn .shortHeaderIcon i.ion-edit {
+        .home-view .shortHeader .shortHeaderBtn .shortHeaderIcon i.ion-edit, .home-view .shortHeader .shortHeaderBtn .shortHeaderIcon i.ion-funnel {
           font-size: 20px; }
   .home-view .shortHeader .shortHeaderCustomBtn {
     height: 58px;
@@ -9470,6 +9494,39 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         font-family: "Ionicons";
         speak: none;
         font-size: 22px; }
+
+.home-view .disableBack {
+  opacity: 0;
+  display: none; }
+  .home-view .disableBack.active {
+    opacity: 0.3;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 11; }
+
+.home-view .filterDropDown {
+  z-index: 23;
+  position: absolute;
+  right: 18px;
+  top: 60px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out; }
+  .home-view .filterDropDown.active {
+    opacity: 1;
+    visibility: visible; }
+  .home-view .filterDropDown .list li {
+    padding: 10px 15px;
+    font-size: 14px; }
 
 .home-view .yprofile {
   height: 150px;
@@ -9747,6 +9804,8 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       text-align: right;
       font-size: 14px;
       margin-bottom: 0px; }
+      .home-view .singleQuestion .questionData .middleSec .yogiName span {
+        color: #2B5D80; }
   .home-view .singleQuestion .questionData .subBottom {
     padding-top: 3px; }
     .home-view .singleQuestion .questionData .subBottom .tagName {
@@ -10233,10 +10292,12 @@ dl {
       text-transform: inherit; }
     dl dd.email {
       text-overflow: ellipsis;
-      display: inline-flex;
+      display: block;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
-      overflow: hidden; }
+      overflow: hidden;
+      float: right;
+      white-space: nowrap; }
 
 .bar.sideMenuTop {
   height: 194px;
@@ -10694,14 +10755,16 @@ ion-side-menu .has-header {
 
 .timelineSelector .popup-body {
   overflow: hidden;
-  height: 420px;
   margin-top: 10px; }
   .timelineSelector .popup-body .optionsTimeline:first-child .checkboxTimeline:before {
     height: 0; }
-  .timelineSelector .popup-body .optionsTimeline:last-child .checkboxTimeline:after {
+  .timelineSelector .popup-body .optionsTimeline:nth-last-child(2) .checkboxTimeline:after {
     height: 0; }
   .timelineSelector .popup-body .optionsTimeline:nth-child(even) .ons-css .checkboxTimeline .valueTimeLine {
     float: left; }
+  .timelineSelector .popup-body .noteOptionsTimeLine {
+    text-align: center;
+    color: #BFBFBF; }
   .timelineSelector .popup-body .ons-css {
     text-align: center; }
     .timelineSelector .popup-body .ons-css .checkboxTimeline {
@@ -10848,7 +10911,7 @@ ion-side-menu .has-header {
     transition: color 0.25s ease-in-out;
     position: relative;
     overflow: hidden;
-    width: 33.20%;
+    width: 100%;
     text-decoration: none; }
     .tabbed-slidebox .tsb-icons a.active {
       border-bottom: 3px solid #fff;
@@ -10937,6 +11000,8 @@ ion-side-menu .has-header {
     margin-bottom: 50px; }
     .editQuestionModal .matchMakingEdit .headerPart {
       margin-top: 30px; }
+  .editQuestionModal .askQuestionForm .item-select {
+    border-width: 1px; }
 
 .settingCtrl {
   margin-top: 60px;
@@ -11148,3 +11213,17 @@ ion-side-menu .has-header {
 
 .a0-lock-container {
   pointer-events: auto; }
+
+.twelveHourTimePickerChildDiv {
+  text-align: center; }
+  .twelveHourTimePickerChildDiv .row {
+    padding: 0 5px; }
+
+.timePickerArrows .ion-chevron-up:before {
+  font-weight: bold; }
+
+.bar.bar-stable, .tabs {
+  box-shadow: 0 0 5px #555; }
+
+.overflowShow {
+  white-space: normal !important; }

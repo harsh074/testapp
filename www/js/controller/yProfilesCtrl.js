@@ -6,6 +6,10 @@ askmonkApp.controller('yProfilesCtrl', ['$scope','$state','utility','$stateParam
     $scope.showLoader();
   });
   $scope.loginType = CONSTANT.loginType;
+  $scope.showFilterMenu = false;
+
+  $scope.sortedFilterValue = true;
+  $scope.sortedFilter = 'rating';
 
   // if(localStorage.getItem('monksProfiles')){
   //   $scope.monksProfiles = JSON.parse(localStorage.getItem('monksProfiles'));
@@ -19,6 +23,9 @@ askmonkApp.controller('yProfilesCtrl', ['$scope','$state','utility','$stateParam
   		$scope.monksProfiles = data;
   		$scope.hideLoader();
   	},function(data){
+      if(data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }
   		console.log(data,"error");
   	});
   // }
@@ -32,5 +39,22 @@ askmonkApp.controller('yProfilesCtrl', ['$scope','$state','utility','$stateParam
   $scope.askQuestion = function(){
   	$state.go('app.askQuestion');
     $scope.transitionAnimation('left',180);
+  }
+
+  $scope.showFilter = function(){
+    $scope.showFilterMenu = true;
+  }
+  $scope.closeFilterMenu = function(){
+    $scope.showFilterMenu = false;
+  }
+
+  $scope.sortFilter = function(value){
+    if(value=="name"){
+      $scope.sortedFilterValue = ($scope.sortedFilter === value) ? !$scope.sortedFilterValue : false;
+    }else{
+      $scope.sortedFilterValue = ($scope.sortedFilter === value) ? !$scope.sortedFilterValue : true;
+    }
+    $scope.sortedFilter = value;
+    $scope.showFilterMenu = false;
   }
 }]);

@@ -32,6 +32,9 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
         $scope.getMonkCount = data;
       }, 600);
     },function(data){
+      if(data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }
       console.log(data);
     });
   }
@@ -43,6 +46,9 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
       localStorage.profile = JSON.stringify(data);
       $rootScope.profileData = angular.copy(data);
     },function(data){
+      if(data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }
       console.log(data,"error");
     });
   }
@@ -52,10 +58,27 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
 	document.addEventListener("deviceready", onDeviceReady, false);
   $scope.showArrow = false;
 
+	$scope.showMessage = function(message) {
+    window.plugins.toast.showWithOptions({
+      message: message,
+      duration: "long",
+      position: "bottom",
+      addPixelsY: -20  // added a negative value to move it up a bit (default 0)
+    },
+    function(){
+      console.log('sucess');
+    }, // optional
+    function(){
+      console.log('error');
+    }); // optional
+  }
+
   function onDeviceReady() {
-  	console.log('deviceReady');
+    $scope.registerNotificaton();
+    console.log('deviceReady');
     document.addEventListener("online", onlineHandler, false);
     document.addEventListener("offline", offlineHandler, false);
+    
     $timeout(function(){
       console.log(sessionStorage.redirectFromUrl,"session");
       if(sessionStorage.redirectFromUrl.split('askmonk://')[1] == 5){
@@ -83,34 +106,37 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
         senderID: CONSTANT.pushSenderID // Google Project Number.
       });
     }
-    // Method to handle device registration for Android.
-    window.onNotificationGCM = function (e) {
-      if('message' == e.event) {
-        console.log(e);
-        if(e.payload.questionId){
-          if(e.payload.questionId == 12){
-            $state.go('app.horoscope');
-          }else{
-            $state.go('app.singlequestion',{id:e.payload.questionId});
-          }
+  }
+  // Method to handle device registration for Android.
+  window.onNotificationGCM = function (e) {
+    if('message' == e.event) {
+      console.log(e);
+      if(e.payload.questionId){
+        if(e.payload.questionId == 12){
+          $state.go('app.horoscope');
+        }else{
+          $state.go('app.singlequestion',{id:e.payload.questionId});
         }
-      }else if('registered' === e.event) {
-        window.registrationHandler(e.regid);
       }
-      else if ('error' === e.event) {
-        console.log("error",e);
-      }
-    };
-    window.registrationHandler = function(_deviceId){
-      $scope.deviceInfo = {"deviceType":window.device.platform,"userId":localStorage.userId,"deviceId":_deviceId}
-      // alert($scope.deviceInfo);
-      utility.notification($scope.deviceInfo)
-      .then(function(data){
-        console.log("success",data);
-      },function(data){
-        console.log("error",data);
-      }); 
+    }else if('registered' === e.event) {
+      window.registrationHandler(e.regid);
     }
+    else if ('error' === e.event) {
+      console.log("error",e);
+    }
+  };
+  window.registrationHandler = function(_deviceId){
+    $scope.deviceInfo = {"deviceType":window.device.platform,"userId":localStorage.userId,"deviceId":_deviceId}
+    // alert($scope.deviceInfo);
+    utility.notification($scope.deviceInfo)
+    .then(function(data){
+      console.log("success",JSON.stringify(data));
+    },function(data){
+      if(data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }
+      console.log("error",data);
+    }); 
   }
 
   function offlineHandler() {
@@ -126,24 +152,10 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     }else{
       $ionicHistory.goBack();
     }
-  }, 100);
+  },150);
   
-	utility.initialize(CONSTANT.baseUrl, false, $scope, $rootScope);
+  utility.initialize(CONSTANT.baseUrl, false, $scope, $rootScope);
 
-	$scope.showMessage = function(message) {
-    window.plugins.toast.showWithOptions({
-      message: message,
-      duration: "long",
-      position: "bottom",
-      addPixelsY: -20  // added a negative value to move it up a bit (default 0)
-    },
-    function(){
-      console.log('sucess');
-    }, // optional
-    function(){
-      console.log('error');
-    }); // optional
-  }
   $scope.showLoader = function(duration) {
     $ionicLoading.show({
       animation: 'fade-in',
@@ -188,7 +200,7 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
         //   $state.go('app.dashboard');
         // }
       }, 300);
-      $scope.transitionAnimation('right',300);
+      $scope.transitionAnimation('right',700);
     }else{
       
       $ionicSideMenuDelegate.toggleLeft();

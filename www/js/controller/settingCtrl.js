@@ -45,9 +45,9 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
   $scope.shareWhatsapp = function(){
     $scope.showLoader();
     window.plugins.socialsharing.shareViaWhatsApp(
-      'Share Askmonk',
-      'http://askmonk.in/images/askmonk_logo_white.png',
-      'http://askmonk.in',
+      "Askmonk.in ( Innovative way to know about astrological solutions to one's crisp questions in no time. Download askmonk now where predictions are just a question away )",
+      null,
+      null,
       function() {
         $scope.hideLoader();
         console.log('share ok');
@@ -97,6 +97,9 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
           .then(function(data){
             $scope.logout();
           },function(data){
+            if(data.error.statusCode == 422){
+              $scope.showMessage(data.error.message);
+            }
             console.log(data,'error');
           });
         }else{
@@ -131,6 +134,9 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
       $scope.loginType = localStorage.getItem('loginType');
       delete $http.defaults.headers.common.Authorization;
     },function(data){
+      if(data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }
       console.log(data,'error');
     });
   }
@@ -198,6 +204,9 @@ askmonkApp.controller('changePasswordModalCtrl', ['$scope','utility','CONSTANT',
           $scope.showMessage("Password change successfully");
         }, function(data) {
           $scope.hideLoader();
+          if(data.error.statusCode == 422){
+            $scope.showMessage(data.error.message);
+          }
           console.log(data,"errors");
         });
       }else{
@@ -209,6 +218,9 @@ askmonkApp.controller('changePasswordModalCtrl', ['$scope','utility','CONSTANT',
           $scope.showMessage("Password change successfully");
         }, function(data) {
           $scope.hideLoader();
+          if(data.error.statusCode == 422){
+            $scope.showMessage(data.error.message);
+          }
           console.log(data,"errors");
         });
       }

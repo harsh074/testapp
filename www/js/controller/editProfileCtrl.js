@@ -16,6 +16,9 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       .then(function(data){
         $scope.getUserCount = data;
       },function(data){
+        if(data.error.statusCode == 422){
+          $scope.showMessage(data.error.message);
+        }
         console.log(data);
       });
     }
@@ -28,7 +31,9 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
     if($rootScope.profileData){
       $scope.editProfileData = angular.copy($rootScope.profileData);
       if($scope.loginType == "user"){
-        $scope.editProfileData.birthTime = new Date($scope.editProfileData.birthTime);
+        if($scope.editProfileData.birthTime){
+          $scope.editProfileData.birthTime = new Date($scope.editProfileData.birthTime);
+        }
         $scope.showDate = true;
       }
     }else if(localStorage.getItem("profileData")){
@@ -41,36 +46,38 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       if($scope.editProfileData.birthPlace){
         angular.element(document.getElementsByClassName('ion-google-place')).addClass('used');
       }
+      if($scope.editProfileData.birthTime){
+        angular.element(document.getElementsByClassName('ion-birth-time')).addClass('used');
+      }
     }, 50);
 
     $scope.datepickerObject = {
-      titleLabel: 'DOB',  //Optional
-      todayLabel: 'Today',  //Optional
-      closeLabel: 'Close',  //Optional
-      setLabel: 'Set',  //Optional
-      setButtonType : 'button-askmonk',  //Optional
-      todayButtonType : 'button-askmonk',  //Optional
-      closeButtonType : 'button-askmonk',  //Optional
-      inputDate: $scope.editProfileData.dob ? new Date($scope.editProfileData.dob):new Date(),  //Optional
-      mondayFirst: true,  //Optional
-      // disabledDates: disabledDates, //Optional
-      // weekDaysList: weekDaysList, //Optional
-      // monthList: monthList, //Optional
-      templateType: 'popup', //Optional
-      showTodayButton: 'false', //Optional
-      modalHeaderColor: 'bar-positive', //Optional
-      modalFooterColor: 'bar-positive', //Optional
-      from: new Date(1940, 1, 1), //Optional
-      to: new Date(),  //Optional
-      callback: function (val) {  //Mandatory
+      titleLabel: 'DOB',
+      todayLabel: 'Today',
+      closeLabel: 'Close',
+      setLabel: 'Set',
+      setButtonType : 'button-askmonk',
+      todayButtonType : 'button-askmonk',
+      closeButtonType : 'button-askmonk',
+      inputDate: $scope.editProfileData.dob ? new Date($scope.editProfileData.dob):new Date(),
+      mondayFirst: true,
+      // disabledDates: disabledDates,
+      // weekDaysList: weekDaysList,
+      // monthList: monthList,
+      templateType: 'popup',
+      showTodayButton: 'false',
+      modalHeaderColor: 'bar-positive',
+      modalFooterColor: 'bar-positive',
+      from: new Date(1940, 1, 1),
+      to: new Date(),
+      callback: function (val) {
         datePickerCallback(val);
       },
-      dateFormat: 'dd-MM-yyyy', //Optional
-      closeOnSelect: true //Optional
+      dateFormat: 'dd-MM-yyyy',
+      closeOnSelect: true
     };
     
     function datePickerCallback(val){
-      // console.log(val);
       $scope.showDate = true;
       if(val){
         $scope.datepickerObject.inputDate = val;
@@ -78,6 +85,34 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
         $scope.datepickerObject.inputDate = new Date();
       }
       $scope.editProfileData.dob = angular.copy($scope.datepickerObject.inputDate);
+    }
+
+    $scope.timePickerObject12Hour = {
+      inputEpochTime:($scope.editProfileData.birthTime?(new Date($scope.editProfileData.birthTime)).getHours()*60*60+60*(new Date($scope.editProfileData.birthTime)).getMinutes():(new Date()).getHours()*60*60),
+      step: 1,
+      format: 12,
+      titleLabel: 'Birth Time',
+      closeLabel: 'Close',
+      setLabel: 'Set',
+      setButtonType: 'button-askmonk',
+      closeButtonType: 'button-askmonk',
+      callback: function (val) {
+        timePicker12Callback(val);
+      }
+    }
+
+    function timePicker12Callback(val){
+      angular.element(document.getElementsByClassName('ion-birth-time')).addClass('used');
+      if (typeof (val) === 'undefined'){
+        // console.log('Time not selected');
+        $scope.editProfileData.birthTime = new Date();
+      } else {
+        var selectedTime = new Date(val * 1000);
+        $scope.editProfileData.birthTime = new Date();
+        $scope.editProfileData.birthTime.setMinutes(selectedTime.getUTCMinutes());
+        $scope.editProfileData.birthTime.setHours(selectedTime.getUTCHours());
+        // console.log($scope.editProfileData.birthTime);
+      }
     }
 
     $scope.expandText = function(){
@@ -108,6 +143,9 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
             $scope.transitionAnimation('left',180);
           },function(data){
             $scope.hideLoader();
+            if(data.error.statusCode == 422){
+              $scope.showMessage(data.error.message);
+            }
             console.log(data);
           });
         }
@@ -129,6 +167,9 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
             $scope.transitionAnimation('left',180);
           },function(data){
             $scope.hideLoader();
+            if(data.error.statusCode == 422){
+              $scope.showMessage(data.error.message);
+            }
             console.log(data);
           });
         }

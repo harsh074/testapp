@@ -24,8 +24,11 @@ askmonkApp.controller('yProfileCtrl', ['$scope','$state','$stateParams','utility
 				$scope.hideLoader();
 				$scope.monkProfileData = data;
 			},function(data){
-				console.log(data);
 				$scope.hideLoader();
+				if(data.error.statusCode == 422){
+		      $scope.showMessage(data.error.message);
+		    }
+				console.log(data);
 			});
 		// }
 

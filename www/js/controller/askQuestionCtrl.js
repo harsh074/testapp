@@ -53,10 +53,16 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
   }
 
 	if($scope.loginType == 'user'){
+		$scope.showLoader();
     utility.getUserCount()
     .then(function(data){
+			$scope.hideLoader();
       $scope.getUserCount = data;
     },function(data){
+			if(data.error.statusCode == 422){
+				$scope.showMessage(data.error.message);
+			}
+			$scope.hideLoader();
       console.log(data);
     });
 		if(!localStorage.timelineJson){
@@ -65,6 +71,9 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	    	$scope.timeLineJson = data;
 	      localStorage.setItem('timelineJson',JSON.stringify(data));
 	    },function(data){
+	    	if(data.error.statusCode == 422){
+					$scope.showMessage(data.error.message);
+				}
 	      console.log(data);
 	    });
 		}else{
@@ -74,29 +83,33 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	
 	if(localStorage.tagQuestion){
 		$scope.questions = JSON.parse(localStorage.getItem('tagQuestion'));
-		$scope.hideLoader();
+		// $scope.hideLoader();
 	}else{
+		$scope.showLoader();
 		utility.getAllQuestion()
 		.then(function(data){
-			$scope.hideLoader();
+			// $scope.hideLoader();
 			$scope.questions = data;
 			localStorage.setItem('tagQuestion',JSON.stringify(data));
 		},function(data){
+			if(data.error.statusCode == 422){
+				$scope.showMessage(data.error.message);
+			}
 			$scope.hideLoader();
 			console.log(data);
 		});
 	}
 
-	$scope.selectedTimeline = {'value':"1yearly"};
-	$scope.timeLineValueSelected = "12"
+	$scope.selectedTimeline = {'value':"basic"};
+	$scope.timeLineValueSelected = "6"
 	$scope.selectTimelineOption = function(){
 		if(!($scope.getUserCount && $scope.getUserCount.totalQuestionsAsked)){
-			$scope.showMessage('Free question has fixed duration of 6 months.');
+			$scope.showMessage('Free question has fixed duration of 6 months');
 		}else{
 			$scope.timeLinePopup = $ionicPopup.show({
 		    cssClass:"timelineSelector",
 		    title: 'Duration : Rate Card',
-		    templateUrl:'selectTimelinPopup.html',
+		    templateUrl:'selectTimelinePopup.html',
 		    scope: $scope
 		  });
 		}
@@ -152,7 +165,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 		console.log($scope.askQuestion.moneyType);
 		var confirmPopup = $ionicPopup.show({
 	    cssClass:"ios",
-	    title: 'Going further would send the question to the astrologers.',
+	    title: 'Going further would send the question to the astrologers',
 	    template:'Do u wish to continue ?',
 	    buttons: [
 	      {text: 'Yes',type:'button-ios button-clear',
@@ -287,6 +300,15 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 					});
 				},function(data){
 					$scope.hideLoader();
+					if(data.error.message.indexOf('Insufficient Funds') == 0){
+						console.log($scope.getUserCount);
+						if($scope.getUserCount && $scope.getUserCount.walletMoney){
+							$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount - $scope.getUserCount.walletMoney;
+						}else{
+							$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount;
+						}
+						$scope.openInsufficientPopup();
+					}
 					$scope.showMessage(data.error.message);
 				});
 			}else{

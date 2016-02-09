@@ -45,6 +45,9 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     }
   },function(data){
     $scope.hideLoader();
+    if(data.error.statusCode == 422){
+      $scope.showMessage(data.error.message);
+    }
   	console.log(data);
   });
 
@@ -80,6 +83,9 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
       $scope.ratingSubmitted = true;
       $scope.ratingEdit = false;
     },function(data){
+      if(data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }
       console.log(data,"error");
     })
   }
@@ -122,6 +128,9 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
       }, 100);
       console.log(data,"success");
     },function(data){
+      if(data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }
       console.log(data,"error");
     })
   }
@@ -201,6 +210,9 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
             $scope.question = angular.copy(data);
           },function(data){
             $scope.hideLoader();
+            if(data.error.statusCode == 422){
+              $scope.showMessage(data.error.message);
+            }
             console.log(data);
           });
         } else {
@@ -237,6 +249,10 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     $state.go('app.wallet');
   }
   
+  $scope.showMonkPage = function(){
+    $state.go('app.yprofile',{id:$scope.question.monkId});
+    // console.log($scope.question.monkId)
+  }
 }]);
 
 askmonkApp.controller('writeAnswerModalPopupCtrl', ['$scope','$timeout', function($scope,$timeout){
@@ -257,7 +273,7 @@ askmonkApp.controller('writeAnswerModalPopupCtrl', ['$scope','$timeout', functio
   }
 }]);
 
-askmonkApp.controller('userDetailModalPopupCtrl', ['$scope','utility','getMoonSign', function($scope,utility,getMoonSign){
+askmonkApp.controller('userDetailModalPopupCtrl', ['$scope','getMoonSign', function($scope,getMoonSign){
   $scope.profileInfo = angular.copy(getMoonSign($scope.question));
   $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
 }]);
@@ -281,6 +297,9 @@ askmonkApp.controller('editQuestionModalCtrl', ['$scope','utility','$timeout', f
       localStorage.setItem('tagQuestion',JSON.stringify(data));
     },function(data){
       $scope.hideLoader();
+      if(data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }
       console.log(data);
     });
   }
@@ -335,6 +354,9 @@ askmonkApp.controller('editQuestionModalCtrl', ['$scope','utility','$timeout', f
       $scope.closeEditModal(data);
     },function(data){
       $scope.hideLoader();
+      if(data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }
       console.log(data,"error");
     })
   }

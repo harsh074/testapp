@@ -4,6 +4,9 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
     $scope.showArrow = true;
     $state.go('app.singlequestion',{id:localStorage.questionId});
   }
+  if(!localStorage.profile){
+    $state.go('app.profile');
+  }
 	$scope.noQuestionFound = false;
 	$scope.search = {"searchInput":""};
   $scope.question = {"askedQuestion":[],"answeredQuestion":[],"ratedQuestion":[]};
@@ -107,35 +110,41 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
       }
     },function(data){
       $scope.hideLoader();
+      if(data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }
       console.log(data);
     });
   }else{
-    utility.getQuestionOnStatus('asked',indexGetAskedQuestion)
+/*    utility.getQuestionOnStatus('asked',indexGetAskedQuestion)
     .then(function(data){
       if(data.length>0){
         // $scope.groups = data;
         // $scope.questionSorted(data);
       }else{
         $scope.noQuestionFound = true
-      }
+      }*/
       utility.getMonkAnsweredQuestion(indexGetOtherQuestion)
-      .then(function(data1){
+      .then(function(data){
         $timeout(function(){
           $scope.hideLoader();
         });
         // $scope.questionAnswered = data1;
-        $scope.questionSortedMonk(data1.concat(data),null,null);
+        $scope.questionSortedMonk(data,null,null);
         $timeout(function(){
           $scope.showInfinteScroll = true;
         }, 1000);
       },function(data1){
         $scope.hideLoader();
+        if(data1.error.statusCode == 422){
+          $scope.showMessage(data1.error.message);
+        }
         console.log(data1)
       });
-    },function(data){
+    /*},function(data){
       $scope.hideLoader();
       console.log(data);
-    });
+    });*/
   }
 
   // infinite scroll functon for asked question in monk dashboard.
@@ -156,6 +165,9 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
       }
     },function(data){
       $scope.hideLoader();
+      if(data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }
       console.log(data);
     });
   }
@@ -176,6 +188,9 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
       }
     },function(data){
       $scope.hideLoader();
+      if(data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }
       console.log(data)
     });
   }
@@ -198,6 +213,9 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
           $scope.noQuestionFound = true
         }
       },function(data){
+        if(data.error.statusCode == 422){
+          $scope.showMessage(data.error.message);
+        }
         console.log(data);
       });
     }else{
@@ -210,6 +228,9 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
           $scope.noQuestionFound = true
         }
       },function(data){
+        if(data.error.statusCode == 422){
+          $scope.showMessage(data.error.message);
+        }
         console.log(data);
       });
     }
@@ -230,6 +251,9 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
           $scope.noQuestionFound = true
         }
       },function(data){
+        if(data.error.statusCode == 422){
+          $scope.showMessage(data.error.message);
+        }
         console.log(data);
       });
     }else{
@@ -238,6 +262,9 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
         $scope.$broadcast('scroll.refreshComplete');
         $scope.questionSortedMonk(data,'answered','pullToRefresh');
       },function(data){
+        if(data.error.statusCode == 422){
+          $scope.showMessage(data.error.message);
+        }
         console.log(data)
       });
     }

@@ -1,7 +1,7 @@
-askmonkApp.controller('directQuestionCtrl', ['$scope','utility','$state','$stateParams', function($scope,utility,$state,$stateParams){
+askmonkApp.controller('openQuestionCtrl', ['$scope','utility','$state','$stateParams', function($scope,utility,$state,$stateParams){
 
-	$scope.noQuestionFound = false;
-	$scope.search = {"searchInput":""};
+  $scope.noQuestionFound = false;
+  $scope.search = {"searchInput":""};
   // $scope.loginType = CONSTANT.loginType;
   $scope.showClear = false;
   $scope.$on('$ionicView.enter', function(){
@@ -11,7 +11,7 @@ askmonkApp.controller('directQuestionCtrl', ['$scope','utility','$state','$state
   $scope.noMoreQuestion = false;
 
 
-  utility.getDirectQuestion(indexGetQuestion)
+  utility.getQuestionOnStatus('asked',indexGetQuestion)
   .then(function(data){
     $scope.hideLoader();
     console.log(data);
@@ -33,7 +33,7 @@ askmonkApp.controller('directQuestionCtrl', ['$scope','utility','$state','$state
     indexGetQuestion = 0;
     $scope.noMoreQuestion = false;
 
-    utility.getDirectQuestion(indexGetQuestion)
+    utility.getQuestionOnStatus('asked',indexGetQuestion)
     .then(function(data){
       // $scope.hideLoader();
       $scope.$broadcast('scroll.refreshComplete');
@@ -52,13 +52,14 @@ askmonkApp.controller('directQuestionCtrl', ['$scope','utility','$state','$state
     });
   }
 
+  // infinite scroll functon for asked question in monk dashboard.
   $scope.loadMoreQuestion = function(){
     indexGetQuestion = indexGetQuestion+10;
     $scope.showLoader();
-    utility.getDirectQuestion(indexGetQuestion)
+    utility.getQuestionOnStatus('asked',indexGetQuestion)
     .then(function(data){
+      console.log(data,"asked");
       $scope.hideLoader();
-      console.log(data,"answered");
       if(data.length==0 && indexGetQuestion>9){
         $scope.noMoreQuestion = true;
         $scope.$broadcast('scroll.infiniteScrollComplete');
@@ -71,10 +72,9 @@ askmonkApp.controller('directQuestionCtrl', ['$scope','utility','$state','$state
       if(data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
       }
-      console.log(data)
+      console.log(data);
     });
   }
-
 
   $scope.goToQuestion = function(id){
     $stateParams.id = id;

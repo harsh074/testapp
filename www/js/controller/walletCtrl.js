@@ -29,8 +29,11 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
       $scope.walletMoney = data.walletMoney;
       $scope.hideLoader();
     },function(data){
-      console.log(data);
       $scope.hideLoader();
+      if(data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }
+      console.log(data);
     });
   }else{
     utility.getMonkCount()
@@ -39,8 +42,11 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
       $scope.totalWalletMoney = data.totalWalletMoney;
       $scope.hideLoader();
     },function(data){
-      console.log(data);
       $scope.hideLoader();
+      if(data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }
+      console.log(data);
     });
   }
 
@@ -107,6 +113,9 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
 				localStorage.setItem('packs',JSON.stringify(data));
 				$scope.packs = data;
 			},function(data){
+        if(data.error.statusCode == 422){
+          $scope.showMessage(data.error.message);
+        }
 				console.log(data);
 			});
 		}

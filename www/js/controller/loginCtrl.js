@@ -4,14 +4,27 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     $scope.userForgetPasswordShow = false;
     $scope.monkForgetPasswordShow = false;
     $scope.hideLoader();
-    // $scope.args = {"email":"harsh.agarwal1112@gmail.com","password":"password"};
-    // $scope.argsSignup = {"name":"harsh","email":"harsh@gmail.com","password":"password"};
+    // $scope.args = {"email":"harsh.agarwal1112@gmail.com","password":"password","ttl": 435456000000};
+    // $scope.argsSignup = {"name":"harsh","email":"harsh.agarwal1112@gmail.com","password":"password","ttl": 435456000000};
     // $scope.conpassword = {"pass":"password"};
 
     $scope.args = {"email":"","password":"","ttl": 435456000000};
     $scope.argsSignup = {"name":"","email":"","password":""};
     $scope.conpassword = {"pass":""};
     $scope.argsMonk = {"email":"","password":"","ttl": 435456000000};
+
+    $scope.slideHasChanged = function(index){
+      var videoTag = angular.element(document.getElementById('video'+index));
+      if(index>0){
+        videoTag[0].currentTime = 0;
+        videoTag[0].play();
+      }
+    }
+
+    $scope.openTnC = function(){
+      window.open('http://askmonk.in/privacy.html', '_system', 'location=yes'); 
+      return false;
+    }
 
     $scope.userLoginForm = function() {
       $scope.userForgetPasswordShow = false;
@@ -80,7 +93,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         CONSTANT.loginType = "user";
         $state.go('app.profile');
         $scope.hideLoader();
-        $scope.transitionAnimation('left',400);
+        $scope.transitionAnimation('left',680);
         if($scope.userLoginModal && $scope.userLoginModal.isShown()){
           $scope.userLoginModal.remove();
         }
@@ -104,7 +117,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         CONSTANT.loginType = "monk";
         $scope.hideLoader();
         if(CONSTANT.isDevice){
-          $scope.transitionAnimation('left',400);
+          $scope.transitionAnimation('left',680);
         }
         if($scope.monkLoginModal && $scope.monkLoginModal.isShown()){
           $scope.monkLoginModal.remove();
@@ -178,6 +191,9 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         $scope.showMessage('Mail sent');
       },function(data){
         $scope.hideLoader();
+        if(data.error.statusCode == 422){
+          $scope.showMessage(data.error.message);
+        }
         console.log(data);
       });
     }
@@ -190,6 +206,9 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         $scope.showMessage('Mail sent');
       },function(data){
         $scope.hideLoader();
+        if(data.error.statusCode == 422){
+          $scope.showMessage(data.error.message);
+        }
         console.log(data);
       });
     }

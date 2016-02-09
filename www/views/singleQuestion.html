@@ -21,7 +21,7 @@
       	<p class="answer" ng-if="loginType=='user'">{{question.answer ? question.answer: "Will be answered next 48 hrs."}}</p>
         <p class="answer" ng-if="loginType=='monk' && (question.status=='answered' || question.status=='rated')">{{question.answer}}</p>
         <p class="answer" ng-if="loginType=='monk' && question.status=='underObservation'">{{writtenAnswer}}</p>
-        <p class="yogiName" ng-if="question.monkName && loginType=='user' && (question.status=='answered' || question.status=='rated')">Answered by {{question.monkName ? question.monkName: "Sunil"}}</p>
+        <p class="yogiName" ng-if="question.monkName && loginType=='user' && (question.status=='answered' || question.status=='rated')">Answered by <span ng-click="showMonkPage()">{{question.monkName ? question.monkName: "Sunil"}}</span></p>
       	<p class="yogiName" ng-if="question.monkName && loginType=='user' && (question.status=='direct' || question.status=='asked')">Asked to {{question.monkName ? question.monkName: "Sunil"}}</p>
      	</div>
 

@@ -1,6 +1,6 @@
 <ion-view class="welcome-view" cache-view="false">
 	<ion-slide-box on-slide-changed="slideHasChanged($index)" class="top-content">
-	  <ion-slide>
+		<ion-slide>
 	    <div class="box">
 				<div class="app-logo">
 					<img src="img/logo.png">
@@ -8,15 +8,35 @@
 				</div>
 	    </div>
 	  </ion-slide>
-	  <ion-slide>
-	    <div class="box yellow">
+		<ion-slide>
+	    <p class="ftuText">Select a question, set duration & ask on the go</p>
+	    <div class="boxPhone">
+	    	<!-- <img src="img/ftu/screen1.gif" /> -->
+	    	<video autoplay loop muted class="ftuContainer" id="video1">
+				  <source src="img/ftu/screen1_3.mp4" type="video/mp4">
+				</video>
 	    </div>
 	  </ion-slide>
-	 <!-- <ion-slide>
-	    <div class="box pink">
+	  <ion-slide>
+	    <p class="ftuText">Browse astrologers & ask directly</p>
+	    <div class="boxPhone">
+	    	<video autoplay loop muted class="ftuContainer" id="video2">
+				  <source src="img/ftu/screen2_3.mp4" type="video/mp4">
+				</video>
 	    </div>
-	  </ion-slide> -->
+	  </ion-slide>
+	  <ion-slide>
+	    <p class="ftuText">Fill in mandatary details & start askmonking</p>
+	    <div class="boxPhone">
+	    	<video autoplay loop muted class="ftuContainer" id="video3">
+				  <source src="img/ftu/screen3_3.mp4" type="video/mp4">
+				</video>
+	    </div>
+	  </ion-slide>
 	</ion-slide-box>
+<!-- 	<div>
+		<img src="img/arrow-transparent.gif" />
+	</div> -->
 	<div class="bottomContent">
 		<div class="loginTab">
 			<div class="userTab" ng-click="userLoginForm()">USER</div>
@@ -58,7 +78,7 @@
 					<ion-md-input placeholder="Email" ng-pattern="/^\w+([\.+-]?\w+)*@\w+([\.-]?\w+)(\.\w{1,})+$/" name="email" highlight-color="custom" ng-model="argsSignup.email" type="text"></ion-md-input>
 					<ion-md-input placeholder="Password" name="password" highlight-color="custom" ng-model="argsSignup.password" type="password"></ion-md-input>
 					<ion-md-input placeholder="Confirm Password" name="conpassword" highlight-color="custom" ng-model="conpassword.pass" type="password"></ion-md-input>
-					<p class="disclaimer">By clicking Sign up, you agree to Askmonk's terms & condition.</p>
+					<p class="disclaimer">By clicking Sign up, you agree to Askmonk's <a class="" ng-click="openTnC()">Terms & Condition</a>.</p>
 					<button class="button button-login" type="submit">Sign Up</button>
 					<a ng-click="loginTab()" class="backTologin">Already have an account? Login</a>
 					<div class="socialLogin" ng-click="userGoogleLogin()">
@@ -70,7 +90,7 @@
 	</ion-modal-view>
 </script>
 
-<script id="monkLoginModal.html" type="text/ng-template">
+<script type="text/ng-template" id="monkLoginModal.html">
 	<ion-modal-view class="loginPages">
 		<ion-header-bar class="loginHeaderBar">
       <i class="icon ion-android-close" ng-click="closeModal()"></i>

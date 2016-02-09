@@ -2,7 +2,6 @@
 	<ion-content scroll="false">
 		<div class="yprofile dashboard">
 			<div class="pofilePic">
-				<!-- <div class="avatar"><i class="ion-person"></i></div> -->
 				<div class="yAnswerStatus" ng-if="loginType=='user'">
 					<div class="aboutQuestion">Questions<br /><span class="pullToRefresh">(Pull to refresh)</span></div>
 					<div class="searchBar">
@@ -21,19 +20,14 @@
 				  	<i class="icon ion-close-round placeholder-icon" ng-click="clearSearch()" ng-show="showClear"></i>
 			  	</div>
 				</div>
-				
-			  <!-- <button class="button button-icon icon ion-ios-search-strong searchBar" ng-click="showFilterBar()"></button> -->
 			</div>
 		</div>
 	</ion-content>
 	<ion-content class="dashboardData" scroll="false">
-		<tab-slide-box tab="0">
+		<tab-slide-box tab="0" ng-if="loginType=='user'">
       <div class="tsb-icons">
         <div class="tsb-ic-wrp">
-          <a class="">
-          	<span ng-if="loginType=='user'">NEW</span>
-          	<span ng-if="loginType=='monk'">OPEN</span>
-          </a>
+          <a class="">NEW</a>
           <a class="">ANSWERED</a>
           <a class="">RATED</a>
         </div>
@@ -43,43 +37,25 @@
         <ion-slide>
         	<ion-scroll style="height:100%" delegate-handle="slide1Scroll">
         		<ion-refresher on-refresh="doRefresh()" spinner="none" pulling-icon="ion-loop" refreshing-icon="ion-loop" refreshing-text="Loading..."></ion-refresher>
-	          <div class="noQuestionFound" ng-if="noQuestionFound && loginType=='user'">
+	          <div class="noQuestionFound" ng-if="noQuestionFound">
 							<a ng-click="askQuestion()" href="">Ask first question for free</a>
 						</div>
 						<div class="questionFound">
 							<ion-list>
-				        <div ng-repeat="group in question.askedQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="(group.status=='asked' || group.status=='direct') && loginType=='user'">
+				        <div ng-repeat="group in question.askedQuestion | filter:search.searchInput" class="questions" ng-click="goToQuestion(group.id)" ng-if="(group.status=='asked' || group.status=='direct')">
 				          <div class="question">{{group.question}}</div>
 			          	<div class="answer">
 			          		<p class="showAnswer">{{group.answer ? group.answer: "Experts on it! Will be answered soon."}}</p>
 					       	</div>
 				        </div>
 
-				        <div ng-repeat="group in question.askedQuestion | filter:search.searchInput" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='asked' && loginType=='monk'">
-				          <div class="question">{{group.question}}</div>
-			          	<div class="answer">
-			          		<p class="questionTag">{{group.questionTag}}</p>
-			          		<p class="postedTime">Posted {{group.askedOn | timeago}}</p>
-					       	</div>
-					       	<p class="postedUser">Posted by {{group.name}}</p>
-					       	<p class="postedUser uptilTime">Uptil {{group.predictionDurationMonths | timeLineFiter}}</p>
-				        </div>
-
 				        <div ng-switch="(question.askedQuestion | filter:search.searchInput).length">
 				        	<div class="noStatusQuestion" ng-switch-when="0">
-				        		<!-- <i class="icon ion-eye-disabled"></i> -->
 				        		<img src="img/icon.png" width="100px" />
-				        		<p class="noQuestionTitle" ng-if="loginType=='user'">No Asked Question</p>
-				        		<p class="noQuestionTitle" ng-if="loginType=='monk'">No Open Question</p>
+				        		<p class="noQuestionTitle">No Asked Question</p>
 				        	</div>
 				        </div>
-
-				        <!-- <div class="payTogetMore" ng-if="groups.length<=2 && loginType=='user'">
-					      	<a ui-sref="app.wallet">Pay to get more answers.</a>
-					      </div> -->
 			      	</ion-list>
-
-			      	<ion-infinite-scroll ng-if="!noMoreAskedQuestion && loginType=='monk' && showInfinteScroll" on-infinite="loadMoreAskedQuestion()" immediate-check="false" icon="ion-loading" distance="10%"></ion-infinite-scroll>
 						</div>
 					</ion-scroll>
         </ion-slide>
@@ -88,47 +64,26 @@
         <ion-slide>
         	<ion-scroll style="height:100%" delegate-handle="slide2Scroll">
         		<ion-refresher on-refresh="doRefreshOnAnsweredTab()" spinner="none" pulling-icon="ion-loop" refreshing-icon="ion-loop" refreshing-text="Loading..."></ion-refresher>
-	          <div class="noQuestionFound" ng-if="noQuestionFound && loginType=='user'">
+	          <div class="noQuestionFound" ng-if="noQuestionFound">
 							<a ng-click="askQuestion()" href="">Ask first question for free</a>
 						</div>
-						<!-- <div class="noQuestionFound" ng-if="noQuestionFound && loginType=='monk'">
-							<a ng-click="askQuestion()" href="">Ask first question for free</a>
-							<p>You have not answered a question. Please answer a question.</p>
-						</div> -->
+
 						<div class="questionFound">
 							<ion-list>
-				        <div ng-repeat="group in question.answeredQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='answered' && loginType=='user'">
+				        <div ng-repeat="group in question.answeredQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='answered'">
 				          <div class="question">{{group.question}}</div>
-				          
 				          <div class="answer">
 				          	<p>{{group.answer ? group.answer: "Experts on it! Will be answered soon."}}</p>
 						       </div>
 				        </div>
 
-				        <div ng-repeat="group in question.answeredQuestion | filter:search.searchInput" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='answered' && loginType=='monk'">
-				          <div class="question">{{group.question}}</div>
-				          
-				          <div class="answer">
-				          	<p class="questionTag">{{group.questionTag}}</p>
-				          	<p class="postedTime">Posted {{group.askedOn | timeago}}</p>
-						       </div>
-						       <p class="postedUser">Posted by {{group.name}}</p>
-						       <p class="postedUser uptilTime" ng-if="loginType=='monk'">Uptil {{group.predictionDurationMonths | timeLineFiter}}</p>
-				        </div>
-
 				        <div ng-switch="(question.answeredQuestion | filter:search.searchInput).length">
 					        <div class="noStatusQuestion" ng-switch-when="0">
-					        	<!-- <i class="icon ion-eye-disabled"></i> -->
 				        		<img src="img/icon.png" width="100px" />
 					        	<p class="noQuestionTitle">No Answered Question</p>
 					        </div>
 					      </div>
-				        <!-- <div class="payTogetMore" ng-if="groups.length<=2 && loginType=='user'">
-					      	<a ui-sref="app.wallet">Pay to get more answers.</a>
-					      </div> -->
 			      	</ion-list>
-
-			      	<ion-infinite-scroll ng-if="!noMoreOtherQuestion && loginType=='monk' && showInfinteScroll" on-infinite="loadMoreOtherQuestion()" immediate-check="false" icon="ion-loading" distance="10%"></ion-infinite-scroll>
 						</div>
 					</ion-scroll>
         </ion-slide>
@@ -137,30 +92,86 @@
         <ion-slide>
         	<ion-scroll style="height:100%" delegate-handle="slide3Scroll">
         		<ion-refresher on-refresh="doRefreshOnAnsweredTab()" spinner="none" pulling-icon="ion-loop" refreshing-icon="ion-loop" refreshing-text="Loading..."></ion-refresher>
-	          <div class="noQuestionFound" ng-if="noQuestionFound && loginType=='user'">
+	          <div class="noQuestionFound" ng-if="noQuestionFound">
 							<a ng-click="askQuestion()" href="">Ask first question for free</a>
 						</div>
 						<div class="questionFound">
 							<ion-list>
-				        <div ng-repeat="group in question.ratedQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='rated' && loginType=='user'">
+				        <div ng-repeat="group in question.ratedQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='rated'">
 				          <div class="question">{{group.question}}</div>
 				          <div class="answer">
 				          	<p>{{group.answer ? group.answer: "Experts on it! Will be answered soon."}}</p>
 						      </div>
-						      <div class="payTogetMore" ng-if="groups.length<=2 && loginType=='user'">
+						      <div class="payTogetMore" ng-if="groups.length<=2">
 					      		<a ui-sref="app.wallet">Pay to get more answers.</a>
 					      	</div>
 				        </div>
 
-				        <div ng-repeat="group in question.ratedQuestion | filter:search.searchInput" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='rated' && loginType=='monk'">
+				        <div ng-switch="(question.ratedQuestion | filter:search.searchInput).length">
+					        <div class="noStatusQuestion" ng-switch-when="0">
+				        		<img src="img/icon.png" width="100px" />
+					        	<p class="noQuestionTitle">No Rated Question</p>
+					        </div>
+					      </div>
+			      	</ion-list>
+						</div>
+					</ion-scroll>
+        </ion-slide>
+
+      </ion-slide-box>
+    </tab-slide-box>
+    <tab-slide-box tab="0" ng-if="loginType=='monk'">
+      <div class="tsb-icons">
+        <div class="tsb-ic-wrp">
+          <a class="">ANSWERED</a>
+          <a class="">RATED</a>
+        </div>
+      </div>
+      <ion-slide-box id="sliderScroll" show-pager="false" on-slide-changed="slideHasChanged($index)" delegate-handle="sliderScroll">
+        <!-- ANSWERED -->
+        <ion-slide>
+        	<ion-scroll style="height:100%" delegate-handle="slide2Scroll">
+        		<ion-refresher on-refresh="doRefreshOnAnsweredTab()" spinner="none" pulling-icon="ion-loop" refreshing-icon="ion-loop" refreshing-text="Loading..."></ion-refresher>
+						<div class="questionFound">
+							<ion-list>
+				        <div ng-repeat="group in question.answeredQuestion | filter:search.searchInput" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='answered'">
+				          <div class="question">{{group.question}}</div>
+				          <div class="answer">
+				          	<p class="questionTag">{{group.questionTag}}</p>
+				          	<p class="postedTime">Posted {{group.askedOn | timeago}}</p>
+						       </div>
+						       <p class="postedUser">Posted by {{group.name}}</p>
+						       <p class="postedUser uptilTime">Uptil {{group.predictionDurationMonths | timeLineFiter}}</p>
+				        </div>
+
+				        <div ng-switch="(question.answeredQuestion | filter:search.searchInput).length">
+					        <div class="noStatusQuestion" ng-switch-when="0">
+				        		<img src="img/icon.png" width="100px" />
+					        	<p class="noQuestionTitle">No Answered Question</p>
+					        </div>
+					      </div>
+			      	</ion-list>
+
+			      	<ion-infinite-scroll ng-if="!noMoreOtherQuestion && showInfinteScroll" on-infinite="loadMoreOtherQuestion()" immediate-check="false" icon="ion-loading" distance="10%"></ion-infinite-scroll>
+						</div>
+					</ion-scroll>
+        </ion-slide>
+
+        <!-- RATED -->
+        <ion-slide>
+        	<ion-scroll style="height:100%" delegate-handle="slide3Scroll">
+        		<ion-refresher on-refresh="doRefreshOnAnsweredTab()" spinner="none" pulling-icon="ion-loop" refreshing-icon="ion-loop" refreshing-text="Loading..."></ion-refresher>
+						<div class="questionFound">
+							<ion-list>
+				        <div ng-repeat="group in question.ratedQuestion | filter:search.searchInput" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='rated'">
 				          <div class="question">{{group.question}}</div>
 				          
 				          <div class="answer">
 				          	<p class="questionTag">{{group.questionTag}}</p>
 				          	<p class="postedTime">Posted {{group.askedOn | timeago}}</p>
 						      </div>
-						      <p class="postedUser" ng-if="loginType=='monk'">Posted by {{group.name}}</p>
-						      <p class="postedUser uptilTime" ng-if="loginType=='monk'">Uptil {{group.predictionDurationMonths | timeLineFiter}}</p>
+						      <p class="postedUser">Posted by {{group.name}}</p>
+						      <p class="postedUser uptilTime">Uptil {{group.predictionDurationMonths | timeLineFiter}}</p>
 				        </div>
 				        <div ng-switch="(question.ratedQuestion | filter:search.searchInput).length">
 					        <div class="noStatusQuestion" ng-switch-when="0">
@@ -171,7 +182,7 @@
 					      </div>
 			      	</ion-list>
 
-			      	<ion-infinite-scroll ng-if="!noMoreOtherQuestion && loginType=='monk' && showInfinteScroll" on-infinite="loadMoreOtherQuestion()" immediate-check="false" icon="ion-loading" distance="10%"></ion-infinite-scroll>
+			      	<ion-infinite-scroll ng-if="!noMoreOtherQuestion && showInfinteScroll" on-infinite="loadMoreOtherQuestion()" immediate-check="false" icon="ion-loading" distance="10%"></ion-infinite-scroll>
 						</div>
 					</ion-scroll>
         </ion-slide>
