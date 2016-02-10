@@ -9206,6 +9206,29 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       padding: 0 20px;
       font-family: 'Lobster';
       line-height: 30px; }
+  .welcome-view .nextSlideArrow {
+    position: absolute;
+    bottom: 69px;
+    right: 20px;
+    width: 27px;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 27px;
+    height: 27px;
+    z-index: 1; }
+    .welcome-view .nextSlideArrow i {
+      font-size: 25px;
+      color: #F62B00;
+      animation: blink 1.5s step-start 0s infinite;
+      -webkit-animation: blink 1.5s step-start 0s infinite; }
+
+@keyframes blink {
+  50% {
+    opacity: 0.0; } }
+
+@-webkit-keyframes blink {
+  50% {
+    opacity: 0.0; } }
   .welcome-view .bottomContent {
     height: 15%; }
     .welcome-view .bottomContent .loginTab {
@@ -10747,7 +10770,8 @@ ion-side-menu .has-header {
 
 .timelineSelector .popup {
   width: 300px;
-  background-color: rgba(255, 255, 255, 0.95); }
+  background-color: rgba(255, 255, 255, 0.95);
+  max-height: 97%; }
 
 .timelineSelector .popup-head .popup-title {
   color: #2B5D80;
@@ -10842,9 +10866,14 @@ ion-side-menu .has-header {
         float: right;
         padding: 0 20px;
         bottom: 12px;
-        position: relative; }
+        position: relative;
+        line-height: 19px; }
         .timelineSelector .popup-body .ons-css .checkboxTimeline .valueTimeLine .monthDuration {
           color: #AAAAAA; }
+        .timelineSelector .popup-body .ons-css .checkboxTimeline .valueTimeLine .fullRate {
+          text-decoration: none; }
+          .timelineSelector .popup-body .ons-css .checkboxTimeline .valueTimeLine .fullRate.cutRate {
+            text-decoration: line-through; }
       .timelineSelector .popup-body .ons-css .checkboxTimeline > input[type="radio"] {
         position: absolute;
         overflow: hidden;

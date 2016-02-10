@@ -103,7 +103,6 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
   	}
   }
 
-
   if(localStorage.getItem('packs')){
   	$scope.packs = JSON.parse(localStorage.getItem('packs'));
   }else{
@@ -120,5 +119,5 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
 			});
 		}
 	}
-  
+
 }]);

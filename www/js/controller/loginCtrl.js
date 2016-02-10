@@ -1,9 +1,13 @@
-askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ionicScrollDelegate','$timeout','$rootScope','$stateParams','$ionicModal', function($scope, $state,utility,CONSTANT,$ionicScrollDelegate,$timeout,$rootScope,$stateParams,$ionicModal){
+askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ionicScrollDelegate','$timeout','$rootScope','$stateParams','$ionicModal','$ionicSlideBoxDelegate','base64Encoding', function($scope, $state,utility,CONSTANT,$ionicScrollDelegate,$timeout,$rootScope,$stateParams,$ionicModal,$ionicSlideBoxDelegate,base64Encoding){
+  // console.log(base64Encoding.encode(JSON.stringify(a)));
+  
   if(!$scope.authenticated){
     $scope.monkTab = true;
     $scope.userForgetPasswordShow = false;
     $scope.monkForgetPasswordShow = false;
     $scope.hideLoader();
+    $scope.showNextButton = true;
+    
     // $scope.args = {"email":"harsh.agarwal1112@gmail.com","password":"password","ttl": 435456000000};
     // $scope.argsSignup = {"name":"harsh","email":"harsh.agarwal1112@gmail.com","password":"password","ttl": 435456000000};
     // $scope.conpassword = {"pass":"password"};
@@ -13,12 +17,28 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     $scope.conpassword = {"pass":""};
     $scope.argsMonk = {"email":"","password":"","ttl": 435456000000};
 
+    $scope.$on('$ionicView.loaded',function(){
+      $timeout(function(){
+        for(var i=1;i<4;i++){
+          var videoTag = angular.element(document.getElementById('video'+i));
+          videoTag[0].load();
+        }
+      }, 2000);
+    });
     $scope.slideHasChanged = function(index){
       var videoTag = angular.element(document.getElementById('video'+index));
       if(index>0){
         videoTag[0].currentTime = 0;
         videoTag[0].play();
       }
+      if(index == 3){
+        $scope.showNextButton = false;
+      }else{
+        $scope.showNextButton = true;
+      }
+    }
+    $scope.changeToNextSlide = function(){
+      $ionicSlideBoxDelegate.next();
     }
 
     $scope.openTnC = function(){
@@ -84,7 +104,15 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       $scope.monkForgetPasswordShow = true;
       $scope.argsMonk.email = '';
     }
-    $scope.userLogin = function(){
+    $scope.userLogin = function(formData){
+      if(!formData.userEmail.$viewValue || !formData.userEmail.$valid){
+        $scope.showMessage("Please enter the correct email address");
+        return;
+      }
+      if(!formData.userPassword.$viewValue || !formData.userPassword.$valid){
+        $scope.showMessage("Please enter the correct password");
+        return;
+      }
       $scope.showLoader();
       utility.login($scope.args)
       .then(function(data){
@@ -270,4 +298,10 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     $state.go('app.dashboard');
     $scope.transitionAnimation('left',180);
   }
+}]);
+
+askmonkApp.filter('trusted', ['$sce', function ($sce) {
+  return function(url) {
+    return $sce.trustAsResourceUrl(url);
+  };
 }]);

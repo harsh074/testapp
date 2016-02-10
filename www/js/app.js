@@ -10,7 +10,7 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', 
     $stateParams.id = localStorage.getItem('questionId');
     $state.go('app.singlequestion',$stateParams);
   }else{
-    console.log("dashboard");
+    // console.log("dashboard");
     $state.go('app.dashboard');
   }
   $ionicPlatform.ready(function() {

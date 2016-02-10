@@ -57,6 +57,8 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
     utility.getUserCount()
     .then(function(data){
 			$scope.hideLoader();
+			// var data = {emailVerified: true,makeFirstQuestionHalfRate: false,totalQuestionsAsked: 14}
+			// ,makeFirstQuestionFree: false,makeFirstQuestionHalfRate: true,totalQuestionsAsked: 14,walletMoney: 17000
       $scope.getUserCount = data;
     },function(data){
 			if(data.error.statusCode == 422){
@@ -103,15 +105,15 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	$scope.selectedTimeline = {'value':"basic"};
 	$scope.timeLineValueSelected = "6"
 	$scope.selectTimelineOption = function(){
-		if(!($scope.getUserCount && $scope.getUserCount.totalQuestionsAsked)){
-			$scope.showMessage('Free question has fixed duration of 6 months');
-		}else{
+		if($scope.getUserCount && ($scope.getUserCount.totalQuestionsAsked||$scope.getUserCount.makeFirstQuestionHalfRate)){
 			$scope.timeLinePopup = $ionicPopup.show({
 		    cssClass:"timelineSelector",
 		    title: 'Duration : Rate Card',
 		    templateUrl:'selectTimelinePopup.html',
 		    scope: $scope
 		  });
+		}else{
+			$scope.showMessage('Free question has fixed duration of 6 months');
 		}
 	}
 

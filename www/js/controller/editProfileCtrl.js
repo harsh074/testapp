@@ -127,6 +127,10 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
           $scope.hideLoader();
           $scope.showMessage("All fields are required");
           return;
+        }else if($scope.editProfileData.mobile.toString().length != 10){
+          $scope.hideLoader();
+          $scope.showMessage("Please enter the valid mobile number");
+          return;
         }else{
           utility.updateUserProfile(getMoonSign($scope.editProfileData))
           .then(function(data){
@@ -175,11 +179,6 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
         }
       }
 
-    }
-    
-    $scope.cancelEditProfile = function(){
-      $state.go('app.profile');
-      $scope.transitionAnimation('left',180);
     }
   }
 }]);

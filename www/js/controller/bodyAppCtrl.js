@@ -200,9 +200,8 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
         //   $state.go('app.dashboard');
         // }
       }, 300);
-      $scope.transitionAnimation('right',700);
+      $scope.transitionAnimation('right',650);
     }else{
-      
       $ionicSideMenuDelegate.toggleLeft();
     }
   }

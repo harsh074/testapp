@@ -123,7 +123,33 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	    line-height: 30px;
     }
 	}
-
+	.nextSlideArrow{
+		position: absolute;
+    bottom: 69px;
+    right: 20px;
+    width: 27px;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 27px;
+    height: 27px;
+    z-index: 1;
+		i{
+			font-size:25px;
+			color:#F62B00;
+			animation: blink 1.5s step-start 0s infinite;
+		  -webkit-animation: blink 1.5s step-start 0s infinite;
+		}
+	}
+	@keyframes blink {
+	  50% {
+	    opacity: 0.0;
+	  }
+	}
+	@-webkit-keyframes blink {
+	  50% {
+	    opacity: 0.0;
+	  }
+	}
 	.bottomContent{
 		height:15%;
 		.loginTab{
@@ -1954,6 +1980,7 @@ ion-side-menu .has-header{
 	.popup{
 		width: 300px;
 		background-color:rgba(255, 255, 255, 0.95);
+    max-height: 97%;
 	}
 	.popup-head{
 		.popup-title{
@@ -2066,8 +2093,15 @@ ion-side-menu .has-header{
 					padding: 0 20px;
 					bottom:12px;
 					position: relative;
+					line-height: 19px;
 					.monthDuration{
 						color:#AAAAAA;
+					}
+					.fullRate{
+						text-decoration:none;
+						&.cutRate{
+							text-decoration:line-through;
+						}
 					}
 				}
 				& > input[type="radio"] {
