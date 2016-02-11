@@ -20,6 +20,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     }else{
       $scope.profileImage = 'http://askmonk.in/mImages/'+$scope.profileInfo.email.split('@')[0].toLowerCase()+'.jpg';
     }
+
     $timeout(function(){
       $scope.hideLoader();
     }, 200);
@@ -62,6 +63,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
         }else{
           $scope.hideLoader();
           localStorage.setItem("profile",JSON.stringify(data));
+          $scope.$emit("updateAvaliableStatus");
           $scope.profileInfo = angular.copy($rootScope.profileData);
           $scope.profileImage = 'http://askmonk.in/mImages/'+$scope.profileInfo.email.split('@')[0].toLowerCase()+'.jpg';
         }

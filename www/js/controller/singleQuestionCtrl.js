@@ -362,6 +362,9 @@ askmonkApp.controller('editQuestionModalCtrl', ['$scope','utility','$timeout', f
       if($scope.editQuestion.matchMakingDetails.partnerBirthPlace){
         angular.element(document.getElementsByClassName('ion-google-place')).addClass('used');
       }
+      if($scope.editQuestion.matchMakingDetails.partnerBirthTime){
+        angular.element(document.getElementsByClassName('ion-birth-time')).addClass('used');
+      }
     }, 50);
     $scope.datepickerObject = {
       titleLabel: 'DOB',
@@ -394,6 +397,33 @@ askmonkApp.controller('editQuestionModalCtrl', ['$scope','utility','$timeout', f
         $scope.datepickerObject.inputDate = new Date();
       }
       $scope.editQuestion.matchMakingDetails.partnerDOB = angular.copy($scope.datepickerObject.inputDate);
+    }
+    $scope.timePickerObject12Hour = {
+      inputEpochTime:($scope.editQuestion.matchMakingDetails.partnerBirthTime?(new Date($scope.editQuestion.matchMakingDetails.partnerBirthTime)).getHours()*60*60+60*(new Date($scope.editQuestion.matchMakingDetails.partnerBirthTime)).getMinutes():(new Date()).getHours()*60*60),
+      step: 1,
+      format: 12,
+      titleLabel: 'Partner Birth Time',
+      closeLabel: 'Close',
+      setLabel: 'Set',
+      setButtonType: 'button-askmonk',
+      closeButtonType: 'button-askmonk',
+      callback: function (val) {
+        timePicker12Callback(val);
+      }
+    }
+
+    function timePicker12Callback(val){
+      angular.element(document.getElementsByClassName('ion-birth-time')).addClass('used');
+      if (typeof (val) === 'undefined'){
+        // console.log('Time not selected');
+        $scope.editQuestion.matchMakingDetails.partnerBirthTime = new Date();
+      } else {
+        var selectedTime = new Date(val * 1000);
+        $scope.editQuestion.matchMakingDetails.partnerBirthTime = new Date();
+        $scope.editQuestion.matchMakingDetails.partnerBirthTime.setMinutes(selectedTime.getUTCMinutes());
+        $scope.editQuestion.matchMakingDetails.partnerBirthTime.setHours(selectedTime.getUTCHours());
+        // console.log($scope.editProfileData.birthTime);
+      }
     }
   }
 

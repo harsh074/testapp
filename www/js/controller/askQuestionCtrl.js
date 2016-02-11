@@ -40,7 +40,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
     },
     dateFormat: 'dd-MM-yyyy',
     closeOnSelect: true
-  };
+  }
   
   function datePickerCallback(val){
     $scope.showDate = true;
@@ -50,6 +50,34 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
       $scope.datepickerObject.inputDate = new Date();
     }
     $scope.args.partnerDOB = angular.copy($scope.datepickerObject.inputDate);
+  }
+
+  $scope.timePickerObject12Hour = {
+    inputEpochTime:($scope.args.partnerBirthTime?(new Date($scope.args.partnerBirthTime)).getHours()*60*60+60*(new Date($scope.args.partnerBirthTime)).getMinutes():(new Date()).getHours()*60*60),
+    step: 1,
+    format: 12,
+    titleLabel: 'Partner Birth Time',
+    closeLabel: 'Close',
+    setLabel: 'Set',
+    setButtonType: 'button-askmonk',
+    closeButtonType: 'button-askmonk',
+    callback: function (val) {
+      timePicker12Callback(val);
+    }
+  }
+
+  function timePicker12Callback(val){
+    angular.element(document.getElementsByClassName('ion-birth-time')).addClass('used');
+    if (typeof (val) === 'undefined'){
+      // console.log('Time not selected');
+      $scope.args.partnerBirthTime = new Date();
+    } else {
+      var selectedTime = new Date(val * 1000);
+      $scope.args.partnerBirthTime = new Date();
+      $scope.args.partnerBirthTime.setMinutes(selectedTime.getUTCMinutes());
+      $scope.args.partnerBirthTime.setHours(selectedTime.getUTCHours());
+      // console.log($scope.editProfileData.birthTime);
+    }
   }
 
 	if($scope.loginType == 'user'){
@@ -103,9 +131,9 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	}
 
 	$scope.selectedTimeline = {'value':"basic"};
-	$scope.timeLineValueSelected = "6"
+	$scope.timeLineValueSelected = "6";
 	$scope.selectTimelineOption = function(){
-		if($scope.getUserCount && ($scope.getUserCount.totalQuestionsAsked||$scope.getUserCount.makeFirstQuestionHalfRate)){
+		if($scope.getUserCount && ($scope.getUserCount.totalQuestionsAsked||$scope.getUserCount.makeFirstQuestionHalfRate||!$scope.getUserCount.makefirstquestionfree)){
 			$scope.timeLinePopup = $ionicPopup.show({
 		    cssClass:"timelineSelector",
 		    title: 'Duration : Rate Card',
@@ -386,5 +414,8 @@ askmonkApp.controller('partnerDetailsModal', ['$scope','$timeout', function($sco
     if($scope.args.partnerBirthPlace){
       angular.element(document.getElementsByClassName('ion-google-place')).addClass('used');
     }
+    if($scope.args.partnerBirthTime){
+        angular.element(document.getElementsByClassName('ion-birth-time')).addClass('used');
+      }
   }, 50);
 }]);

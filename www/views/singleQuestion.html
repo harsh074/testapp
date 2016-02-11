@@ -18,7 +18,7 @@
       <div class="question">{{question.question}}</div>
 
       <div class="middleSec">
-        <p class="answer" ng-if="loginType=='user'">{{question.answer ? question.answer: "Will be answered next 48 hrs."}}</p>
+        <p class="answer" ng-if="loginType=='user'">{{question.answer ? question.answer: "Experts on it! Will be answered soon."}}</p>
         <p class="answer" ng-if="loginType=='monk' && (question.status=='answered' || question.status=='rated')">{{question.answer}}</p>
         <p class="answer" ng-if="loginType=='monk' && question.status=='underObservation' && writtenAnswer">{{writtenAnswer}}</p>
         <p class="solutionHeading" ng-if="question.solution||writtenSolution">Remedy</p>

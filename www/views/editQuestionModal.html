@@ -42,7 +42,15 @@
           <span class="input-label">Birth Place</span>
           <div class="highlight highlight-calm"></div>
         </label>
-        <ion-md-input placeholder="Partner Birth Time" hightlight-color="calm" type="time" ng-model="editQuestion.matchMakingDetails.partnerBirthTime" required></ion-md-input>
+        
+        <label class="item item-input item-md-label" ng-if="loginType=='user'" ionic-timepicker input-obj="timePickerObject12Hour">
+          <div class="md-input ion-birth-time">{{editQuestion.matchMakingDetails.partnerBirthTime | date: 'hh:mm a'}}</div>
+          <span class="input-label">Partner Birth Time</span>
+          <div class="highlight highlight-calm"></div>
+        </label>
+
+        <!-- <ion-md-input placeholder="Partner Birth Time" hightlight-color="calm" type="time" ng-model="editQuestion.matchMakingDetails.partnerBirthTime" required></ion-md-input> -->
+
         <label class="item item-input item-calender">
           <ionic-datepicker input-obj="datepickerObject">
             <button class="button button-custom-small button-light"> 

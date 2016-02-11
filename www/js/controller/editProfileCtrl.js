@@ -154,12 +154,12 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
           });
         }
       }else{
-        if(!$scope.editProfileData.name || !$scope.editProfileData.phone || !$scope.editProfileData.education || !$scope.editProfileData.residence || !$scope.editProfileData.experience){
+        if(!$scope.editProfileData.name || !$scope.editProfileData.phone || !$scope.editProfileData.education || !$scope.editProfileData.residence || !$scope.editProfileData.experience || !$scope.editProfileData.city || !$scope.editProfileData.state || !$scope.editProfileData.country){
           $scope.hideLoader();
           $scope.showMessage("All fields are required");
           return;
         }else{
-          utility.updateMonkProfile(getMoonSign($scope.editProfileData))
+          utility.updateMonkProfile($scope.editProfileData)
           .then(function(data){
             $scope.hideLoader();
             CONSTANT.isComingFromSignUp = false;

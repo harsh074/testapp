@@ -21,27 +21,25 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
     $scope.loginType = CONSTANT.loginType;
     $scope.sideMenuName = localStorage.getItem("name");
   });
+
+  
   $scope.goToWallet = function(){
     $state.go("app.wallet");
     $scope.transitionAnimation('left',160);
   };
-  if($scope.loginType == 'monk'){
-    utility.getMonkCount()
-    .then(function(data){
-      $timeout(function(){
-        $scope.getMonkCount = data;
-      }, 600);
-    },function(data){
-      if(data.error.statusCode == 422){
-        $scope.showMessage(data.error.message);
-      }
-      console.log(data);
+  if(CONSTANT.loginType == 'monk'){
+    $scope.isAvailable={};
+    if(localStorage.profile){
+      $scope.isAvailable.status = JSON.parse(localStorage.profile).isAvailable;
+    }
+    $scope.$on("updateAvaliableStatus",function() {
+      $scope.isAvailable.status = JSON.parse(localStorage.profile).isAvailable;
     });
   }
   
   $scope.changeAvaliableStatus = function(){
     $scope.profileData = JSON.parse(localStorage.profile);
-    utility.updateMonkAvailableStatus({id:$scope.profileData.id,email:$scope.profileData.email,isAvailable:$scope.getMonkCount.isAvailable})
+    utility.updateMonkAvailableStatus({id:$scope.profileData.id,email:$scope.profileData.email,isAvailable:$scope.isAvailable.status})
     .then(function(data){
       localStorage.profile = JSON.stringify(data);
       $rootScope.profileData = angular.copy(data);
@@ -114,6 +112,8 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
       if(e.payload.questionId){
         if(e.payload.questionId == 12){
           $state.go('app.horoscope');
+        }else if(e.payload.questionId == 1){
+          $state.go('app.askQuestion');
         }else{
           $state.go('app.singlequestion',{id:e.payload.questionId});
         }

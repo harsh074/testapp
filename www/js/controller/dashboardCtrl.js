@@ -104,10 +104,16 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
       });
       if(data.length>0){
         $scope.questionSorted(data);
-        // $scope.groups = data;
-      }else{
-        $scope.noQuestionFound = true
       }
+      utility.getUserCount()
+      .then(function(data){
+        $scope.getUserCount = data;
+      },function(data){
+        if(data.error.statusCode == 422){
+          $scope.showMessage(data.error.message);
+        }
+        console.log(data);
+      });
     },function(data){
       $scope.hideLoader();
       if(data.error.statusCode == 422){
@@ -116,35 +122,22 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
       console.log(data);
     });
   }else{
-/*    utility.getQuestionOnStatus('asked',indexGetAskedQuestion)
+    utility.getMonkAnsweredQuestion(indexGetOtherQuestion)
     .then(function(data){
-      if(data.length>0){
-        // $scope.groups = data;
-        // $scope.questionSorted(data);
-      }else{
-        $scope.noQuestionFound = true
-      }*/
-      utility.getMonkAnsweredQuestion(indexGetOtherQuestion)
-      .then(function(data){
-        $timeout(function(){
-          $scope.hideLoader();
-        });
-        // $scope.questionAnswered = data1;
-        $scope.questionSortedMonk(data,null,null);
-        $timeout(function(){
-          $scope.showInfinteScroll = true;
-        }, 1000);
-      },function(data1){
+      $timeout(function(){
         $scope.hideLoader();
-        if(data1.error.statusCode == 422){
-          $scope.showMessage(data1.error.message);
-        }
-        console.log(data1)
       });
-    /*},function(data){
+      $scope.questionSortedMonk(data,null,null);
+      $timeout(function(){
+        $scope.showInfinteScroll = true;
+      }, 1000);
+    },function(data1){
       $scope.hideLoader();
-      console.log(data);
-    });*/
+      if(data1.error.statusCode == 422){
+        $scope.showMessage(data1.error.message);
+      }
+      console.log(data1)
+    });
   }
 
   // infinite scroll functon for asked question in monk dashboard.

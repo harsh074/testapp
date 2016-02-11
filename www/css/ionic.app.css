@@ -9184,21 +9184,28 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       font-family: 'Lobster';
       white-space: nowrap;
       letter-spacing: 1px; }
-    .welcome-view .top-content .boxPhone {
-      background-image: url("../img/ftu/phoneOuterRig1.png");
-      width: 215px;
+    .welcome-view .top-content .topContentVideo {
+      position: absolute;
+      left: 0;
+      right: 0;
       margin: auto;
-      background-size: 100% auto;
-      height: 415px;
-      background-repeat: no-repeat;
-      margin-top: 15px;
-      overflow: hidden; }
-      .welcome-view .top-content .boxPhone .ftuContainer {
-        display: block;
-        width: 193px;
-        position: relative;
-        margin: 37px 0 0 11px;
-        height: 313px; }
+      transform: translateY(-50%);
+      top: 50%; }
+      .welcome-view .top-content .topContentVideo .boxPhone {
+        background-image: url("../img/ftu/phoneOuterRig1.png");
+        width: 215px;
+        margin: auto;
+        background-size: 100% auto;
+        height: 415px;
+        background-repeat: no-repeat;
+        margin-top: 15px;
+        overflow: hidden; }
+        .welcome-view .top-content .topContentVideo .boxPhone .ftuContainer {
+          display: block;
+          width: 193px;
+          position: relative;
+          margin: 37px 0 0 11px;
+          height: 313px; }
     .welcome-view .top-content .ftuText {
       text-align: center;
       color: #fff;

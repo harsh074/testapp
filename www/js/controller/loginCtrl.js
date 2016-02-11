@@ -159,6 +159,10 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     }
     
     $scope.userSignUp = function(formData){
+      if(!formData.password.$viewValue || !formData.password.$valid){
+        $scope.showMessage("Minimum password limit 6.");
+        return;
+      }
       if($scope.conpassword.pass != ""){
         if($scope.argsSignup.password != $scope.conpassword.pass){
           $scope.showMessage("Sorry, the passwords do not match");
@@ -256,7 +260,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       function (obj) {
         //alert(JSON.stringify(obj),"success");
         // var obj = {"email":"harsh.agarwal1112+16@gmail.com","displayName":"harsh9","gender":"male"};
-        utility.googleOauth(base64Encoding.encode(JSON.stringify(obj)))
+        utility.googleOauth(obj)
         .then(function(data){
           $scope.setAuth(true);
           localStorage.setItem('loginType',"user");
