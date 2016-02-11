@@ -18,9 +18,13 @@
       <div class="question">{{question.question}}</div>
 
       <div class="middleSec">
-      	<p class="answer" ng-if="loginType=='user'">{{question.answer ? question.answer: "Will be answered next 48 hrs."}}</p>
+        <p class="answer" ng-if="loginType=='user'">{{question.answer ? question.answer: "Will be answered next 48 hrs."}}</p>
         <p class="answer" ng-if="loginType=='monk' && (question.status=='answered' || question.status=='rated')">{{question.answer}}</p>
-        <p class="answer" ng-if="loginType=='monk' && question.status=='underObservation'">{{writtenAnswer}}</p>
+        <p class="answer" ng-if="loginType=='monk' && question.status=='underObservation' && writtenAnswer">{{writtenAnswer}}</p>
+        <p class="solutionHeading" ng-if="question.solution||writtenSolution">Remedy</p>
+        <p class="answer solutionText" ng-if="loginType=='user'">{{question.solution}}</p>
+        <p class="answer solutionText" ng-if="loginType=='monk' && (question.status=='answered' || question.status=='rated')">{{question.solution}}</p>
+      	<p class="answer solutionText" ng-if="loginType=='monk' && question.status=='underObservation' && writtenSolution">{{writtenSolution}}</p>
         <p class="yogiName" ng-if="question.monkName && loginType=='user' && (question.status=='answered' || question.status=='rated')">Answered by <span ng-click="showMonkPage()">{{question.monkName ? question.monkName: "Sunil"}}</span></p>
       	<p class="yogiName" ng-if="question.monkName && loginType=='user' && (question.status=='direct' || question.status=='asked')">Asked to {{question.monkName ? question.monkName: "Sunil"}}</p>
      	</div>
@@ -48,7 +52,10 @@
       <div class="subBottom" ng-if="loginType=='monk'">
         <p class="tagName">Tag : <span>{{question.questionTag}}</span></p>
         <p class="questionTime">{{question.askedOn | timeago}}</p>
-        <p class="moneyType" ng-if="question.predictionDurationMonths">Prediction uptil {{question.predictionDurationMonths | timeLineFiter}}</p>
+        <div>
+          <p class="moneyType" ng-if="question.predictionDurationMonths">Prediction uptil {{question.predictionDurationMonths | timeLineFiter}}</p>
+          <button class="button button-custom button-small btnUserDetails" ng-click="userDetail()">User Details</button>
+        </div>
         <div class="row">
           <div class="col">Name:&nbsp;<span>{{question.name.split(' ')[0]}}</span></div>
           <div class="col">Time:&nbsp;<span>{{question.userBirthTime | date : 'h:mm a'}}</span></div>
@@ -61,21 +68,27 @@
           <div class="col">Gender:&nbsp;<span>{{question.userGender}}</span></div>
           <div class="col">Place:&nbsp;<span>{{question.userBirthPlace}}</span></div>
         </div>
+        <div class="row" ng-if="question.status=='asked' || question.status=='direct'">
+          <div class="col btnAccept fullLengthButton">
+            <button class="button button-custom button-small" ng-click="askBeforeAccept()">Accept</button>
+          </div>
+        </div>
         <div class="row">
-          <div class="col" ng-if="question.status=='asked' || question.status=='underObservation' || question.status=='direct'">
-            <button class="button button-custom button-small" ng-if="question.status=='asked' || question.status=='direct'" ng-click="askBeforeAccept()">Accept</button>
+          <div class="col">
+            <button class="button button-custom button-small partnerDetailBtn" ng-click="viewPartnerDetails()" ng-if="question.questionTag == 'Match Making'">Partner Details</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col fullLengthButton">
             <button class="button button-custom button-small" ng-if="question.status=='underObservation'" ng-click="openWriteModal()">Write Answer</button>
           </div>
-          <div class="col">
-            <button class="button button-custom button-small" ng-click="userDetail()">User Details</button>
-          </div>
         </div>
         <div class="row">
-          <!-- <div class="col"></div> -->
-          <!-- <div class="col"> -->
-            <button class="button button-custom button-small partnerDetailBtn" ng-click="viewPartnerDetails()" ng-if="question.questionTag == 'Match Making'">Partner Details</button>
-          <!-- </div> -->
+          <div class="col fullLengthButton">
+            <button class="button button-custom button-small" ng-if="question.status=='underObservation'" ng-click="openWriteSolutionModal()">Write Solution</button>
+          </div>
         </div>
+
         <div class="row">
           <div class="answerRating col" ng-if="question.status=='rated'">
             <p style="font-size: 18px;margin:5px 0px;" ng-if="question.status=='rated'">Here is your rating.</p>

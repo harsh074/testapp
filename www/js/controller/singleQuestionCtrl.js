@@ -27,7 +27,7 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
   	console.log(data);
     $scope.hideLoader();
     $scope.question = data;
-    if($scope.question.status == "underObservation"){
+    if($scope.question.status == "underObservation" && $scope.question.monkId != localStorage.userId){
       var alertPopup = $ionicPopup.alert({
         cssClass:"ios",
         title: 'This question is already taken. Please try another question',
@@ -102,6 +102,19 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
       hardwareBackButtonClose: true
     });
   }
+
+  $scope.writtenSolution = localStorage.getItem('solution');
+  $scope.openWriteSolutionModal = function(){
+    $ionicModal.fromTemplateUrl('views/writeSolutionModal.html', function (modal) {
+      $scope.writeSolutionModal = modal;
+      $scope.writeSolutionModal.show();
+    }, {
+      scope: $scope,
+      animation: 'slide-in-up',
+      hardwareBackButtonClose: true
+    });
+  }
+
   
   $scope.userDetail = function(){
     $ionicModal.fromTemplateUrl('views/userDetailModal.html', function (modal) {
@@ -169,57 +182,77 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     }
   }
 
-  $scope.postAnswer = function(){
-    if(localStorage.getItem('answer') != ""){
-      $scope.question.answer = localStorage.getItem('answer');
-      var confirmPopup = $ionicPopup.show({
-        cssClass:"ios",
-        title: 'Going further would send the answer to the user.',
-        template:'Do u wish to continue ?',
-        buttons: [
-          {text: 'Yes',type:'button-ios button-clear',
-            onTap: function(e) {
-              return true;
-            }
-          },
-          {text:'No',type:'button-ios button-clear',
-            onTap: function(e) {
-              return false;
-            }
-          }
-        ]
-      });
-      confirmPopup.then(function(res) {
-        if(res) {
-          if($scope.question.answer.length<100){
-            $scope.showMessage("Minimum character length is 100.");
-            return;
-          }
-          $scope.showLoader();
-          console.log('You are sure');
-          utility.submitAnswer($scope.question)
-          .then(function(data){
-            // console.log(data);
-            $scope.hideLoader();
-            CONSTANT.isComingFromSignUp = false;
-            $scope.$emit("writeAnswerActive");
-            $scope.writtenAnswer = '';
-            localStorage.removeItem('answer');
-            localStorage.removeItem('questionStatus');
-            localStorage.removeItem('questionId');
-            $scope.question = angular.copy(data);
-          },function(data){
-            $scope.hideLoader();
-            if(data.error.statusCode == 422){
-              $scope.showMessage(data.error.message);
-            }
-            console.log(data);
-          });
-        } else {
-          console.log('You are not sure');
-        }
-      });
+  $scope.closeSolutionPopup = function(){
+    $scope.writtenSolution = localStorage.getItem('solution');
+    if ($scope.writeSolutionModal && $scope.writeSolutionModal.isShown()) {
+      $scope.writeSolutionModal.remove();
     }
+  }
+
+  $scope.postAnswer = function(){
+    if(localStorage.getItem('answer') == ""){
+      $scope.showMessage("Please write your answer");
+      return;
+    }
+    if(localStorage.getItem('solution') == ""){
+      $scope.showMessage("Please write your solution");
+      return;
+    }
+    $scope.question.answer = localStorage.getItem('answer');
+    $scope.question.solution = localStorage.getItem('solution');
+    var confirmPopup = $ionicPopup.show({
+      cssClass:"ios",
+      title: 'Going further would send the answer to the user.',
+      template:'Do u wish to continue ?',
+      buttons: [
+        {text: 'Yes',type:'button-ios button-clear',
+          onTap: function(e) {
+            return true;
+          }
+        },
+        {text:'No',type:'button-ios button-clear',
+          onTap: function(e) {
+            return false;
+          }
+        }
+      ]
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+        if($scope.question.answer.length<100){
+          $scope.showMessage("Minimum character length is 100.");
+          return;
+        }
+        if($scope.question.solution.length<50){
+          $scope.showMessage("Minimum character length is 50.");
+          return;
+        }
+        $scope.showLoader();
+        console.log('You are sure');
+        utility.submitAnswer($scope.question)
+        .then(function(data){
+          // console.log(data);
+          $scope.hideLoader();
+          CONSTANT.isComingFromSignUp = false;
+          $scope.$emit("writeAnswerActive");
+          $scope.writtenAnswer = '';
+          localStorage.removeItem('answer');
+          $scope.writtenSolution = '';
+          localStorage.removeItem('solution');
+          localStorage.removeItem('questionStatus');
+          localStorage.removeItem('questionId');
+          $scope.question = angular.copy(data);
+        },function(data){
+          $scope.hideLoader();
+          if(data.error.statusCode == 422){
+            $scope.showMessage(data.error.message);
+          }
+          console.log(data);
+        });
+      } else {
+        console.log('You are not sure');
+      }
+    });
   }
 
   $scope.closeEditModal = function(data){
@@ -268,6 +301,24 @@ askmonkApp.controller('writeAnswerModalPopupCtrl', ['$scope','$timeout', functio
   }
   $scope.expandText = function(){
     localStorage.setItem('answer',$scope.writeAnswerTextarea.answer);
+    var element = document.getElementById("writeAnswerTextarea");
+    element.style.height =  element.scrollHeight + "px";
+  }
+}]);
+
+askmonkApp.controller('writeSolutionModalPopupCtrl', ['$scope','$timeout', function($scope,$timeout){
+  $scope.writeSolutionTextarea = {'solution':""};
+  if(localStorage.getItem('solution')){
+    $scope.writeSolutionTextarea.solution = localStorage.getItem('solution');
+  }
+  $scope.closeWriteSolutionPopup = function(){
+    $timeout(function(){
+      $scope.closeSolutionPopup();
+    }, 250);
+    cordova.plugins.Keyboard.close();
+  }
+  $scope.expandText = function(){
+    localStorage.setItem('solution',$scope.writeSolutionTextarea.solution);
     var element = document.getElementById("writeAnswerTextarea");
     element.style.height =  element.scrollHeight + "px";
   }

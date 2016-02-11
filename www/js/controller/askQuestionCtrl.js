@@ -57,7 +57,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
     utility.getUserCount()
     .then(function(data){
 			$scope.hideLoader();
-			// var data = {emailVerified: true,makeFirstQuestionHalfRate: false,totalQuestionsAsked: 14}
+			// var data = {emailVerified: true,makeFirstQuestionHalfRate: true,totalQuestionsAsked: 14}
 			// ,makeFirstQuestionFree: false,makeFirstQuestionHalfRate: true,totalQuestionsAsked: 14,walletMoney: 17000
       $scope.getUserCount = data;
     },function(data){

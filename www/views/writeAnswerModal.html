@@ -6,11 +6,9 @@
 		</ion-nav-buttons>
 		<ion-nav-buttons side="right">
 			<button class="button button-custom button-small" ng-click="closeWriteAnswerPopup()"><b>Done</b></button>
-
-			<!-- <button class="button button-clear" ng-click="closeWriteAnswerPopup()"><b>Done</b></button> -->
 		</ion-nav-buttons>
 	</ion-nav-bar>
-	<ion-content scroll="true" class="has-header writeAnswer" ng-controller="writeAnswerModalPopupCtrl">
+	<ion-content scroll="true" class="has-header writeAnswer">
 	   <div class="textarea">
 	   	<textarea id="writeAnswerTextarea" name="writeAnswerTextarea" write-answer ng-model="writeAnswerTextarea.answer" placeholder="Write your answer" ng-keyup="expandText()" ng-keydown="expandText()"></textarea>
 	   </div>

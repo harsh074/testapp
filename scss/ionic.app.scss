@@ -111,6 +111,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		    width: 193px;
 		    position: relative;
 		    margin: 37px 0 0 11px;
+		    height: 313px;
 	    }
 		}
     .ftuText{
@@ -831,6 +832,9 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			    margin-bottom: 0px;
 	        line-height: 24px;
 				}
+				.solutionHeading{
+					color:$top-portion-color;
+				}
 				.yogiName{
     	    text-align: right;
 			    font-size: 14px;
@@ -851,6 +855,13 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			    font-size: 14px;
 			    white-space: nowrap;
 			    color:$top-portion-color;
+	        display: inline-block;
+    			margin-bottom: 15px;
+    			line-height: 30px;
+				}
+				.btnUserDetails{
+			    float: right;
+			    margin-top:0px;
 				}
 				.questionTime{
 					display: inline-block;
@@ -878,7 +889,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 						  &:first-child{
 						  	padding-left:0;
 						  }
-						  i {
+						  i{
 					  		font-size: 30px;
 							}
 						}
@@ -895,34 +906,25 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 				    width: 100%;
 				    padding: 4px 27px;
 				    font-size: 15px;
-				    margin-top:15px;
+				    margin-top:10px;
 					}
-					&:nth-child(4){
-						margin-top: 15px;
-					}
-					&:nth-last-child(3){
-						margin-top:8px;
-						.col + .col{
-							button{
-								float:right;
-							}
-						}
-						.col{
-							button{
-								padding: 4px 27px;
-								font-size:15px;
-							}
-						}
-					}
-					&:last-child{
+					.answerRating{
 						margin-top: 10px;
+					}
+					.fullLengthButton{
+						button{
+							width:100%;
+							background-color:$top-portion-color;
+						}
+					}
+					.btnAccept{
+						margin-top: 15px;
 					}
 					.col:first-child{
 						padding-left:0px;
 					}
 					.col:last-child{
 						padding-right:0px;
-						
 					}
 					.col{
 						span{
@@ -930,6 +932,8 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 						}
 						button{
 							margin-top:0px;
+							padding: 4px 27px;
+							font-size:15px;
 						}
 					}
 				}
@@ -2102,6 +2106,9 @@ ion-side-menu .has-header{
 						&.cutRate{
 							text-decoration:line-through;
 						}
+					}
+					.halfRate{
+						color: $red;
 					}
 				}
 				& > input[type="radio"] {

@@ -9197,7 +9197,8 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         display: block;
         width: 193px;
         position: relative;
-        margin: 37px 0 0 11px; }
+        margin: 37px 0 0 11px;
+        height: 313px; }
     .welcome-view .top-content .ftuText {
       text-align: center;
       color: #fff;
@@ -9823,6 +9824,8 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       padding-bottom: 30px;
       margin-bottom: 0px;
       line-height: 24px; }
+    .home-view .singleQuestion .questionData .middleSec .solutionHeading {
+      color: #2B5D80; }
     .home-view .singleQuestion .questionData .middleSec .yogiName {
       text-align: right;
       font-size: 14px;
@@ -9839,7 +9842,13 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     .home-view .singleQuestion .questionData .subBottom .moneyType {
       font-size: 14px;
       white-space: nowrap;
-      color: #2B5D80; }
+      color: #2B5D80;
+      display: inline-block;
+      margin-bottom: 15px;
+      line-height: 30px; }
+    .home-view .singleQuestion .questionData .subBottom .btnUserDetails {
+      float: right;
+      margin-top: 0px; }
     .home-view .singleQuestion .questionData .subBottom .questionTime {
       display: inline-block;
       float: right;
@@ -9875,18 +9884,14 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         width: 100%;
         padding: 4px 27px;
         font-size: 15px;
-        margin-top: 15px; }
-      .home-view .singleQuestion .questionData .subBottom .row:nth-child(4) {
-        margin-top: 15px; }
-      .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(3) {
-        margin-top: 8px; }
-        .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(3) .col + .col button {
-          float: right; }
-        .home-view .singleQuestion .questionData .subBottom .row:nth-last-child(3) .col button {
-          padding: 4px 27px;
-          font-size: 15px; }
-      .home-view .singleQuestion .questionData .subBottom .row:last-child {
         margin-top: 10px; }
+      .home-view .singleQuestion .questionData .subBottom .row .answerRating {
+        margin-top: 10px; }
+      .home-view .singleQuestion .questionData .subBottom .row .fullLengthButton button {
+        width: 100%;
+        background-color: #2B5D80; }
+      .home-view .singleQuestion .questionData .subBottom .row .btnAccept {
+        margin-top: 15px; }
       .home-view .singleQuestion .questionData .subBottom .row .col:first-child {
         padding-left: 0px; }
       .home-view .singleQuestion .questionData .subBottom .row .col:last-child {
@@ -9894,7 +9899,9 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       .home-view .singleQuestion .questionData .subBottom .row .col span {
         color: #00BCD2; }
       .home-view .singleQuestion .questionData .subBottom .row .col button {
-        margin-top: 0px; }
+        margin-top: 0px;
+        padding: 4px 27px;
+        font-size: 15px; }
     .home-view .singleQuestion .questionData .subBottom .writtenAnswer {
       margin-top: 10px; }
 
@@ -10874,6 +10881,8 @@ ion-side-menu .has-header {
           text-decoration: none; }
           .timelineSelector .popup-body .ons-css .checkboxTimeline .valueTimeLine .fullRate.cutRate {
             text-decoration: line-through; }
+        .timelineSelector .popup-body .ons-css .checkboxTimeline .valueTimeLine .halfRate {
+          color: #CC333C; }
       .timelineSelector .popup-body .ons-css .checkboxTimeline > input[type="radio"] {
         position: absolute;
         overflow: hidden;

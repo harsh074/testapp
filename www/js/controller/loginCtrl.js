@@ -212,7 +212,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
 
     $scope.userForgetPassword = function(){
       $scope.showLoader();
-      utility.forgetUserPassword($scope.args.email)
+      utility.forgetUserPassword(base64Encoding.encode($scope.args.email))
       .then(function(data){
         $scope.hideLoader();
         $scope.userLoginForm();
@@ -227,7 +227,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     }
     $scope.monkForgetPassword = function(){
       $scope.showLoader();
-      utility.forgetMonkPassword($scope.argsMonk.email)
+      utility.forgetMonkPassword(base64Encoding.encode($scope.argsMonk.email))
       .then(function(data){
         $scope.hideLoader();
         $scope.monkLoginForm();
@@ -254,9 +254,9 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       $scope.showLoader();
       window.plugins.googleplus.login({'iOSApiKey': '915609605128-idn9dp6hnes236v35ko5pjhfmk4m8ap3.apps.googleusercontent.com'},
       function (obj) {
-      //   alert(JSON.stringify(obj),"success");
+        //alert(JSON.stringify(obj),"success");
         // var obj = {"email":"harsh.agarwal1112+16@gmail.com","displayName":"harsh9","gender":"male"};
-        utility.googleOauth(obj)
+        utility.googleOauth(base64Encoding.encode(JSON.stringify(obj)))
         .then(function(data){
           $scope.setAuth(true);
           localStorage.setItem('loginType',"user");

@@ -1,0 +1,16 @@
+<ion-modal-view ng-controller="writeSolutionModalPopupCtrl">
+	<ion-nav-bar class="bar-assertive-900 writeAnswerModalPopup">
+		<ion-nav-buttons side="left">
+			<button class="customMenuBtn is-active" ng-click="closeWriteSolutionPopup()"><span></span></button>
+			<b>Write Solution</b>
+		</ion-nav-buttons>
+		<ion-nav-buttons side="right">
+			<button class="button button-custom button-small" ng-click="closeWriteSolutionPopup()"><b>Done</b></button>
+		</ion-nav-buttons>
+	</ion-nav-bar>
+	<ion-content scroll="true" class="has-header writeAnswer">
+	   <div class="textarea">
+	   	<textarea id="writeAnswerTextarea" name="writeAnswerTextarea" write-answer ng-model="writeSolutionTextarea.solution" placeholder="Write your solution" ng-keyup="expandText()" ng-keydown="expandText()"></textarea>
+	   </div>
+	</ion-content>
+</ion-modal-view>
