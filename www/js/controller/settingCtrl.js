@@ -123,7 +123,6 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
       var currentPageTemplate = $state.current.templateUrl;
       $templateCache.remove(currentPageTemplate);
       $rootScope.profileData = null;
-      $scope.transitionAnimation('left',100);
       // localStorage.removeItem('token');
       // localStorage.removeItem('userId');
       // localStorage.removeItem("name");
@@ -133,6 +132,7 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
       localStorage.clear();
       $scope.loginType = localStorage.getItem('loginType');
       delete $http.defaults.headers.common.Authorization;
+      $scope.transitionAnimation('left',900);
     },function(data){
       if(data.error.statusCode == 422){
         $scope.showMessage(data.error.message);

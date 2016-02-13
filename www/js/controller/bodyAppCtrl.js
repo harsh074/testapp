@@ -25,17 +25,18 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
   
   $scope.goToWallet = function(){
     $state.go("app.wallet");
-    $scope.transitionAnimation('left',160);
+    $scope.transitionAnimation('left',500);
   };
   if(CONSTANT.loginType == 'monk'){
     $scope.isAvailable={};
     if(localStorage.profile){
       $scope.isAvailable.status = JSON.parse(localStorage.profile).isAvailable;
     }
-    $scope.$on("updateAvaliableStatus",function() {
-      $scope.isAvailable.status = JSON.parse(localStorage.profile).isAvailable;
-    });
   }
+  $scope.$on("updateAvaliableStatus",function() {
+    $scope.isAvailable={};
+    $scope.isAvailable.status = JSON.parse(localStorage.profile).isAvailable;
+  });
   
   $scope.changeAvaliableStatus = function(){
     $scope.profileData = JSON.parse(localStorage.profile);
@@ -173,13 +174,15 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
   };
 
   $scope.transitionAnimation = function(value,timer){
-    $timeout(function(){
+    // $timeout(function(){
+      console.log(timer);
       window.plugins.nativepagetransitions.slide(
-        {"direction":value},
+        {"direction":value,
+        "androiddelay":timer},
         function (msg) {console.log("success: " + msg)}, // called when the animation has finished
         function (msg) {alert("error: " + msg)} // called in case you pass in weird values
       );
-    }, timer?timer:500);
+    // }, timer?timer:500);
   };
 
   $scope.transitionAnimationUp = function(timer){
@@ -196,11 +199,15 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     if($state.current.name == 'app.editProfile' || $state.current.name == 'app.askQuestion' || $state.current.name == 'app.yprofile' || $state.current.name == 'app.singlequestion'){
       $timeout(function(){
         $ionicHistory.goBack();
-        // if($ionicHistory.viewHistory.backView == null && $state.current.name == 'app.singlequestion'){
+        // if($ionicHistory.viewHistory.backView==null&&$state.current.name=='app.singlequestion'){
         //   $state.go('app.dashboard');
         // }
       }, 300);
-      $scope.transitionAnimation('right',650);
+      if($state.current.name == 'app.yprofile' || $state.current.name == 'app.askQuestion' || $state.current.name == 'app.singlequestion'){
+        $scope.transitionAnimation('right',900);
+      }else{
+        $scope.transitionAnimation('right',650);
+      }
     }else{
       $ionicSideMenuDelegate.toggleLeft();
     }

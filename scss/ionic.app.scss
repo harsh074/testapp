@@ -280,6 +280,13 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		text-decoration: none;
 		white-space: nowrap;
 	}
+	.resendValidation{
+    display: inline-table;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    white-space: nowrap;
+    padding-top: 10px;
+	}
 	.forgetPassword{
     display: inline-block;
     float: left;
@@ -310,7 +317,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     text-align: center;
     padding-top: 10px;
     &.googleLoginBtn{
-    	padding-top: 45px;
+    	padding-top: 10px;
     }
     img{
     	width: 75%;
@@ -487,9 +494,17 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     	opacity: 1;
     	visibility:visible;
     }
-    .list li{
-    	padding:10px 15px;
-    	font-size: 14px;
+    .list{
+    	background-color:#fff;
+    	li{
+    		padding:10px 15px;
+    		font-size: 14px;
+    		border-width:0;
+    		&.active,&.activated{
+    			background-color:$background-color;
+    			color: #fff;
+    		}
+    	}
     }
 	}
 	.yprofile{
@@ -674,7 +689,9 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     font-size: 17px;
     padding:0px;
     .noQuestionFound{
-    	margin-top: 30px;
+    	a{
+    		padding-top: 30px;
+    	}
     }, .payTogetMore{
     	a{
 	    	color: $anchor-color;
@@ -2021,7 +2038,8 @@ ion-side-menu .has-header{
 		}
 		.noteOptionsTimeLine{
 	    text-align: center;
-    	color: #BFBFBF;
+    	color: $top-portion-color;
+    	margin:10px 0;
 		}
 		.ons-css{
 			text-align:center;

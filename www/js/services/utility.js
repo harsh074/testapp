@@ -79,6 +79,12 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'url':"/request-password-reset/user/"+args
       });
     },
+    resendValidationUser:function(args) {
+      return this.request({
+        'method':"POST",
+        'url':"/resendValidationEmail/"+args
+      });
+    },
     getAllQuestion: function(){
       return this.request({
         'method': "GET",

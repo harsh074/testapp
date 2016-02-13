@@ -85,6 +85,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
     utility.getUserCount()
     .then(function(data){
 			$scope.hideLoader();
+			console.log(data);
 			// var data = {emailVerified: true,makeFirstQuestionHalfRate: true,totalQuestionsAsked: 14}
 			// ,makeFirstQuestionFree: false,makeFirstQuestionHalfRate: true,totalQuestionsAsked: 14,walletMoney: 17000
       $scope.getUserCount = data;
@@ -133,15 +134,24 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	$scope.selectedTimeline = {'value':"basic"};
 	$scope.timeLineValueSelected = "6";
 	$scope.selectTimelineOption = function(){
-		if($scope.getUserCount && ($scope.getUserCount.totalQuestionsAsked||$scope.getUserCount.makeFirstQuestionHalfRate||!$scope.getUserCount.makefirstquestionfree)){
+		if(!$scope.getUserCount.totalQuestionsAsked){
+			if(!$scope.getUserCount.makeFirstQuestionHalfRate && $scope.getUserCount.makeFirstQuestionFree){
+				$scope.showMessage('Free question has fixed duration of 6 months');
+			}else{
+				$scope.timeLinePopup = $ionicPopup.show({
+			    cssClass:"timelineSelector",
+			    title: 'Duration : Rate Card',
+			    templateUrl:'selectTimelinePopup.html',
+			    scope: $scope
+			  });
+			}
+		}else{
 			$scope.timeLinePopup = $ionicPopup.show({
 		    cssClass:"timelineSelector",
 		    title: 'Duration : Rate Card',
 		    templateUrl:'selectTimelinePopup.html',
 		    scope: $scope
 		  });
-		}else{
-			$scope.showMessage('Free question has fixed duration of 6 months');
 		}
 	}
 
@@ -323,7 +333,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 						profileData.walletMoney = data1.walletMoney;
 						localStorage.profile = JSON.stringify(profileData);
 						$state.go('app.dashboard');
-						$scope.transitionAnimation('left');
+						$scope.transitionAnimation('left',900);
 					},function(data1){
 						$scope.hideLoader();
 						$scope.showMessage(data1.error.message);
@@ -351,7 +361,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 						profileData.walletMoney = data1.walletMoney;
 						localStorage.profile = JSON.stringify(profileData);
 						$state.go('app.dashboard');
-						$scope.transitionAnimation('left');
+						$scope.transitionAnimation('left',900);
 					},function(data1){
 						$scope.hideLoader();
 						$scope.showMessage(data1.error.message);

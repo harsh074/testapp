@@ -19,7 +19,7 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
 
   $scope.askQuestion = function(){
   	$state.go('app.askQuestion');
-    $scope.transitionAnimation('left',180);
+    $scope.transitionAnimation('left',500);
   }
 
   utility.getSingleQuestions($stateParams.id)
@@ -144,6 +144,7 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
       if(data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
       }
+      $scope.hideLoader();
       console.log(data,"error");
     })
   }

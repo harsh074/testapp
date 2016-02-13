@@ -9340,6 +9340,12 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     color: #fff;
     text-decoration: none;
     white-space: nowrap; }
+  .loginPages .resendValidation {
+    display: inline-table;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+    padding-top: 10px; }
   .loginPages .forgetPassword {
     display: inline-block;
     float: left;
@@ -9366,7 +9372,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     text-align: center;
     padding-top: 10px; }
     .loginPages .socialLogin.googleLoginBtn {
-      padding-top: 45px; }
+      padding-top: 10px; }
     .loginPages .socialLogin img {
       width: 75%;
       margin-top: 15px;
@@ -9555,9 +9561,15 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   .home-view .filterDropDown.active {
     opacity: 1;
     visibility: visible; }
-  .home-view .filterDropDown .list li {
-    padding: 10px 15px;
-    font-size: 14px; }
+  .home-view .filterDropDown .list {
+    background-color: #fff; }
+    .home-view .filterDropDown .list li {
+      padding: 10px 15px;
+      font-size: 14px;
+      border-width: 0; }
+      .home-view .filterDropDown .list li.active, .home-view .filterDropDown .list li.activated {
+        background-color: #00BCD2;
+        color: #fff; }
 
 .home-view .yprofile {
   height: 150px;
@@ -9710,8 +9722,8 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   z-index: 1;
   font-size: 17px;
   padding: 0px; }
-  .home-view .dashboardData .noQuestionFound {
-    margin-top: 30px; }
+  .home-view .dashboardData .noQuestionFound a {
+    padding-top: 30px; }
   .home-view .dashboardData a, .home-view .dashboardData .payTogetMore a {
     color: #1464F6;
     text-align: center;
@@ -10802,7 +10814,8 @@ ion-side-menu .has-header {
     float: left; }
   .timelineSelector .popup-body .noteOptionsTimeLine {
     text-align: center;
-    color: #BFBFBF; }
+    color: #2B5D80;
+    margin: 10px 0; }
   .timelineSelector .popup-body .ons-css {
     text-align: center; }
     .timelineSelector .popup-body .ons-css .checkboxTimeline {

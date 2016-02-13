@@ -112,12 +112,12 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   
   $scope.profileEdit = function(){
     $state.go('app.editProfile');
-    $scope.transitionAnimation('left',300);
+    $scope.transitionAnimation('left',900);
   }
 
   $scope.askQuestion = function(){
   	$state.go('app.askQuestion');
-    $scope.transitionAnimation('left',180)
+    $scope.transitionAnimation('left',900)
   }
 
 }]);

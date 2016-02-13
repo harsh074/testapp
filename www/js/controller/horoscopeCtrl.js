@@ -70,7 +70,7 @@ askmonkApp.controller('horoscopeCtrl', ['$scope', '$ionicModal','$state', functi
   $scope.askQuestion = function(){
   	$scope.closeModal();
   	$state.go('app.askQuestion');
-		$scope.transitionAnimation('left',180);
+		$scope.transitionAnimation('left',700);
   }
 }]);
 

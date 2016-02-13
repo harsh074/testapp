@@ -93,7 +93,7 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
 
   $scope.askQuestion = function(){
   	$state.go('app.askQuestion');
-    $scope.transitionAnimation('left',180);
+    $scope.transitionAnimation('left',500);
   }
 
   if($scope.loginType == "user"){
@@ -107,6 +107,7 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
       }
       utility.getUserCount()
       .then(function(data){
+        var data = {makeFirstQuestionFree: false, makeFirstQuestionHalfRate: false, emailVerified: true};
         $scope.getUserCount = data;
       },function(data){
         if(data.error.statusCode == 422){
@@ -270,7 +271,7 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
   $scope.goToQuestion = function(id){
     $stateParams.id = id;
     $state.go('app.singlequestion',$stateParams);
-    $scope.transitionAnimation('left',180);
+    $scope.transitionAnimation('left',700);
   }
   
   // Search the input

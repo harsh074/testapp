@@ -33,7 +33,7 @@ askmonkApp.controller('yProfilesCtrl', ['$scope','$state','utility','$stateParam
   $scope.goToYogiProfile = function(id){
   	$stateParams.id = id;
   	$state.go('app.yprofile',$stateParams);
-    $scope.transitionAnimation('left',180);
+    $scope.transitionAnimation('left',500);
   }
 
   $scope.askQuestion = function(){

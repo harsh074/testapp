@@ -1,13 +1,13 @@
 <ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
 	<div class="filterDropDown" ng-class="{'active':showFilterMenu}">
   	<ul class="list">
-	    <li class="item" ng-click="sortFilter('rating')">
+	    <li class="item" ng-click="sortFilter('rating')" ng-class="{'active':sortedFilter=='rating'}">
 	    	<a>Sort By Ranking</a>
 	    </li>
-	    <li class="item" ng-click="sortFilter('profileViews')">
+	    <li class="item" ng-click="sortFilter('profileViews')" ng-class="{'active':sortedFilter=='profileViews'}">
 	    	<a>Sort By Views</a>
 	    </li>
-	    <li class="item" ng-click="sortFilter('name')">
+	    <li class="item" ng-click="sortFilter('name')" ng-class="{'active':sortedFilter=='name'}">
 	    	<a>Sort Alphabetically</a>
 	    </li>
 		</ul>

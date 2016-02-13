@@ -11,19 +11,23 @@
 	    </div>
 	  </ion-slide>
 	  <ion-slide>
-	    <p class="ftuText">Browse astrologers <br>& ask directly</p>
-	    <div class="boxPhone">
-	    	<video autoplay loop class="ftuContainer" id="video2">
-				  <source src="img/ftu/screen2_3.mp4" type="video/mp4">
-				</video>
-	    </div>
+	  	<div class="topContentVideo">
+		    <p class="ftuText">Browse astrologers <br>& ask directly</p>
+		    <div class="boxPhone">
+		    	<video autoplay loop class="ftuContainer" id="video2">
+					  <source src="img/ftu/screen2_3.mp4" type="video/mp4">
+					</video>
+		    </div>
+		  </div>
 	  </ion-slide>
 	  <ion-slide>
-	    <p class="ftuText">Fill in mandatary details <br>& start askmonking</p>
-	    <div class="boxPhone">
-	    	<video autoplay loop class="ftuContainer" id="video3">
-				  <source src="img/ftu/screen3_3.mp4" type="video/mp4">
-				</video>
+	  	<div class="topContentVideo">
+		    <p class="ftuText">Fill in mandatary details <br>& start askmonking</p>
+		    <div class="boxPhone">
+		    	<video autoplay loop class="ftuContainer" id="video3">
+					  <source src="img/ftu/screen3_3.mp4" type="video/mp4">
+					</video>
+		    </div>
 	    </div>
 	  </ion-slide>
 	  <ion-slide>
@@ -65,18 +69,22 @@
 					<ion-md-input name="userPassword" placeholder="Password" highlight-color="custom password" ng-model="args.password" type="password" ng-if="!userForgetPasswordShow" ng-minlength="6" ng-maxlength="16" ng-required="true"></ion-md-input>
 					<button class="button button-login" ng-click="userLogin(loginForm)" type="submit" ng-if="!userForgetPasswordShow">Login</button>
 					
-					<button class="button button-login" ng-click="userForgetPassword()" type="submit" ng-if="userForgetPasswordShow">Send Email</button>
+					<button class="button button-login" ng-click="userForgetPassword()" type="submit" ng-if="userForgetPasswordShow && !userResendValidatonShow">Send Email</button>
+					<button class="button button-login" ng-click="userResendValidation()" type="submit" ng-if="userResendValidatonShow">Resend Email</button>
+
 					<a ng-click="loginTab()" class="backTologin" ng-if="userForgetPasswordShow">Already have an account? Login</a>
 
 					<a ng-click="forgetUserPasswordTab()" class="forgetPassword" ng-if="!userForgetPasswordShow">Forgot Password ?</a>
+
 					<a ng-click="signUpTab()" class="registerWithUs" ng-if="!userForgetPasswordShow">Sign Up</a>
-					<div class="socialLogin googleLoginBtn" ng-click="userGoogleLogin()">
+					<a ng-click="resendValidationTab()" class="resendValidation" ng-if="!userForgetPasswordShow">Resend Validation Email</a>
+					<div class="socialLogin googleLoginBtn" ng-click="userGoogleLogin()" ng-if="!userForgetPasswordShow">
 						<img src="img/google-login-icon.png" />
 					</div>
 				</form>
 				<form name="registerForm" class="form form-horizontal" ng-submit="userSignUp(registerForm)" novalidate autocomplete="off" ng-show="signUptab">
 					<ion-md-input placeholder="Name" name="name" highlight-color="custom" ng-model="argsSignup.name" type="text" required></ion-md-input>
-					<ion-md-input placeholder="Email" ng-pattern="/^\w+([\.+-]?\w+)*@\w+([\.-]?\w+)(\.\w{1,})+$/" name="email" highlight-color="custom" ng-model="argsSignup.email" type="text" required></ion-md-input>
+					<ion-md-input placeholder="Email" ng-pattern="/^\w+([\.+-]?\w+)*@\w+([\.-]?\w+)(\.\w{1,})+$/" name="email" highlight-color="custom" ng-model="argsSignup.email" type="email" required></ion-md-input>
 					<ion-md-input placeholder="Password" name="password" highlight-color="custom" ng-model="argsSignup.password" type="password" ng-minlength="6" ng-maxlength="16" ng-required="true"></ion-md-input>
 					<ion-md-input placeholder="Confirm Password" name="conpassword" highlight-color="custom" ng-model="conpassword.pass" type="password" ng-minlength="6" ng-maxlength="16" ng-required="true"></ion-md-input>
 					<p class="disclaimer">By clicking Sign up, you agree to Askmonk's <a class="" ng-click="openTnC()">Terms & Condition</a>.</p>

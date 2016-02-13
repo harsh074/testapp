@@ -4,6 +4,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
   if(!$scope.authenticated){
     $scope.monkTab = true;
     $scope.userForgetPasswordShow = false;
+    $scope.userResendValidatonShow = false;
     $scope.monkForgetPasswordShow = false;
     $scope.hideLoader();
     $scope.showNextButton = true;
@@ -23,7 +24,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           var videoTag = angular.element(document.getElementById('video'+i));
           videoTag[0].load();
         }
-      }, 2000);
+      }, 500);
     });
     $scope.slideHasChanged = function(index){
       var videoTag = angular.element(document.getElementById('video'+index));
@@ -49,6 +50,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     $scope.userLoginForm = function() {
       $scope.userForgetPasswordShow = false;
       $scope.monkForgetPasswordShow = false;
+      $scope.userResendValidatonShow = false;
       $scope.args.email = '';
       $scope.argsMonk.email = '';
       if($scope.userLoginModal && $scope.userLoginModal.isShown()){
@@ -65,6 +67,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     $scope.monkLoginForm =function() {
       $scope.userForgetPasswordShow = false;
       $scope.monkForgetPasswordShow = false;
+      $scope.userResendValidatonShow = false;
       $scope.args.email = '';
       $scope.argsMonk.email = '';
       if($scope.monkLoginModal && $scope.monkLoginModal.isShown()){
@@ -89,6 +92,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       $scope.monkTab = true; 
       $scope.signUptab = false;
       $scope.userForgetPasswordShow = false;
+      $scope.userResendValidatonShow = false;
       $scope.args.email = '';
     }
     $scope.loginMonkTab = function(){
@@ -98,6 +102,12 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
 
     $scope.forgetUserPasswordTab = function(){
       $scope.userForgetPasswordShow = true;
+      $scope.userResendValidatonShow = false;
+      $scope.args.email = '';
+    }
+    $scope.resendValidationTab = function(){
+      $scope.userForgetPasswordShow = true;
+      $scope.userResendValidatonShow = true;
       $scope.args.email = '';
     }
     $scope.forgetMonkPasswordTab = function(){
@@ -121,11 +131,11 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         CONSTANT.loginType = "user";
         $state.go('app.profile');
         $scope.hideLoader();
-        $scope.transitionAnimation('left',680);
         if($scope.userLoginModal && $scope.userLoginModal.isShown()){
           $scope.userLoginModal.remove();
         }
         $scope.registerNotificaton();
+        $scope.transitionAnimation('left',1500);
       },function(data){
         $scope.hideLoader();
         $scope.showMessage(data.error.message);
@@ -144,13 +154,11 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         localStorage.setItem('loginType',"monk");
         CONSTANT.loginType = "monk";
         $scope.hideLoader();
-        if(CONSTANT.isDevice){
-          $scope.transitionAnimation('left',680);
-        }
         if($scope.monkLoginModal && $scope.monkLoginModal.isShown()){
           $scope.monkLoginModal.remove();
         }
         $scope.registerNotificaton();
+        $scope.transitionAnimation('left',1400);
       },function(data){
         $scope.hideLoader();
         $scope.showMessage(data.error.message);
@@ -159,6 +167,10 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     }
     
     $scope.userSignUp = function(formData){
+      if(!formData.email.$viewValue || !formData.email.$valid){
+        $scope.showMessage("Please enter the correct email address");
+        return;
+      }
       if(!formData.password.$viewValue || !formData.password.$valid){
         $scope.showMessage("Minimum password limit 6.");
         return;
@@ -175,6 +187,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       }
 
       if(formData.$valid){
+        // console.log("valid");
         $scope.showLoader();
         if(CONSTANT.isDevice){
           cordova.plugins.Keyboard.close();
@@ -193,11 +206,11 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
             CONSTANT.loginType = "user";
             $state.go('app.editProfile');
             $scope.hideLoader();
-            $scope.transitionAnimation('left');
             if($scope.userLoginModal && $scope.userLoginModal.isShown()){
               $scope.userLoginModal.remove();
             }
             $scope.registerNotificaton();
+            $scope.transitionAnimation('left',500);
           },function(data){
             $scope.hideLoader();
             $scope.showMessage(data.error.message);
@@ -217,6 +230,21 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     $scope.userForgetPassword = function(){
       $scope.showLoader();
       utility.forgetUserPassword(base64Encoding.encode($scope.args.email))
+      .then(function(data){
+        $scope.hideLoader();
+        $scope.userLoginForm();
+        $scope.showMessage('Mail sent');
+      },function(data){
+        $scope.hideLoader();
+        if(data.error.statusCode == 422){
+          $scope.showMessage(data.error.message);
+        }
+        console.log(data);
+      });
+    }
+    $scope.userResendValidation = function(){
+      $scope.showLoader();
+      utility.resendValidationUser(base64Encoding.encode($scope.args.email))
       .then(function(data){
         $scope.hideLoader();
         $scope.userLoginForm();
@@ -277,7 +305,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
             $state.go('app.profile');
           }
           $scope.hideLoader();
-          $scope.transitionAnimation('left',480);
+          $scope.transitionAnimation('left',500);
           if($scope.userLoginModal && $scope.userLoginModal.isShown()){
             $scope.userLoginModal.remove();
           }

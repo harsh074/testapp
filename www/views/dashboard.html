@@ -37,7 +37,7 @@
         <ion-slide>
         	<ion-scroll style="height:100%" delegate-handle="slide1Scroll">
         		<ion-refresher on-refresh="doRefresh()" spinner="none" pulling-icon="ion-loop" refreshing-icon="ion-loop" refreshing-text="Loading..."></ion-refresher>
-	          <div class="noQuestionFound" ng-if="!getUserCount.totalQuestionsAsked">
+	          <div class="noQuestionFound" ng-if="!getUserCount.totalQuestionsAsked && !(getUserCount.makeFirstQuestionHalfRate && getUserCount.makeFirstQuestionFree)">
 							<a ng-click="askQuestion()" ng-if="getUserCount.makeFirstQuestionFree">Ask first question for free</a>
 							<a ng-click="askQuestion()" ng-if="getUserCount.makeFirstQuestionHalfRate">Ask first question at half rate</a>
 						</div>
@@ -65,8 +65,9 @@
         <ion-slide>
         	<ion-scroll style="height:100%" delegate-handle="slide2Scroll">
         		<ion-refresher on-refresh="doRefreshOnAnsweredTab()" spinner="none" pulling-icon="ion-loop" refreshing-icon="ion-loop" refreshing-text="Loading..."></ion-refresher>
-	          <div class="noQuestionFound" ng-if="noQuestionFound">
-							<a ng-click="askQuestion()" href="">Ask first question for free</a>
+	          <div class="noQuestionFound" ng-if="!getUserCount.totalQuestionsAsked && !(getUserCount.makeFirstQuestionHalfRate && getUserCount.makeFirstQuestionFree)">
+							<a ng-click="askQuestion()" ng-if="getUserCount.makeFirstQuestionFree">Ask first question for free</a>
+							<a ng-click="askQuestion()" ng-if="getUserCount.makeFirstQuestionHalfRate">Ask first question at half rate</a>
 						</div>
 
 						<div class="questionFound">
@@ -93,8 +94,9 @@
         <ion-slide>
         	<ion-scroll style="height:100%" delegate-handle="slide3Scroll">
         		<ion-refresher on-refresh="doRefreshOnAnsweredTab()" spinner="none" pulling-icon="ion-loop" refreshing-icon="ion-loop" refreshing-text="Loading..."></ion-refresher>
-	          <div class="noQuestionFound" ng-if="noQuestionFound">
-							<a ng-click="askQuestion()" href="">Ask first question for free</a>
+	          <div class="noQuestionFound" ng-if="!getUserCount.totalQuestionsAsked && !(getUserCount.makeFirstQuestionHalfRate && getUserCount.makeFirstQuestionFree)">
+							<a ng-click="askQuestion()" ng-if="getUserCount.makeFirstQuestionFree">Ask first question for free</a>
+							<a ng-click="askQuestion()" ng-if="getUserCount.makeFirstQuestionHalfRate">Ask first question at half rate</a>
 						</div>
 						<div class="questionFound">
 							<ion-list>

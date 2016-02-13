@@ -36,7 +36,7 @@ askmonkApp.controller('yProfileCtrl', ['$scope','$state','$stateParams','utility
 			if($scope.monkProfileData.isAvailable){
 				localStorage.setItem('directQuestion',JSON.stringify({'monkId':$scope.monkProfileData.id,'monkName':$scope.monkProfileData.name,"monkEmail":$scope.monkProfileData.email,"isDirect":true}));
 		  	$state.go('app.askQuestion');
-	    	$scope.transitionAnimation('left',180);
+	    	$scope.transitionAnimation('left',500);
 	    }else{
 	    	var confirmPopup = $ionicPopup.show({
 		      cssClass:"ios",
@@ -61,6 +61,6 @@ askmonkApp.controller('yProfileCtrl', ['$scope','$state','$stateParams','utility
 	  }
 	}else{
 		$state.go('app.yprofiles');
-  	$scope.transitionAnimation('left',180);
+  	$scope.transitionAnimation('left',500);
 	}
 }]);
