@@ -3,7 +3,7 @@
 		<div class="yprofile dashboard">
 			<div class="pofilePic">
 				<div class="yAnswerStatus">
-					<div class="aboutQuestion">Open Questions<br /><span class="pullToRefresh">(Pull to refresh)</span></div>
+					<div class="aboutQuestion">Open<br /><span class="pullToRefresh">(Pull to refresh)</span></div>
 					<div class="searchBar">
 						<label class="item item-input item-search" for="search">
 				    	<input type="text" placeholder="Search..." ng-model="search.searchInput" name="search" ng-change="inputSearch()">
@@ -30,7 +30,7 @@
         </div>
         <div class="noStatusQuestion" ng-if="noQuestionFound">
       		<img src="img/icon.png" width="100px" />
-      		<p class="noQuestionTitle" ng-if="loginType=='monk'">No Direct Question</p>
+      		<p class="noQuestionTitle" ng-if="loginType=='monk'">No Open Question</p>
       	</div>
     	</ion-list>
 

@@ -64,11 +64,56 @@
 
 		  <label class="item item-input item-select" ng-if="loginType=='user'">
         <select name="gender" ng-model="editProfileData.gender" required="">
-            <option value="" disabled>Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+          <option value="" disabled>Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
         </select>
       </label>
+
+      <div class="bottomPart" ng-if="loginType=='user'">
+        <div class="divider">More Info</div>
+
+        <label class="item item-input item-select" ng-if="loginType=='user'">
+          <select name="gender" ng-model="editProfileData.maritalStatus" required="">
+            <option value="" disabled>Marital Status?</option>
+            <option value="married">Married</option>
+            <option value="unmarried">Unmarried</option>
+            <option value="divorced">Divorced</option>
+            <option value="widow">Widow</option>
+          </select>
+        </label>
+
+        <label class="item item-input item-select" ng-if="loginType=='user'">
+          <select name="gender" ng-model="editProfileData.profession" required="">
+            <option value="" disabled>What do you do?</option>
+            <option value="job">Job</option>
+            <option value="business">Business</option>
+            <option value="student">Student</option>
+            <option value="selfemployed">Self Employed</option>
+            <option value="unemployed">Unemployed</option>
+          </select>
+        </label>
+
+        <label class="item item-input item-select" ng-if="loginType=='user'">
+          <select name="gender" ng-model="editProfileData.qualification" required="">
+            <option value="" disabled>Educational Background</option>
+            <option value="10">10th</option>
+            <option value="12">12th</option>
+            <option value="graduate">Graduate</option>
+            <option value="postgraduate">Post Graduate</option>
+          </select>
+        </label>
+
+        <label class="item item-input item-select" ng-if="loginType=='user'">
+          <select name="gender" ng-model="editProfileData.numberOfChildren" required="">
+            <option value="" disabled>Number Of Children</option>
+            <option value="none">None</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="2+">2+</option>
+          </select>
+        </label>
+      </div>
     </div>
 	</ion-content>
 </ion-view>

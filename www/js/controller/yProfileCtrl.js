@@ -4,7 +4,7 @@ askmonkApp.controller('yProfileCtrl', ['$scope','$state','$stateParams','utility
 		$scope.$on('$ionicView.enter', function(){
     	$scope.showLoader();
   	});
-
+  	
   	$scope.loginType = CONSTANT.loginType;
 
 		/*if(localStorage.getItem('monksProfiles')){
@@ -25,10 +25,12 @@ askmonkApp.controller('yProfileCtrl', ['$scope','$state','$stateParams','utility
 				$scope.monkProfileData = data;
 			},function(data){
 				$scope.hideLoader();
-				if(data.error.statusCode == 422){
-		      $scope.showMessage(data.error.message);
-		    }
-				console.log(data);
+				if(data && data.error.statusCode == 422){
+	        $scope.showMessage(data.error.message);
+	      }else{
+	        $scope.showMessage("Something went wrong. Please try again.");
+      	}
+				// console.log(data);
 			});
 		// }
 

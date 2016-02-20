@@ -45,8 +45,10 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
       localStorage.profile = JSON.stringify(data);
       $rootScope.profileData = angular.copy(data);
     },function(data){
-      if(data.error.statusCode == 422){
+      if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
       }
       console.log(data,"error");
     });
@@ -73,7 +75,9 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
   }
 
   function onDeviceReady() {
-    $scope.registerNotificaton();
+    if($scope.authenticated){
+      $scope.registerNotificaton();
+    }
     console.log('deviceReady');
     document.addEventListener("online", onlineHandler, false);
     document.addEventListener("offline", offlineHandler, false);
@@ -96,7 +100,7 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
   }
   
   $scope.registerNotificaton = function(){
-    if ('android' === device.platform.toLowerCase()) {
+    if('android' === device.platform.toLowerCase()) {
       window.plugins.pushNotification.register(function () {
       },function () {
         alert("Push Notification registration FAIL on Android")
@@ -109,14 +113,16 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
   // Method to handle device registration for Android.
   window.onNotificationGCM = function (e) {
     if('message' == e.event) {
-      console.log(e);
+      console.log(e,$scope.authenticated);
       if(e.payload.questionId){
-        if(e.payload.questionId == 12){
-          $state.go('app.horoscope');
-        }else if(e.payload.questionId == 1){
-          $state.go('app.askQuestion');
-        }else{
-          $state.go('app.singlequestion',{id:e.payload.questionId});
+        if($scope.authenticated){
+          if(e.payload.questionId == 12){
+            $state.go('app.horoscope');
+          }else if(e.payload.questionId == 1){
+            $state.go('app.askQuestion');
+          }else{
+            $state.go('app.singlequestion',{id:e.payload.questionId});
+          }
         }
       }
     }else if('registered' === e.event) {
@@ -133,10 +139,12 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     .then(function(data){
       console.log("success",JSON.stringify(data));
     },function(data){
-      if(data.error.statusCode == 422){
+      if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
       }
-      console.log("error",data);
+      // console.log("error",JSON.stringify(data));
     }); 
   }
 
@@ -175,7 +183,7 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
 
   $scope.transitionAnimation = function(value,timer){
     // $timeout(function(){
-      console.log(timer);
+      // console.log(timer);
       window.plugins.nativepagetransitions.slide(
         {"direction":value,
         "androiddelay":timer},

@@ -43,12 +43,42 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
         $state.go('app.dashboard');
       });
     }
+    /*else if($scope.question.status == "answered" && $scope.question.monkId != localStorage.userId){
+      var confirmPopup = $ionicPopup.show({
+        cssClass:"ios",
+        title: 'Please rate the question.',
+        template:'<div class="ratingMonkQuestion"><rating ng-model="question.rating" max="5"></rating></div>',
+        scope: $scope,
+        buttons: [
+          {text: 'Submit',type:'button-ios button-clear',
+            onTap: function(e) {
+              return true;
+            }
+          },
+          {text:'Close',type:'button-ios button-clear',
+            onTap: function(e) {
+              return false;
+            }
+          }
+        ]
+      });
+      confirmPopup.then(function(res) {
+        if(res) {
+          $scope.rateQuestion();
+          console.log('You are sure');
+        } else {
+          console.log('You are not sure');
+        }
+      });
+    }*/
   },function(data){
     $scope.hideLoader();
-    if(data.error.statusCode == 422){
+    if(data && data.error.statusCode == 422){
       $scope.showMessage(data.error.message);
+    }else{
+      $scope.showMessage("Something went wrong. Please try again.");
     }
-  	console.log(data);
+  	// console.log(data);
   });
 
   $scope.viewPartnerDetails = function(){
@@ -83,11 +113,13 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
       $scope.ratingSubmitted = true;
       $scope.ratingEdit = false;
     },function(data){
-      if(data.error.statusCode == 422){
+      if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
       }
-      console.log(data,"error");
-    })
+      // console.log(data,"error");
+    });
   }
 
   // For Monk
@@ -141,11 +173,13 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
       }, 100);
       console.log(data,"success");
     },function(data){
-      if(data.error.statusCode == 422){
-        $scope.showMessage(data.error.message);
-      }
       $scope.hideLoader();
-      console.log(data,"error");
+      if(data && data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
+      }
+      // console.log(data,"error");
     })
   }
 
@@ -224,8 +258,8 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
           $scope.showMessage("Minimum character length is 100.");
           return;
         }
-        if($scope.question.solution.length<50){
-          $scope.showMessage("Minimum character length is 50.");
+        if($scope.question.solution.length<25){
+          $scope.showMessage("Minimum character length is 25.");
           return;
         }
         $scope.showLoader();
@@ -245,8 +279,10 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
           $scope.question = angular.copy(data);
         },function(data){
           $scope.hideLoader();
-          if(data.error.statusCode == 422){
+          if(data && data.error.statusCode == 422){
             $scope.showMessage(data.error.message);
+          }else{
+            $scope.showMessage("Something went wrong. Please try again.");
           }
           console.log(data);
         });
@@ -349,8 +385,10 @@ askmonkApp.controller('editQuestionModalCtrl', ['$scope','utility','$timeout', f
       localStorage.setItem('tagQuestion',JSON.stringify(data));
     },function(data){
       $scope.hideLoader();
-      if(data.error.statusCode == 422){
+      if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
       }
       console.log(data);
     });
@@ -436,8 +474,10 @@ askmonkApp.controller('editQuestionModalCtrl', ['$scope','utility','$timeout', f
       $scope.closeEditModal(data);
     },function(data){
       $scope.hideLoader();
-      if(data.error.statusCode == 422){
+      if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
       }
       console.log(data,"error");
     })

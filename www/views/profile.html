@@ -23,7 +23,7 @@
 			</div>
 		</div>
 	</ion-content>
-	<ion-content class="row profileData paddingLRPlus21" scroll="false">
+	<ion-content class="row profileData paddingLRPlus21" scroll="true">
 		<div ng-if="loginType=='user'">
 			<dl>
 			  <dt>Email</dt>
@@ -52,6 +52,22 @@
 			<dl>
 			  <dt>Age</dt>
 			  <dd>{{profileInfo.dob | ageFilter}}</dd>
+			</dl>
+			<dl>
+			  <dt>Marriage</dt>
+			  <dd>{{profileInfo.maritalStatus}}</dd>
+			</dl>
+			<dl>
+			  <dt>Profession</dt>
+			  <dd>{{profileInfo.profession}}</dd>
+			</dl>
+			<dl>
+			  <dt>Education</dt>
+			  <dd>{{profileInfo.qualification | getEducation}}</dd>
+			</dl>
+			<dl>
+			  <dt>Children</dt>
+			  <dd>{{profileInfo.numberOfChildren}}</dd>
 			</dl>
 		</div>
 		<div ng-if="loginType=='monk'">

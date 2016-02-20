@@ -138,6 +138,11 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         $scope.transitionAnimation('left',1500);
       },function(data){
         $scope.hideLoader();
+        if(data){
+          $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
+        }
         $scope.showMessage(data.error.message);
       });
     }
@@ -161,7 +166,11 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         $scope.transitionAnimation('left',1400);
       },function(data){
         $scope.hideLoader();
-        $scope.showMessage(data.error.message);
+        if(data){
+          $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
+        }
       });
       // $state.go('app.yprofile');
     }
@@ -213,16 +222,23 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
             $scope.transitionAnimation('left',500);
           },function(data){
             $scope.hideLoader();
-            $scope.showMessage(data.error.message);
+            if(data){
+              $scope.showMessage(data.error.message);
+            }else{
+              $scope.showMessage("Something went wrong. Please try again.");
+            }
+            // $scope.showMessage(data.error.message);
           });
         },function(data){
           $scope.hideLoader();
-          if(data.error.status == 422){
+          if(data && data.error.status == 422){
             $scope.showMessage("Email address is already register");
+          }else{
+            $scope.showMessage("Something went wrong. Please try again.");
           }
         });
       }else{
-        $scope.showMessage("Please enter a valid email address");
+        $scope.showMessage("Please share the right details");
         return;
       }
     }
@@ -236,8 +252,10 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         $scope.showMessage('Mail sent');
       },function(data){
         $scope.hideLoader();
-        if(data.error.statusCode == 422){
+        if(data && data.error.statusCode == 422){
           $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
         }
         console.log(data);
       });
@@ -251,8 +269,10 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         $scope.showMessage('Mail sent');
       },function(data){
         $scope.hideLoader();
-        if(data.error.statusCode == 422){
+        if(data && data.error.statusCode == 422){
           $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
         }
         console.log(data);
       });
@@ -266,8 +286,10 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         $scope.showMessage('Mail sent');
       },function(data){
         $scope.hideLoader();
-        if(data.error.statusCode == 422){
+        if(data && data.error.statusCode == 422){
           $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
         }
         console.log(data);
       });
@@ -286,17 +308,19 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       $scope.showLoader();
       window.plugins.googleplus.login({'iOSApiKey': '915609605128-idn9dp6hnes236v35ko5pjhfmk4m8ap3.apps.googleusercontent.com'},
       function (obj) {
-        //alert(JSON.stringify(obj),"success");
+        // alert(JSON.stringify(obj),"success");
         // var obj = {"email":"harsh.agarwal1112+16@gmail.com","displayName":"harsh9","gender":"male"};
         utility.googleOauth(obj)
         .then(function(data){
+          // alert(JSON.stringify(data),"Server Responce on google login");
           $scope.setAuth(true);
           localStorage.setItem('loginType',"user");
           localStorage.setItem('token',data.id);
           localStorage.setItem('userId',data.userId);
-          // localStorage.setItem('firstTimeLogin',data.firstTimeLogin)
           CONSTANT.loginType = "user";
           if(data.firstTimeLogin){
+            localStorage.setItem("name",obj.givenName);
+            localStorage.setItem("email",obj.email);
             $rootScope.profileData = angular.copy(obj);
             $rootScope.profileData.name = angular.copy($rootScope.profileData.displayName);
             CONSTANT.isComingFromSignUp = true;
@@ -304,15 +328,20 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           }else{
             $state.go('app.profile');
           }
-          $scope.hideLoader();
-          $scope.transitionAnimation('left',500);
           if($scope.userLoginModal && $scope.userLoginModal.isShown()){
             $scope.userLoginModal.remove();
           }
           $scope.registerNotificaton();
+          $scope.hideLoader();
+          $scope.transitionAnimation('left',900);
         },function(data){
           $scope.hideLoader();
-          $scope.showMessage(data.error.message);
+          if(data && data.error.statusCode == 422){
+            $scope.showMessage(data.error.message);
+          }else{
+            $scope.showMessage("Something went wrong. Please try again.");
+          }
+          // $scope.showMessage(data.error.message);
           console.log("error",data);
         });
       },

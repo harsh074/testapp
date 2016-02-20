@@ -84,9 +84,11 @@ askmonkApp.controller('singleHoroscopeModalCtrl', ['$scope', 'utility','$timeout
 	  },10);
 	}, function(data) {
 		$scope.hideLoader();
-		if(data.error.statusCode == 422){
-			$scope.showMessage(data.error.message);
-		}
-		console.log("error", data);
+		if(data && data.error.statusCode == 422){
+      $scope.showMessage(data.error.message);
+    }else{
+      $scope.showMessage("Something went wrong. Please try again.");
+    }
+		// console.log("error", data);
 	});
 }]);

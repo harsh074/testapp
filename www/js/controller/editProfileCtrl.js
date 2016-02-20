@@ -16,8 +16,10 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       .then(function(data){
         $scope.getUserCount = data;
       },function(data){
-        if(data.error.statusCode == 422){
+        if(data && data.error.statusCode == 422){
           $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
         }
         console.log(data);
       });
@@ -123,7 +125,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
     $scope.saveEditProfile = function(){
       $scope.showLoader();
       if($scope.loginType == 'user'){
-        if(!$scope.editProfileData.dob || !$scope.editProfileData.birthPlace || !$scope.editProfileData.birthTime || !$scope.editProfileData.gender){
+        if(!$scope.editProfileData.dob || !$scope.editProfileData.birthPlace || !$scope.editProfileData.birthTime || !$scope.editProfileData.gender || !$scope.editProfileData.mobile || !$scope.editProfileData.name || !$scope.editProfileData.maritalStatus || !$scope.editProfileData.profession || !$scope.editProfileData.qualification || !$scope.editProfileData.numberOfChildren){
           $scope.hideLoader();
           $scope.showMessage("All fields are required");
           return;
@@ -147,8 +149,10 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
             $scope.transitionAnimation('left',500);
           },function(data){
             $scope.hideLoader();
-            if(data.error.statusCode == 422){
+            if(data && data.error.statusCode == 422){
               $scope.showMessage(data.error.message);
+            }else{
+              $scope.showMessage("Something went wrong. Please try again.");
             }
             console.log(data);
           });
@@ -171,8 +175,10 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
             $scope.transitionAnimation('left',500);
           },function(data){
             $scope.hideLoader();
-            if(data.error.statusCode == 422){
+            if(data && data.error.statusCode == 422){
               $scope.showMessage(data.error.message);
+            }else{
+              $scope.showMessage("Something went wrong. Please try again.");
             }
             console.log(data);
           });

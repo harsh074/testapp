@@ -9426,6 +9426,38 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   color: #fff;
   border-radius: 0px !important; }
 
+.ratingMonkQuestion {
+  display: inline-block;
+  height: 100%;
+  line-height: 58px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  float: right;
+  /* position: absolute;
+  right: 18px;
+  margin: auto;
+  transform: translateY(-50%);
+  top: 50%; */ }
+  .ratingMonkQuestion ul.rating {
+    display: inline-block;
+    width: 100%; }
+    .ratingMonkQuestion ul.rating li {
+      display: inline;
+      border: 0px;
+      background: none;
+      padding: 5px;
+      color: #CC333C; }
+      .ratingMonkQuestion ul.rating li i {
+        font-size: 25px; }
+
 .home-view .shortHeader {
   height: 58px;
   background-color: #2B5D80;
@@ -9433,7 +9465,8 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   color: white;
   overflow: hidden;
   top: 2px;
-  position: relative; }
+  position: relative;
+  z-index: 3; }
   .home-view .shortHeader .title {
     color: white;
     min-width: 0px;
@@ -9665,7 +9698,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       display: inline-block;
       font-size: 19px;
       line-height: 20px;
-      width: 35%;
+      width: 29%;
       white-space: nowrap; }
       .home-view .dashboard .yAnswerStatus .aboutQuestion .pullToRefresh {
         font-size: 11px; }
@@ -9673,7 +9706,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       float: right;
       line-height: 45px;
       color: white;
-      width: 63%; }
+      width: 68%; }
       .home-view .dashboard .yAnswerStatus .searchBar .item-search {
         height: 32px;
         border-bottom: 1px solid #BFBFBF;
@@ -9812,15 +9845,29 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   height: 62px; }
   .home-view .directQuestion .dashboard .pofilePic {
     padding: 14px 18px 5px; }
+  .home-view .directQuestion .dashboard .yAnswerStatus .aboutQuestion {
+    font-size: 17px;
+    width: 25%; }
   .home-view .directQuestion .dashboard .yAnswerStatus .searchBar {
-    width: 50%; }
+    width: 73%; }
     .home-view .directQuestion .dashboard .yAnswerStatus .searchBar .placeholder-icon {
       top: 7px; }
 
 .home-view .directQuestionContent {
   top: 107px; }
-  .home-view .directQuestionContent .questionFound .questions:nth-last-child(2) {
-    margin-bottom: 0px; }
+  .home-view .directQuestionContent .questionFound .list {
+    counter-reset: section; }
+    .home-view .directQuestionContent .questionFound .list .questions:before {
+      content: "";
+      counter-increment: section; }
+    .home-view .directQuestionContent .questionFound .list .questions:nth-last-child(2) {
+      margin-bottom: 0px; }
+    .home-view .directQuestionContent .questionFound .list .questions:nth-child(n+10) .question {
+      padding-left: 30px; }
+    .home-view .directQuestionContent .questionFound .list .questions .question {
+      padding-left: 20px; }
+      .home-view .directQuestionContent .questionFound .list .questions .question:before {
+        content: counter(section) "."; }
 
 .home-view .singleQuestion {
   top: 105px;
@@ -10465,6 +10512,13 @@ ion-side-menu .has-header {
       height: 100px;
       letter-spacing: 2px;
       line-height: 16px; }
+  .editProfile .bottomPart {
+    margin-top: 65px; }
+    .editProfile .bottomPart .divider {
+      font-size: 17px;
+      padding: 8px 18px;
+      background-color: #eeeeee;
+      margin: 0 -18px 10px; }
 
 .bar-subHeader {
   border-color: #2B5D80;
@@ -10624,7 +10678,8 @@ ion-side-menu .has-header {
   -webkit-justify-content: center;
   -moz-justify-content: center;
   justify-content: center;
-  overflow: hidden; }
+  overflow: hidden;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.38); }
   .floatingButton img {
     width: 100%; }
   .floatingButton.floatBtn {
@@ -10760,6 +10815,8 @@ ion-side-menu .has-header {
       text-align: left; }
     .ios .popup-body .item-md-label input {
       color: black; }
+  .ios .popup-body .ratingMonkQuestion {
+    float: none; }
 
 .ios .popup-buttons {
   display: -webkit-box;
@@ -11032,6 +11089,11 @@ ion-side-menu .has-header {
 .userDetailModal .bottomPart {
   padding: 15px 18px; }
 
+.userDetailModalBottom {
+  top: 144px; }
+  .userDetailModalBottom .bottomPart {
+    padding: 15px 18px; }
+
 .partnerDetailModal .topPart .userInfo {
   line-height: 50px; }
 
@@ -11086,8 +11148,7 @@ ion-side-menu .has-header {
     .settingCtrl .button.button-full span {
       margin-left: 30px; }
   .settingCtrl .bottomPart {
-    position: absolute;
-    bottom: 0;
+    margin-top: 20px;
     text-align: center;
     width: 100%;
     color: #696969; }
@@ -11166,6 +11227,17 @@ ion-side-menu .has-header {
       -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
       height: 1px; }
+
+.paymentInfoModal {
+  top: 103px; }
+  .paymentInfoModal .paymentInfo {
+    display: inline-block;
+    height: 41px; }
+  .paymentInfoModal .paymentAmount {
+    display: inline-block;
+    float: right;
+    height: 41px;
+    line-height: 41px; }
 
 .slide-in-right {
   -webkit-transform: translate3d(100%, 0, 0);

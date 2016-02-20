@@ -378,6 +378,33 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	color: #fff;
 	border-radius:0px !important;
 }
+.ratingMonkQuestion{
+	display: inline-block;
+	height: 100%;
+	line-height: 58px;
+  @include align-items(center);
+  @include justify-content(center);
+  float: right;
+	/* position: absolute;
+  right: 18px;
+  margin: auto;
+  transform: translateY(-50%);
+  top: 50%; */
+	ul.rating{
+    display: inline-block;
+		width: 100%;
+		li {
+		  display: inline;
+		  border: 0px;
+		  background: none;
+		  padding: 5px;
+		  color: $red;
+		  i{
+	  		font-size: 25px;
+			}
+		}
+	}
+}
 .home-view{	
 	.shortHeader{
 		height: 58px;
@@ -387,6 +414,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     overflow: hidden;
     top: 2px;
     position: relative;
+    z-index: 3;
     .title{
     	color: white;
 			min-width: 0px;
@@ -619,7 +647,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	    	display: inline-block;
 		    font-size: 19px;
   			line-height: 20px;
-  			width: 35%;
+  			width: 29%;
   			white-space:nowrap;
   			.pullToRefresh{
 		    	font-size: 11px;
@@ -629,7 +657,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	    	float: right;
 		    line-height: 45px;
 		    color: rgb(255, 255, 255);
-		    width: 63%;
+		    width: 68%;
   			.item-search{
 					height: 32px;
 	    		border-bottom: 1px solid #BFBFBF;
@@ -815,22 +843,46 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	  	.pofilePic{
 	    	padding: 14px 18px 5px;
 	  	}
-	  	.yAnswerStatus .searchBar{
-	  		width:50%;
-	  		.placeholder-icon{
-	  			top:7px;
+	  	.yAnswerStatus{ 
+	  		.aboutQuestion{
+	  			font-size:17px;
+	  			width:25%;
 	  		}
+	  		.searchBar{
+		  		width:73%;
+		  		.placeholder-icon{
+		  			top:7px;
+		  		}
+		  	}
 	  	}
 	  }
 	}
 	.directQuestionContent{
   	top:107px;
   	.questionFound{
-  		.questions{
-				&:nth-last-child(2){
-  				margin-bottom: 0px;
-  			}
-  		}
+  		.list{
+		    counter-reset: section;
+	  		.questions{
+	  			&:before{
+			    	content: "";
+    				counter-increment: section;
+	  			}
+					&:nth-last-child(2){
+	  				margin-bottom: 0px;
+	  			}
+	  			&:nth-child(n+10){
+	  				.question{
+	  					padding-left:30px;
+	  				}
+	  			}
+	  			.question{
+	  				padding-left:20px;
+		  			&:before{
+		  				content: counter(section) ".";
+		  			}
+		  		}
+	  		}
+	  	}
   	}
   }
   .singleQuestion{
@@ -1627,6 +1679,15 @@ ion-side-menu .has-header{
     	line-height: 16px;
   	}
 	}
+	.bottomPart{
+		margin-top:65px;
+		.divider{
+	    font-size: 17px;
+	    padding: 8px 18px;
+	    background-color: rgb(238, 238, 238);
+	    margin: 0 -18px 10px;
+		}
+	}
 }
 .bar-subHeader{
   border-color: $top-portion-color;
@@ -1801,6 +1862,7 @@ ion-side-menu .has-header{
  	@include align-items(center);
   @include justify-content(center);
   overflow: hidden;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.38);
   img{
   	width: 100%;
   }
@@ -1966,6 +2028,9 @@ ion-side-menu .has-header{
 	    input{
     		color: rgb(0, 0, 0);
 	    }
+	  }
+	  .ratingMonkQuestion{
+	  	float:none;
 	  }
 	}
 	.popup-buttons {
@@ -2297,6 +2362,12 @@ ion-side-menu .has-header{
     padding: 15px 18px;
 	}
 }
+.userDetailModalBottom{
+	top:144px;
+	.bottomPart{
+    padding: 15px 18px;
+	}
+}
 
 .partnerDetailModal{
 	.topPart{
@@ -2375,8 +2446,7 @@ ion-side-menu .has-header{
     }
 	}
 	.bottomPart{
-    position: absolute;
-    bottom: 0;
+   	margin-top: 20px;
     text-align: center;
     width: 100%;
     color: #696969;
@@ -2479,6 +2549,21 @@ ion-side-menu .has-header{
 		}
 	}
 }
+
+.paymentInfoModal{
+	top:103px;
+	.paymentInfo{
+		display: inline-block;
+    height: 41px;
+	}
+	.paymentAmount{
+    display: inline-block;
+    float: right;
+    height: 41px;
+    line-height: 41px;
+	}
+}
+
 .slide-in-right {
   -webkit-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);

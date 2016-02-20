@@ -107,18 +107,22 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
       }
       utility.getUserCount()
       .then(function(data){
-        var data = {makeFirstQuestionFree: false, makeFirstQuestionHalfRate: false, emailVerified: true};
+        // var data = {makeFirstQuestionFree: false, makeFirstQuestionHalfRate: false, emailVerified: true};
         $scope.getUserCount = data;
       },function(data){
-        if(data.error.statusCode == 422){
+        if(data && data.error.statusCode == 422){
           $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
         }
         console.log(data);
       });
     },function(data){
       $scope.hideLoader();
-      if(data.error.statusCode == 422){
+      if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
       }
       console.log(data);
     });
@@ -134,10 +138,12 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
       }, 1000);
     },function(data1){
       $scope.hideLoader();
-      if(data1.error.statusCode == 422){
+      if(data1 && data1.error.statusCode == 422){
         $scope.showMessage(data1.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
       }
-      console.log(data1)
+      // console.log(data1)
     });
   }
 
@@ -159,10 +165,12 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
       }
     },function(data){
       $scope.hideLoader();
-      if(data.error.statusCode == 422){
+      if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
       }
-      console.log(data);
+      // console.log(data);
     });
   }
 
@@ -182,8 +190,10 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
       }
     },function(data){
       $scope.hideLoader();
-      if(data.error.statusCode == 422){
+      if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
       }
       console.log(data)
     });
@@ -207,8 +217,10 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
           $scope.noQuestionFound = true
         }
       },function(data){
-        if(data.error.statusCode == 422){
+        if(data && data.error.statusCode == 422){
           $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
         }
         console.log(data);
       });
@@ -222,8 +234,10 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
           $scope.noQuestionFound = true
         }
       },function(data){
-        if(data.error.statusCode == 422){
+        if(data && data.error.statusCode == 422){
           $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
         }
         console.log(data);
       });
@@ -245,10 +259,12 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
           $scope.noQuestionFound = true
         }
       },function(data){
-        if(data.error.statusCode == 422){
+        if(data && data.error.statusCode == 422){
           $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
         }
-        console.log(data);
+        // console.log(data);
       });
     }else{
       utility.getMonkAnsweredQuestion(indexGetOtherQuestion)
@@ -256,10 +272,12 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
         $scope.$broadcast('scroll.refreshComplete');
         $scope.questionSortedMonk(data,'answered','pullToRefresh');
       },function(data){
-        if(data.error.statusCode == 422){
+        if(data && data.error.statusCode == 422){
           $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
         }
-        console.log(data)
+        // console.log(data)
       });
     }
   }

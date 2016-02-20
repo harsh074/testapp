@@ -1,5 +1,6 @@
 askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootScope','$http','$state','$templateCache','$ionicModal','$ionicPopup','CONSTANT', function($scope,utility,$ionicHistory,$rootScope,$http,$state,$templateCache,$ionicModal,$ionicPopup,CONSTANT){
 
+  $scope.loginType = CONSTANT.loginType;
   $scope.aboutUs = function(){
     $ionicModal.fromTemplateUrl('views/aboutUsModal.html', function (modal) {
       $scope.aboutUsModal = modal;
@@ -9,7 +10,6 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
       animation: 'slide-in-up'
     });
   }
-  $scope.loginType = CONSTANT.loginType;
 
   $scope.privacyPolicy = function(){
     $ionicModal.fromTemplateUrl('views/privacyPolicyModal.html', function (modal) {
@@ -24,6 +24,53 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
   $scope.openBlog = function(){
     window.open('https://askmonkblog.wordpress.com', '_system', 'location=yes'); 
     return false;
+  }
+
+  $scope.getPaymentInfo = function(){
+    $scope.showLoader();
+    if($scope.loginType == "user"){
+      utility.userPaymentInfo()
+      .then(function(data){
+        $scope.hideLoader();
+        console.log(data);
+        $scope.paymentReceipts = data;
+        $ionicModal.fromTemplateUrl('paymentInfoModal.html', function (modal) {
+          $scope.paymentInfoModal = modal;
+          $scope.paymentInfoModal.show();
+        }, {
+          scope: $scope,
+          animation: 'slide-in-up'
+        });
+      },function(data){
+        $scope.hideLoader();
+        if(data && data.error.statusCode == 422){
+          $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
+        }
+      });
+    }else{
+      utility.monkPaymentInfo()
+      .then(function(data){
+        $scope.hideLoader();
+        console.log(data);
+        $scope.paymentReceipts = data;
+        $ionicModal.fromTemplateUrl('paymentInfoModal.html', function (modal) {
+          $scope.paymentInfoModal = modal;
+          $scope.paymentInfoModal.show();
+        }, {
+          scope: $scope,
+          animation: 'slide-in-up'
+        });
+      },function(data){
+        $scope.hideLoader();
+        if(data && data.error.statusCode == 422){
+          $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
+        }
+      });
+    }
   }
 
   $scope.helpDesk = function(){
@@ -70,6 +117,16 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     });
   }
 
+  $scope.resendValidation = function(){
+    $ionicModal.fromTemplateUrl('resendValidationModal.html', function (modal) {
+      $scope.resendValidationModal = modal;
+      $scope.resendValidationModal.show();
+    }, {
+      scope: $scope,
+      animation: 'slide-in-up'
+    });
+  }
+
   $scope.logOut = function(){
     var confirmPopup = $ionicPopup.show({
       cssClass:"ios",
@@ -97,10 +154,12 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
           .then(function(data){
             $scope.logout();
           },function(data){
-            if(data.error.statusCode == 422){
+            if(data && data.error.statusCode == 422){
               $scope.showMessage(data.error.message);
+            }else{
+              $scope.showMessage("Something went wrong. Please try again.");
             }
-            console.log(data,'error');
+            // console.log(data,'error');
           });
         }else{
           $scope.logout();
@@ -115,7 +174,6 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     $scope.showLoader();
   	utility.logout()
     .then(function(data){
-      $scope.hideLoader();
       $state.go('login');
       $scope.setAuth(false);
       $ionicHistory.clearCache();
@@ -123,21 +181,19 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
       var currentPageTemplate = $state.current.templateUrl;
       $templateCache.remove(currentPageTemplate);
       $rootScope.profileData = null;
-      // localStorage.removeItem('token');
-      // localStorage.removeItem('userId');
-      // localStorage.removeItem("name");
-      // localStorage.removeItem("email");
-      // localStorage.removeItem('loginType');
-      // localStorage.removeItem("profile");
       localStorage.clear();
       $scope.loginType = localStorage.getItem('loginType');
       delete $http.defaults.headers.common.Authorization;
+      $scope.hideLoader();
       $scope.transitionAnimation('left',900);
     },function(data){
-      if(data.error.statusCode == 422){
+      $scope.hideLoader();
+      if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
       }
-      console.log(data,'error');
+      // console.log(data,'error');
     });
   }
 
@@ -150,6 +206,12 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     }
     if($scope.changePasswordModal && $scope.changePasswordModal.isShown()){
       $scope.changePasswordModal.remove();
+    }
+    if($scope.resendValidationModal && $scope.resendValidationModal.isShown()){
+      $scope.resendValidationModal.remove();
+    }
+    if($scope.paymentInfoModal && $scope.paymentInfoModal.isShown()){
+      $scope.paymentInfoModal.remove();
     }
   }
 }]);
@@ -204,26 +266,55 @@ askmonkApp.controller('changePasswordModalCtrl', ['$scope','utility','CONSTANT',
           $scope.showMessage("Password change successfully");
         }, function(data) {
           $scope.hideLoader();
-          if(data.error.statusCode == 422){
+          if(data && data.error.statusCode == 422){
             $scope.showMessage(data.error.message);
+          }else{
+            $scope.showMessage("Something went wrong. Please try again.");
           }
-          console.log(data,"errors");
+          // console.log(data,"errors");
         });
       }else{
         utility.changeMonkPassword($scope.model)
         .then(function(data) {
           $scope.hideLoader();
-          console.log(data,"success");
+          // console.log(data,"success");
           $scope.closeModal();
           $scope.showMessage("Password change successfully");
         }, function(data) {
           $scope.hideLoader();
-          if(data.error.statusCode == 422){
+          if(data && data.error.statusCode == 422){
             $scope.showMessage(data.error.message);
+          }else{
+            $scope.showMessage("Something went wrong. Please try again.");
           }
-          console.log(data,"errors");
+          // console.log(data,"errors");
         });
       }
     }
+  }
+}]);
+
+askmonkApp.controller('resendValidationModalCtrl', ['$scope','utility','base64Encoding', function($scope,utility,base64Encoding){
+  $scope.args = {"email":localStorage.email};
+  $scope.resendValidationSendPopup = function(formData){
+    if(formData.email.$viewValue == "" || formData.$invalid){
+      $scope.showMessage("Please enter the correct email address");
+      return;
+    }
+    $scope.showLoader();
+    utility.resendValidationUser(base64Encoding.encode($scope.args.email))
+    .then(function(data){
+      $scope.hideLoader();
+      $scope.closeModal();
+      $scope.showMessage('Mail sent');
+    },function(data){
+      $scope.hideLoader();
+      if(data && data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
+      }
+      // console.log(data);
+    });
   }
 }]);

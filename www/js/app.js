@@ -49,6 +49,15 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', 
       window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 0;
     }
   });
+  
+  if(CONSTANT.PRODUCTION_MODE) {
+    if(window.console && window.console.log){
+      window.console.log = function() {};
+    }
+    if(window.alert){
+      window.alert = function() {};
+    }
+  }
 }]);
 
 askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider', function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
@@ -67,6 +76,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   .state('app', {
     url: "/app",
     abstract: true,
+    cache: false,
     templateUrl: "views/sidemenu.html",
     controller: 'appCtrl'
   })

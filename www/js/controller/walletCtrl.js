@@ -30,10 +30,12 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
       $scope.hideLoader();
     },function(data){
       $scope.hideLoader();
-      if(data.error.statusCode == 422){
+      if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
       }
-      console.log(data);
+      // console.log(data);
     });
   }else{
     utility.getMonkCount()
@@ -43,10 +45,12 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
       $scope.hideLoader();
     },function(data){
       $scope.hideLoader();
-      if(data.error.statusCode == 422){
+      if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
       }
-      console.log(data);
+      // console.log(data);
     });
   }
 
@@ -112,10 +116,12 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
 				localStorage.setItem('packs',JSON.stringify(data));
 				$scope.packs = data;
 			},function(data){
-        if(data.error.statusCode == 422){
+        if(data && data.error.statusCode == 422){
           $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
         }
-				console.log(data);
+				// console.log(data);
 			});
 		}
 	}

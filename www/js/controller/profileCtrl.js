@@ -1,4 +1,4 @@
-askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$rootScope','$timeout', function($scope, $state, utility,CONSTANT,$rootScope,$timeout){
+askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$rootScope','$timeout','$ionicPopup', function($scope, $state, utility,CONSTANT,$rootScope,$timeout,$ionicPopup){
   
   $scope.floatingBtnAction = false;
 	$scope.$on('$ionicView.enter', function(){
@@ -8,7 +8,6 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
       cordova.plugins.Keyboard.close();
     }
   });
-
 
   $scope.loginType = CONSTANT.loginType;
 
@@ -44,8 +43,10 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
       	}
       },function(data){
       	$scope.hideLoader();
-        if(data.error.statusCode == 422){
+        if(data && data.error.statusCode == 422){
           $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
         }
       	console.log(data);
       });
@@ -66,11 +67,28 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
           $scope.$emit("updateAvaliableStatus");
           $scope.profileInfo = angular.copy($rootScope.profileData);
           $scope.profileImage = 'http://askmonk.in/mImages/'+$scope.profileInfo.email.split('@')[0].toLowerCase()+'.jpg';
+          utility.directQuestionsPending()
+          .then(function(data1){
+            if(data1.length>0){
+              $scope.directQuestionData = data1;
+              $scope.showDirectQuestionCountPopup();
+            }
+            console.log(data1)
+          },function(data1){
+            if(data1 && data1.error.statusCode == 422){
+              $scope.showMessage(data.error.message);
+            }else{
+              $scope.showMessage("Something went wrong. Please try again.");
+            }
+            // console.log(data1)
+          });
         }
       },function(data){
         $scope.hideLoader();
-        if(data.error.statusCode == 422){
+        if(data && data.error.statusCode == 422){
           $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
         }
         console.log(data);
       });
@@ -82,8 +100,10 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     .then(function(data){
       $scope.getUserCount = data;
     },function(data){
-      if(data.error.statusCode == 422){
+      if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
       }
       console.log(data);
     });
@@ -92,10 +112,12 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
       .then(function(data){
         localStorage.setItem('timelineJson',JSON.stringify(data));
       },function(data){
-        if(data.error.statusCode == 422){
+        if(data && data.error.statusCode == 422){
           $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
         }
-        console.log(data);
+        // console.log(data);
       });
     }
   }else{
@@ -103,16 +125,47 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     .then(function(data){
       $scope.getMonkCount = data;
     },function(data){
-      if(data.error.statusCode == 422){
+      if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
       }
       console.log(data);
     });
   }
   
+  $scope.showDirectQuestionCountPopup = function(){
+    var confirmPopup = $ionicPopup.show({
+      cssClass:"ios",
+      title: $scope.directQuestionData.length+' direct questions unanswered.',
+      template:'Want to answer now?',
+      scope:$scope,
+      buttons: [
+        {text: 'Ok',type:'button-ios button-clear',
+          onTap: function(e) {
+            return true;
+          }
+        },
+        {text:'Cancel',type:'button-ios button-clear',
+          onTap: function(e) {
+            return false;
+          }
+        }
+      ]
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+        console.log('You are sure');
+        $state.go('app.directQuestion');
+      } else {
+        console.log('You are not sure');
+      }
+    });
+  }
+
   $scope.profileEdit = function(){
     $state.go('app.editProfile');
-    $scope.transitionAnimation('left',900);
+    $scope.transitionAnimation('left',1200);
   }
 
   $scope.askQuestion = function(){
@@ -121,3 +174,14 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   }
 
 }]);
+
+askmonkApp.filter('getEducation',function(){
+  return function(input){
+    console.log(input);
+    if(input == "10" || input == "12"){
+      return input+"th";
+    }else{
+      return input;
+    }
+  }
+});

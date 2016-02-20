@@ -86,7 +86,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
     .then(function(data){
 			$scope.hideLoader();
 			console.log(data);
-			// var data = {emailVerified: true,makeFirstQuestionHalfRate: true,totalQuestionsAsked: 14}
+			// var data = {emailVerified: true,makeFirstQuestionHalfRate: false,makeFirstQuestionFree: false,totalQuestionsAsked: 1}
 			// ,makeFirstQuestionFree: false,makeFirstQuestionHalfRate: true,totalQuestionsAsked: 14,walletMoney: 17000
       $scope.getUserCount = data;
     },function(data){
@@ -261,7 +261,13 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 				localStorage.profile = JSON.stringify(data);
 				$scope.askQuestionButton();
 	    },function(data){
-	    	$scope.showMessage('Something went wrong. Try again');
+	    	$scope.hideLoader();
+	    	if(data){
+	        $scope.showMessage(data.error.message);
+	      }else{
+	        $scope.showMessage("Something went wrong. Please try again.");
+	      }
+	    	// $scope.showMessage('Something went wrong. Try again');
 	    });
 	  }else{
 			$scope.showMessage('Something went wrong. Try again');
@@ -336,20 +342,28 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 						$scope.transitionAnimation('left',900);
 					},function(data1){
 						$scope.hideLoader();
-						$scope.showMessage(data1.error.message);
+						if(data1 && data1.error.statusCode == 422){
+							$scope.showMessage(data1.error.message);
+			      }else{
+			        $scope.showMessage("Something went wrong. Please try again.");
+			      }
 					});
 				},function(data){
 					$scope.hideLoader();
 					if(data.error.message.indexOf('Insufficient Funds') == 0){
 						console.log($scope.getUserCount);
+						$scope.showMessage(data.error.message);
 						if($scope.getUserCount && $scope.getUserCount.walletMoney){
 							$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount - $scope.getUserCount.walletMoney;
 						}else{
 							$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount;
 						}
 						$scope.openInsufficientPopup();
-					}
-					$scope.showMessage(data.error.message);
+					}else if(data && data.error.statusCode == 422){
+		        $scope.showMessage(data.error.message);
+		      }else{
+		        $scope.showMessage("Something went wrong. Please try again.");
+		      }
 				});
 			}else{
 				utility.askQuestion($scope.askQuestion)
@@ -364,20 +378,28 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 						$scope.transitionAnimation('left',900);
 					},function(data1){
 						$scope.hideLoader();
-						$scope.showMessage(data1.error.message);
+						if(data1 && data1.error.statusCode == 422){
+			        $scope.showMessage(data1.error.message);
+			      }else{
+			        $scope.showMessage("Something went wrong. Please try again.");
+			      }
 					});
 				},function(data){
 					$scope.hideLoader();
 					if(data.error.message.indexOf('Insufficient Funds') == 0){
 						console.log($scope.getUserCount);
+						$scope.showMessage(data.error.message);
 						if($scope.getUserCount && $scope.getUserCount.walletMoney){
 							$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount - $scope.getUserCount.walletMoney;
 						}else{
 							$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount;
 						}
 						$scope.openInsufficientPopup();
-					}
-					$scope.showMessage(data.error.message);
+					}else if(data && data.error.statusCode == 422){
+		        $scope.showMessage(data.error.message);
+		      }else{
+		        $scope.showMessage("Something went wrong. Please try again.");
+		      }
 				});
 			}
 		}else{

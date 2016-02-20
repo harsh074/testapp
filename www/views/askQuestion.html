@@ -56,8 +56,8 @@
 		    <div class="checkbox__checkmark"></div>
 		    <span class="valueTimeLine">
 		    	<span class="monthDuration">{{value.durationMonths | timeLineFiter}}</span><br>
-		    	<a class="fullRate" ng-class="{'cutRate':(getUserCount.makeFirstQuestionHalfRate &&  !getUserCount.totalQuestionsAsked)}">(Rs. {{value.amount}})</a><br>
-		    	<a class="halfRate" ng-if="getUserCount.makeFirstQuestionHalfRate && !getUserCount.totalQuestionsAsked">(Rs. {{value.amount/2}})</a>
+		    	<a class="fullRate" ng-class="{'cutRate':(getUserCount.makeFirstQuestionHalfRate &&  !getUserCount.totalQuestionsAsked) && !(getUserCount.makeFirstQuestionHalfRate && getUserCount.makeFirstQuestionFree)}">(Rs. {{value.amount}})</a><br>
+		    	<a class="halfRate" ng-if="(getUserCount.makeFirstQuestionHalfRate &&  !getUserCount.totalQuestionsAsked) && !(getUserCount.makeFirstQuestionHalfRate && getUserCount.makeFirstQuestionFree)">(Rs. {{value.amount/2}})</a>
 		    </span>
 		  </label>
 	  </div>

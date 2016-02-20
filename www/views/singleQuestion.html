@@ -10,6 +10,9 @@
         <!-- <a class="shortHeaderIcon"><i class="icon ion-paper-airplane"></i></a> -->
         <button class="button button-custom button-small" ng-click="postAnswer()">Answer</button>
       </div>
+      <div class="ratingMonkQuestion" ng-if="loginType=='monk' && question.status == 'rated'">
+        <rating ng-model="question.rating" max="5" readonly="true" ng-click="rateQuestion()"></rating>
+      </div>
 		</div>
 	</ion-content>
 	<ion-content class="row singleQuestion dashboardData paddingLRPlus21" scroll="true" delegate-handle="mainScroll">
@@ -89,12 +92,12 @@
           </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="answerRating col" ng-if="question.status=='rated'">
             <p style="font-size: 18px;margin:5px 0px;" ng-if="question.status=='rated'">Here is your rating.</p>
             <rating ng-model="question.rating" max="5" readonly="true" ng-click="rateQuestion()"></rating>
           </div>
-        </div>
+        </div> -->
       </div>
 		</div> 
 	</ion-content>

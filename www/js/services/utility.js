@@ -21,7 +21,8 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         withCredentials: this.use_session,
         method: method.toUpperCase(),
         params: params,
-        data: data
+        data: data,
+        timeout:90000
       })
       .success(angular.bind(this,function(data, status, headers, config) {
         deferred.resolve(data, status);
@@ -181,6 +182,12 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'url':"/dailyHoroscope/"+id
       });
     },
+    userPaymentInfo:function(){
+      return this.request({
+        'method':"GET",
+        'url':"/api/payments/findPayments/"+localStorage.getItem('userId')
+      });
+    },
 
     notification:function(args){
       return this.request({
@@ -189,6 +196,7 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'data':args
       })
     },
+
 
     //monks Data
     updateMonkAvailableStatus:function(args){
@@ -286,6 +294,18 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
       return this.request({
         'method':"GET",
         'url':"/api/monks/getCounts/"+localStorage.getItem('userId')
+      });
+    },
+    directQuestionsPending:function(){
+      return this.request({
+        'method':"GET",
+        'url':"/api/monks/directQuestionsPending/"+localStorage.getItem('userId')
+      });
+    },
+    monkPaymentInfo:function(){
+      return this.request({
+        'method':"GET",
+        'url':"/api/monkPayments/findPayments/"+localStorage.getItem('userId')
       });
     },
     initialize: function(url, sessions, scope, rootScope){

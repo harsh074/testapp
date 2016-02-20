@@ -16,7 +16,7 @@
 			<div class="subHeaderBottomContent">
 				<div class="avaliableStatus" ng-if="loginType=='user'" ng-class="{'available':monkProfileData.isAvailable?monkProfileData.isAvailable:false}"></div>
 				<div class="userName">{{monkProfileData.name}}</div>
-				<div class="yRating">
+				<div class="yRating" ng-if="monkProfileData.rating">
 					<rating ng-model="monkProfileData.rating" max="5" readonly="true"></rating>
 				</div>
 			</div>

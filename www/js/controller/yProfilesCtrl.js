@@ -23,8 +23,11 @@ askmonkApp.controller('yProfilesCtrl', ['$scope','$state','utility','$stateParam
   		$scope.monksProfiles = data;
   		$scope.hideLoader();
   	},function(data){
-      if(data.error.statusCode == 422){
+      $scope.hideLoader();
+      if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
       }
   		console.log(data,"error");
   	});
