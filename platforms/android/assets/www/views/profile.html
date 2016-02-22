@@ -1,0 +1,121 @@
+<ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
+	<ion-content scroll="false">
+		<div class="yprofile">
+			<div class="content pofilePic">
+				<div class="avatar">
+					<img ng-src="{{profileImage}}">
+				</div>
+				<div class="yAnswerStatus">
+					<div class="statics" ng-class="{'userProfile':loginType=='user'}">
+						<span class="answered" ng-if="loginType=='user'">{{getUserCount.totalQuestionsAsked ? getUserCount.totalQuestionsAsked : 0}}<br/><span class="textShow">Asked</span></span>
+						<span class="experience" ng-if="loginType=='user'">{{profileInfo.moonSign}}<br/><span class="textShow">Zodiac</span></span>
+						<span class="views" ng-if="loginType=='user'">Rs. {{getUserCount.walletMoney ? getUserCount.walletMoney : 0}}<br/><span class="textShow">Wallet</span></span>
+						<span class="answered" ng-if="loginType=='monk'">{{getMonkCount.questionsAnswered ? getMonkCount.questionsAnswered : 0}}<br/><span class="textShow">Answered</span></span>
+						<span class="experience" ng-if="loginType=='monk'">{{getMonkCount.experience ? getMonkCount.experience : 0}}<br/><span class="textShow">Experience</span></span>
+						<span class="views" ng-if="loginType=='monk'">{{getMonkCount.profileViews ? getMonkCount.profileViews : 0}}<br/><span class="textShow">Views</span></span>
+					</div>
+					<button class="button button-custom-small button-askmonk profileEditBtn" ng-click="profileEdit()"> Edit Profile</button>
+				</div>
+			</div>
+			<div class="subHeaderBottomContent">
+				<div class="userName">{{profileInfo.name}}</div>
+				<div class="yRating" ng-if="loginType=='monk'">
+					<rating ng-model="profileInfo.rating" max="5" readonly="true"></rating>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+	<ion-content class="row profileData" scroll="true" ng-class="{'tileUserBroadcast':loginType=='user'}">
+		<!-- <div ng-if="loginType=='user'">
+			<dl>
+			  <dt>Email</dt>
+			  <dd class="email">{{profileInfo.email}}</dd>
+			</dl>
+			<dl>
+			  <dt>Birth Date</dt>
+			  <dd>{{profileInfo.dob | date : 'dd-MM-yyyy'}}</dd>
+			</dl>
+			<dl>
+			  <dt>Birth Place</dt>
+			  <dd>{{profileInfo.birthPlace}}</dd>
+			</dl>
+			<dl>
+			  <dt>Birth Time</dt>
+			  <dd>{{profileInfo.birthTime | date : 'h:mm a'}}</dd>
+			</dl>
+			<dl>
+			  <dt>Gender</dt>
+			  <dd>{{profileInfo.gender}}</dd>
+			</dl>
+			<dl>
+			  <dt>Zodiac</dt>
+			  <dd>{{profileInfo.moonSign}}</dd>
+			</dl>
+			<dl>
+			  <dt>Age</dt>
+			  <dd>{{profileInfo.dob | ageFilter}}</dd>
+			</dl>
+			<dl>
+			  <dt>Marriage</dt>
+			  <dd>{{profileInfo.maritalStatus}}</dd>
+			</dl>
+			<dl>
+			  <dt>Profession</dt>
+			  <dd>{{profileInfo.profession}}</dd>
+			</dl>
+			<dl>
+			  <dt>Education</dt>
+			  <dd>{{profileInfo.qualification | getEducation}}</dd>
+			</dl>
+			<dl>
+			  <dt>Children</dt>
+			  <dd>{{profileInfo.numberOfChildren}}</dd>
+			</dl>
+		</div> -->
+		<div ng-if="loginType=='user'" class="tileBroadcast">
+			<ion-list>
+        <div ng-repeat="group in broadcastQuestions" class="allQuestions" ng-click="goToQuestion(group.id)">
+          <div class="question">{{group.question | capitalize}}</div>
+
+          <div class="postedUserDetails">
+        		<div class="nameIntials" ng-style="{background:color(group)}"><span>{{group.postedBy?group.postedBy.split('')[0]:'a'}}</span></div>
+        		<div class="postedInfo">
+        			<p class="postedUserInfo">Posted by {{group.postedBy?group.postedBy:'askmonk' | capitalize}}</p>
+        			<p class="postedTimeInfo">Asked {{group.postedOn | timeago}}</p>
+        		</div>
+        		<div class="typeQuestion">{{group.typeOfQuestion?group.typeOfQuestion:"astrology"}}</div>
+          </div>
+        	<div class="answer"><p>{{group.answer}}</p></div>
+        </div>
+    	</ion-list>
+    	<ion-infinite-scroll ng-if="!noMoreQuestion" on-infinite="loadMoreQuestion()" immediate-check="false" icon="ion-loading" distance="10%"></ion-infinite-scroll>
+		</div>
+
+		<div ng-if="loginType=='monk'" class="paddingLRPlus21">
+			<dl ng-if="profileInfo.education">
+			  <dt>Education</dt>
+			  <dd>{{profileInfo.education}}</dd>
+			</dl>
+			<dl ng-if="profileInfo.occupation">
+			  <dt>Occupation</dt>
+			  <dd>{{profileInfo.occupation}}</dd>
+			</dl>
+			<dl ng-if="profileInfo.residence">
+			  <dt>Residence</dt>
+			  <dd>{{profileInfo.residence}}</dd>
+			</dl>
+			<dl ng-if="profileInfo.experience">
+			  <dt>Experience</dt>
+			  <dd>{{profileInfo.experience}} Years</dd>
+			</dl>
+			<dl>
+			  <dt>About Me</dt>
+			  <dd class="bio">{{profileInfo.bio}}</dd>
+			</dl>
+		</div>
+	</ion-content>
+	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user'">
+		<i class="icon ion-android-add"></i>
+		<!-- <img src="img/flyout_icon.jpg" /> -->
+	</div>
+</ion-view>

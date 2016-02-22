@@ -181,30 +181,18 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     }
   };
 
-  $scope.transitionAnimation = function(value,timer){
-    // $timeout(function(){
-      // console.log(timer);
-      window.plugins.nativepagetransitions.slide(
-        {"direction":value,
-        "androiddelay":timer},
-        function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-        function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-      );
-    // }, timer?timer:500);
+  $scope.transitionAnimation = function(direction,state,stateParams){
+    console.log(value,timer);
+    $ionicNativeTransitions.stateGo(state, {id:stateParams}, {
+      "type": "slide",
+      "direction": direction,
+      "duration": 100,
+      "androiddelay":-1
+    });
   };
 
-  $scope.transitionAnimationUp = function(timer){
-    $timeout(function(){
-      window.plugins.nativepagetransitions.slide(
-        {"direction":"up"},
-        function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-        function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-      );
-    }, timer?timer:500);
-  }
-
   $scope.hamburgerBtnEvent = function(){
-    if($state.current.name == 'app.editProfile' || $state.current.name == 'app.askQuestion' || $state.current.name == 'app.yprofile' || $state.current.name == 'app.singlequestion'){
+    if($state.current.name == 'app.editProfile' || $state.current.name == 'app.askQuestion' || $state.current.name == 'app.yprofile' || $state.current.name == 'app.singlequestion'||$state.current.name == 'app.broadcastquestion' ){
       $timeout(function(){
         $ionicHistory.goBack();
         // if($ionicHistory.viewHistory.backView==null&&$state.current.name=='app.singlequestion'){
@@ -212,9 +200,9 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
         // }
       }, 300);
       if($state.current.name == 'app.yprofile' || $state.current.name == 'app.askQuestion' || $state.current.name == 'app.singlequestion'){
-        $scope.transitionAnimation('right',900);
+        // $scope.transitionAnimation('right',900);
       }else{
-        $scope.transitionAnimation('right',650);
+        // $scope.transitionAnimation('right',650);
       }
     }else{
       $ionicSideMenuDelegate.toggleLeft();
@@ -225,7 +213,7 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     if(fromState.name != "app.yprofile" && toState.name != 'app.askQuestion'){
       localStorage.removeItem('directQuestion');
     }
-    if(toState.name == 'app.editProfile' || toState.name == 'app.askQuestion' || toState.name == 'app.yprofile' || toState.name == 'app.singlequestion'){
+    if(toState.name == 'app.editProfile' || toState.name == 'app.askQuestion' || toState.name == 'app.yprofile' || toState.name == 'app.singlequestion' || toState.name == 'app.broadcastquestion'){
       $scope.showArrow = true;
     }else{
       $scope.showArrow = false;

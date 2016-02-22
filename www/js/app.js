@@ -1,4 +1,4 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place','ionic-timepicker']);
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place','ionic-timepicker','ionic-native-transitions']);
 
 askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', function($ionicPlatform,$state,$stateParams,CONSTANT,$timeout){
   if(!localStorage.getItem('token')){
@@ -121,7 +121,6 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
       }
     }
   })
-
   .state('app.openQuestion', {
     url: "/open-question",
     cache: false,
@@ -132,7 +131,6 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
       }
     }
   })
-
   .state('app.wallet',{
     url:"/wallet",
     cache: false,
@@ -190,6 +188,16 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
       'menuContent':{
         templateUrl:"views/singleQuestion.html",
         controller:"singleQuestionCtrl"
+      }
+    }
+  })
+  .state('app.broadcastquestion',{
+    url:"/broadcastquestion/{id}",
+    cache: false,
+    views:{
+      'menuContent':{
+        templateUrl:"views/broadcastQuestion.html",
+        controller:"broadcastQuestionCtrl"
       }
     }
   })
