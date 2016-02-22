@@ -54,7 +54,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   $logProvider.debugEnabled(false);
 
   $ionicNativeTransitionsProvider.setDefaultOptions({
-    duration: 150,
+    duration: 120,
     androiddelay: -1,
     triggerTransitionEvent: '$ionicView.afterEnter',
     backInOppositeDirection: true

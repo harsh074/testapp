@@ -97,7 +97,6 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
 
   $scope.askQuestion = function(){
   	$state.go('app.askQuestion');
-    $scope.transitionAnimation('left',500);
   }
 
   if($scope.loginType == "user"){
@@ -291,7 +290,6 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
   $scope.goToQuestion = function(id){
     $stateParams.id = id;
     $state.go('app.singlequestion',$stateParams);
-    $scope.transitionAnimation('left',700);
   }
   
   // Search the input

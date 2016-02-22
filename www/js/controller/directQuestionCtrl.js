@@ -87,7 +87,6 @@ askmonkApp.controller('directQuestionCtrl', ['$scope','utility','$state','$state
   $scope.goToQuestion = function(id){
     $stateParams.id = id;
     $state.go('app.singlequestion',$stateParams);
-    $scope.transitionAnimation('left',700);
   }
   
   $scope.inputSearch = function(){

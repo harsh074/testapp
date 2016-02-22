@@ -19,7 +19,6 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
 
   $scope.askQuestion = function(){
   	$state.go('app.askQuestion');
-    $scope.transitionAnimation('left',500);
   }
   
   $scope.showLoader();

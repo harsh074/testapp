@@ -196,7 +196,6 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
       $scope.loginType = localStorage.getItem('loginType');
       delete $http.defaults.headers.common.Authorization;
       $scope.hideLoader();
-      $scope.transitionAnimation('left',900);
     },function(data){
       $scope.hideLoader();
       if(data && data.error.statusCode == 422){

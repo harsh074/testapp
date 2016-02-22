@@ -25,7 +25,6 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
   
   $scope.goToWallet = function(){
     $state.go("app.wallet");
-    $scope.transitionAnimation('left',500);
   };
   if(CONSTANT.loginType == 'monk'){
     $scope.isAvailable={};

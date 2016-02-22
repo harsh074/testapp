@@ -37,7 +37,6 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
           localStorage.setItem('firstTimeUser',true);
           CONSTANT.isComingFromSignUp = true;
           $state.go('app.editProfile');
-          $scope.transitionAnimation('left');
       	}else{
       		$scope.hideLoader();
           localStorage.setItem("profile",JSON.stringify(data));
@@ -64,7 +63,6 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
         if(!data.name || !data.phone || !data.education || !data.residence || !data.experience){
           CONSTANT.isComingFromSignUp = true;
           $state.go('app.editProfile');
-          $scope.transitionAnimation('left');
         }else{
           $scope.hideLoader();
           localStorage.setItem("profile",JSON.stringify(data));
@@ -220,7 +218,6 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   $scope.goToQuestion = function(id){
     $stateParams.id = id;
     $state.go('app.broadcastquestion',$stateParams);
-    $scope.transitionAnimation('left',700);
   }
 
   $scope.showDirectQuestionCountPopup = function(){
@@ -254,15 +251,13 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
 
   $scope.profileEdit = function(){
     $state.go('app.editProfile');
-    $scope.transitionAnimation('left',1200);
   }
 
   $scope.askQuestion = function(){
   	$state.go('app.askQuestion');
-    $scope.transitionAnimation('left',900)
   }
 
-   $scope.closeModal = function(){
+  $scope.closeModal = function(){
     if($scope.guideScreenModal && $scope.guideScreenModal.isShown()){
       $scope.guideScreenModal.remove();
     }

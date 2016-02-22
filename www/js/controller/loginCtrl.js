@@ -135,7 +135,6 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         }
         $scope.registerNotificaton();
         $state.go('app.profile');
-        $scope.transitionAnimation('left',1500);
       },function(data){
         $scope.hideLoader();
         if(data){
@@ -163,7 +162,6 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         }
         $scope.registerNotificaton();
         $state.go('app.profile');
-        $scope.transitionAnimation('left',1400);
       },function(data){
         $scope.hideLoader();
         if(data){
@@ -220,7 +218,6 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
             }
             $scope.registerNotificaton();
             $state.go('app.editProfile');
-            $scope.transitionAnimation('left',500);
           },function(data){
             $scope.hideLoader();
             if(data){
@@ -335,7 +332,6 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           }
           $scope.registerNotificaton();
           $scope.hideLoader();
-          $scope.transitionAnimation('left',900);
         },function(data){
           $scope.hideLoader();
           if(data && data.error.statusCode == 422){
@@ -356,10 +352,8 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
   else if(localStorage.getItem('questionStatus') == "underObeservation"){
     $stateParams.id = localStorage.getItem('questionId');
     $state.go('app.singlequestion',$stateParams);
-    $scope.transitionAnimation('left',180);
   }else{
-    $state.go('app.dashboard');
-    $scope.transitionAnimation('left',180);
+    $state.go('app.profile');
   }
 }]);
 

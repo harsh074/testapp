@@ -20,7 +20,6 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
   }
   $scope.askQuestion = function(){
   	$state.go('app.askQuestion');
-		$scope.transitionAnimation('left',500);
   }
 
 	if($scope.loginType == 'user'){
