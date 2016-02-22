@@ -130,6 +130,13 @@ module.exports = [
         "clobbers": [
             "window.plugins.launchmyapp"
         ]
+    },
+    {
+        "file": "plugins/com.telerik.plugins.nativepagetransitions/www/NativePageTransitions.js",
+        "id": "com.telerik.plugins.nativepagetransitions.NativePageTransitions",
+        "clobbers": [
+            "window.plugins.nativepagetransitions"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -150,7 +157,8 @@ module.exports.metadata =
     "org.apache.cordova.statusbar": "0.1.10",
     "phonegap-plugin-mobile-accessibility": "1.0.3-dev",
     "nl.x-services.plugins.googleplus": "1.0.0",
-    "cordova-plugin-customurlscheme": "4.1.3"
+    "cordova-plugin-customurlscheme": "4.1.3",
+    "com.telerik.plugins.nativepagetransitions": "0.6.2"
 }
 // BOTTOM OF METADATA
 });

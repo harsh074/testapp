@@ -4,7 +4,7 @@ askmonkApp.controller('directQuestionCtrl', ['$scope','utility','$state','$state
 	$scope.search = {"searchInput":""};
   // $scope.loginType = CONSTANT.loginType;
   $scope.showClear = false;
-  $scope.$on('$ionicView.enter', function(){
+  $scope.$on('$ionicView.beforeEnter', function(){
     $scope.showLoader();
   });
   var indexGetQuestion = 0;

@@ -181,14 +181,8 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     }
   };
 
-  $scope.transitionAnimation = function(direction,state,stateParams){
+  $scope.transitionAnimation = function(value,timer){
     console.log(value,timer);
-    $ionicNativeTransitions.stateGo(state, {id:stateParams}, {
-      "type": "slide",
-      "direction": direction,
-      "duration": 100,
-      "androiddelay":-1
-    });
   };
 
   $scope.hamburgerBtnEvent = function(){
@@ -199,11 +193,6 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
         //   $state.go('app.dashboard');
         // }
       }, 300);
-      if($state.current.name == 'app.yprofile' || $state.current.name == 'app.askQuestion' || $state.current.name == 'app.singlequestion'){
-        // $scope.transitionAnimation('right',900);
-      }else{
-        // $scope.transitionAnimation('right',650);
-      }
     }else{
       $ionicSideMenuDelegate.toggleLeft();
     }

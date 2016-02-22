@@ -10,12 +10,9 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', 
     $stateParams.id = localStorage.getItem('questionId');
     $state.go('app.singlequestion',$stateParams);
   }else{
-    // console.log("dashboard");
-    $state.go('app.dashboard');
+    $state.go('app.profile');
   }
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
@@ -38,16 +35,7 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', 
 
     CONSTANT.isDevice = ionic.Platform.device().available;
     // ionic.Platform.isFullScreen = false;
-    // ionic.Platform.showStatusBar(true);
-    // then override any default you want
-    if(CONSTANT.isDevice){
-      window.plugins.nativepagetransitions.globalOptions.duration = 100;
-      window.plugins.nativepagetransitions.globalOptions.androiddelay = 0;
-      // window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 4;
-      // these are used for slide left/right only currently
-      window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 0;
-      window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 0;
-    }
+    
   });
   
   if(CONSTANT.PRODUCTION_MODE) {
@@ -60,9 +48,17 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', 
   }
 }]);
 
-askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider', function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
+askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider','$ionicNativeTransitionsProvider','$logProvider', function($stateProvider, $urlRouterProvider,$ionicConfigProvider,$ionicNativeTransitionsProvider,$logProvider) {
   $ionicConfigProvider.views.transition('none');
   $ionicConfigProvider.views.swipeBackEnabled(false);
+  $logProvider.debugEnabled(false);
+
+  $ionicNativeTransitionsProvider.setDefaultOptions({
+    duration: 150,
+    androiddelay: -1,
+    triggerTransitionEvent: '$ionicView.afterEnter',
+    backInOppositeDirection: true
+  });
 
   $stateProvider
 

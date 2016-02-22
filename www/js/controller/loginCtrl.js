@@ -129,12 +129,12 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         $scope.setAuth(true);
         localStorage.setItem('loginType',"user");
         CONSTANT.loginType = "user";
-        $state.go('app.profile');
         $scope.hideLoader();
         if($scope.userLoginModal && $scope.userLoginModal.isShown()){
           $scope.userLoginModal.remove();
         }
         $scope.registerNotificaton();
+        $state.go('app.profile');
         $scope.transitionAnimation('left',1500);
       },function(data){
         $scope.hideLoader();
@@ -155,7 +155,6 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       utility.monkLogin($scope.argsMonk)
       .then(function(data){
         $scope.setAuth(true);
-        $state.go('app.profile');
         localStorage.setItem('loginType',"monk");
         CONSTANT.loginType = "monk";
         $scope.hideLoader();
@@ -163,6 +162,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           $scope.monkLoginModal.remove();
         }
         $scope.registerNotificaton();
+        $state.go('app.profile');
         $scope.transitionAnimation('left',1400);
       },function(data){
         $scope.hideLoader();
@@ -214,12 +214,12 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
             $scope.setAuth(true);
             localStorage.setItem('loginType',"user");
             CONSTANT.loginType = "user";
-            $state.go('app.editProfile');
             $scope.hideLoader();
             if($scope.userLoginModal && $scope.userLoginModal.isShown()){
               $scope.userLoginModal.remove();
             }
             $scope.registerNotificaton();
+            $state.go('app.editProfile');
             $scope.transitionAnimation('left',500);
           },function(data){
             $scope.hideLoader();
@@ -320,6 +320,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           localStorage.setItem('userId',data.userId);
           CONSTANT.loginType = "user";
           if(data.firstTimeLogin){
+            localStorage.setItem('firstTimeUser',true);
             localStorage.setItem("name",obj.givenName);
             localStorage.setItem("email",obj.email);
             $rootScope.profileData = angular.copy(obj);

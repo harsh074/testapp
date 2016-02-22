@@ -10335,34 +10335,35 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
 .user .bar .title {
   left: 54px !important; }
 
-.menu {
-  border: none; }
-  .menu .item-content {
-    padding: 0px 0px 0px 15px; }
-  .menu span {
+.menuItem {
+  border: none;
+  padding: 0px 0px 0px 15px; }
+  .menuItem .item-content {
+    padding: 0; }
+  .menuItem span {
     font-size: 15px; }
-    .menu span i {
+    .menuItem span i {
       font-size: 25px;
       padding-right: 25px;
       padding-left: 13px;
       vertical-align: middle; }
-  .menu .menuList {
+  .menuItem .menuList {
     padding: 20px 20px 20px 2px;
     display: inline-block;
     border-bottom: 2px solid rgba(220, 220, 220, 0.5);
     width: 100%;
     font-size: 14px; }
-  .menu.profile span i {
+  .menuItem.profile span i {
     color: #F10100; }
-  .menu.dashboard span i {
+  .menuItem.dashboard span i {
     color: #F6D669; }
-  .menu.pament span i {
+  .menuItem.pament span i {
     color: #DD7B60; }
-  .menu.wallet span i {
+  .menuItem.wallet span i {
     color: #30B195;
     position: relative;
     padding-right: 50px; }
-    .menu.wallet span i:before {
+    .menuItem.wallet span i:before {
       content: '';
       background-image: url("../img/wallet-sidemenu.png");
       width: 20px;
@@ -10373,11 +10374,11 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       left: 13px;
       background-repeat: no-repeat;
       background-position: center; }
-  .menu.yprofile span i {
+  .menuItem.yprofile span i {
     color: #67D5E4;
     position: relative;
     padding-right: 50px; }
-    .menu.yprofile span i:before {
+    .menuItem.yprofile span i:before {
       content: '';
       background-image: url("../img/monks.png");
       width: 22px;
@@ -10388,11 +10389,11 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       left: 13px;
       background-repeat: no-repeat;
       background-position: center; }
-  .menu.setting span i {
+  .menuItem.setting span i {
     color: #9389FF; }
-  .menu.horoscope span i {
+  .menuItem.horoscope span i {
     color: #FCB040; }
-    .menu.horoscope span i:before {
+    .menuItem.horoscope span i:before {
       filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
       -webkit-transform: rotate(270deg);
       -ms-transform: rotate(270deg);

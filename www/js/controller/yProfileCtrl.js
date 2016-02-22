@@ -1,7 +1,7 @@
 askmonkApp.controller('yProfileCtrl', ['$scope','$state','$stateParams','utility','$timeout','CONSTANT','$ionicPopup', function($scope,$state,$stateParams,utility,$timeout,CONSTANT,$ionicPopup){
 	if($stateParams.id){
 
-		$scope.$on('$ionicView.enter', function(){
+		$scope.$on('$ionicView.beforeEnter', function(){
     	$scope.showLoader();
   	});
   	

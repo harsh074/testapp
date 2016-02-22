@@ -1,8 +1,5 @@
 askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScrollDelegate','$timeout','CONSTANT','$ionicPopup','$ionicModal', function($scope, $state,utility,$ionicScrollDelegate,$timeout,CONSTANT,$ionicPopup,$ionicModal){
 
-	$scope.$on('$ionicView.enter', function(){
-    // $scope.showLoader();
-  });
   var element, otherQuestionMargin;
   window.addEventListener('native.keyboardshow', keyboardHandler);
   window.addEventListener('native.keyboardhide', keyboardHandler);

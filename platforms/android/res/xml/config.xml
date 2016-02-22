@@ -93,4 +93,8 @@
     <preference name="Fullscreen" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <icon density="xhdpi" src="resources\android\icon\drawable-xhdpi-icon.png" />
+    <feature name="NativePageTransitions">
+        <param name="android-package" value="com.telerik.plugins.nativepagetransitions.NativePageTransitions" />
+        <param name="onload" value="true" />
+    </feature>
 </widget>
