@@ -194,13 +194,26 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'url':"/api/questions/broadcastQuestions/"+nextIndex
       });
     },
+    getFullPackages:function(){
+      return this.request({
+        'method':"GET",
+        'url':"/api/questions/fullPackages"
+      });
+    },
+    postQuestionPackages:function(args){
+      return this.request({
+        'method':"POST",
+        'url':"/api/questions/askFullAnalysis",
+        'data':args
+      });
+    },
 
     notification:function(args){
       return this.request({
         "method":"POST",
         'url':"/api/notifications/registerDevice",
         'data':args
-      })
+      });
     },
 
 

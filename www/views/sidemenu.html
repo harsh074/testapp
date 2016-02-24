@@ -45,7 +45,11 @@
             <span><i class="ion-yogi-profile"></i></span>
             <span class="menuList">Astrologers</span>
           </ion-item>
-           <ion-item menu-close ui-sref="app.horoscope" class="menuItem horoscope" ng-if="loginType=='user'">
+          <ion-item menu-close ui-sref="app.packages" class="menuItem" ng-if="loginType=='user'">
+            <span><i class="ion-briefcase"></i></span>
+            <span class="menuList">Packages</span>
+          </ion-item>
+          <ion-item menu-close ui-sref="app.horoscope" class="menuItem horoscope" ng-if="loginType=='user'">
             <span><i class="ion-star"></i></span>
             <span class="menuList">Daily Horoscope</span>
           </ion-item>

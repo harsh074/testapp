@@ -1,10 +1,5 @@
 askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootScope','utility','$timeout','getMoonSign', function($scope,$state,CONSTANT,$rootScope,utility,$timeout,getMoonSign){
   if($scope.authenticated){
-
-    $scope.$on('$ionicView.enter', function(){
-      // $scope.showLoader();
-    });
-
     $scope.loginType = CONSTANT.loginType;
 
     if($scope.loginType == 'user'){
@@ -144,7 +139,6 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
             if(!$scope.getUserCount.emailVerified){
               $scope.showMessage("Email Sent. Please Verify!");
             }
-            $scope.transitionAnimation('left',500);
           },function(data){
             $scope.hideLoader();
             if(data && data.error.statusCode == 422){
@@ -170,7 +164,6 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
             localStorage.setItem("profile",JSON.stringify(data));
             $scope.$emit("updateEditProfileFirstUser");
             $state.go('app.profile');
-            $scope.transitionAnimation('left',500);
           },function(data){
             $scope.hideLoader();
             if(data && data.error.statusCode == 422){

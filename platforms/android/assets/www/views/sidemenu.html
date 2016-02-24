@@ -28,36 +28,40 @@
       </div>
       <ion-content>
         <ion-list>
-          <ion-item menu-close ui-sref="app.profile" class="menu profile">
+          <ion-item menu-close ui-sref="app.profile" class="menuItem profile">
             <span><i class="ion-android-person"></i></span>
             <span class="menuList" ng-if="loginType=='monk'">Profile</span>
             <span class="menuList" ng-if="loginType=='user'">Home</span>
           </ion-item>
-          <ion-item menu-close ui-sref="app.openQuestion" class="menu" ng-if="loginType=='monk'">
+          <ion-item menu-close ui-sref="app.openQuestion" class="menuItem" ng-if="loginType=='monk'">
             <span><i class="ion-android-open"></i></span>
             <span class="menuList">Open Questions</span>
           </ion-item>
-          <ion-item menu-close ui-sref="app.dashboard" class="menu dashboard">
+          <ion-item menu-close ui-sref="app.dashboard" class="menuItem dashboard">
             <span><i class="ion-home"></i></span>
             <span class="menuList">Dashboard</span>
           </ion-item>
-          <ion-item menu-close ui-sref="app.yprofiles" class="menu yprofile" ng-if="loginType=='user'">
+          <ion-item menu-close ui-sref="app.yprofiles" class="menuItem yprofile" ng-if="loginType=='user'">
             <span><i class="ion-yogi-profile"></i></span>
             <span class="menuList">Astrologers</span>
           </ion-item>
-           <ion-item menu-close ui-sref="app.horoscope" class="menu horoscope" ng-if="loginType=='user'">
+          <ion-item menu-close ui-sref="app.packages" class="menuItem" ng-if="loginType=='user'">
+            <span><i class="ion-briefcase"></i></span>
+            <span class="menuList">Packages</span>
+          </ion-item>
+          <ion-item menu-close ui-sref="app.horoscope" class="menuItem horoscope" ng-if="loginType=='user'">
             <span><i class="ion-star"></i></span>
             <span class="menuList">Daily Horoscope</span>
           </ion-item>
-          <ion-item menu-close ui-sref="app.directQuestion" class="menu yprofile" ng-if="loginType=='monk'">
+          <ion-item menu-close ui-sref="app.directQuestion" class="menuItem yprofile" ng-if="loginType=='monk'">
             <span><i class="ion-yogi-profile"></i></span>
             <span class="menuList">Direct Questions</span>
           </ion-item>
-          <ion-item menu-close ui-sref="app.wallet" class="menu wallet">
+          <ion-item menu-close ui-sref="app.wallet" class="menuItem wallet">
             <span><i class="ion-wallet"></i></span>
             <span class="menuList">Wallet</span>
           </ion-item>
-          <ion-item menu-close ui-sref="app.setting" class="menu setting">
+          <ion-item menu-close ui-sref="app.setting" class="menuItem setting">
             <span><i class="ion-android-options"></i></span>
             <span class="menuList">Settings</span>
           </ion-item>

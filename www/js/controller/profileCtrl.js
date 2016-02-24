@@ -159,7 +159,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     .then(function(data){
       $scope.hideLoader();
       $scope.broadcastQuestions = data;      
-      console.log(data);
+      // console.log(data);
     },function(data){
       $scope.hideLoader();
       if(data && data.error.statusCode == 422){

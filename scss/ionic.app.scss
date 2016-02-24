@@ -314,10 +314,30 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     display: block;
 	}
 	.socialLogin{
-    text-align: center;
-    padding-top: 10px;
+    // text-align: center;
     &.googleLoginBtn{
-    	padding-top: 10px;
+    	width:240px;
+    	height:45px;
+    	background-color:#F62B00;
+    	margin:15px auto 0;
+    	color:#fff;
+    	border-radius: 5px;
+    	i{
+	    	padding: 6px 5px 2px 9px;;
+  			border-right: 1px solid #DC2700;
+    		float: left;
+		    font-size: 36px;
+		    vertical-align: middle;
+		    display: inline-block;
+    	}
+    	p{
+    		display: inline-block;
+		    vertical-align: sub;
+		    text-align: center;
+		    margin: 0;
+		    width: 192px;
+        line-height: 45px;
+    	}
     }
     img{
     	width: 75%;
@@ -536,10 +556,10 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     }
 	}
 	.yprofile{
-		height: 150px;
+		height: 135px;
 		background-color:$top-portion-color;
 		.pofilePic{
-			padding: 17px 18px 0px;
+			padding: 13px 18px 0px;
 			color: #fff;
 			position: relative;
 			.avatar{
@@ -573,7 +593,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
         font-size: 15px;
         display: block;
         width: 100%;
-        padding:3px 13px;
+        padding:2px 13px;
         border:1px solid #fff;
 		    .ion-edit{
 		    	color: #000;
@@ -617,7 +637,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			}
 		}
 		.subHeaderBottomContent{
-			padding-top: 15px;
+			padding-top: 10px;
 			.avaliableStatus{
 				display:inline-block;
 		    width: 10px;
@@ -644,6 +664,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			.yRating{
 		  	float: right;
     		padding-right: 18px;
+    		margin-top:-1px;
 				ul.rating li {
 				  display: inline;
 				  border: 0px;
@@ -951,13 +972,16 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 					white-space: nowrap;
 					span{color: $red;}
 				}
-				.moneyType{
+				.moneyType,.moneyTypeUser{
 			    font-size: 14px;
 			    white-space: nowrap;
 			    color:$top-portion-color;
 	        display: inline-block;
     			margin-bottom: 15px;
     			line-height: 30px;
+				}
+				.moneyTypeUser{
+					display:block;
 				}
 				.btnUserDetails{
 			    float: right;
@@ -1226,6 +1250,58 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			}
 		}
 	}
+	.fullPackages{
+    top: 106px;
+    z-index: 1;
+    padding: 0 13px;
+    background-color:#eee;
+		.allTile{
+			display: block;
+			margin-bottom:10px;
+			.tile{
+		    display: inline-block;
+		    width: 100%;
+	  		margin-top: 8px;
+		    text-align: left;
+		    padding: 15px 10px;
+		    background-color:#ffffff;
+		    color: white;
+  	    border-radius: 5px;
+		    box-shadow: 1px 1px 1px rgb(216, 216, 216);
+		    border: 1px solid rgb(202, 202, 202);
+				&:nth-child(even) {
+			    float: right;
+				}
+				&:nth-child(n+3){
+					margin-top:10px;
+				}
+		    .name{
+		    	.packName{
+		    		font-size: 17px;
+	    			margin-bottom: 5px;
+	    			letter-spacing: 1px;
+	    			display:inline-block;
+  			    font-weight: bold;
+  			    color:$background-color;
+		    	}
+		    	.packRate{
+    		    display: inline-block;
+    				float: right;
+    				font-size: 17px;
+    				color:$top-portion-color;
+		    	}
+		    }
+		    .describe{
+		    	font-size: 14px;
+					color: #616161;
+					p{
+			    	padding-top: 10px;
+    				margin-bottom: 0;
+					}
+		    }
+			}
+		}
+	}
 	.horoscope{
     top: 106px;
     z-index: 1;
@@ -1310,9 +1386,12 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	}
 }
 .bar-assertive-900{
-	box-shadow: 1px 1px rgba(0, 0, 0, 0.15);
+	// box-shadow: 1px 1px rgba(0, 0, 0, 0.15);
 	background-color: $background-color;
 	height: 47px;
+	-webkit-perspective: 500px;
+  perspective: 500px;
+  background-image:none;
 	.customMenuBtn{
     // display: none;
     position: relative;
@@ -1487,9 +1566,8 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 }
 .menuItem{
 	border:none;
-	padding:0px 0px 0px 15px;
 	.item-content{
-		padding:0;
+		padding:0px 0px 0px 15px;
 	}
 	span{
 		font-size: 15px;
@@ -1566,19 +1644,19 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 .profileData{
 	display:inline-block;
 	padding-top: 15px;
-	top:195px;
+	top:180px;
 	z-index: 12 !important;
 	&.tileUserBroadcast{
 		// background-color:#eee;
 		.tileBroadcast{
 			margin: -18px -5px;
 			.allQuestions{
-				padding: 13px 18px;
+				padding: 12px 18px;
     		border-bottom: 1px solid #ddd;
     		.question{
 			    position: relative;
 			    padding: 0;
-			    font-size:18px;
+			    font-size:17px;
 			    font-weight: 700;
 			    overflow: hidden;
 			    text-overflow: ellipsis;
@@ -1630,11 +1708,12 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     			.typeQuestion{
 				    display: inline-block;
 				    float: right;
-				    background-color: $background-color;
-				    font-size: 12px;
-				    padding: 2px 5px;
+				    background-color: $top-portion-color;
+				    font-size: 11px;
+				    padding: 1px 5px;
 				    border-radius: 5px;
 				    color: #fff;
+				    text-transform: capitalize;
     			}
     		}
     		.answer{
@@ -1647,7 +1726,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 				    -webkit-line-clamp: 2;
 				    -webkit-box-orient: vertical;
 				    // color: $top-portion-color;
-				    font-size: 16px;
+				    font-size: 15px;
 				    margin-bottom: 0;
 				    line-height:24px;
     			}

@@ -43,7 +43,7 @@
 						</div>
 						<div class="questionFound">
 							<ion-list>
-				        <div ng-repeat="group in question.askedQuestion | filter:search.searchInput" class="questions" ng-click="goToQuestion(group.id)" ng-if="(group.status=='asked' || group.status=='direct')">
+				        <div ng-repeat="group in question.askedQuestion | filter:search.searchInput" class="questions" ng-click="goToQuestion(group.id)" ng-if="(group.status=='asked' || group.status=='direct'||group.status=='fullAnalysis')">
 				          <div class="question">{{group.question}}</div>
 			          	<div class="answer">
 			          		<p class="showAnswer">{{group.answer ? group.answer: "Experts on it! Will be answered soon."}}</p>

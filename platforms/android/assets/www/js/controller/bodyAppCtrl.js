@@ -25,7 +25,6 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
   
   $scope.goToWallet = function(){
     $state.go("app.wallet");
-    $scope.transitionAnimation('left',500);
   };
   if(CONSTANT.loginType == 'monk'){
     $scope.isAvailable={};
@@ -64,14 +63,14 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
       message: message,
       duration: "long",
       position: "bottom",
-      addPixelsY: -20  // added a negative value to move it up a bit (default 0)
+      addPixelsY: -20
     },
     function(){
       console.log('sucess');
-    }, // optional
+    },
     function(){
       console.log('error');
-    }); // optional
+    });
   }
 
   function onDeviceReady() {
@@ -96,7 +95,6 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     if(window.screen && window.screen.lockOrientation){
       window.screen.lockOrientation('portrait');
     }
-
   }
   
   $scope.registerNotificaton = function(){
@@ -182,27 +180,8 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
   };
 
   $scope.transitionAnimation = function(value,timer){
-    // $timeout(function(){
-      // console.log(timer);
-      /*window.plugins.nativepagetransitions.slide(
-        {"direction":value,
-        "androiddelay":timer},
-        function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-        function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-      );*/
     console.log(value,timer);
-    // }, timer?timer:500);
   };
-
-  $scope.transitionAnimationUp = function(timer){
-    $timeout(function(){
-      window.plugins.nativepagetransitions.slide(
-        {"direction":"up"},
-        function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-        function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-      );
-    }, timer?timer:500);
-  }
 
   $scope.hamburgerBtnEvent = function(){
     if($state.current.name == 'app.editProfile' || $state.current.name == 'app.askQuestion' || $state.current.name == 'app.yprofile' || $state.current.name == 'app.singlequestion'||$state.current.name == 'app.broadcastquestion' ){
@@ -212,11 +191,6 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
         //   $state.go('app.dashboard');
         // }
       }, 300);
-      if($state.current.name == 'app.yprofile' || $state.current.name == 'app.askQuestion' || $state.current.name == 'app.singlequestion'){
-        $scope.transitionAnimation('right',900);
-      }else{
-        $scope.transitionAnimation('right',650);
-      }
     }else{
       $ionicSideMenuDelegate.toggleLeft();
     }
@@ -232,19 +206,6 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
       $scope.showArrow = false;
     }
   });
-  /*$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-    // console.log(JSON.stringify(toState),JSON.stringify(fromState));
-    var androidDelayValue = 500;
-    if(toState.name == "app.profile" && fromState.name == "login"){
-      androidDelayValue = 1300;
-    }
-    window.plugins.nativepagetransitions.slide(
-      {"direction":"left",
-      "androiddelay":androidDelayValue}, //
-      function (msg) {console.log("success: " + msg)},
-      function (msg) {alert("error: " + msg)}
-    );
-  });*/
 
   CONSTANT.loginType = localStorage.getItem('loginType');
 }]);

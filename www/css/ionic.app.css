@@ -9368,15 +9368,31 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     white-space: nowrap;
     text-align: center;
     display: block; }
-  .loginPages .socialLogin {
-    text-align: center;
-    padding-top: 10px; }
-    .loginPages .socialLogin.googleLoginBtn {
-      padding-top: 10px; }
-    .loginPages .socialLogin img {
-      width: 75%;
-      margin-top: 15px;
-      height: 45px; }
+  .loginPages .socialLogin.googleLoginBtn {
+    width: 240px;
+    height: 45px;
+    background-color: #F62B00;
+    margin: 15px auto 0;
+    color: #fff;
+    border-radius: 5px; }
+    .loginPages .socialLogin.googleLoginBtn i {
+      padding: 6px 5px 2px 9px;
+      border-right: 1px solid #DC2700;
+      float: left;
+      font-size: 36px;
+      vertical-align: middle;
+      display: inline-block; }
+    .loginPages .socialLogin.googleLoginBtn p {
+      display: inline-block;
+      vertical-align: sub;
+      text-align: center;
+      margin: 0;
+      width: 192px;
+      line-height: 45px; }
+  .loginPages .socialLogin img {
+    width: 75%;
+    margin-top: 15px;
+    height: 45px; }
 
 .item-md-label input {
   color: #fff;
@@ -9605,10 +9621,10 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         color: #fff; }
 
 .home-view .yprofile {
-  height: 150px;
+  height: 135px;
   background-color: #2B5D80; }
   .home-view .yprofile .pofilePic {
-    padding: 17px 18px 0px;
+    padding: 13px 18px 0px;
     color: #fff;
     position: relative; }
     .home-view .yprofile .pofilePic .avatar {
@@ -9638,7 +9654,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       font-size: 15px;
       display: block;
       width: 100%;
-      padding: 3px 13px;
+      padding: 2px 13px;
       border: 1px solid #fff; }
       .home-view .yprofile .yAnswerStatus .profileEditBtn .ion-edit {
         color: #000;
@@ -9669,7 +9685,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
           font-size: 13px;
           font-weight: normal; }
   .home-view .yprofile .subHeaderBottomContent {
-    padding-top: 15px; }
+    padding-top: 10px; }
     .home-view .yprofile .subHeaderBottomContent .avaliableStatus {
       display: inline-block;
       width: 10px;
@@ -9692,7 +9708,8 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       font-weight: 600; }
     .home-view .yprofile .subHeaderBottomContent .yRating {
       float: right;
-      padding-right: 18px; }
+      padding-right: 18px;
+      margin-top: -1px; }
       .home-view .yprofile .subHeaderBottomContent .yRating ul.rating li {
         display: inline;
         border: 0px;
@@ -9919,13 +9936,15 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       white-space: nowrap; }
       .home-view .singleQuestion .questionData .subBottom .tagName span {
         color: #CC333C; }
-    .home-view .singleQuestion .questionData .subBottom .moneyType {
+    .home-view .singleQuestion .questionData .subBottom .moneyType, .home-view .singleQuestion .questionData .subBottom .moneyTypeUser {
       font-size: 14px;
       white-space: nowrap;
       color: #2B5D80;
       display: inline-block;
       margin-bottom: 15px;
       line-height: 30px; }
+    .home-view .singleQuestion .questionData .subBottom .moneyTypeUser {
+      display: block; }
     .home-view .singleQuestion .questionData .subBottom .btnUserDetails {
       float: right;
       margin-top: 0px; }
@@ -10122,6 +10141,48 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
             color: #D0D0D0;
             font-size: 12px; }
 
+.home-view .fullPackages {
+  top: 106px;
+  z-index: 1;
+  padding: 0 13px;
+  background-color: #eee; }
+  .home-view .fullPackages .allTile {
+    display: block;
+    margin-bottom: 10px; }
+    .home-view .fullPackages .allTile .tile {
+      display: inline-block;
+      width: 100%;
+      margin-top: 8px;
+      text-align: left;
+      padding: 15px 10px;
+      background-color: #ffffff;
+      color: white;
+      border-radius: 5px;
+      box-shadow: 1px 1px 1px #d8d8d8;
+      border: 1px solid #cacaca; }
+      .home-view .fullPackages .allTile .tile:nth-child(even) {
+        float: right; }
+      .home-view .fullPackages .allTile .tile:nth-child(n+3) {
+        margin-top: 10px; }
+      .home-view .fullPackages .allTile .tile .name .packName {
+        font-size: 17px;
+        margin-bottom: 5px;
+        letter-spacing: 1px;
+        display: inline-block;
+        font-weight: bold;
+        color: #00BCD2; }
+      .home-view .fullPackages .allTile .tile .name .packRate {
+        display: inline-block;
+        float: right;
+        font-size: 17px;
+        color: #2B5D80; }
+      .home-view .fullPackages .allTile .tile .describe {
+        font-size: 14px;
+        color: #616161; }
+        .home-view .fullPackages .allTile .tile .describe p {
+          padding-top: 10px;
+          margin-bottom: 0; }
+
 .home-view .horoscope {
   top: 106px;
   z-index: 1;
@@ -10188,9 +10249,11 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   padding: 0 12px; }
 
 .bar-assertive-900 {
-  box-shadow: 1px 1px rgba(0, 0, 0, 0.15);
   background-color: #00BCD2;
-  height: 47px; }
+  height: 47px;
+  -webkit-perspective: 500px;
+  perspective: 500px;
+  background-image: none; }
   .bar-assertive-900 .customMenuBtn {
     position: relative;
     overflow: hidden;
@@ -10336,10 +10399,9 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   left: 54px !important; }
 
 .menuItem {
-  border: none;
-  padding: 0px 0px 0px 15px; }
+  border: none; }
   .menuItem .item-content {
-    padding: 0; }
+    padding: 0px 0px 0px 15px; }
   .menuItem span {
     font-size: 15px; }
     .menuItem span i {
@@ -10402,17 +10464,17 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
 .profileData {
   display: inline-block;
   padding-top: 15px;
-  top: 195px;
+  top: 180px;
   z-index: 12 !important; }
   .profileData.tileUserBroadcast .tileBroadcast {
     margin: -18px -5px; }
     .profileData.tileUserBroadcast .tileBroadcast .allQuestions {
-      padding: 13px 18px;
+      padding: 12px 18px;
       border-bottom: 1px solid #ddd; }
       .profileData.tileUserBroadcast .tileBroadcast .allQuestions .question {
         position: relative;
         padding: 0;
-        font-size: 18px;
+        font-size: 17px;
         font-weight: 700;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -10457,11 +10519,12 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         .profileData.tileUserBroadcast .tileBroadcast .allQuestions .postedUserDetails .typeQuestion {
           display: inline-block;
           float: right;
-          background-color: #00BCD2;
-          font-size: 12px;
-          padding: 2px 5px;
+          background-color: #2B5D80;
+          font-size: 11px;
+          padding: 1px 5px;
           border-radius: 5px;
-          color: #fff; }
+          color: #fff;
+          text-transform: capitalize; }
       .profileData.tileUserBroadcast .tileBroadcast .allQuestions .answer {
         width: 100%;
         padding: 0; }
@@ -10471,7 +10534,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
-          font-size: 16px;
+          font-size: 15px;
           margin-bottom: 0;
           line-height: 24px; }
 

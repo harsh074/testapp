@@ -64,7 +64,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
 
   .state('login', {
     url: '/login',
-    cache: false,
+    // cache: false,
     templateUrl: "views/login.html",
     controller: 'loginCtrl'
   })
@@ -139,7 +139,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   })
   .state('app.setting',{
     url:"/setting",
-    cache: false,
+    // cache: false,
     views:{
       'menuContent':{
         templateUrl:"views/setting.html",
@@ -199,11 +199,21 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   })
   .state('app.horoscope',{
     url:"/dailyHoroscope",
-    cache: false,
+    // cache: false,
     views:{
       'menuContent':{
         templateUrl:"views/allHoroscope.html",
         controller:"horoscopeCtrl"
+      }
+    }
+  })
+  .state('app.packages',{
+    url:"/fullPackages",
+    cache: false,
+    views:{
+      'menuContent':{
+        templateUrl:"views/fullPackages.html",
+        controller:"fullPackagesCtrl"
       }
     }
   })

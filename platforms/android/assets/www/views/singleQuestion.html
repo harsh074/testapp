@@ -25,7 +25,7 @@
         <p class="answer" ng-if="loginType=='monk' && (question.status=='answered' || question.status=='rated')">{{question.answer}}</p>
         <p class="answer" ng-if="loginType=='monk' && question.status=='underObservation' && writtenAnswer">{{writtenAnswer}}</p>
         <p class="solutionHeading" ng-if="question.solution||writtenSolution">Remedy</p>
-        <p class="answer solutionText" ng-if="loginType=='user'">{{question.solution}}</p>
+        <p class="answer solutionText" ng-if="loginType=='user'&& (question.status=='answered' || question.status=='rated')">{{question.solution}}</p>
         <p class="answer solutionText" ng-if="loginType=='monk' && (question.status=='answered' || question.status=='rated')">{{question.solution}}</p>
       	<p class="answer solutionText" ng-if="loginType=='monk' && question.status=='underObservation' && writtenSolution">{{writtenSolution}}</p>
         <p class="yogiName" ng-if="question.monkName && loginType=='user' && (question.status=='answered' || question.status=='rated')">Answered by <span ng-click="showMonkPage()">{{question.monkName ? question.monkName: "Sunil"}}</span></p>
@@ -36,8 +36,8 @@
       <div class="subBottom" ng-if="loginType=='user'">
       	<p class="tagName">Tag : <span>{{question.questionTag}}</span></p>
       	<p class="questionTime" ng-if="question.status=='answered' || question.status=='rated'">Answered {{question.askedOn | timeago}}</p>
-      	<p class="questionTime" ng-if="question.status=='asked' || question.status=='direct'">Asked {{question.askedOn | timeago}}</p>
-        <p class="moneyType" ng-if="question.predictionDurationMonths">Prediction uptil {{question.predictionDurationMonths | timeLineFiter}}</p>
+      	<p class="questionTime" ng-if="question.status=='asked' || question.status=='direct' || question.status=='fullAnalysis'">Asked {{question.askedOn | timeago}}</p>
+        <p class="moneyTypeUser" ng-if="question.predictionDurationMonths && question.status!='fullAnalysis'">Prediction uptil {{question.predictionDurationMonths | timeLineFiter}}</p>
       	<p class="ratingQuestion" ng-if="question.status=='answered' || question.status=='rated'">How Satisfied are you ?</p>
       	<div class="answerRating" ng-if="question.status=='answered'">
           <rating ng-model="question.rating" max="5" ng-if="!ratingSubmitted"></rating>

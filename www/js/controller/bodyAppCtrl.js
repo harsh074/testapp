@@ -63,14 +63,14 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
       message: message,
       duration: "long",
       position: "bottom",
-      addPixelsY: -20  // added a negative value to move it up a bit (default 0)
+      addPixelsY: -20
     },
     function(){
       console.log('sucess');
-    }, // optional
+    },
     function(){
       console.log('error');
-    }); // optional
+    });
   }
 
   function onDeviceReady() {
@@ -95,7 +95,6 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     if(window.screen && window.screen.lockOrientation){
       window.screen.lockOrientation('portrait');
     }
-
   }
   
   $scope.registerNotificaton = function(){

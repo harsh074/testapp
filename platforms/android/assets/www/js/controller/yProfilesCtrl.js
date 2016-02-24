@@ -1,7 +1,7 @@
 askmonkApp.controller('yProfilesCtrl', ['$scope','$state','utility','$stateParams','CONSTANT','$timeout', function($scope,$state,utility,$stateParams,CONSTANT,$timeout){
 
   // $scope.floatingBtnAction = false;
-  $scope.$on('$ionicView.enter', function(){
+  $scope.$on('$ionicView.beforeEnter', function(){
     // $scope.floatingBtnAction = true;
     $scope.showLoader();
   });
@@ -36,12 +36,10 @@ askmonkApp.controller('yProfilesCtrl', ['$scope','$state','utility','$stateParam
   $scope.goToYogiProfile = function(id){
   	$stateParams.id = id;
   	$state.go('app.yprofile',$stateParams);
-    $scope.transitionAnimation('left',500);
   }
 
   $scope.askQuestion = function(){
   	$state.go('app.askQuestion');
-    $scope.transitionAnimation('left',180);
   }
 
   $scope.showFilter = function(){

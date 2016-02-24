@@ -79,7 +79,8 @@
 					<a ng-click="signUpTab()" class="registerWithUs" ng-if="!userForgetPasswordShow">Sign Up</a>
 					<a ng-click="resendValidationTab()" class="resendValidation" ng-if="!userForgetPasswordShow">Resend Validation Email</a>
 					<div class="socialLogin googleLoginBtn" ng-click="userGoogleLogin()" ng-if="!userForgetPasswordShow">
-						<img src="img/google-login-icon.png" />
+						<i class="icon ion-social-googleplus-outline"></i>
+						<p>Sign in with Google</p>
 					</div>
 				</form>
 				<form name="registerForm" class="form form-horizontal" ng-submit="userSignUp(registerForm)" novalidate autocomplete="off" ng-show="signUptab">
@@ -90,8 +91,9 @@
 					<p class="disclaimer">By clicking Sign up, you agree to Askmonk's <a class="" ng-click="openTnC()">Terms & Condition</a>.</p>
 					<button class="button button-login" type="submit">Sign Up</button>
 					<a ng-click="loginTab()" class="backTologin">Already have an account? Login</a>
-					<div class="socialLogin" ng-click="userGoogleLogin()">
-						<img src="img/google-login-icon.png" />
+					<div class="socialLogin googleLoginBtn" ng-click="userGoogleLogin()">
+						<i class="icon ion-social-googleplus-outline"></i>
+						<p>Sign up with Google</p>
 					</div>
 				</form>
 			</div>

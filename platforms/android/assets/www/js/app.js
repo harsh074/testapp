@@ -1,4 +1,4 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place','ionic-timepicker']);
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place','ionic-timepicker','ionic-native-transitions']);
 
 askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', function($ionicPlatform,$state,$stateParams,CONSTANT,$timeout){
   if(!localStorage.getItem('token')){
@@ -10,12 +10,9 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', 
     $stateParams.id = localStorage.getItem('questionId');
     $state.go('app.singlequestion',$stateParams);
   }else{
-    // console.log("dashboard");
-    $state.go('app.dashboard');
+    $state.go('app.profile');
   }
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
@@ -38,16 +35,7 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', 
 
     CONSTANT.isDevice = ionic.Platform.device().available;
     // ionic.Platform.isFullScreen = false;
-    // ionic.Platform.showStatusBar(true);
-    // then override any default you want
-    if(CONSTANT.isDevice){
-      window.plugins.nativepagetransitions.globalOptions.duration = 100;
-      window.plugins.nativepagetransitions.globalOptions.androiddelay = 0;
-      // window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 4;
-      // these are used for slide left/right only currently
-      window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 0;
-      window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 0;
-    }
+    
   });
   
   if(CONSTANT.PRODUCTION_MODE) {
@@ -60,15 +48,23 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', 
   }
 }]);
 
-askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider', function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
-  $ionicConfigProvider.views.transition('ios');
+askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider','$ionicNativeTransitionsProvider','$logProvider', function($stateProvider, $urlRouterProvider,$ionicConfigProvider,$ionicNativeTransitionsProvider,$logProvider) {
+  $ionicConfigProvider.views.transition('none');
   $ionicConfigProvider.views.swipeBackEnabled(false);
+  $logProvider.debugEnabled(false);
+
+  $ionicNativeTransitionsProvider.setDefaultOptions({
+    duration: 120,
+    androiddelay: -1,
+    triggerTransitionEvent: '$ionicView.afterEnter',
+    backInOppositeDirection: true
+  });
 
   $stateProvider
 
   .state('login', {
     url: '/login',
-    cache: false,
+    // cache: false,
     templateUrl: "views/login.html",
     controller: 'loginCtrl'
   })
@@ -121,7 +117,6 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
       }
     }
   })
-
   .state('app.openQuestion', {
     url: "/open-question",
     cache: false,
@@ -132,7 +127,6 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
       }
     }
   })
-
   .state('app.wallet',{
     url:"/wallet",
     cache: false,
@@ -145,7 +139,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   })
   .state('app.setting',{
     url:"/setting",
-    cache: false,
+    // cache: false,
     views:{
       'menuContent':{
         templateUrl:"views/setting.html",
@@ -205,11 +199,21 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   })
   .state('app.horoscope',{
     url:"/dailyHoroscope",
-    cache: false,
+    // cache: false,
     views:{
       'menuContent':{
         templateUrl:"views/allHoroscope.html",
         controller:"horoscopeCtrl"
+      }
+    }
+  })
+  .state('app.packages',{
+    url:"/fullPackages",
+    cache: false,
+    views:{
+      'menuContent':{
+        templateUrl:"views/fullPackages.html",
+        controller:"fullPackagesCtrl"
       }
     }
   })

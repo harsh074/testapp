@@ -1,8 +1,5 @@
 askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScrollDelegate','$timeout','CONSTANT','$ionicPopup','$ionicModal', function($scope, $state,utility,$ionicScrollDelegate,$timeout,CONSTANT,$ionicPopup,$ionicModal){
 
-	$scope.$on('$ionicView.enter', function(){
-    // $scope.showLoader();
-  });
   var element, otherQuestionMargin;
   window.addEventListener('native.keyboardshow', keyboardHandler);
   window.addEventListener('native.keyboardhide', keyboardHandler);
@@ -339,7 +336,6 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 						profileData.walletMoney = data1.walletMoney;
 						localStorage.profile = JSON.stringify(profileData);
 						$state.go('app.dashboard');
-						$scope.transitionAnimation('left',900);
 					},function(data1){
 						$scope.hideLoader();
 						if(data1 && data1.error.statusCode == 422){
@@ -375,7 +371,6 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 						profileData.walletMoney = data1.walletMoney;
 						localStorage.profile = JSON.stringify(profileData);
 						$state.go('app.dashboard');
-						$scope.transitionAnimation('left',900);
 					},function(data1){
 						$scope.hideLoader();
 						if(data1 && data1.error.statusCode == 422){

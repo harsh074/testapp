@@ -48,6 +48,10 @@
     <feature name="LaunchMyApp">
         <param name="android-package" value="nl.xservices.plugins.LaunchMyApp" />
     </feature>
+    <feature name="NativePageTransitions">
+        <param name="android-package" value="com.telerik.plugins.nativepagetransitions.NativePageTransitions" />
+        <param name="onload" value="true" />
+    </feature>
     <access origin="https://ssl.gstatic.com/accessibility/javascript/android/*" />
     <feature name="MobileAccessibility">
         <param name="android-package" value="com.phonegap.plugin.mobileaccessibility.MobileAccessibility" />
@@ -71,11 +75,11 @@
     <splash density="port-xxxhdpi" src="resources\android\splash\drawable-port-xxxhdpi-screen.png" />
     <name>Askmonk</name>
     <description>
-        An Ionic Framework and Cordova project.
-    </description>
+    An Ionic Framework and Cordova project.
+  </description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
-    </author>
+    Ionic Framework Team
+  </author>
     <content original-src="index.html" src="http://192.168.1.7:8100" />
     <access origin="*" />
     <preference name="StatusBarOverlaysWebView" value="true" />
@@ -93,8 +97,4 @@
     <preference name="Fullscreen" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <icon density="xhdpi" src="resources\android\icon\drawable-xhdpi-icon.png" />
-    <feature name="NativePageTransitions">
-        <param name="android-package" value="com.telerik.plugins.nativepagetransitions.NativePageTransitions" />
-        <param name="onload" value="true" />
-    </feature>
 </widget>

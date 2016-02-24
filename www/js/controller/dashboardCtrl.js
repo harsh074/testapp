@@ -63,7 +63,7 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
   $scope.questionSorted = function(data) {
     $scope.question = {"askedQuestion":[],"answeredQuestion":[],"ratedQuestion":[]};
     angular.forEach(data,function (value,key) {
-      if(value.status=='asked' || value.status=='direct'){
+      if(value.status=='asked' || value.status=='direct' || value.status=='fullAnalysis'){
         $scope.question.askedQuestion.push(value);
       }else if(value.status=='answered'){
         $scope.question.answeredQuestion.push(value);

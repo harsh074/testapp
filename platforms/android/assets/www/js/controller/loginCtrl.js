@@ -129,13 +129,12 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         $scope.setAuth(true);
         localStorage.setItem('loginType',"user");
         CONSTANT.loginType = "user";
-        $state.go('app.profile');
         $scope.hideLoader();
         if($scope.userLoginModal && $scope.userLoginModal.isShown()){
           $scope.userLoginModal.remove();
         }
         $scope.registerNotificaton();
-        $scope.transitionAnimation('left',1500);
+        $state.go('app.profile');
       },function(data){
         $scope.hideLoader();
         if(data){
@@ -155,7 +154,6 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       utility.monkLogin($scope.argsMonk)
       .then(function(data){
         $scope.setAuth(true);
-        $state.go('app.profile');
         localStorage.setItem('loginType',"monk");
         CONSTANT.loginType = "monk";
         $scope.hideLoader();
@@ -163,7 +161,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           $scope.monkLoginModal.remove();
         }
         $scope.registerNotificaton();
-        $scope.transitionAnimation('left',1400);
+        $state.go('app.profile');
       },function(data){
         $scope.hideLoader();
         if(data){
@@ -214,13 +212,12 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
             $scope.setAuth(true);
             localStorage.setItem('loginType',"user");
             CONSTANT.loginType = "user";
-            $state.go('app.editProfile');
             $scope.hideLoader();
             if($scope.userLoginModal && $scope.userLoginModal.isShown()){
               $scope.userLoginModal.remove();
             }
             $scope.registerNotificaton();
-            $scope.transitionAnimation('left',500);
+            $state.go('app.editProfile');
           },function(data){
             $scope.hideLoader();
             if(data){
@@ -320,6 +317,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           localStorage.setItem('userId',data.userId);
           CONSTANT.loginType = "user";
           if(data.firstTimeLogin){
+            localStorage.setItem('firstTimeUser',true);
             localStorage.setItem("name",obj.givenName);
             localStorage.setItem("email",obj.email);
             $rootScope.profileData = angular.copy(obj);
@@ -334,7 +332,6 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           }
           $scope.registerNotificaton();
           $scope.hideLoader();
-          $scope.transitionAnimation('left',900);
         },function(data){
           $scope.hideLoader();
           if(data && data.error.statusCode == 422){
@@ -355,10 +352,8 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
   else if(localStorage.getItem('questionStatus') == "underObeservation"){
     $stateParams.id = localStorage.getItem('questionId');
     $state.go('app.singlequestion',$stateParams);
-    $scope.transitionAnimation('left',180);
   }else{
-    $state.go('app.dashboard');
-    $scope.transitionAnimation('left',180);
+    $state.go('app.profile');
   }
 }]);
 
