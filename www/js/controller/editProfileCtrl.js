@@ -118,7 +118,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
     $scope.saveEditProfile = function(){
       $scope.showLoader();
       if($scope.loginType == 'user'){
-        if(!$scope.editProfileData.dob || !$scope.editProfileData.birthPlace || !$scope.editProfileData.birthTime || !$scope.editProfileData.gender || !$scope.editProfileData.mobile || !$scope.editProfileData.name || !$scope.editProfileData.maritalStatus || !$scope.editProfileData.profession || !$scope.editProfileData.qualification || !$scope.editProfileData.numberOfChildren){
+        if(!$scope.editProfileData.dob || !$scope.editProfileData.birthPlace || !$scope.editProfileData.birthTime || !$scope.editProfileData.gender || !$scope.editProfileData.mobile || !$scope.editProfileData.name || !$scope.editProfileData.maritalStatus || !$scope.editProfileData.profession || !$scope.editProfileData.qualification || !$scope.editProfileData.numberOfChildren || !$scope.editProfileData.address){
           $scope.hideLoader();
           $scope.showMessage("All fields are required");
           return;

@@ -10007,8 +10007,10 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
 .home-view .broadcastQuestion .middleSec .answer {
   text-align: justify; }
 
-.home-view .broadcastQuestion .subBottom .tagName span {
-  text-transform: capitalize; }
+.home-view .broadcastQuestion .subBottom {
+  padding-bottom: 15px; }
+  .home-view .broadcastQuestion .subBottom .tagName span {
+    text-transform: capitalize; }
 
 .home-view ion-content.row .scroll {
   width: 100%;
@@ -10513,6 +10515,8 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
             margin-bottom: 0px; }
           .profileData.tileUserBroadcast .tileBroadcast .allQuestions .postedUserDetails .postedInfo .postedUserInfo {
             font-size: 13px; }
+            .profileData.tileUserBroadcast .tileBroadcast .allQuestions .postedUserDetails .postedInfo .postedUserInfo span {
+              text-transform: capitalize; }
           .profileData.tileUserBroadcast .tileBroadcast .allQuestions .postedUserDetails .postedInfo .postedTimeInfo {
             color: #000;
             font-size: 12px; }

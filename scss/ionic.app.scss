@@ -1074,6 +1074,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
   		}
   	}
   	.subBottom{
+  		padding-bottom:15px;
   		.tagName{
   			span{
   				text-transform:capitalize;
@@ -1699,6 +1700,9 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     				}
     				.postedUserInfo{
     					font-size:13px;
+    					span{
+    						text-transform:capitalize;
+    					}
     				}
     				.postedTimeInfo{
     					color:#000;
