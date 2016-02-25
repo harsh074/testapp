@@ -100,15 +100,11 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
   }
 
   if($scope.loginType == "user"){
-    utility.getUserQuestions()
-    .then(function(data){
-      $scope.hideLoader();
-      if(data.length>0){
-        $scope.questionSorted(data);
-      }
+    if(sessionStorage.userQuestion){
+      $scope.questionSorted(JSON.parse(sessionStorage.userQuestion));
       utility.getUserCount()
       .then(function(data){
-        // var data = {makeFirstQuestionFree: false, makeFirstQuestionHalfRate: false, emailVerified: true};
+        $scope.hideLoader();
         $scope.getUserCount = data;
       },function(data){
         if(data && data.error.statusCode == 422){
@@ -116,17 +112,37 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
         }else{
           $scope.showMessage("Something went wrong. Please try again.");
         }
-        console.log(data);
+        // console.log(data);
       });
-    },function(data){
-      $scope.hideLoader();
-      if(data && data.error.statusCode == 422){
-        $scope.showMessage(data.error.message);
-      }else{
-        $scope.showMessage("Something went wrong. Please try again.");
-      }
-      console.log(data);
-    });
+    }else{
+      utility.getUserQuestions()
+      .then(function(data){
+        $scope.hideLoader();
+        if(data.length>0){
+          sessionStorage.setItem('userQuestion',JSON.stringify(data));
+          $scope.questionSorted(data);
+        }
+        utility.getUserCount()
+        .then(function(data){
+          $scope.getUserCount = data;
+        },function(data){
+          if(data && data.error.statusCode == 422){
+            $scope.showMessage(data.error.message);
+          }else{
+            $scope.showMessage("Something went wrong. Please try again.");
+          }
+          // console.log(data);
+        });
+      },function(data){
+        $scope.hideLoader();
+        if(data && data.error.statusCode == 422){
+          $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
+        }
+        // console.log(data);
+      });
+    }
   }else{
     utility.getMonkAnsweredQuestion(indexGetOtherQuestion)
     .then(function(data){
@@ -213,6 +229,7 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
         console.log(data);
         $scope.$broadcast('scroll.refreshComplete');
         if(data.length>0){
+          sessionStorage.setItem('userQuestion',JSON.stringify(data));
           $scope.questionSorted(data);
         }else{
           $scope.noQuestionFound = true

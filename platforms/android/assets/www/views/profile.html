@@ -73,6 +73,7 @@
 			</dl>
 		</div> -->
 		<div ng-if="loginType=='user'" class="tileBroadcast">
+			<ion-refresher on-refresh="doRefresh()" spinner="none" pulling-icon="ion-loop" refreshing-icon="ion-loop" refreshing-text="Loading..."></ion-refresher>
 			<ion-list>
         <div ng-repeat="group in broadcastQuestions" class="allQuestions" ng-click="goToQuestion(group.id)">
           <div class="question">{{group.question | capitalize}}</div>
@@ -80,7 +81,7 @@
           <div class="postedUserDetails">
         		<div class="nameIntials" ng-style="{background:color(group)}"><span>{{group.postedBy?group.postedBy.split('')[0]:'a'}}</span></div>
         		<div class="postedInfo">
-        			<p class="postedUserInfo">Posted by {{group.postedBy?group.postedBy:'askmonk' | capitalize}}</p>
+        			<p class="postedUserInfo">Posted by <span>{{group.postedBy?group.postedBy:'askmonk'}}</span></p>
         			<p class="postedTimeInfo">Posted {{group.postedOn | timeago}}</p>
         		</div>
         		<div class="typeQuestion">{{group.typeOfQuestion?group.typeOfQuestion:"astrology"}}</div>

@@ -14,7 +14,7 @@
       <ion-md-input placeholder="Mobile" hightlight-color="custom" type="number" ng-model="editProfileData.mobile" ng-if="loginType=='user'"></ion-md-input>
 
       <!-- <ion-md-input placeholder="Birth Place" hightlight-color="custom" type="text" ng-model="editProfileData.birthPlace" ng-if="loginType=='user'"></ion-md-input> -->
-      <label class="item item-input item-md-label" placeholder="Birth Place" hightlight-color="custom" type="text" ng-model="editProfileData.birthPlace" ng-if="loginType=='user'">
+      <label class="item item-input item-md-label" ng-if="loginType=='user'">
         <ion-google-place ng-model="editProfileData.birthPlace" current-location="false"></ion-google-place>
         <span class="input-label">Birth Place</span>
         <div class="highlight highlight-calm"></div>
@@ -27,9 +27,15 @@
       </label>
 
       <!-- <ion-md-input placeholder="Birth Time" hightlight-color="custom" type="time" ng-model="editProfileData.birthTime" ng-if="loginType=='user'"></ion-md-input> -->
-    <!--   <>
+      <!--<>
         <button class="button button-outline button-positive"> {{ timePickerObject12Hour.inputEpochTime | date: 'hh:mm a'}} </button>
       </ionic-timepicker> -->
+
+      <label class="item item-input item-md-label" ng-if="loginType=='user'">
+        <ion-google-place ng-model="editProfileData.address" current-location="true"></ion-google-place>
+        <span class="input-label">Address(City, state, Country)</span>
+        <div class="highlight highlight-calm"></div>
+      </label>
 
       <ion-md-input placeholder="Phone" hightlight-color="custom" type="number" ng-model="editProfileData.phone" ng-if="loginType=='monk'"></ion-md-input>
 

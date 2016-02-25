@@ -91,14 +91,14 @@ angular.module('ion-google-place', [])
                             var location = {
                                 formatted_address: 'getting current location...'
                             };
-                            ngModel.$setViewValue(location);
+                            ngModel.$setViewValue(location.formatted_address);
                             ngModel.$render();
                             el.element.css('display', 'none');
                             $ionicBackdrop.release();
                             getLocation()
                                 .then(reverseGeocoding)
                                 .then(function(location){
-                                    ngModel.$setViewValue(location);
+                                    ngModel.$setViewValue(location.formatted_address);
                                     element.attr('value', location.formatted_address);
                                     ngModel.$render();
                                     el.element.css('display', 'none');
@@ -114,7 +114,7 @@ angular.module('ion-google-place', [])
                                     var location = {
                                         formatted_address: 'Error in getting current location'
                                     };
-                                    ngModel.$setViewValue(location);
+                                    ngModel.$setViewValue(location.formatted_address);
                                     ngModel.$render();
                                     el.element.css('display', 'none');
                                     $ionicBackdrop.release();

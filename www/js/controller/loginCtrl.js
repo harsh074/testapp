@@ -126,6 +126,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       $scope.showLoader();
       utility.login($scope.args)
       .then(function(data){
+        $scope.args.password = "";
         $scope.setAuth(true);
         localStorage.setItem('loginType',"user");
         CONSTANT.loginType = "user";
@@ -133,8 +134,8 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         if($scope.userLoginModal && $scope.userLoginModal.isShown()){
           $scope.userLoginModal.remove();
         }
-        $scope.registerNotificaton();
         $state.go('app.profile');
+        $scope.registerNotificaton();
       },function(data){
         $scope.hideLoader();
         if(data){
@@ -153,6 +154,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       }
       utility.monkLogin($scope.argsMonk)
       .then(function(data){
+        $scope.argsMonk.password = "";
         $scope.setAuth(true);
         localStorage.setItem('loginType',"monk");
         CONSTANT.loginType = "monk";
@@ -160,8 +162,8 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         if($scope.monkLoginModal && $scope.monkLoginModal.isShown()){
           $scope.monkLoginModal.remove();
         }
-        $scope.registerNotificaton();
         $state.go('app.profile');
+        $scope.registerNotificaton();
       },function(data){
         $scope.hideLoader();
         if(data){

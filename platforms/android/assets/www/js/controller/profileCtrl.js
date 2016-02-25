@@ -155,20 +155,25 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   }
 
   $scope.getBroadcastQuestion = function(){
-    utility.getBroadcastQuestions(indexGetQuestion)
-    .then(function(data){
-      $scope.hideLoader();
-      $scope.broadcastQuestions = data;      
-      // console.log(data);
-    },function(data){
-      $scope.hideLoader();
-      if(data && data.error.statusCode == 422){
-        $scope.showMessage(data.error.message);
-      }else{
-        $scope.showMessage("Something went wrong. Please try again.");
-      }
-      console.log(data);
-    });
+    if(sessionStorage.broadcastquestion){
+      $scope.broadcastQuestions = JSON.parse(sessionStorage.broadcastquestion);
+    }else{
+      utility.getBroadcastQuestions(indexGetQuestion)
+      .then(function(data){
+        $scope.hideLoader();
+        $scope.broadcastQuestions = data;
+        sessionStorage.setItem('broadcastquestion',JSON.stringify(data));      
+        // console.log(data);
+      },function(data){
+        $scope.hideLoader();
+        if(data && data.error.statusCode == 422){
+          $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
+        }
+        console.log(data);
+      });
+    }
   }
 
   $scope.color = function (item) {
@@ -185,6 +190,28 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     // assign the color so it doesn't freak out
     item.color = color;
     return color;
+  }
+
+  $scope.doRefresh = function(){
+    indexGetQuestion = 0;
+    $scope.noMoreQuestion = false;
+    $scope.showLoader();
+
+    utility.getBroadcastQuestions(indexGetQuestion)
+    .then(function(data){
+      $scope.hideLoader();
+      $scope.broadcastQuestions = data;
+      sessionStorage.setItem('broadcastquestion',JSON.stringify(data));      
+      $scope.$broadcast('scroll.refreshComplete');
+    },function(data){
+      $scope.hideLoader();
+      if(data && data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
+      }
+      console.log(data);
+    });
   }
 
   // infinite scroll functon for asked question in monk dashboard.

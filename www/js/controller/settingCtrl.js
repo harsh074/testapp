@@ -193,6 +193,7 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
       $templateCache.remove(currentPageTemplate);
       $rootScope.profileData = null;
       localStorage.clear();
+      sessionStorage.clear();
       $scope.loginType = localStorage.getItem('loginType');
       delete $http.defaults.headers.common.Authorization;
       $scope.hideLoader();

@@ -6,5 +6,5 @@ askmonkApp.constant('CONSTANT', {
   isDevice:false,
   loginType:null,
   pushSenderID:"915609605128",
-  PRODUCTION_MODE:false
+  PRODUCTION_MODE:true
 });

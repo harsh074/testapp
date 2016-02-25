@@ -32,7 +32,6 @@ askmonkApp.controller('fullPackagesCtrl', ['$scope','utility','$state','$ionicPo
     // console.log(data);
   });
 
-
 	$scope.selectedPackage = function(pack){
 		console.log(pack);
 		$scope.args.question = pack.name;
@@ -41,7 +40,6 @@ askmonkApp.controller('fullPackagesCtrl', ['$scope','utility','$state','$ionicPo
 		$scope.args.durationMonths = pack.durationMonths;
 		$scope.postQuestion(pack);
 	}
-
 
 	$scope.money = {"customMoney":""};
 	$scope.options = function(){
@@ -115,28 +113,33 @@ askmonkApp.controller('fullPackagesCtrl', ['$scope','utility','$state','$ionicPo
 	}
 
 	$scope.postQuestion = function(pack){
-		console.log($scope.args);
-		$scope.showLoader();
-		utility.postQuestionPackages($scope.args)
-		.then(function(data){
-			console.log(data);
-			$state.go('app.dashboard');
-		},function(data){
-			$scope.hideLoader();
-			if(data.error.message.indexOf('Insufficient Funds') == 0){
-				console.log($scope.getUserCount);
-				$scope.showMessage(data.error.message);
-				if($scope.getUserCount && $scope.getUserCount.walletMoney){
-					$scope.money.customMoney = pack.amount - $scope.getUserCount.walletMoney;
-				}else{
-					$scope.money.customMoney = pack.amount;
-				}
-				$scope.openInsufficientPopup();
-			}else if(data && data.error.statusCode == 422){
-        $scope.showMessage(data.error.message);
-      }else{
-        $scope.showMessage("Something went wrong. Please try again.");
-      }
-		});
+		// console.log($scope.args);
+		if($scope.getUserCount.emailVerified){
+			$scope.showLoader();
+			utility.postQuestionPackages($scope.args)
+			.then(function(data){
+				console.log(data);
+				$state.go('app.dashboard');
+			},function(data){
+				$scope.hideLoader();
+				if(data.error.message.indexOf('Insufficient Funds') == 0){
+					console.log($scope.getUserCount);
+					$scope.showMessage(data.error.message);
+					if($scope.getUserCount && $scope.getUserCount.walletMoney){
+						$scope.money.customMoney = pack.amount - $scope.getUserCount.walletMoney;
+					}else{
+						$scope.money.customMoney = pack.amount;
+					}
+					$scope.openInsufficientPopup();
+				}else if(data && data.error.statusCode == 422){
+	        $scope.showMessage(data.error.message);
+	      }else{
+	        $scope.showMessage("Something went wrong. Please try again.");
+	      }
+			});
+		}else{
+    	$scope.showMessage("Please verify your email");
+    	return;
+    }
 	}
 }]);
