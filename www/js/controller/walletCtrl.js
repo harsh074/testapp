@@ -62,6 +62,7 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
 	 	var data = {
 	  	description: args.name,
 	    currency: 'INR',
+      image: CONSTANT.razorPayImage,
 	    key: CONSTANT.razorPayKey,
 	    amount: $scope.amount,
 	    name: 'Askmonk',

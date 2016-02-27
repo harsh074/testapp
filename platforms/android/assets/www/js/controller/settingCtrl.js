@@ -2,7 +2,7 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
 
   $scope.loginType = CONSTANT.loginType;
   $scope.aboutUs = function(){
-    $ionicModal.fromTemplateUrl('views/aboutUsModal.html', function (modal) {
+    $ionicModal.fromTemplateUrl('aboutUsModal.html', function (modal) {
       $scope.aboutUsModal = modal;
       $scope.aboutUsModal.show();
     }, {
@@ -12,13 +12,13 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
   }
 
   $scope.privacyPolicy = function(){
-    $ionicModal.fromTemplateUrl('views/privacyPolicyModal.html', function (modal) {
-      $scope.privacyPolicyModal = modal;
-      $scope.privacyPolicyModal.show();
-    }, {
-      scope: $scope,
-      animation: 'slide-in-right'
-    });
+    window.open('http://askmonk.in/privacy.html', '_system', 'location=yes'); 
+    return false;
+  }
+
+  $scope.termsCondition = function(){
+    window.open('http://askmonk.in/tandc.html', '_system', 'location=yes'); 
+    return false;
   }
 
   $scope.openBlog = function(){
@@ -75,7 +75,7 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
 
   $scope.showGuideScreens = function(){
     $scope.guideScreenImage = [1,2,3,4,5,6,7,8,9];
-    $ionicModal.fromTemplateUrl('views/guideScreenModal.html', function (modal) {
+    $ionicModal.fromTemplateUrl('guideScreenModal.html', function (modal) {
       $scope.guideScreenModal = modal;
       $scope.guideScreenModal.show();
     }, {
@@ -119,7 +119,7 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
   }
 
   $scope.changePassword = function(){
-    $ionicModal.fromTemplateUrl('views/changePasswordModal.html', function (modal) {
+    $ionicModal.fromTemplateUrl('changePasswordModal.html', function (modal) {
       $scope.changePasswordModal = modal;
       $scope.changePasswordModal.show();
     }, {
@@ -211,9 +211,6 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
   $scope.closeModal = function(){
     if($scope.aboutUsModal && $scope.aboutUsModal.isShown()){
       $scope.aboutUsModal.remove();
-    }
-    if($scope.privacyPolicyModal && $scope.privacyPolicyModal.isShown()){
-      $scope.privacyPolicyModal.remove();
     }
     if($scope.changePasswordModal && $scope.changePasswordModal.isShown()){
       $scope.changePasswordModal.remove();

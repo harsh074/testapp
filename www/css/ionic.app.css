@@ -10472,10 +10472,9 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     margin: -18px -5px; }
     .profileData.tileUserBroadcast .tileBroadcast .header {
       background-color: #F6F6F6;
-      padding: 16px 18px 12px;
-      font-size: 16px;
-      color: #656565;
-      font-weight: bold; }
+      padding: 15px 18px 11px;
+      font-size: 15px;
+      color: #656565; }
     .profileData.tileUserBroadcast .tileBroadcast .allQuestions {
       padding: 12px 18px;
       border-bottom: 1px solid #ddd; }
@@ -11441,13 +11440,18 @@ ion-side-menu .has-header {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 20;
+  z-index: 11;
   display: none; }
   .ion-google-place-container input.ion-google-place[readonly] {
     background-color: transparent;
     cursor: text; }
   .ion-google-place-container .ionic-google-places {
     top: 88px; }
+    .ion-google-place-container .ionic-google-places .currentLocation i {
+      font-size: 21px;
+      padding-right: 15px;
+      vertical-align: middle;
+      color: #3ca4c5; }
   .ion-google-place-container .bar.item-input-inset {
     background-color: whitesmoke; }
     .ion-google-place-container .bar.item-input-inset .item-input-wrapper {

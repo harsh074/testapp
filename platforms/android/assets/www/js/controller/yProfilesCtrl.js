@@ -7,9 +7,9 @@ askmonkApp.controller('yProfilesCtrl', ['$scope','$state','utility','$stateParam
   $scope.sortedFilter = 'rating';
 
   if(sessionStorage.monksProfiles){
+    $scope.monksProfiles = JSON.parse(sessionStorage.monksProfiles);
     utility.getAllMonksCount()
     .then(function(data){
-      $scope.monksProfiles = JSON.parse(sessionStorage.monksProfiles);
       for(var i=0;i<$scope.monksProfiles.length;i++){
         for (var key in data){
           if($scope.monksProfiles[i].id == key){

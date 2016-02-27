@@ -99,7 +99,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   if(localStorage.firstTimeUser){
     localStorage.removeItem('firstTimeUser');
     $scope.guideScreenImage = [1,2,3,4,5,6,7,8,9];
-    $ionicModal.fromTemplateUrl('views/guideScreenModal.html', function (modal) {
+    $ionicModal.fromTemplateUrl('guideScreenModal.html', function (modal) {
       $scope.guideScreenModal = modal;
       $scope.guideScreenModal.show();
     }, {

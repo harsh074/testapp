@@ -37,7 +37,11 @@ askmonkApp.controller('fullPackagesCtrl', ['$scope','utility','$state','$ionicPo
 	$scope.selectedPackage = function(pack){
 		console.log(pack);
 		$scope.args.question = pack.name;
-		$scope.args.questionTag = pack.questionTag;
+		if(pack.questionTag == 'fullAnalysis'){
+			$scope.args.questionTag = "Full Analysis";
+		}else{
+			$scope.args.questionTag = pack.questionTag;
+		}
 		$scope.args.amount = pack.amount;
 		$scope.args.durationMonths = pack.durationMonths;
 		$scope.postQuestion(pack);

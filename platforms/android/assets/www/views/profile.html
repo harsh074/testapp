@@ -28,7 +28,7 @@
 	<ion-content class="row profileData" scroll="true" ng-class="{'tileUserBroadcast':loginType=='user'}">
 		<div ng-if="loginType=='user'" class="tileBroadcast">
 			<ion-refresher on-refresh="doRefresh()" spinner="none" pulling-icon="ion-loop" refreshing-icon="ion-loop" refreshing-text="Loading..."></ion-refresher>
-			<div class="header">Top Articles</div>
+			<div class="header">TOP ARTICLES FOR YOU</div>
 			<ion-list>
         <div ng-repeat="group in broadcastQuestions" class="allQuestions" ng-click="goToQuestion(group.id)">
           <div class="question">{{group.question | capitalize}}</div>

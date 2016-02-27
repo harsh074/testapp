@@ -158,7 +158,8 @@ module.exports.metadata =
     "phonegap-plugin-mobile-accessibility": "1.0.3-dev",
     "nl.x-services.plugins.googleplus": "1.0.0",
     "cordova-plugin-customurlscheme": "4.1.3",
-    "com.telerik.plugins.nativepagetransitions": "0.6.2"
+    "com.telerik.plugins.nativepagetransitions": "0.6.2",
+    "org.apache.cordova.geolocation": "0.3.12"
 }
 // BOTTOM OF METADATA
 });

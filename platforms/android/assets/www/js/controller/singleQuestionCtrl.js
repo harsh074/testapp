@@ -82,7 +82,7 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
   });
 
   $scope.viewPartnerDetails = function(){
-    $ionicModal.fromTemplateUrl('views/viewPartnerDetailModal.html', function (modal) {
+    $ionicModal.fromTemplateUrl('viewPartnerDetailModal.html', function (modal) {
       $scope.viewPartnerDetailModal = modal;
       $scope.viewPartnerDetailModal.show();
     }, {
@@ -91,7 +91,7 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     });
   }
   $scope.editQuestion = function(){
-    $ionicModal.fromTemplateUrl('views/editQuestionModal.html', function (modal) {
+    $ionicModal.fromTemplateUrl('editQuestionModal.html', function (modal) {
       $scope.editQuestionModal = modal;
       $scope.editQuestionModal.show();
     }, {
@@ -125,7 +125,7 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
   // For Monk
   $scope.writtenAnswer = localStorage.getItem('answer');
   $scope.openWriteModal = function(){
-    $ionicModal.fromTemplateUrl('views/writeAnswerModal.html', function (modal) {
+    $ionicModal.fromTemplateUrl('writeAnswerModal.html', function (modal) {
       $scope.writeAnswerModal = modal;
       $scope.writeAnswerModal.show();
     }, {
@@ -137,7 +137,7 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
 
   $scope.writtenSolution = localStorage.getItem('solution');
   $scope.openWriteSolutionModal = function(){
-    $ionicModal.fromTemplateUrl('views/writeSolutionModal.html', function (modal) {
+    $ionicModal.fromTemplateUrl('writeSolutionModal.html', function (modal) {
       $scope.writeSolutionModal = modal;
       $scope.writeSolutionModal.show();
     }, {
@@ -149,7 +149,7 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
 
   
   $scope.userDetail = function(){
-    $ionicModal.fromTemplateUrl('views/userDetailModal.html', function (modal) {
+    $ionicModal.fromTemplateUrl('userDetailModal.html', function (modal) {
       $scope.userDetailModal = modal;
       $scope.userDetailModal.show();
     }, {

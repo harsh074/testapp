@@ -1,4 +1,4 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place','ionic-timepicker','ionic-native-transitions']);
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place','ionic-timepicker','ionic-native-transitions','templates']);
 
 askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', function($ionicPlatform,$state,$stateParams,CONSTANT,$timeout){
   if(!localStorage.getItem('token')){
@@ -65,7 +65,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   .state('login', {
     url: '/login',
     // cache: false,
-    templateUrl: "views/login.html",
+    templateUrl: "login.html",
     controller: 'loginCtrl'
   })
 
@@ -73,7 +73,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     url: "/app",
     abstract: true,
     cache: false,
-    templateUrl: "views/sidemenu.html",
+    templateUrl: "sidemenu.html",
     controller: 'appCtrl'
   })
 
@@ -82,7 +82,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     cache: false,
     views: {
       'menuContent': {
-        templateUrl: "views/profile.html",
+        templateUrl: "profile.html",
         controller: 'profileCtrl'
       }
     }
@@ -92,7 +92,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     cache: false,
     views: {
       'menuContent': {
-        templateUrl: "views/yogi-profiles-tile.html",
+        templateUrl: "yogi-profiles-tile.html",
         controller: 'yProfilesCtrl'
       }
     }
@@ -102,7 +102,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     cache: false,
     views: {
       'menuContent': {
-        templateUrl: "views/yogi-profile.html",
+        templateUrl: "yogi-profile.html",
         controller: 'yProfileCtrl'
       }
     }
@@ -112,7 +112,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     cache: false,
     views: {
       'menuContent': {
-        templateUrl: "views/directQuestion.html",
+        templateUrl: "directQuestion.html",
         controller: 'directQuestionCtrl'
       }
     }
@@ -122,7 +122,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     cache: false,
     views: {
       'menuContent': {
-        templateUrl: "views/openQuestion.html",
+        templateUrl: "openQuestion.html",
         controller: 'openQuestionCtrl'
       }
     }
@@ -132,7 +132,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     cache: false,
     views:{
       'menuContent':{
-        templateUrl:"views/wallet.html",
+        templateUrl:"wallet.html",
         controller:"walletCtrl"
       }
     }
@@ -142,7 +142,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     // cache: false,
     views:{
       'menuContent':{
-        templateUrl:"views/setting.html",
+        templateUrl:"setting.html",
         controller:"settingCtrl"
       }
     }
@@ -152,7 +152,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     cache: false,
     views:{
       'menuContent':{
-        templateUrl:"views/editProfile.html",
+        templateUrl:"editProfile.html",
         controller:"editProfileCtrl"
       }
     }
@@ -162,7 +162,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     cache: false,
     views:{
       'menuContent':{
-        templateUrl:"views/askQuestion.html",
+        templateUrl:"askQuestion.html",
         controller:"askQuestionCtrl"
       }
     }
@@ -172,7 +172,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     cache: false,
     views:{
       'menuContent':{
-        templateUrl:"views/dashboard.html",
+        templateUrl:"dashboard.html",
         controller:"dashboardCtrl"
       }
     }
@@ -182,7 +182,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     cache: false,
     views:{
       'menuContent':{
-        templateUrl:"views/singleQuestion.html",
+        templateUrl:"singleQuestion.html",
         controller:"singleQuestionCtrl"
       }
     }
@@ -192,7 +192,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     cache: false,
     views:{
       'menuContent':{
-        templateUrl:"views/broadcastQuestion.html",
+        templateUrl:"broadcastQuestion.html",
         controller:"broadcastQuestionCtrl"
       }
     }
@@ -202,7 +202,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     // cache: false,
     views:{
       'menuContent':{
-        templateUrl:"views/allHoroscope.html",
+        templateUrl:"allHoroscope.html",
         controller:"horoscopeCtrl"
       }
     }
@@ -212,7 +212,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
     cache: false,
     views:{
       'menuContent':{
-        templateUrl:"views/fullPackages.html",
+        templateUrl:"fullPackages.html",
         controller:"fullPackagesCtrl"
       }
     }

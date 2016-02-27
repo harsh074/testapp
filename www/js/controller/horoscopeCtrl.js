@@ -54,7 +54,7 @@ askmonkApp.controller('horoscopeCtrl', ['$scope', '$ionicModal','$state', functi
 	$scope.clickedSign = function(id) {
 		$scope.signId = angular.copy(id);
 		$scope.showLoader();
-		$ionicModal.fromTemplateUrl('views/singleHoroscopeModal.html', function (modal) {
+		$ionicModal.fromTemplateUrl('singleHoroscopeModal.html', function (modal) {
       $scope.singleHoroscopeModal = modal;
       $scope.singleHoroscopeModal.show();
     }, {

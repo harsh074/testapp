@@ -34,10 +34,11 @@
 
       <!-- User Bottom -->
       <div class="subBottom" ng-if="loginType=='user'">
-      	<p class="tagName">Tag : <span>{{question.questionTag}}</span></p>
-      	<p class="questionTime" ng-if="question.status=='answered' || question.status=='rated'">Answered {{question.askedOn | timeago}}</p>
+        <p class="tagName" ng-if="question.status!='fullAnalysis'">Tag : <span>{{question.questionTag}}</span></p>
+      	<p class="tagName" ng-if="question.status=='fullAnalysis'">Tag : <span>{{question.displayTag}}</span></p>
+      	<p class="questionTime" ng-if="question.status=='answered' || question.status=='rated'">Answered {{question.answeredOn | timeago}}</p>
       	<p class="questionTime" ng-if="question.status=='asked' || question.status=='direct' || question.status=='fullAnalysis'">Asked {{question.askedOn | timeago}}</p>
-        <p class="moneyTypeUser" ng-if="question.predictionDurationMonths && question.status!='fullAnalysis'">Prediction uptil {{question.predictionDurationMonths | timeLineFiter}}</p>
+        <p class="moneyTypeUser" ng-if="question.predictionDurationMonths">Prediction uptil {{question.predictionDurationMonths | timeLineFiter}}</p>
       	<p class="ratingQuestion" ng-if="question.status=='answered' || question.status=='rated'">How Satisfied are you ?</p>
       	<div class="answerRating" ng-if="question.status=='answered'">
           <rating ng-model="question.rating" max="5" ng-if="!ratingSubmitted"></rating>

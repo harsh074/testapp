@@ -38,7 +38,6 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
           CONSTANT.isComingFromSignUp = true;
           $state.go('app.editProfile');
       	}else{
-      		$scope.hideLoader();
           localStorage.setItem("profile",JSON.stringify(data));
       		$scope.profileInfo = angular.copy($rootScope.profileData);
           $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
@@ -100,7 +99,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   if(localStorage.firstTimeUser){
     localStorage.removeItem('firstTimeUser');
     $scope.guideScreenImage = [1,2,3,4,5,6,7,8,9];
-    $ionicModal.fromTemplateUrl('views/guideScreenModal.html', function (modal) {
+    $ionicModal.fromTemplateUrl('guideScreenModal.html', function (modal) {
       $scope.guideScreenModal = modal;
       $scope.guideScreenModal.show();
     }, {
@@ -113,7 +112,6 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     utility.getUserCount()
     .then(function(data){
       $scope.getUserCount = data;
-      $scope.hideLoader();
     },function(data){
       $scope.hideLoader();
       if(data && data.error.statusCode == 422){

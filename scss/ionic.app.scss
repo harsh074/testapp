@@ -1653,10 +1653,10 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			margin: -18px -5px;
 			.header{
 		    background-color: #F6F6F6;
-		    padding: 16px 18px 12px;
-		    font-size: 16px;
+		    padding: 15px 18px 11px;
+		    font-size: 15px;
 		    color: #656565;
-		    font-weight: bold;
+		    // font-weight: bold;
 			}
 			.allQuestions{
 				padding: 12px 18px;
@@ -2822,7 +2822,7 @@ ion-side-menu .has-header{
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 20;
+  z-index: 11;
   display: none;
   input.ion-google-place[readonly]{
 		background-color: transparent;
@@ -2830,6 +2830,14 @@ ion-side-menu .has-header{
 	}
 	.ionic-google-places{
 		top:88px;
+		.currentLocation{
+			i{
+				font-size: 21px;
+    		padding-right: 15px;
+    		vertical-align: middle;
+    		color: rgb(60, 164, 197);
+			}
+		}
 	}
 	.bar.item-input-inset{
     background-color: whitesmoke;

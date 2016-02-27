@@ -135,5 +135,11 @@
             "url": "https://github.com/MobileChromeApps/google-play-services",
             "subdir": "."
         }
+    },
+    "org.apache.cordova.geolocation": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.geolocation"
+        }
     }
 }

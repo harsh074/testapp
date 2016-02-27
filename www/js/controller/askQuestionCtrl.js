@@ -188,7 +188,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	}
 
 	$scope.addPartnerDetailsModal = function(){
-		$ionicModal.fromTemplateUrl('views/partnerDetailsModal.html', function (modal) {
+		$ionicModal.fromTemplateUrl('partnerDetailsModal.html', function (modal) {
       $scope.partnerDetailsModal = modal;
       $scope.partnerDetailsModal.show();
     },{

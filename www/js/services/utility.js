@@ -123,7 +123,8 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
       return this.request({
         'method':"POST",
         'url':"/api/questions/askQuestion",
-        'data':args
+        'data':args,
+        'params': {"access_token":localStorage.getItem('token')}
       });
     },
     editQuestion:function(args){

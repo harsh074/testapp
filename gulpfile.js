@@ -4,10 +4,12 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
+var templateCache = require('gulp-angular-templatecache');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
-  js:['./www/js/**/**/*.js']
+  js:['./www/js/**/**/*.js'],
+  templates:['./www/views/**/*.html']
 };
 
 gulp.task('default', ['sass']);
@@ -35,3 +37,11 @@ gulp.task('scripts', function() {
   .pipe(uglify())
   .pipe(gulp.dest('./www/builds'));
 });
+
+gulp.task('templateJs', function () {
+  gulp.src(paths.templates)
+    .pipe(templateCache())
+    .pipe(gulp.dest('./www/builds'));
+});
+
+gulp.task('minify', ['scripts','templateJs']);
