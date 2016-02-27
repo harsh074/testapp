@@ -62,7 +62,7 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
 	 	var data = {
 	  	description: args.name,
 	    currency: 'INR',
-	    key: 'rzp_test_2jGmoGfR3KHvoA',
+	    key: CONSTANT.razorPayKey,
 	    amount: $scope.amount,
 	    name: 'Askmonk',
 	    prefill: {email:profileData.email,contact:profileData.mobile,name:profileData.name},

@@ -1,27 +1,42 @@
 askmonkApp.controller('yProfilesCtrl', ['$scope','$state','utility','$stateParams','CONSTANT','$timeout', function($scope,$state,utility,$stateParams,CONSTANT,$timeout){
 
-  // $scope.floatingBtnAction = false;
-  $scope.$on('$ionicView.beforeEnter', function(){
-    // $scope.floatingBtnAction = true;
-    $scope.showLoader();
-  });
   $scope.loginType = CONSTANT.loginType;
   $scope.showFilterMenu = false;
 
   $scope.sortedFilterValue = true;
   $scope.sortedFilter = 'rating';
 
-  // if(localStorage.getItem('monksProfiles')){
-  //   $scope.monksProfiles = JSON.parse(localStorage.getItem('monksProfiles'));
-  //   $timeout(function(){
-  //     $scope.hideLoader();    
-  //   }, 100);
-  // }else{
+  if(sessionStorage.monksProfiles){
+    utility.getAllMonksCount()
+    .then(function(data){
+      $scope.monksProfiles = JSON.parse(sessionStorage.monksProfiles);
+      for(var i=0;i<$scope.monksProfiles.length;i++){
+        for (var key in data){
+          if($scope.monksProfiles[i].id == key){
+            $scope.monksProfiles[i].questionsAnswered = data[key][0]
+            $scope.monksProfiles[i].profileViews = data[key][1]
+            break;
+          }
+        }
+      }
+    },function(data){
+      $scope.hideLoader();
+      if(data && data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
+      }
+      sessionStorage.removeItem('monksProfiles');
+      // console.log(data,"error");
+    });
+
+  }else{
+    $scope.showLoader();
   	utility.getAllMonks()
   	.then(function(data){
-      localStorage.setItem('monksProfiles',JSON.stringify(data));
-  		$scope.monksProfiles = data;
   		$scope.hideLoader();
+      $scope.monksProfiles = data;
+      sessionStorage.setItem('monksProfiles',JSON.stringify(data));
   	},function(data){
       $scope.hideLoader();
       if(data && data.error.statusCode == 422){
@@ -29,9 +44,9 @@ askmonkApp.controller('yProfilesCtrl', ['$scope','$state','utility','$stateParam
       }else{
         $scope.showMessage("Something went wrong. Please try again.");
       }
-  		console.log(data,"error");
+  		// console.log(data,"error");
   	});
-  // }
+  }
 
   $scope.goToYogiProfile = function(id){
   	$stateParams.id = id;

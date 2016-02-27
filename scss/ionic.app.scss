@@ -1651,6 +1651,13 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		// background-color:#eee;
 		.tileBroadcast{
 			margin: -18px -5px;
+			.header{
+		    background-color: #F6F6F6;
+		    padding: 16px 18px 12px;
+		    font-size: 16px;
+		    color: #656565;
+		    font-weight: bold;
+			}
 			.allQuestions{
 				padding: 12px 18px;
     		border-bottom: 1px solid #ddd;

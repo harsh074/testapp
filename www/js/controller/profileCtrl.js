@@ -38,7 +38,6 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
           CONSTANT.isComingFromSignUp = true;
           $state.go('app.editProfile');
       	}else{
-      		$scope.hideLoader();
           localStorage.setItem("profile",JSON.stringify(data));
       		$scope.profileInfo = angular.copy($rootScope.profileData);
           $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
@@ -110,11 +109,9 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   }
 
   if($scope.loginType == 'user'){
-    $scope.showLoader();
     utility.getUserCount()
     .then(function(data){
       $scope.getUserCount = data;
-      $scope.hideLoader();
     },function(data){
       $scope.hideLoader();
       if(data && data.error.statusCode == 422){
@@ -158,6 +155,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     if(sessionStorage.broadcastquestion){
       $scope.broadcastQuestions = JSON.parse(sessionStorage.broadcastquestion);
     }else{
+      $scope.showLoader();
       utility.getBroadcastQuestions(indexGetQuestion)
       .then(function(data){
         $scope.hideLoader();

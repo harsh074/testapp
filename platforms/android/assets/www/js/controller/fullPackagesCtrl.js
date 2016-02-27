@@ -1,24 +1,26 @@
-askmonkApp.controller('fullPackagesCtrl', ['$scope','utility','$state','$ionicPopup', function($scope,utility,$state,$ionicPopup){
-	
-	$scope.$on('$ionicView.beforeEnter', function(){
-    $scope.showLoader();
-  });
+askmonkApp.controller('fullPackagesCtrl', ['$scope','utility','$state','$ionicPopup','CONSTANT', function($scope,utility,$state,$ionicPopup,CONSTANT){
 
 	$scope.args = {"email":localStorage.email,"userId":localStorage.userId,"question":"","questionTag":"","amount":"","durationMonths":""};
 
-	utility.getFullPackages()
-	.then(function(data){
-		$scope.hideLoader();
-		$scope.packages = data;
-	},function(data){
-		$scope.hideLoader();
-		if(data && data.error.statusCode == 422){
-      $scope.showMessage(data.error.message);
-    }else{
-      $scope.showMessage("Something went wrong. Please try again.");
-    }
-		// console.log("error", data);
-	});
+	if(sessionStorage.fullPackage){
+		$scope.packages = JSON.parse(sessionStorage.fullPackage);
+	}else{
+		$scope.showLoader();
+		utility.getFullPackages()
+		.then(function(data){
+			$scope.hideLoader();
+			$scope.packages = data;
+			sessionStorage.setItem('fullPackage',JSON.stringify(data));
+		},function(data){
+			$scope.hideLoader();
+			if(data && data.error.statusCode == 422){
+	      $scope.showMessage(data.error.message);
+	    }else{
+	      $scope.showMessage("Something went wrong. Please try again.");
+	    }
+			// console.log("error", data);
+		});
+	}
 
 	utility.getUserCount()
   .then(function(data){
@@ -48,7 +50,7 @@ askmonkApp.controller('fullPackagesCtrl', ['$scope','utility','$state','$ionicPo
 	 	var data = {
 	  	description: "Ask Question",
 	    currency: 'INR',
-	    key: 'rzp_test_2jGmoGfR3KHvoA',
+	    key: CONSTANT.razorPayKey,
 	    amount: $scope.amount,
 	    name: 'Askmonk',
 	    prefill: {email:profileData.email,contact:profileData.mobile,name:profileData.name},

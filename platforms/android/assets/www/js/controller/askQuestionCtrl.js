@@ -239,7 +239,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	 	var data = {
 	  	description: "Ask Question",
 	    currency: 'INR',
-	    key: 'rzp_test_2jGmoGfR3KHvoA',
+	    key: CONSTANT.razorPayKey,
 	    amount: $scope.amount,
 	    name: 'Askmonk',
 	    prefill: {email:profileData.email,contact:profileData.mobile,name:profileData.name},

@@ -107,7 +107,8 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
     getUserProfile: function(args){
       return this.request({
         'method':"GET",
-        'url':'/api/users/findUser/'+args
+        'url':'/api/users/findUser/'+args,
+        'params': {"access_token":localStorage.getItem('token')}
       });
     },
     updateUserProfile:function(args){
@@ -151,6 +152,12 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'url':"/api/monks"
       })
     },
+    getAllMonksCount:function(){
+      return this.request({
+        'method':"GET",
+        'url':"/api/monks/getCountsForAllMonks"
+      });
+    },
     getSingleMonk:function(id){
       return this.request({
         'method':"GET",
@@ -167,7 +174,8 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
     getUserCount:function(){
       return this.request({
         'method':"GET",
-        'url':"/api/users/getCounts/"+localStorage.getItem('userId')
+        'url':"/api/users/getCounts/"+localStorage.getItem('userId'),
+        'params': {"access_token":localStorage.getItem('token')}
       });
     },
     getTimeLineJson: function(){
@@ -312,7 +320,8 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
     getMonkCount:function(){
       return this.request({
         'method':"GET",
-        'url':"/api/monks/getCounts/"+localStorage.getItem('userId')
+        'url':"/api/monks/getCounts/"+localStorage.getItem('userId'),
+        'params': {"access_token":localStorage.getItem('token')}
       });
     },
     directQuestionsPending:function(){

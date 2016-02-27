@@ -13,7 +13,7 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
 
   $scope.floatingBtnAction = false;
   $scope.$on('$ionicView.beforeEnter', function(){
-    $scope.showLoader();
+    // $scope.showLoader();
   });
 
   $scope.$on('$ionicView.enter', function(){
@@ -115,9 +115,12 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
         // console.log(data);
       });
     }else{
+      $scope.showLoader();
       utility.getUserQuestions()
       .then(function(data){
-        $scope.hideLoader();
+        $timeout(function(){
+          $scope.hideLoader();
+        });
         if(data.length>0){
           sessionStorage.setItem('userQuestion',JSON.stringify(data));
           $scope.questionSorted(data);
@@ -144,6 +147,7 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
       });
     }
   }else{
+    $scope.showLoader();
     utility.getMonkAnsweredQuestion(indexGetOtherQuestion)
     .then(function(data){
       $timeout(function(){

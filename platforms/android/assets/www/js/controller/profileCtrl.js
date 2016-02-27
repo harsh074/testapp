@@ -110,7 +110,6 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   }
 
   if($scope.loginType == 'user'){
-    $scope.showLoader();
     utility.getUserCount()
     .then(function(data){
       $scope.getUserCount = data;
@@ -158,6 +157,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     if(sessionStorage.broadcastquestion){
       $scope.broadcastQuestions = JSON.parse(sessionStorage.broadcastquestion);
     }else{
+      $scope.showLoader();
       utility.getBroadcastQuestions(indexGetQuestion)
       .then(function(data){
         $scope.hideLoader();

@@ -6,5 +6,6 @@ askmonkApp.constant('CONSTANT', {
   isDevice:false,
   loginType:null,
   pushSenderID:"915609605128",
-  PRODUCTION_MODE:true
+  razorPayKey:"rzp_test_Gyvc5rLmpetSzJ",
+  PRODUCTION_MODE:false
 });
