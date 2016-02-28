@@ -9894,10 +9894,6 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       margin-bottom: 0px; }
     .home-view .directQuestionContent .questionFound .list .questions:nth-child(n+10) .question {
       padding-left: 30px; }
-    .home-view .directQuestionContent .questionFound .list .questions .question {
-      /* &:before{
-		  				content: counter(section) ".";
-		  			} */ }
 
 .home-view .singleQuestion {
   top: 105px;
@@ -10472,9 +10468,11 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     margin: -18px -5px; }
     .profileData.tileUserBroadcast .tileBroadcast .header {
       background-color: #F6F6F6;
-      padding: 15px 18px 11px;
-      font-size: 15px;
+      padding: 14px 18px 10px;
+      font-size: 14px;
       color: #656565; }
+    .profileData.tileUserBroadcast .tileBroadcast .list {
+      padding-top: 0; }
     .profileData.tileUserBroadcast .tileBroadcast .allQuestions {
       padding: 12px 18px;
       border-bottom: 1px solid #ddd; }
@@ -10576,7 +10574,6 @@ dl {
   position: relative;
   overflow: hidden; }
   .bar.sideMenuTop .imgHldr {
-    background-image: url("../img/sidemenu_bg.jpg");
     background-size: cover;
     position: absolute;
     left: -8px;
@@ -10601,7 +10598,6 @@ dl {
   .shortSideMenuProfile .sProfilePic {
     height: 80px;
     width: 80px;
-    background-image: url("../img/sidemenu_bg.jpg");
     background-size: contain;
     border-radius: 50%;
     margin: 40px 10px 0px 20px;
@@ -10609,6 +10605,11 @@ dl {
     font-size: 34px;
     border: 5px solid #fff;
     display: inline-block; }
+    .shortSideMenuProfile .sProfilePic img {
+      border-radius: 50%;
+      width: 71px;
+      height: 72px;
+      margin-top: -1px; }
   .shortSideMenuProfile .sProfileName {
     margin: 70px 0px;
     font-size: 19px;

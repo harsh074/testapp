@@ -1,0 +1,77 @@
+<ion-side-menus enable-menu-with-back-views="true">
+  <ion-side-menu-content drag-content="true">
+    <div class="menuOpenBackground"></div>
+    <ion-nav-bar class="bar-assertive-900" ng-class="loginType">
+      <ion-nav-buttons side="left">
+        <button class="customMenuBtn" ng-click="hamburgerBtnEvent()" ng-disabled="isComingFromSignUp" ng-class="{'is-active':showArrow}"><span></span></button>
+      </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <button class="button-clear ion-wallet" ng-disabled="isComingFromSignUp" ng-click="goToWallet()" ng-if="loginType=='user'"></button>
+        <label class="toggle monkAvaliableButton" ng-if="loginType=='monk'">
+          <input type="checkbox" ng-model="isAvailable.status" ng-change="changeAvaliableStatus()">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left" is-enabled="!isComingFromSignUp">
+     <ion-header-bar class="bar-stable sideMenuTop">
+      <div class="imgHldr" style="background-image:url('img/sidemenu_bg.jpg')" ng-if="loginType=='user'"></div>
+      <div class="imgHldr" style="background-image:url('{{profileImage}}')" ng-if="loginType=='monk'"></div>
+      
+   </ion-header-bar>
+      <div class="shortSideMenuProfile">
+        <div class="sProfilePic">
+          <img src="img/sidemenu_bg.jpg" ng-if="loginType=='user'">
+          <img ng-src="{{profileImage}}" ng-if="loginType=='monk'">
+        </div>
+        <div class="sProfileName">{{sideMenuName}}</div>
+      </div>
+      <ion-content>
+        <ion-list>
+          <ion-item menu-close ui-sref="app.profile" class="menuItem profile">
+            <span><i class="ion-android-person"></i></span>
+            <span class="menuList" ng-if="loginType=='monk'">Profile</span>
+            <span class="menuList" ng-if="loginType=='user'">Home</span>
+          </ion-item>
+          <ion-item menu-close ui-sref="app.openQuestion" class="menuItem" ng-if="loginType=='monk'">
+            <span><i class="ion-android-open"></i></span>
+            <span class="menuList">Open Questions</span>
+          </ion-item>
+          <ion-item menu-close ui-sref="app.dashboard" class="menuItem dashboard">
+            <span><i class="ion-home"></i></span>
+            <span class="menuList">Dashboard</span>
+          </ion-item>
+          <ion-item menu-close ui-sref="app.yprofiles" class="menuItem yprofile" ng-if="loginType=='user'">
+            <span><i class="ion-yogi-profile"></i></span>
+            <span class="menuList">Astrologers</span>
+          </ion-item>
+          <ion-item menu-close ui-sref="app.packages" class="menuItem" ng-if="loginType=='user'">
+            <span><i class="ion-briefcase"></i></span>
+            <span class="menuList">Packages</span>
+          </ion-item>
+          <ion-item menu-close ui-sref="app.horoscope" class="menuItem horoscope" ng-if="loginType=='user'">
+            <span><i class="ion-star"></i></span>
+            <span class="menuList">Daily Horoscope</span>
+          </ion-item>
+          <ion-item menu-close ui-sref="app.directQuestion" class="menuItem yprofile" ng-if="loginType=='monk'">
+            <span><i class="ion-yogi-profile"></i></span>
+            <span class="menuList">Direct Questions</span>
+          </ion-item>
+          <ion-item menu-close ui-sref="app.wallet" class="menuItem wallet">
+            <span><i class="ion-wallet"></i></span>
+            <span class="menuList">Wallet</span>
+          </ion-item>
+          <ion-item menu-close ui-sref="app.setting" class="menuItem setting">
+            <span><i class="ion-android-options"></i></span>
+            <span class="menuList">Settings</span>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+
+  </ion-side-menu>
+</ion-side-menus>

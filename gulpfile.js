@@ -12,7 +12,7 @@ var paths = {
   templates:['./www/views/**/*.html']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass','scripts','templateJs']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -43,5 +43,3 @@ gulp.task('templateJs', function () {
     .pipe(templateCache())
     .pipe(gulp.dest('./www/builds'));
 });
-
-gulp.task('minify', ['scripts','templateJs']);
