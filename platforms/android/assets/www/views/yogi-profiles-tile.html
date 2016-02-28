@@ -1,0 +1,43 @@
+<ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
+	<div class="filterDropDown" ng-class="{'active':showFilterMenu}">
+  	<ul class="list">
+	    <li class="item" ng-click="sortFilter('rating')" ng-class="{'active':sortedFilter=='rating'}">
+	    	<a>Sort By Ranking</a>
+	    </li>
+	    <li class="item" ng-click="sortFilter('profileViews')" ng-class="{'active':sortedFilter=='profileViews'}">
+	    	<a>Sort By Views</a>
+	    </li>
+	    <li class="item" ng-click="sortFilter('name')" ng-class="{'active':sortedFilter=='name'}">
+	    	<a>Sort Alphabetically</a>
+	    </li>
+		</ul>
+  </div>
+  <div class="disableBack" ng-class="{'active':showFilterMenu}" ng-click="closeFilterMenu()"></div>
+	<ion-content scroll="false">
+		<div class="shortHeader">
+			<h1 class="title">Astrologer Profiles</h1>
+			<div class="shortHeaderBtn" ng-click="showFilter()">
+        <a class="shortHeaderIcon"><i class="icon ion-funnel"></i></a>
+      </div>
+		</div>
+	</ion-content>
+	<ion-content class="row yogiTileProfile">
+		<div class="allTile">
+			<div class="tile" ng-repeat="profile in monksProfiles | orderBy:sortedFilter:sortedFilterValue" ng-click="goToYogiProfile(profile.id)" ng-show="profile.isExist">
+				<div class="imagePic">
+					<img ng-src="http://askmonk.in/mImages/{{profile.email.split('@')[0].toLowerCase()}}.jpg" />
+				</div>
+				<div class="name">
+					<p>{{profile.name}}</p>
+				</div>
+				<div class="place">
+					<p>{{profile.city}}</p>
+				</div>
+				<div class="statics">
+					<div class="answered"><span>Answered</span><br/>{{profile.questionsAnswered ? profile.questionsAnswered : 0}}</div>
+					<div class="accepted"><span>Views</span><br/>{{profile.profileViews ? profile.profileViews : 0}}</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

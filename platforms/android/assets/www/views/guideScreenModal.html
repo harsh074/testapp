@@ -1,0 +1,12 @@
+<ion-modal-view class="home-view">
+  <ion-content scroll="false" class="guideScreenModal">
+  	<button class="button button-custom button-small" ng-click="closeModal()">Close</button>
+  	<ion-slide-box does-continue="false" bounce="false">
+		  <ion-slide ng-repeat="image in guideScreenImage">
+		    <div class="guideScreen">
+		    	<img ng-src="img/guideScreens/{{image}}.jpg"/>
+		    </div>
+		  </ion-slide>
+		</ion-slide-box>
+	</ion-content>
+</ion-modal-view>

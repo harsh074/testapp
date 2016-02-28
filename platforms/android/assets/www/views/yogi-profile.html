@@ -1,0 +1,52 @@
+<ion-view class="home-view" view-title="<i class='logoSideMenu'></i>">
+	<ion-content scroll="false">
+		<div class="yprofile">
+			<div class="content pofilePic">
+				<div class="avatar monk">
+					<img ng-src="http://askmonk.in/mImages/{{monkProfileData.email.split('@')[0].toLowerCase()}}.jpg" />
+				</div>
+				<div class="yAnswerStatus">
+					<div class="statics">
+						<span class="answered">{{monkProfileData.questionsAnswered ? monkProfileData.questionsAnswered : 0}}<br/><span class="textShow">Answered</span></span>
+						<span class="experience">{{monkProfileData.experience ? monkProfileData.experience : 0}}<br/><span class="textShow">Experience</span></span>
+						<span class="views">{{monkProfileData.profileViews ? monkProfileData.profileViews : 0}}<br/><span class="textShow">Views</span></span>
+					</div>
+					<button class="button button-custom-small button-askmonk profileEditBtn" ng-click="askQuestion()">Ask Me Question</button>
+				</div>
+			</div>
+			<div class="subHeaderBottomContent">
+				<div class="avaliableStatus" ng-if="loginType=='user'" ng-class="{'available':monkProfileData.isAvailable?monkProfileData.isAvailable:false}"></div>
+				<div class="userName">{{monkProfileData.name}}</div>
+				<div class="yRating" ng-if="monkProfileData.rating">
+					<rating ng-model="monkProfileData.rating" max="5" readonly="true"></rating>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+	<ion-content class="row profileData paddingLRPlus21">
+		<!-- <dl>
+		  <dt>Name:</dt>
+		  <dd>Sunil Magon</dd>
+		</dl> -->
+		<dl ng-if="monkProfileData.education">
+		  <dt>Education</dt>
+		  <dd>{{monkProfileData.education}}</dd>
+		</dl>
+		<dl ng-if="monkProfileData.occupation">
+		  <dt>Occupation</dt>
+		  <dd>{{monkProfileData.occupation}}</dd>
+		</dl>
+		<dl ng-if="monkProfileData.residence">
+		  <dt>Residence</dt>
+		  <dd>{{monkProfileData.residence}}</dd>
+		</dl>
+		<!-- <dl ng-if="monkProfileData.experience">
+		  <dt>Experience</dt>
+		  <dd>{{monkProfileData.experience}} Years</dd>
+		</dl> -->
+		<dl ng-if="monkProfileData.bio">
+		  <dt>About Me</dt>
+		  <dd class="bio">{{monkProfileData.bio}}</dd>
+		</dl>
+	</ion-content>
+</ion-view>
