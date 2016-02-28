@@ -335,6 +335,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 						profileData.totalQuestionsAsked = data1.totalQuestionsAsked;
 						profileData.walletMoney = data1.walletMoney;
 						localStorage.profile = JSON.stringify(profileData);
+						localStorage.setItem('updateDashboard',true);
 						$state.go('app.dashboard');
 					},function(data1){
 						$scope.hideLoader();
@@ -369,8 +370,8 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 						var profileData = JSON.parse(localStorage.profile);
 						profileData.totalQuestionsAsked = data1.totalQuestionsAsked;
 						profileData.walletMoney = data1.walletMoney;
+						localStorage.setItem('updateDashboard',true);
 						localStorage.profile = JSON.stringify(profileData);
-						$scope.$emit('updateDashboard');
 						$state.go('app.dashboard');
 					},function(data1){
 						$scope.hideLoader();

@@ -1,4 +1,4 @@
-askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootScope','$timeout', function($scope,CONSTANT,$state,utility,$rootScope,$timeout){
+askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootScope','$timeout','$ionicPopup', function($scope,CONSTANT,$state,utility,$rootScope,$timeout,$ionicPopup){
 	$scope.isComingFromSignUp = CONSTANT.isComingFromSignUp;
   $scope.loginType = CONSTANT.loginType;
   
@@ -15,10 +15,6 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
       $scope.showMessage('Write your answer');
     }
   });
-
-  $scope.$on('updateDashboard',function(){
-    $scope.$broadcast('updateDashboardQuestion');
-  })
 
  	$scope.sideMenuName = localStorage.getItem("name");
   $scope.$on("updateSideMenuName",function(evt,data){
@@ -44,9 +40,55 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
     $scope.profileInfo = JSON.parse(localStorage.profile);
     $scope.profileImage = 'http://askmonk.in/mImages/'+$scope.profileInfo.email.split('@')[0].toLowerCase()+'.jpg';
   });
+
+  // Get Direct question popup
+  $scope.getDirectQuestionCount = function(){
+    utility.getDirectQuestionCount()
+    .then(function(data){
+      $scope.showDirectQuestionCountPopup(data);
+    },function(data){
+      if(data && data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
+      }
+      // console.log(data)
+    });
+  }
+  $scope.showDirectQuestionCountPopup = function(data){
+    var confirmPopup = $ionicPopup.show({
+      cssClass:"ios",
+      title: data.count+' direct questions unanswered.',
+      template:'Want to answer now?',
+      scope:$scope,
+      buttons: [
+        {text: 'Ok',type:'button-ios button-clear',
+          onTap: function(e) {
+            return true;
+          }
+        },
+        {text:'Cancel',type:'button-ios button-clear',
+          onTap: function(e) {
+            return false;
+          }
+        }
+      ]
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+        console.log('You are sure');
+        $state.go('app.directQuestion');
+      } else {
+        console.log('You are not sure');
+      }
+    });
+  }
   
   $scope.changeAvaliableStatus = function(){
     $scope.profileData = JSON.parse(localStorage.profile);
+    if($scope.isAvailable.status){
+      $scope.getDirectQuestionCount();
+    }
     utility.updateMonkAvailableStatus({id:$scope.profileData.id,email:$scope.profileData.email,isAvailable:$scope.isAvailable.status})
     .then(function(data){
       localStorage.profile = JSON.stringify(data);

@@ -171,9 +171,10 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
     });
   }
 
-  $scope.$on("updateDashboardQuestion",function(evt){
+  if(localStorage.updateDashboard){
+    localStorage.removeItem('updateDashboard');
     $scope.getAllUserQuestion("updateDashboard");
-  });
+  }
 
   // infinite scroll functon for asked question in monk dashboard.
   $scope.loadMoreAskedQuestion = function() {

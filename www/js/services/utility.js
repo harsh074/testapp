@@ -333,6 +333,12 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'url':"/api/monks/directQuestionsPending/"+localStorage.getItem('userId')
       });
     },
+    getDirectQuestionCount:function(){
+      return this.request({
+        'method':"GET",
+        'url':"/api/questions/count?where[status]=direct&where[monkId]="+localStorage.getItem('userId')
+      });
+    },
     monkPaymentInfo:function(){
       return this.request({
         'method':"GET",

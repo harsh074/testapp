@@ -68,20 +68,16 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
           $scope.$emit("updateAvaliableStatus");
           $scope.profileInfo = angular.copy($rootScope.profileData);
           $scope.profileImage = 'http://askmonk.in/mImages/'+$scope.profileInfo.email.split('@')[0].toLowerCase()+'.jpg';
-          utility.directQuestionsPending()
-          .then(function(data1){
-            if(data1.length>0){
-              $scope.directQuestionData = data1;
-              $scope.showDirectQuestionCountPopup();
-            }
-            console.log(data1)
-          },function(data1){
-            if(data1 && data1.error.statusCode == 422){
+          utility.getDirectQuestionCount()
+          .then(function(data){
+            $scope.showDirectQuestionCountPopup(data);
+          },function(data){
+            if(data && data.error.statusCode == 422){
               $scope.showMessage(data.error.message);
             }else{
               $scope.showMessage("Something went wrong. Please try again.");
             }
-            // console.log(data1)
+            // console.log(data)
           });
         }
       },function(data){
@@ -132,6 +128,18 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
           $scope.showMessage("Something went wrong. Please try again.");
         }
         // console.log(data);
+      });
+    }
+    if(!localStorage.tagQuestion){
+      utility.getAllQuestion()
+      .then(function(data){
+        localStorage.setItem('tagQuestion',JSON.stringify(data));
+      },function(data){
+        if(data && data.error.statusCode == 422){
+          $scope.showMessage(data.error.message);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
+        }
       });
     }
   }else{
@@ -245,10 +253,10 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     $state.go('app.broadcastquestion',$stateParams);
   }
 
-  $scope.showDirectQuestionCountPopup = function(){
+  $scope.showDirectQuestionCountPopup = function(data){
     var confirmPopup = $ionicPopup.show({
       cssClass:"ios",
-      title: $scope.directQuestionData.length+' direct questions unanswered.',
+      title: data.count+' direct questions unanswered.',
       template:'Want to answer now?',
       scope:$scope,
       buttons: [
