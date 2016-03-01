@@ -127,6 +127,16 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
       }
     }
   })
+  .state('app.draftQuestion', {
+    url: "/draft-question",
+    cache: false,
+    views: {
+      'menuContent': {
+        templateUrl: "views/draftQuestion.html",
+        controller: 'draftQuestionCtrl'
+      }
+    }
+  })
   .state('app.wallet',{
     url:"/wallet",
     cache: false,

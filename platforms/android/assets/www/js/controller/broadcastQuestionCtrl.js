@@ -11,7 +11,7 @@ askmonkApp.controller('broadcastQuestionCtrl', ['$scope','$state','utility','$st
 
   $scope.loginType = CONSTANT.loginType;
   $scope.showLoader();
-  utility.getSingleQuestions($stateParams.id)
+  utility.getSingleBroadcastArticle($stateParams.id)
   .then(function(data){
   	console.log(data);
     $scope.hideLoader();

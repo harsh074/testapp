@@ -164,7 +164,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
       $scope.broadcastQuestions = JSON.parse(sessionStorage.broadcastquestion);
     }else{
       $scope.showLoader();
-      utility.getBroadcastQuestions(indexGetQuestion)
+      utility.getbroadcastArticle(indexGetQuestion)
       .then(function(data){
         $scope.hideLoader();
         $scope.broadcastQuestions = data;
@@ -203,7 +203,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     $scope.noMoreQuestion = false;
     $scope.showLoader();
 
-    utility.getBroadcastQuestions(indexGetQuestion)
+    utility.getbroadcastArticle(indexGetQuestion)
     .then(function(data){
       $scope.hideLoader();
       $scope.broadcastQuestions = data;
@@ -224,7 +224,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   $scope.loadMoreQuestion = function(){
     indexGetQuestion = indexGetQuestion+10;
     $scope.showLoader();
-    utility.getBroadcastQuestions(indexGetQuestion)
+    utility.getbroadcastArticle(indexGetQuestion)
     .then(function(data){
       console.log(data,"broadcast");
       $scope.hideLoader();
@@ -248,7 +248,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     });
   }
   
-  $scope.goToQuestion = function(id){
+  $scope.goToArticle = function(id){
     $stateParams.id = id;
     $state.go('app.broadcastquestion',$stateParams);
   }

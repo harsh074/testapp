@@ -902,11 +902,6 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 					&:nth-last-child(2){
 	  				margin-bottom: 0px;
 	  			}
-	  			&:nth-child(n+10){
-	  				.question{
-	  					padding-left:30px;
-	  				}
-	  			}
 	  		}
 	  	}
   	}

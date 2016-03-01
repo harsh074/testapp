@@ -198,10 +198,16 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'url':"/api/payments/findPayments/"+localStorage.getItem('userId')
       });
     },
-    getBroadcastQuestions:function(nextIndex){
+    getbroadcastArticle:function(nextIndex){
       return this.request({
         'method':"GET",
-        'url':"/api/questions/broadcastQuestions/"+nextIndex
+        'url':"/api/articles/broadcastArticles/"+nextIndex
+      });
+    },
+    getSingleBroadcastArticle:function(id){
+      return this.request({
+        'method':"GET",
+        'url':"/api/articles/"+id
       });
     },
     getFullPackages:function(){
@@ -287,7 +293,8 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
       return this.request({
         'method':"POST",
         'url':"/api/questions/acceptQuestion/",
-        'data':args
+        'data':args,
+        'params': {"access_token":localStorage.getItem('token')}
       })
     },
     submitAnswer:function(args){
@@ -343,6 +350,12 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
       return this.request({
         'method':"GET",
         'url':"/api/monkPayments/findPayments/"+localStorage.getItem('userId')
+      });
+    },
+    monkDraftQuestion:function(){
+      return this.request({
+        'method':"GET",
+        'url':"/api/questions?filter[where][status]=underObservation&[where][monkId]="+localStorage.getItem('userId')
       });
     },
     initialize: function(url, sessions, scope, rootScope){

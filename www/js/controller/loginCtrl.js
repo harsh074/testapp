@@ -208,6 +208,8 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           localStorage.setItem("email",data.email);
           utility.login({"email":data.email,"password":$scope.argsSignup.password})
           .then(function(dataLogin){
+            $scope.argsSignup = {"name":"","email":"","password":""};
+            $scope.conpassword = {"pass":""};
             $rootScope.token = localStorage.getItem('token');
             localStorage.setItem("profileData", JSON.stringify(data));
             localStorage.setItem('firstTimeUser',true);
@@ -218,8 +220,8 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
             if($scope.userLoginModal && $scope.userLoginModal.isShown()){
               $scope.userLoginModal.remove();
             }
-            $scope.registerNotificaton();
             $state.go('app.editProfile');
+            $scope.registerNotificaton();
           },function(data){
             $scope.hideLoader();
             if(data){

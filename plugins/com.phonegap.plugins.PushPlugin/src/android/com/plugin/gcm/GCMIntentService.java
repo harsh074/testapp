@@ -127,7 +127,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 		}
 		
 		if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
-			mBuilder.setSmallIcon(context.getResources().getIdentifier("drawable/icon", "drawable", context.getPackageName()));
+			mBuilder.setSmallIcon(context.getResources().getIdentifier("drawable/ic_notify", "drawable", context.getPackageName()));
 		}
 		else{
 			mBuilder.setSmallIcon(context.getApplicationInfo().icon);

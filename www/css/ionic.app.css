@@ -9892,8 +9892,6 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       counter-increment: section; }
     .home-view .directQuestionContent .questionFound .list .questions:nth-last-child(2) {
       margin-bottom: 0px; }
-    .home-view .directQuestionContent .questionFound .list .questions:nth-child(n+10) .question {
-      padding-left: 30px; }
 
 .home-view .singleQuestion {
   top: 105px;

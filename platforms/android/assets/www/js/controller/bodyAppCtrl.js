@@ -104,7 +104,7 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
   }
 }]);
 
-askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','CONSTANT','$ionicLoading','$timeout','$ionicHistory','$state','$ionicSideMenuDelegate','$ionicPlatform','$stateParams', function($scope,utility,CONSTANT,$rootScope,CONSTANT,$ionicLoading,$timeout,$ionicHistory,$state,$ionicSideMenuDelegate,$ionicPlatform,$stateParams){
+askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','CONSTANT','$ionicLoading','$timeout','$ionicHistory','$state','$ionicSideMenuDelegate','$ionicPlatform','$stateParams','HardwareBackButtonManager', function($scope,utility,CONSTANT,$rootScope,CONSTANT,$ionicLoading,$timeout,$ionicHistory,$state,$ionicSideMenuDelegate,$ionicPlatform,$stateParams,HardwareBackButtonManager){
 	document.addEventListener("deviceready", onDeviceReady, false);
   $scope.showArrow = false;
 
@@ -203,13 +203,20 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     console.log('online');
   }
   
-  $ionicPlatform.onHardwareBackButton(function() {
+  /*$ionicPlatform.onHardwareBackButton(function() {
     if($ionicHistory.currentStateName() == "login"){
 
     }else{
       $ionicHistory.goBack();
     }
-  },150);
+  },150);*/
+  /*$ionicPlatform.registerBackButtonAction(function() {
+    if($ionicHistory.currentStateName() == "login"){
+
+    }else{
+      $ionicHistory.goBack();
+    }
+  },100);*/
   
   utility.initialize(CONSTANT.baseUrl, false, $scope, $rootScope);
 
@@ -254,6 +261,12 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
       $scope.showArrow = true;
     }else{
       $scope.showArrow = false;
+    }
+
+    if((toState.name == 'app.editProfile' || toState.name=='app.profile')&&(fromState.name=='login') || (toState.name=='login' && fromState.name=='app.setting')){
+      HardwareBackButtonManager.disable();
+    }else{
+      HardwareBackButtonManager.enable();
     }
   });
 
