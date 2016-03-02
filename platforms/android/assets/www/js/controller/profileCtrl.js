@@ -34,7 +34,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
         $scope.$emit("updateSideMenuName",data);
       	$rootScope.profileData = data;
       	if(!data.dob || !data.birthPlace || !data.birthTime || !data.gender){
-          localStorage.setItem('firstTimeUser',true);
+          localStorage.setItem('firstTime',true);
           CONSTANT.isComingFromSignUp = true;
           $state.go('app.editProfile');
       	}else{
@@ -70,7 +70,9 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
           $scope.profileImage = 'http://askmonk.in/mImages/'+$scope.profileInfo.email.split('@')[0].toLowerCase()+'.jpg';
           utility.getDirectQuestionCount()
           .then(function(data){
-            $scope.showDirectQuestionCountPopup(data);
+            if(data.length>0){
+              $scope.showDirectQuestionCountPopup(data);
+            }
           },function(data){
             if(data && data.error.statusCode == 422){
               $scope.showMessage(data.error.message);
@@ -94,6 +96,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
 
   if(localStorage.firstTimeUser){
     localStorage.removeItem('firstTimeUser');
+    localStorage.removeItem('firstTime');
     $scope.guideScreenImage = [1,2,3,4,5,6,7,8,9];
     $ionicModal.fromTemplateUrl('views/guideScreenModal.html', function (modal) {
       $scope.guideScreenModal = modal;

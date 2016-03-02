@@ -2825,6 +2825,15 @@ ion-side-menu .has-header{
     		color: rgb(60, 164, 197);
 			}
 		}
+		.customBtn{
+			text-align:center;
+			button{
+		    margin-top: 10px;
+		    min-height: 40px;
+		    height: 40px;
+		    line-height: 38px;
+			}
+		}
 	}
 	.bar.item-input-inset{
     background-color: whitesmoke;

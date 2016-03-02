@@ -103,7 +103,7 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
   $scope.shareWhatsapp = function(){
     $scope.showLoader();
     window.plugins.socialsharing.shareViaWhatsApp(
-      "Askmonk.in ( Innovative way to know about astrological solutions to one's crisp questions in no time. Download askmonk now where predictions are just a question away )",
+      "Askmonk.in ( Innovative way to know about astrological solutions to one's crisp questions in no time. Download Askmonk now where predictions are just a question away )",
       null,
       null,
       function() {
@@ -141,7 +141,7 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
   $scope.logOut = function(){
     var confirmPopup = $ionicPopup.show({
       cssClass:"ios",
-      title: 'Do you want to logout of askmonk?',
+      title: 'Do you want to logout of Askmonk?',
       // template:'Do u wish to continue ?',
       buttons: [
         {text: 'Yes',type:'button-ios button-clear',

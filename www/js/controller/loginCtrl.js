@@ -24,7 +24,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           var videoTag = angular.element(document.getElementById('video'+i));
           videoTag[0].load();
         }
-      }, 500);
+      }, 600);
     });
     $scope.slideHasChanged = function(index){
       var videoTag = angular.element(document.getElementById('video'+index));
@@ -212,7 +212,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
             $scope.conpassword = {"pass":""};
             $rootScope.token = localStorage.getItem('token');
             localStorage.setItem("profileData", JSON.stringify(data));
-            localStorage.setItem('firstTimeUser',true);
+            localStorage.setItem('firstTime',true);
             $scope.setAuth(true);
             localStorage.setItem('loginType',"user");
             CONSTANT.loginType = "user";
@@ -321,7 +321,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           localStorage.setItem('userId',data.userId);
           CONSTANT.loginType = "user";
           if(data.firstTimeLogin){
-            localStorage.setItem('firstTimeUser',true);
+            localStorage.setItem('firstTime',true);
             localStorage.setItem("name",obj.givenName);
             localStorage.setItem("email",obj.email);
             $rootScope.profileData = angular.copy(obj);

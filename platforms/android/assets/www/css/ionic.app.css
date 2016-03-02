@@ -11451,6 +11451,13 @@ ion-side-menu .has-header {
       padding-right: 15px;
       vertical-align: middle;
       color: #3ca4c5; }
+    .ion-google-place-container .ionic-google-places .customBtn {
+      text-align: center; }
+      .ion-google-place-container .ionic-google-places .customBtn button {
+        margin-top: 10px;
+        min-height: 40px;
+        height: 40px;
+        line-height: 38px; }
   .ion-google-place-container .bar.item-input-inset {
     background-color: whitesmoke; }
     .ion-google-place-container .bar.item-input-inset .item-input-wrapper {

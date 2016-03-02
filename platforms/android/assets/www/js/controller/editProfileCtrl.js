@@ -54,7 +54,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       setButtonType : 'button-askmonk',
       todayButtonType : 'button-askmonk',
       closeButtonType : 'button-askmonk',
-      inputDate: $scope.editProfileData.dob ? new Date($scope.editProfileData.dob):new Date(),
+      inputDate:new Date($scope.editProfileData.dob),
       mondayFirst: true,
       // disabledDates: disabledDates,
       // weekDaysList: weekDaysList,
@@ -73,8 +73,8 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
     };
     
     function datePickerCallback(val){
-      $scope.showDate = true;
-      if(val){
+      if(new Date(val) != 'Invalid Date'){
+        $scope.showDate = true;
         $scope.datepickerObject.inputDate = val;
       }else{
         $scope.datepickerObject.inputDate = new Date();
@@ -83,7 +83,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
     }
 
     $scope.timePickerObject12Hour = {
-      inputEpochTime:($scope.editProfileData.birthTime?(new Date($scope.editProfileData.birthTime)).getHours()*60*60+60*(new Date($scope.editProfileData.birthTime)).getMinutes():(new Date()).getHours()*60*60),
+      inputEpochTime:($scope.editProfileData.birthTime?(new Date($scope.editProfileData.birthTime).getHours()*60*60+60*(new Date($scope.editProfileData.birthTime)).getMinutes()):(new Date()).getHours()*60*60+60*(new Date()).getMinutes()),
       step: 1,
       format: 12,
       titleLabel: 'Birth Time',
@@ -100,7 +100,9 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       angular.element(document.getElementsByClassName('ion-birth-time')).addClass('used');
       if (typeof (val) === 'undefined'){
         // console.log('Time not selected');
-        $scope.editProfileData.birthTime = new Date();
+        if(!$scope.editProfileData.birthTime){
+          $scope.editProfileData.birthTime = new Date();
+        }
       } else {
         var selectedTime = new Date(val * 1000);
         $scope.editProfileData.birthTime = new Date();
@@ -134,6 +136,9 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
             localStorage.removeItem("profileData");
             localStorage.setItem("name",$scope.editProfileData.name);
             localStorage.setItem("profile",JSON.stringify(data));
+            if(localStorage.firstTime){
+              localStorage.setItem('firstTimeUser',true);
+            }
             $scope.$emit("updateEditProfileFirstUser");
             $state.go('app.profile');
             if(!$scope.getUserCount.emailVerified){

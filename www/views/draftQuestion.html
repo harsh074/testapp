@@ -30,10 +30,9 @@
         </div>
         <div class="noStatusQuestion" ng-if="noQuestionFound">
       		<img src="img/icon.png" width="100px" />
-      		<p class="noQuestionTitle" ng-if="loginType=='monk'">No Open Question</p>
+      		<p class="noQuestionTitle" ng-if="loginType=='monk'">No Draft Question</p>
       	</div>
     	</ion-list>
-    	<ion-infinite-scroll ng-if="!noMoreQuestion" on-infinite="loadMoreQuestion()" immediate-check="false" icon="ion-loading" distance="10%"></ion-infinite-scroll>
 		</div>
 	</ion-content>
 </ion-view>

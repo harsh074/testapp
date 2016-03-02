@@ -14,6 +14,7 @@ angular.module('ion-google-place', [])
 					var unbindBackButtonAction;
 
 					scope.locations = [];
+					scope.showCustomBtn = false;
 					var geocoder = new google.maps.Geocoder();
 					var searchEventTimeout = undefined;
 
@@ -45,7 +46,7 @@ angular.module('ion-google-place', [])
 								'<!--button class="button button-clear">Cancel</button-->',
 							'</div>',
 							'<ion-content class="has-header has-header ionic-google-places">',
-								'<ion-list>',
+								'<ion-list ng-if="!showCustomBtn">',
 									'<ion-item class="currentLocation" type="item-text-wrap" ng-click="setCurrentLocation()" ng-if="displayCurrentLocation"><i class="icon ion-android-locate"></i>',
 										'Use current location',
 									'</ion-item>',
@@ -53,6 +54,7 @@ angular.module('ion-google-place', [])
 										'{{location.description}}',
 									'</ion-item>',
 								'</ion-list>',
+								'<div class="customBtn"><button class="button button-custom" ng-if="showCustomBtn" ng-click="selectCustomLocation(searchQuery)">Save Custom Address</button></div>',
 							'</ion-content>',
 						'</div>'
 					].join('');
@@ -78,6 +80,12 @@ angular.module('ion-google-place', [])
 							}
 							scope.$emit('ionGooglePlaceSetLocation',location);
 						};
+						scope.selectCustomLocation = function(location){
+							ngModel.$setViewValue(location);
+							ngModel.$render();
+							el.element.css('display', 'none');
+							$ionicBackdrop.release();
+						}
 
 						scope.setCurrentLocation = function(){
 							$ionicLoading.show({
@@ -147,9 +155,13 @@ angular.module('ion-google-place', [])
 								service.getPlacePredictions(req, function(results, status) {
 									if (status != google.maps.places.PlacesServiceStatus.OK) {
 									  console.log(status);
+									  scope.$apply(function(){
+									  	scope.showCustomBtn = true;
+									  });
 									  return;
 									}
 									scope.$apply(function(){
+										scope.showCustomBtn = false;
 										scope.locations = results;
 									});
 								});

@@ -8,5 +8,5 @@ askmonkApp.constant('CONSTANT', {
   pushSenderID:"915609605128",
   razorPayKey:"rzp_test_Gyvc5rLmpetSzJ",
   razorPayImage:"https://i.imgur.com/r4skAgA.png",
-  PRODUCTION_MODE:false
+  PRODUCTION_MODE:true
 });
