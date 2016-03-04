@@ -8,14 +8,14 @@
 				</div>
 	    </div>
 	  </ion-slide>
-		<ion-slide>
-			<div class="topContentVideo">
-			  <p class="ftuText">Select a question, <br/>set duration & ask on the go</p>
-			  <div class="boxPhone">
-			  	<video preload="auto" autoplay loop class="ftuContainer" id="video1">
-					  <source src="img/ftu/screen1_3.mp4" type="video/mp4">
+	  <ion-slide>
+	  	<div class="topContentVideo">
+		    <p class="ftuText">Fill in mandatary details <br>& start askmonking</p>
+		    <div class="boxPhone">
+		    	<video autoplay loop class="ftuContainer" id="video3">
+					  <source src="img/ftu/screen3_3.mp4" type="video/mp4">
 					</video>
-			  </div>
+		    </div>
 	    </div>
 	  </ion-slide>
 	  <ion-slide>
@@ -29,13 +29,13 @@
 		  </div>
 	  </ion-slide>
 	  <ion-slide>
-	  	<div class="topContentVideo">
-		    <p class="ftuText">Fill in mandatary details <br>& start askmonking</p>
-		    <div class="boxPhone">
-		    	<video autoplay loop class="ftuContainer" id="video3">
-					  <source src="img/ftu/screen3_3.mp4" type="video/mp4">
+			<div class="topContentVideo">
+			  <p class="ftuText">Select a question, <br/>set duration & ask on the go</p>
+			  <div class="boxPhone">
+			  	<video preload="auto" autoplay loop class="ftuContainer" id="video1">
+					  <source src="img/ftu/screen1_3.mp4" type="video/mp4">
 					</video>
-		    </div>
+			  </div>
 	    </div>
 	  </ion-slide>
 	</ion-slide-box>
@@ -67,20 +67,20 @@
 				<form name="loginForm" class="form form-horizontal" novalidate ng-hide="signUptab">
 					<ion-md-input name="userEmail" placeholder="Email" highlight-color="custom" ng-model="args.email" type="email" ng-required="true"></ion-md-input>
 					<ion-md-input name="userPassword" placeholder="Password" highlight-color="custom password" ng-model="args.password" type="password" ng-if="!userForgetPasswordShow" ng-minlength="6" ng-maxlength="16" ng-required="true"></ion-md-input>
-					<button class="button button-login" ng-click="userLogin(loginForm)" type="submit" ng-if="!userForgetPasswordShow">Login</button>
+					<button class="button button-login" ng-click="userLogin(loginForm)" type="submit" ng-if="!userForgetPasswordShow">LOGIN</button>
 					
-					<button class="button button-login" ng-click="userForgetPassword()" type="submit" ng-if="userForgetPasswordShow && !userResendValidatonShow">Send Email</button>
-					<button class="button button-login" ng-click="userResendValidation()" type="submit" ng-if="userResendValidatonShow">Resend Email</button>
+					<button class="button button-login" ng-click="userForgetPassword()" type="submit" ng-if="userForgetPasswordShow && !userResendValidatonShow">SEND EMAIL</button>
+					<button class="button button-login" ng-click="userResendValidation()" type="submit" ng-if="userResendValidatonShow">RESEND EMAIL</button>
 
-					<a ng-click="loginTab()" class="backTologin" ng-if="userForgetPasswordShow">Already have an account? Login</a>
+					<a ng-click="loginTab()" class="backTologin" ng-if="userForgetPasswordShow">Already have an account? LOGIN</a>
 
-					<a ng-click="forgetUserPasswordTab()" class="forgetPassword" ng-if="!userForgetPasswordShow">Forgot Password ?</a>
+					<a ng-click="forgetUserPasswordTab()" class="forgetPassword" ng-if="!userForgetPasswordShow">FORGOT PASSWORD ?</a>
 
-					<a ng-click="signUpTab()" class="registerWithUs" ng-if="!userForgetPasswordShow">Sign Up</a>
-					<a ng-click="resendValidationTab()" class="resendValidation" ng-if="!userForgetPasswordShow">Resend Validation Email</a>
+					<a ng-click="signUpTab()" class="registerWithUs" ng-if="!userForgetPasswordShow">SIGN UP</a>
+					<a ng-click="resendValidationTab()" class="resendValidation" ng-if="!userForgetPasswordShow">RESEND VALIDATION EMAIL</a>
 					<div class="socialLogin googleLoginBtn" ng-click="userGoogleLogin()" ng-if="!userForgetPasswordShow">
 						<i class="icon ion-social-googleplus-outline"></i>
-						<p>Sign in with Google</p>
+						<p>SIGN IN WITH GOOGLE</p>
 					</div>
 				</form>
 				<form name="registerForm" class="form form-horizontal" ng-submit="userSignUp(registerForm)" novalidate autocomplete="off" ng-show="signUptab">
@@ -89,11 +89,11 @@
 					<ion-md-input placeholder="Password" name="password" highlight-color="custom" ng-model="argsSignup.password" type="password" ng-minlength="6" ng-maxlength="16" ng-required="true"></ion-md-input>
 					<ion-md-input placeholder="Confirm Password" name="conpassword" highlight-color="custom" ng-model="conpassword.pass" type="password" ng-minlength="6" ng-maxlength="16" ng-required="true"></ion-md-input>
 					<p class="disclaimer">By clicking Sign up, you agree to Askmonk's <a class="" ng-click="openTnC()">Terms & Condition</a>.</p>
-					<button class="button button-login" type="submit">Sign Up</button>
-					<a ng-click="loginTab()" class="backTologin">Already have an account? Login</a>
+					<button class="button button-login" type="submit">SIGN UP</button>
+					<a ng-click="loginTab()" class="backTologin">Already have an account? LOGIN</a>
 					<div class="socialLogin googleLoginBtn" ng-click="userGoogleLogin()">
 						<i class="icon ion-social-googleplus-outline"></i>
-						<p>Sign up with Google</p>
+						<p>SIGN UP WITH GOOGLE</p>
 					</div>
 				</form>
 			</div>
@@ -111,10 +111,10 @@
 				<form name="myform" class="form form-horizontal" novalidate>
 					<ion-md-input placeholder="Email" highlight-color="custom" type="email" ng-pattern="/^\w+([\.+-]?\w+)*@\w+([\.-]?\w+)(\.\w{1,})+$/" name="monkEmail" ng-model="argsMonk.email"></ion-md-input>
 					<ion-md-input placeholder="Password" highlight-color="custom password" type="password" ng-model="argsMonk.password" ng-if="!monkForgetPasswordShow"></ion-md-input>
-					<button class="button button-login" ng-click="monkLogin()" ng-if="!monkForgetPasswordShow">Login</button>
-					<button class="button button-login" ng-click="monkForgetPassword()" ng-if="monkForgetPasswordShow">Send Email</button>
-					<a ng-click="forgetMonkPasswordTab()" class="forgetPassword" ng-if="!monkForgetPasswordShow">Forgot Password?</a>
-					<a ng-click="loginMonkTab()" class="backTologin" ng-if="monkForgetPasswordShow">Already have an account? Login</a>
+					<button class="button button-login" ng-click="monkLogin()" ng-if="!monkForgetPasswordShow">LOGIN</button>
+					<button class="button button-login" ng-click="monkForgetPassword()" ng-if="monkForgetPasswordShow">SEND EMAIL</button>
+					<a ng-click="forgetMonkPasswordTab()" class="forgetPassword" ng-if="!monkForgetPasswordShow">FORGOT PASSWORD?</a>
+					<a ng-click="loginMonkTab()" class="backTologin" ng-if="monkForgetPasswordShow">Already have an account? LOGIN</a>
 				</form>
 			</div>
 		</ion-content>

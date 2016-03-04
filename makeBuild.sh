@@ -1,5 +1,5 @@
 # Production
-gulp default
+# gulp default
 platforms/android/cordova/./clean
 cordova build --release android
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore platforms/android/ant-build/MainActivity-release-unsigned.apk  askmonk

@@ -9339,19 +9339,22 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     float: right;
     color: #fff;
     text-decoration: none;
-    white-space: nowrap; }
+    white-space: nowrap;
+    font-size: 13px; }
   .loginPages .resendValidation {
     display: inline-table;
     color: white;
     text-decoration: none;
     white-space: nowrap;
-    padding-top: 10px; }
+    padding-top: 10px;
+    font-size: 13px; }
   .loginPages .forgetPassword {
     display: inline-block;
     float: left;
     color: white;
     text-decoration: none;
-    white-space: nowrap; }
+    white-space: nowrap;
+    font-size: 13px; }
   .loginPages .disclaimer {
     display: block;
     margin: 25px 0 15px;
@@ -9374,7 +9377,8 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     background-color: #F62B00;
     margin: 15px auto 0;
     color: #fff;
-    border-radius: 5px; }
+    border-radius: 5px;
+    font-size: 13px; }
     .loginPages .socialLogin.googleLoginBtn i {
       padding: 6px 5px 2px 9px;
       border-right: 1px solid #DC2700;
