@@ -36,20 +36,24 @@
       <p class="headerPart">Match Making:</p>
       <form novalidate>
         <ion-md-input placeholder="Partner Name" highlight-color="calm" ng-model="editQuestion.matchMakingDetails.partnerName" type="text" required></ion-md-input>
-        <!-- <ion-md-input placeholder="Partner Birth Place" highlight-color="calm" ng-model="args.partnerBirthPlace" type="text" required></ion-md-input> -->
+
         <label class="item item-input item-md-label" placeholder="Birth Place" hightlight-color="custom" type="text" ng-model="editQuestion.matchMakingDetails.partnerBirthPlace" ng-if="loginType=='user'">
           <ion-google-place ng-model="editQuestion.matchMakingDetails.partnerBirthPlace" current-location="false"></ion-google-place>
           <span class="input-label">Birth Place</span>
           <div class="highlight highlight-calm"></div>
         </label>
         
-        <label class="item item-input item-md-label" ng-if="loginType=='user'" ionic-timepicker input-obj="timePickerObject12Hour">
+        <!-- <label class="item item-input item-md-label" ng-if="loginType=='user'" ionic-timepicker input-obj="timePickerObject12Hour">
+          <div class="md-input ion-birth-time">{{editQuestion.matchMakingDetails.partnerBirthTime | date: 'hh:mm a'}}</div>
+          <span class="input-label">Partner Birth Time</span>
+          <div class="highlight highlight-calm"></div>
+        </label> -->
+
+        <label class="item item-input item-md-label" ng-if="loginType=='user'" ion-datetime-picker time am-pm ng-model="editQuestion.matchMakingDetails.partnerBirthTime" callback="timePicker12Callback">
           <div class="md-input ion-birth-time">{{editQuestion.matchMakingDetails.partnerBirthTime | date: 'hh:mm a'}}</div>
           <span class="input-label">Partner Birth Time</span>
           <div class="highlight highlight-calm"></div>
         </label>
-
-        <!-- <ion-md-input placeholder="Partner Birth Time" hightlight-color="calm" type="time" ng-model="editQuestion.matchMakingDetails.partnerBirthTime" required></ion-md-input> -->
 
         <label class="item item-input item-calender">
           <ionic-datepicker input-obj="datepickerObject">

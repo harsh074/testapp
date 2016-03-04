@@ -451,9 +451,9 @@ askmonkApp.controller('editQuestionModalCtrl', ['$scope','utility','$timeout', f
       }
     }
 
-    function timePicker12Callback(val){
+    $scope.timePicker12Callback= function(val){
       angular.element(document.getElementsByClassName('ion-birth-time')).addClass('used');
-      if (typeof (val) === 'undefined'){
+      /*if (typeof (val) === 'undefined'){
         // console.log('Time not selected');
         $scope.editQuestion.matchMakingDetails.partnerBirthTime = new Date();
       } else {
@@ -462,7 +462,7 @@ askmonkApp.controller('editQuestionModalCtrl', ['$scope','utility','$timeout', f
         $scope.editQuestion.matchMakingDetails.partnerBirthTime.setMinutes(selectedTime.getUTCMinutes());
         $scope.editQuestion.matchMakingDetails.partnerBirthTime.setHours(selectedTime.getUTCHours());
         // console.log($scope.editProfileData.birthTime);
-      }
+      }*/
     }
   }
 

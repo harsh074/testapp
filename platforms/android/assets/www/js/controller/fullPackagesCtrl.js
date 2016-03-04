@@ -45,7 +45,7 @@ askmonkApp.controller('fullPackagesCtrl', ['$scope','utility','$state','$ionicPo
 	    cssClass:"ios",
 	    title: 'Please Select Preferred Language',
 	    buttons: [
-	      {text: 'English',type:'button-ios button-clear',
+	      {text: 'English',type:'button-ios button-clear noBold',
 	        onTap: function(e) {
 	          return "english";
 	        }

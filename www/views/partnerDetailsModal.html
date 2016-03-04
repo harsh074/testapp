@@ -4,9 +4,6 @@
       <button class="customMenuBtn is-active" ng-click="closeModal()"><span></span></button>
     </span></div>
     <div class="title title-left header-item" style="left: 75px; right: 68px;"><i class="logoSideMenu"></i></div>
-    <!-- <div class="buttons buttons-right header-item"><span class="right-buttons">
-      <button class="button-clear ion-wallet" ng-click="goToWalletFromModal()"></button>
-    </span></div> -->
   </ion-header-bar>
 
   <ion-content scroll="false">
@@ -21,20 +18,23 @@
 	<ion-content scroll="true" class="editProfile paddingLRPlus21 partnerDetails">
 		<form novalidate>
 			<ion-md-input placeholder="Partner Name" highlight-color="calm" ng-model="args.partnerName" type="text" required></ion-md-input>
-			<!-- <ion-md-input placeholder="Partner Birth Place" highlight-color="calm" ng-model="args.partnerBirthPlace" type="text" required></ion-md-input> -->
 			<label class="item item-input item-md-label" placeholder="Birth Place" hightlight-color="custom" type="text" ng-model="args.partnerBirthPlace" ng-if="loginType=='user'">
         <ion-google-place ng-model="args.partnerBirthPlace" current-location="false"></ion-google-place>
-        <span class="input-label">Birth Place</span>
+        <span class="input-label">Partner Birth Place</span>
         <div class="highlight highlight-calm"></div>
       </label>
 
-      <label class="item item-input item-md-label" ionic-timepicker input-obj="timePickerObject12Hour">
+      <!-- <label class="item item-input item-md-label" ionic-timepicker input-obj="timePickerObject12Hour">
+        <div class="md-input ion-birth-time">{{args.partnerBirthTime | date: 'hh:mm a'}}</div>
+        <span class="input-label">Partner Birth Time</span>
+        <div class="highlight highlight-calm"></div>
+      </label> -->
+
+      <label class="item item-input item-md-label" ion-datetime-picker time am-pm ng-model="args.partnerBirthTime" callback="timePicker12Callback">
         <div class="md-input ion-birth-time">{{args.partnerBirthTime | date: 'hh:mm a'}}</div>
         <span class="input-label">Partner Birth Time</span>
         <div class="highlight highlight-calm"></div>
       </label>
-
-			<!-- <ion-md-input placeholder="Partner Birth Time" hightlight-color="calm" type="time" ng-model="args.partnerBirthTime" required></ion-md-input> -->
 
 			<label class="item item-input item-calender">
 		  	<ionic-datepicker input-obj="datepickerObject">

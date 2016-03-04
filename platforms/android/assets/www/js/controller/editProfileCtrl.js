@@ -96,9 +96,9 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       }
     }
 
-    function timePicker12Callback(val){
+    $scope.timePicker12Callback = function(){
       angular.element(document.getElementsByClassName('ion-birth-time')).addClass('used');
-      if (typeof (val) === 'undefined'){
+      /*if (typeof (val) === 'undefined'){
         // console.log('Time not selected');
         if(!$scope.editProfileData.birthTime){
           $scope.editProfileData.birthTime = new Date();
@@ -109,7 +109,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
         $scope.editProfileData.birthTime.setMinutes(selectedTime.getUTCMinutes());
         $scope.editProfileData.birthTime.setHours(selectedTime.getUTCHours());
         // console.log($scope.editProfileData.birthTime);
-      }
+      }*/
     }
 
     $scope.expandText = function(){
