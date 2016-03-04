@@ -69,9 +69,8 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
     changeUserPassword:function(args){
       return this.request({
         'method':"POST",
-        'url':"/api/users/changePassword/",
-        'data':args,
-        'params': {"access_token":localStorage.getItem('token'),"email":localStorage.getItem('email')}
+        'url':"/api/users/changePassword/"+localStorage.getItem('token')+'/'+localStorage.getItem('email'),
+        'data':args
       });
     },
     forgetUserPassword:function(args){
@@ -332,9 +331,8 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
     changeMonkPassword:function(args){
       return this.request({
         'method':"POST",
-        'url':"/api/monks/changeMonkPassword/",
-        'data':args,
-        'params': {"access_token":localStorage.getItem('token'),"email":localStorage.getItem('email')}
+        'url':"/api/monks/changeMonkPassword/"+localStorage.getItem('token')+'/'+localStorage.getItem('email'),
+        'data':args
       });
     },
     addMoney:function(args){

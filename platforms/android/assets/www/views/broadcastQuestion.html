@@ -3,12 +3,12 @@
 		<div class="shortHeader">
 			<h1 class="title">View Article</h1>
 		</div>
+      <!-- <button ng-click="shareArticle()">share</button> -->
 	</ion-content>
 	<ion-content class="row singleQuestion broadcastQuestion paddingLRPlus21" scroll="true" delegate-handle="mainScroll">
 		<div class="questionData">
       
       <div class="question">{{question.articleHeading|capitalize}}</div>
-
       <div class="middleSec">
         <p class="answer">{{question.articleBody}}</p>
       	<p class="yogiName">Posted by {{question.userName ? question.userName: "Askmonk"}}</p>

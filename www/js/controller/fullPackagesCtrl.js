@@ -41,7 +41,27 @@ askmonkApp.controller('fullPackagesCtrl', ['$scope','utility','$state','$ionicPo
 		$scope.args.displayTag = pack.displayTag;
 		$scope.args.amount = pack.amount;
 		$scope.args.durationMonths = pack.durationMonths;
-		$scope.postQuestion(pack);
+		var confirmPopup = $ionicPopup.show({
+	    cssClass:"ios",
+	    title: 'Please Select Preferred Language',
+	    buttons: [
+	      {text: 'English',type:'button-ios button-clear',
+	        onTap: function(e) {
+	          return "english";
+	        }
+	      },
+	      {text:'Hindi',type:'button-ios button-clear',
+	        onTap: function(e) {
+	          return "hindi";
+	        }
+	      }
+	    ]
+	  });
+	  // angular.element(document.getElementByClassName('backdrop').style('opacity',1));
+	  confirmPopup.then(function(res) {
+	    $scope.args.languageSelection = res;
+			$scope.postQuestion(pack);
+	  });
 	}
 
 	$scope.money = {"customMoney":""};

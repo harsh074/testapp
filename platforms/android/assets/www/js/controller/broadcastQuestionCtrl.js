@@ -30,4 +30,8 @@ askmonkApp.controller('broadcastQuestionCtrl', ['$scope','$state','utility','$st
     $scope.closeModal();
     $state.go('app.wallet');
   }
+
+  $scope.shareArticle = function (){
+    window.plugins.socialsharing.share('harsh');
+  }
 }])

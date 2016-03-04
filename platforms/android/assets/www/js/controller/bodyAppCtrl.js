@@ -168,8 +168,16 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
             $state.go('app.horoscope');
           }else if(e.payload.questionId == 1){
             $state.go('app.askQuestion');
+          }else if(e.payload.questionId == 50){
+            $state.go('app.profile');
           }else{
-            $state.go('app.singlequestion',{id:e.payload.questionId});
+            if(e.payload.notificationType == 'Article'){
+              $state.go('app.broadcastquestion',{id:e.payload.questionId});
+            }else if(e.payload.notificationType == 'Question'){
+              $state.go('app.singlequestion',{id:e.payload.questionId});
+            }else{
+              $state.go('app.profile');
+            }
           }
         }
       }
