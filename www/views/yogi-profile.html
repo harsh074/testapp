@@ -24,6 +24,10 @@
 		</div>
 	</ion-content>
 	<ion-content class="row profileData paddingLRPlus21">
+		<dl ng-if="monkProfileData.city">
+		  <dt>City</dt>
+		  <dd>{{monkProfileData.city}}</dd>
+		</dl>
 		<dl ng-if="monkProfileData.education">
 		  <dt>Education</dt>
 		  <dd>{{monkProfileData.education}}</dd>
@@ -32,13 +36,9 @@
 		  <dt>Occupation</dt>
 		  <dd>{{monkProfileData.occupation}}</dd>
 		</dl>
-		<dl ng-if="monkProfileData.city">
-		  <dt>City</dt>
-		  <dd>{{monkProfileData.city}}</dd>
-		</dl>
-		<dl ng-if="monkProfileData.bio">
+		<dl ng-if="monkProfileData.bio" class="bio">
 		  <dt>About Me</dt>
-		  <dd class="bio">{{monkProfileData.bio}}</dd>
+		  <dd>{{monkProfileData.bio}}</dd>
 		</dl>
 	</ion-content>
 </ion-view>

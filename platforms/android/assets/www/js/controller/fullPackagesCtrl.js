@@ -59,8 +59,10 @@ askmonkApp.controller('fullPackagesCtrl', ['$scope','utility','$state','$ionicPo
 	  });
 	  // angular.element(document.getElementByClassName('backdrop').style('opacity',1));
 	  confirmPopup.then(function(res) {
-	    $scope.args.languageSelection = res;
-			$scope.postQuestion(pack);
+	  	if(res){
+	    	$scope.args.languageSelection = res;
+				$scope.postQuestion(pack);
+	  	}
 	  });
 	}
 
@@ -71,6 +73,7 @@ askmonkApp.controller('fullPackagesCtrl', ['$scope','utility','$state','$ionicPo
 	 	var data = {
 	  	description: "Ask Question",
 	    currency: 'INR',
+	    image: CONSTANT.razorPayImage,
 	    key: CONSTANT.razorPayKey,
 	    amount: $scope.amount,
 	    name: 'Askmonk',

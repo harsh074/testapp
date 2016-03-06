@@ -239,6 +239,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	 	var data = {
 	  	description: "Ask Question",
 	    currency: 'INR',
+	    image: CONSTANT.razorPayImage,
 	    key: CONSTANT.razorPayKey,
 	    amount: $scope.amount,
 	    name: 'Askmonk',

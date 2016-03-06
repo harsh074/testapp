@@ -29,13 +29,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-        "id": "cordova-plugin-splashscreen.SplashScreen",
-        "clobbers": [
-            "navigator.splashscreen"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
         "id": "cordova-plugin-x-socialsharing.SocialSharing",
         "clobbers": [
@@ -137,6 +130,13 @@ module.exports = [
         "clobbers": [
             "window.plugins.nativepagetransitions"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -146,7 +146,6 @@ module.exports.metadata =
     "com.ionic.keyboard": "1.0.4",
     "com.phonegap.plugins.PushPlugin": "2.4.0",
     "com.razorpay.cordova": "0.1.0",
-    "cordova-plugin-splashscreen": "3.0.1-dev",
     "cordova-plugin-x-socialsharing": "5.0.9",
     "cordova-plugin-x-toast": "2.2.1",
     "net.yoik.cordova.plugins.screenorientation": "1.3.4",
@@ -159,7 +158,8 @@ module.exports.metadata =
     "nl.x-services.plugins.googleplus": "1.0.0",
     "cordova-plugin-customurlscheme": "4.1.3",
     "com.telerik.plugins.nativepagetransitions": "0.6.2",
-    "org.apache.cordova.geolocation": "0.3.12"
+    "org.apache.cordova.geolocation": "0.3.12",
+    "cordova-plugin-splashscreen": "3.2.1-dev"
 }
 // BOTTOM OF METADATA
 });

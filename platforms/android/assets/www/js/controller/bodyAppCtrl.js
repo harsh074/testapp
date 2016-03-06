@@ -232,7 +232,7 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
     $ionicLoading.show({
       animation: 'fade-in',
       showBackdrop: false,
-      template:'<ion-spinner icon="ripple" class="spinner-askmonk"></ion-spinner>'
+      template:'<ion-spinner icon="android" class="spinner-askmonk"></ion-spinner>'
     });
   };
   $scope.hideLoader = function(){
@@ -271,7 +271,7 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
       $scope.showArrow = false;
     }
 
-    if((toState.name == 'app.editProfile' || toState.name=='app.profile')&&(fromState.name=='login') || (toState.name=='login' && fromState.name=='app.setting')){
+    if((toState.name == 'app.editProfile' || toState.name=='app.profile')&&(fromState.name=='login') || (toState.name=='login' && fromState.name=='app.setting') ||(toState.name=='login' && fromState.name=='app.profile')){
       HardwareBackButtonManager.disable();
     }else{
       HardwareBackButtonManager.enable();
