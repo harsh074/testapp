@@ -25,11 +25,11 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
 
     if($rootScope.profileData){
       $scope.editProfileData = angular.copy($rootScope.profileData);
+      $scope.showDate = true;
       if($scope.loginType == "user"){
         if($scope.editProfileData.birthTime){
           $scope.editProfileData.birthTime = new Date($scope.editProfileData.birthTime);
         }
-        $scope.showDate = true;
       }
     }else if(localStorage.getItem("profileData")){
       $scope.editProfileData = JSON.parse(localStorage.getItem("profileData"));
@@ -47,7 +47,8 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
     }, 50);
 
     $scope.datepickerObject = {
-      titleLabel: 'DOB',
+      titleLabel: 'Date Of Birth',
+      lowDateTitleLabel:'DOB',
       todayLabel: 'Today',
       closeLabel: 'Close',
       setLabel: 'Set',
@@ -77,7 +78,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
         $scope.showDate = true;
         $scope.datepickerObject.inputDate = val;
       }else{
-        $scope.datepickerObject.inputDate = new Date();
+        // $scope.datepickerObject.inputDate = new Date();
       }
       $scope.editProfileData.dob = angular.copy($scope.datepickerObject.inputDate);
     }

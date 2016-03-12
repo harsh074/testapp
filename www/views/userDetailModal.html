@@ -19,45 +19,44 @@
   <ion-content class="userDetailModalBottom" scroll="true">
     <div class="bottomPart">
       <dl>
-        <dt>Birth Date</dt>
-        <dd>{{profileInfo.userDOB | date : 'dd-MM-yyyy'}}</dd>
-      </dl>
-      <dl>
-        <dt>Birth Place</dt>
-        <dd>{{profileInfo.userBirthPlace}}</dd>
-      </dl>
-      <dl>
-        <dt>Birth Time</dt>
-        <dd>{{profileInfo.userBirthTime | date : 'h:mm a'}}</dd>
-      </dl>
-      <dl>
-        <dt>Gender</dt>
-        <dd>{{profileInfo.userGender}}</dd>
+        <dt>Age</dt>
+        <dd>{{profileInfo.userDOB | ageFilter}}</dd>
       </dl>
       <dl>
         <dt>Zodiac</dt>
         <dd>{{profileInfo.moonSign}}</dd>
       </dl>
       <dl>
-        <dt>Age</dt>
-        <dd>{{profileInfo.userDOB | ageFilter}}</dd>
+        <dt>Gender</dt>
+        <dd>{{profileInfo.userGender}}</dd>
       </dl>
-
+      <dl ng-if="profileInfo.userNumberOfChildren">
+        <dt>Children</dt>
+        <dd>{{profileInfo.userNumberOfChildren}}</dd>
+      </dl>
       <dl ng-if="profileInfo.userMaritalStatus">
         <dt>Marriage</dt>
         <dd>{{profileInfo.userMaritalStatus}}</dd>
-      </dl>
-      <dl ng-if="profileInfo.userProfession">
-        <dt>Profession</dt>
-        <dd>{{profileInfo.userProfession}}</dd>
       </dl>
       <dl ng-if="profileInfo.userQualification">
         <dt>Education</dt>
         <dd>{{profileInfo.userQualification}}</dd>
       </dl>
-      <dl ng-if="profileInfo.userNumberOfChildren">
-        <dt>Children</dt>
-        <dd>{{profileInfo.userNumberOfChildren}}</dd>
+      <dl>
+        <dt>Birth Date</dt>
+        <dd>{{profileInfo.userDOB | date : 'dd-MM-yyyy'}}</dd>
+      </dl>
+      <dl>
+        <dt>Birth Time</dt>
+        <dd>{{profileInfo.userBirthTime | date : 'h:mm a'}}</dd>
+      </dl>
+      <dl ng-if="profileInfo.userProfession">
+        <dt>Profession</dt>
+        <dd>{{profileInfo.userProfession}}</dd>
+      </dl>
+      <dl>
+        <dt>Birth Place</dt>
+        <dd>{{profileInfo.userBirthPlace}}</dd>
       </dl>
     </div>
 	</ion-content>

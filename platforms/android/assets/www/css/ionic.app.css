@@ -9813,7 +9813,8 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical; }
+      -webkit-box-orient: vertical;
+      max-height: 41px; }
       .home-view .dashboardData .questionFound .questions .question span {
         position: absolute;
         left: 0;
@@ -9834,6 +9835,7 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
+        max-height: 41px;
         color: #2B5D80;
         font-size: 13px;
         margin-bottom: 0; }
@@ -10596,12 +10598,21 @@ dl {
     dl.bio dd {
       width: auto;
       display: block;
-      text-transform: inherit; }
+      text-transform: inherit;
+      text-align: justify; }
 
 .bar.sideMenuTop {
-  height: 194px;
+  height: 179px;
   position: relative;
   overflow: hidden; }
+  .bar.sideMenuTop .overlayBlack {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 11;
+    background-color: rgba(0, 0, 0, 0.35); }
   .bar.sideMenuTop .imgHldr {
     background-size: cover;
     position: absolute;
@@ -10649,7 +10660,7 @@ dl {
     text-transform: capitalize; }
 
 ion-side-menu .has-header {
-  top: 194px; }
+  top: 179px; }
 
 .editProfile {
   height: auto;
@@ -10667,7 +10678,8 @@ ion-side-menu .has-header {
       .editProfile .item-md-label .md-input:focus ~ .input-label, .editProfile .item-md-label .md-input.used ~ .input-label, .editProfile .item-md-label .md-input.ion-google-place.ng-dirty ~ .input-label {
         -webkit-transform: translate3d(0, -50px, 0) scale(1);
         transform: translate3d(0, -50px, 0) scale(1);
-        font-size: 13px; }
+        font-size: 13px;
+        opacity: 1; }
     .editProfile .item-md-label .input-label {
       color: #aaa; }
     .editProfile .item-md-label .highlight-calm {
@@ -11456,6 +11468,15 @@ ion-side-menu .has-header {
     float: right;
     height: 41px;
     line-height: 41px; }
+  .paymentInfoModal .noStatusQuestion {
+    text-align: center;
+    color: #AAA;
+    padding-top: 33%; }
+    .paymentInfoModal .noStatusQuestion i {
+      font-size: 100px; }
+    .paymentInfoModal .noStatusQuestion .noQuestionTitle {
+      font-size: 21px;
+      margin-top: 5px; }
 
 .slide-in-right {
   -webkit-transform: translate3d(100%, 0, 0);

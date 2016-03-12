@@ -32,6 +32,6 @@ askmonkApp.controller('broadcastQuestionCtrl', ['$scope','$state','utility','$st
   }
 
   $scope.shareArticle = function (){
-    window.plugins.socialsharing.share('harsh');
+    window.plugins.socialsharing.share($scope.question.articleLink);
   }
 }])

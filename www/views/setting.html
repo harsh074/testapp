@@ -14,7 +14,7 @@
 					<button class="button button-full" ng-click="privacyPolicy()"><i class="icon ion-android-lock"></i><span>Privacy Policy</span></button>
 				</div>
 				<div class="list-item">
-					<button class="button button-full" ng-click="termsCondition()"><i class="icon ion-document-text"></i><span>Terms and Condition</span></button>
+					<button class="button button-full" ng-click="termsCondition()"><i class="icon ion-document-text"></i><span>Terms and Conditions</span></button>
 				</div>
 				<div class="list-item">
 					<button class="button button-full" ng-click="openBlog()"><i class="icon ion-social-wordpress"></i><span>Blog</span></button>
@@ -25,10 +25,10 @@
 				<div class="list-item" ng-if="loginType == 'user'">
 					<button class="button button-full" ng-click="showGuideScreens()"><i class="icon ion-help-buoy"></i><span>How it Works</span></button>
 				</div>
-				<div class="list-item">
+				<div class="list-item" ng-if="((userModal.isSocial) && (userModal.isSocial != false) || (!userModal.isSocial))">
 					<button class="button button-full" ng-click="changePassword()"><i class="icon ion-key"></i><span>Change Password</span></button>
 				</div>
-				<div class="list-item" ng-if="loginType == 'user'">
+				<div class="list-item" ng-if="(loginType == 'user') && ((userModal.isSocial) && (userModal.isSocial != false) || (!userModal.isSocial))">
 					<button class="button button-full" ng-click="resendValidation()"><i class="icon ion-email-unread"></i><span>Resend Validation Email</span></button>
 				</div>
 				<div class="list-item">
@@ -44,7 +44,7 @@
 		</div>
 		<div class="bottomPart">
 			<!-- <p>Version 1.0.0</p> -->
-			<p>v.201603050230</p>
+			<p>v.201603110000</p>
 		</div>
 	</ion-content>
 </ion-view>
@@ -101,6 +101,10 @@
 			      <div class="paymentAmount" ng-if="loginType=='monk'">Rs. {{item.paymentAmount}}</div>
 			    </div>
 			  </div>
+			  <div class="noStatusQuestion" ng-if="noPaymentFound">
+      		<img src="img/icon.png" width="100px" />
+      		<p class="noQuestionTitle" ng-if="loginType=='monk'">No Payment Receipts Found</p>
+      	</div>
 			</ion-list>
 		</ion-content>
 	</ion-modal-view>

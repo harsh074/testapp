@@ -1,6 +1,8 @@
 askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootScope','$http','$state','$templateCache','$ionicModal','$ionicPopup','CONSTANT', function($scope,utility,$ionicHistory,$rootScope,$http,$state,$templateCache,$ionicModal,$ionicPopup,CONSTANT){
 
   $scope.loginType = CONSTANT.loginType;
+  $scope.noPaymentFound = false;
+  $scope.userModal = JSON.parse(localStorage.profile);
   $scope.aboutUs = function(){
     $ionicModal.fromTemplateUrl('views/aboutUsModal.html', function (modal) {
       $scope.aboutUsModal = modal;
@@ -32,12 +34,14 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
       utility.userPaymentInfo()
       .then(function(data){
         $scope.hideLoader();
-        console.log(data);
         $scope.paymentReceipts = data;
+        if($scope.paymentReceipts.length == 0){
+          $scope.noPaymentFound = true;
+        }
         $ionicModal.fromTemplateUrl('paymentInfoModal.html', function (modal) {
           $scope.paymentInfoModal = modal;
           $scope.paymentInfoModal.show();
-        }, {
+        },{
           scope: $scope,
           animation: 'slide-in-right'
         });
@@ -53,8 +57,10 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
       utility.monkPaymentInfo()
       .then(function(data){
         $scope.hideLoader();
-        console.log(data);
         $scope.paymentReceipts = data;
+        if($scope.paymentReceipts.length == 0){
+          $scope.noPaymentFound = true;
+        }
         $ionicModal.fromTemplateUrl('paymentInfoModal.html', function (modal) {
           $scope.paymentInfoModal = modal;
           $scope.paymentInfoModal.show();
@@ -103,7 +109,7 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
   $scope.shareWhatsapp = function(){
     $scope.showLoader();
     window.plugins.socialsharing.shareViaWhatsApp(
-      "Askmonk.in ( Innovative way to know about astrological solutions to one's crisp questions in no time. Download Askmonk now where predictions are just a question away )",
+      "http://www.askmonk.in ( Innovative way to know about astrological solutions to one's crisp questions in no time. Download Askmonk now where predictions are just a question away )",
       null,
       null,
       function() {

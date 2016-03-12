@@ -45,7 +45,9 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
   $scope.getDirectQuestionCount = function(){
     utility.getDirectQuestionCount()
     .then(function(data){
-      $scope.showDirectQuestionCountPopup(data);
+      if(data.length>0){
+        $scope.showDirectQuestionCountPopup(data);
+      }
     },function(data){
       if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);

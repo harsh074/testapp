@@ -12,12 +12,12 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', 
   }else{
     $state.go('app.profile');
   }
-  $ionicPlatform.ready(function() {
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
+  $ionicPlatform.ready(function(){
     if(window.MobileAccessibility){
       window.MobileAccessibility.usePreferredTextZoom(false);
+    }
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if(window.StatusBar) {
       // window.StatusBar.styleDefault();
@@ -31,7 +31,7 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', 
       if (window.navigator && window.navigator.splashscreen) {
         window.navigator.splashscreen.hide();
       }
-    },2000);
+    },3000);
 
     CONSTANT.isDevice = ionic.Platform.device().available;
     // ionic.Platform.isFullScreen = false;
@@ -54,8 +54,10 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   $logProvider.debugEnabled(false);
 
   $ionicNativeTransitionsProvider.setDefaultOptions({
-    duration: 150,
+    duration: 170,
     androiddelay: -1,
+    fixedPixelsTop: 0,
+    fixedPixelsBottom: 0,
     triggerTransitionEvent: '$ionicView.afterEnter',
     backInOppositeDirection: true
   });

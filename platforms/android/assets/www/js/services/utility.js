@@ -102,7 +102,7 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
     getSingleQuestions:function(id){
       return this.request({
         'method':"GET",
-        'url':"/api/questions/"+id,
+        'url':"/api/questions/findQuestion/"+id,
         'params': {"access_token":localStorage.getItem('token')}
       });
     },
@@ -198,7 +198,7 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
     getHoroscope:function(id){
       return this.request({
         'method':"GET",
-        'url':"/dailyHoroscope/"+id
+        'url':"/api/horoscopes/findHoroscope/"+id
       });
     },
     userPaymentInfo:function(){
@@ -218,7 +218,7 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
     getSingleBroadcastArticle:function(id){
       return this.request({
         'method':"GET",
-        'url':"/api/articles/"+id,
+        'url':"/api/articles/findArticle/"+id,
         'params': {"access_token":localStorage.getItem('token')}
       });
     },

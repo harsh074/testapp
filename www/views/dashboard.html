@@ -44,9 +44,9 @@
 						<div class="questionFound">
 							<ion-list>
 				        <div ng-repeat="group in question.askedQuestion | filter:search.searchInput" class="questions" ng-click="goToQuestion(group.id)" ng-if="(group.status=='asked' || group.status=='direct'||group.status=='fullAnalysis')">
-				          <div class="question">{{group.question}}</div>
+				          <div class="question" ng-bind="group.question" ellipsis></div>
 			          	<div class="answer">
-			          		<p class="showAnswer">{{group.answer ? group.answer: "Experts on it! Will be answered soon."}}</p>
+			          		<p class="showAnswer" ng-bind="group.answer?group.answer:'Experts on it! Will be answered soon.'" ellipsis></p>
 					       	</div>
 				        </div>
 
@@ -73,9 +73,9 @@
 						<div class="questionFound">
 							<ion-list>
 				        <div ng-repeat="group in question.answeredQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='answered'">
-				          <div class="question">{{group.question}}</div>
+				          <div class="question" ng-bind="group.question" ellipsis></div>
 				          <div class="answer">
-				          	<p>{{group.answer ? group.answer: "Experts on it! Will be answered soon."}}</p>
+				          	<p ng-bind="group.answer?group.answer:'Experts on it! Will be answered soon.'" ellipsis></p>
 						       </div>
 				        </div>
 
@@ -101,9 +101,9 @@
 						<div class="questionFound">
 							<ion-list>
 				        <div ng-repeat="group in question.ratedQuestion | filter:search.searchInput | orderBy:'+':true" class="questions" ng-click="goToQuestion(group.id)" ng-if="group.status=='rated'">
-				          <div class="question">{{group.question}}</div>
+				          <div class="question" ng-bind="group.question" ellipsis></div>
 				          <div class="answer">
-				          	<p>{{group.answer ? group.answer: "Experts on it! Will be answered soon."}}</p>
+				          	<p ng-bind="group.answer?group.answer:'Experts on it! Will be answered soon.'" ellipsis></p>
 						      </div>
 						      <div class="payTogetMore" ng-if="groups.length<=2">
 					      		<a ui-sref="app.wallet">Pay to get more answers.</a>

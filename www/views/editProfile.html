@@ -9,7 +9,7 @@
   </ion-content>
 	<ion-content class="row paddingLRPlus21 questionBottom" scroll="true">
 		<div class="list editProfile">
-      <ion-md-input placeholder="Name" autofocus hightlight-color="calm" type="text" ng-model="editProfileData.name"></ion-md-input>
+      <ion-md-input placeholder="Full Name" autofocus hightlight-color="calm" type="text" ng-model="editProfileData.name"></ion-md-input>
       <ion-md-input placeholder="Mobile" hightlight-color="custom" type="number" ng-model="editProfileData.mobile" ng-if="loginType=='user'"></ion-md-input>
       <label class="item item-input item-md-label" ng-if="loginType=='user'">
         <ion-google-place ng-model="editProfileData.birthPlace" current-location="false"></ion-google-place>
@@ -56,7 +56,7 @@
       <label class="item item-input item-calender" ng-if="loginType=='user'">
       	<ionic-datepicker input-obj="datepickerObject">
 				  <button class="button button-custom-small button-light"> 
-            <span class="dateObject" ng-if="!showDate">{{datepickerObject.titleLabel}}</span>
+            <span class="dateObject" ng-if="!showDate">{{datepickerObject.lowDateTitleLabel}}</span>
             <span class="dateObject" ng-if="showDate">{{datepickerObject.inputDate | date:'dd - MM - yyyy'}}</span>
             <i class="ion-android-calendar"></i>
           </button>

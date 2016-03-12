@@ -787,7 +787,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			    display: -webkit-box;
 			    -webkit-line-clamp: 2;
 			    -webkit-box-orient: vertical;
-			    // color:#5d5d5d;
+			    max-height:41px;
 			    span{
 	    	    position: absolute;
     				left: 0;
@@ -812,6 +812,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 				    display: -webkit-box;
 				    -webkit-line-clamp: 2;
 				    -webkit-box-orient: vertical;
+				    max-height:41px;
 				    color: $top-portion-color;
 				    font-size: 13px;
 				    margin-bottom: 0;
@@ -1784,13 +1785,23 @@ dl{
     	width: auto;
     	display: block;
     	text-transform: inherit;
+    	text-align: justify;
 		}
 	}
 }
 .bar.sideMenuTop{
-	height: 194px; 
+	height: 179px; 
 	position:relative; 
 	overflow:hidden;
+	.overlayBlack{
+		position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 11;
+    background-color: rgba(0, 0, 0, 0.35);
+	}
 	.imgHldr{
 		// background-image: url('../img/sidemenu_bg.jpg');
 		background-size: cover;
@@ -1839,7 +1850,7 @@ dl{
 	}
 }
 ion-side-menu .has-header{
-	top:194px;
+	top:179px;
 }
 .editProfile{
 	height:auto;
@@ -1859,6 +1870,7 @@ ion-side-menu .has-header{
 				-webkit-transform: translate3d(0,-50px,0) scale(1);
 				transform: translate3d(0,-50px,0) scale(1);
 				font-size: 13px;
+		    opacity: 1;
 			}
 		}
 		.input-label{
@@ -2824,6 +2836,18 @@ ion-side-menu .has-header{
     height: 41px;
     line-height: 41px;
 	}
+	.noStatusQuestion{
+  	text-align: center;
+  	color: #AAA;
+  	padding-top: 33%;
+  	i{
+  		font-size:100px;
+  	}
+  	.noQuestionTitle{
+  		font-size: 21px;
+  		margin-top: 5px;
+  	}
+  }
 }
 
 .slide-in-right {

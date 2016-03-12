@@ -16,28 +16,28 @@
     </div>
     <div class="bottomPart">
       <dl>
-        <dt>Birth Date</dt>
-        <dd>{{partnerProfileInfo.partnerDOB | date : 'dd-MM-yyyy'}}</dd>
-      </dl>
-      <dl>
-        <dt>Birth Place</dt>
-        <dd>{{partnerProfileInfo.partnerBirthPlace}}</dd>
-      </dl>
-      <dl>
-        <dt>Birth Time</dt>
-        <dd>{{partnerProfileInfo.partnerBirthTime | date : 'h:mm a'}}</dd>
-      </dl>
-      <dl>
-        <dt>Gender</dt>
-        <dd>{{partnerProfileInfo.partnerGender}}</dd>
+        <dt>Age</dt>
+        <dd>{{partnerProfileInfo.partnerDOB | ageFilter}}</dd>
       </dl>
       <dl>
         <dt>Zodiac</dt>
         <dd>{{partnerProfileInfo.moonSign}}</dd>
       </dl>
       <dl>
-        <dt>Age</dt>
-        <dd>{{partnerProfileInfo.partnerDOB | ageFilter}}</dd>
+        <dt>Gender</dt>
+        <dd>{{partnerProfileInfo.partnerGender}}</dd>
+      </dl>
+      <dl>
+        <dt>Birth Date</dt>
+        <dd>{{partnerProfileInfo.partnerDOB | date : 'dd-MM-yyyy'}}</dd>
+      </dl>
+      <dl>
+        <dt>Birth Time</dt>
+        <dd>{{partnerProfileInfo.partnerBirthTime | date : 'h:mm a'}}</dd>
+      </dl>
+      <dl>
+        <dt>Birth Place</dt>
+        <dd>{{partnerProfileInfo.partnerBirthPlace}}</dd>
       </dl>
     </div>
 	</ion-content>
