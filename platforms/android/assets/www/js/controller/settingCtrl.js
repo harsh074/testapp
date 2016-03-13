@@ -80,7 +80,7 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
   }
 
   $scope.showGuideScreens = function(){
-    $scope.guideScreenImage = [1,2,3,4,5,6,7,8,9];
+    $scope.guideScreenImage = [1,2,3,4,5,6,7,8,9,10];
     $ionicModal.fromTemplateUrl('views/guideScreenModal.html', function (modal) {
       $scope.guideScreenModal = modal;
       $scope.guideScreenModal.show();
