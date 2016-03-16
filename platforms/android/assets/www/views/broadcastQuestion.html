@@ -18,8 +18,8 @@
 
       <!-- User Bottom -->
       <div class="subBottom" ng-if="loginType=='user'">
-      	<p class="tagName">Tag : <span>{{question.articleTag}}</span></p>
-      	<p class="questionTime">Posted {{question.postedOn | timeago}}</p>
+      	<p class="tagName" ng-if="question.articleTag">Tag : <span>{{question.articleTag}}</span></p>
+      	<p class="questionTime" ng-if="question.postedOn">Posted {{question.postedOn | timeago}}</p>
       </div>
 		</div> 
 	</ion-content>

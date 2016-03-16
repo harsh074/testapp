@@ -10999,6 +10999,9 @@ ion-side-menu .has-header {
     vertical-align: text-bottom;
     line-height: 36px; }
 
+.ios.turnOnLocation {
+  background-color: rgba(0, 0, 0, 0.4); }
+
 .ios .popup {
   border-radius: 13px;
   background-color: #f8f8f8;

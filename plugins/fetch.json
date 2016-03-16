@@ -148,5 +148,19 @@
             "url": "https://github.com/apache/cordova-plugin-splashscreen.git",
             "subdir": "."
         }
+    },
+    "cordova-plugin-request-location-accuracy": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/harsh074/cordova-plugin-request-location-accuracy.git",
+            "subdir": "."
+        }
+    },
+    "com.phonegap.plugins.nativesettingsopener": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/deefactorial/Cordova-open-native-settings.git",
+            "subdir": "."
+        }
     }
 }

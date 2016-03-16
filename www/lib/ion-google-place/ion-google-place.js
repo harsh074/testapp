@@ -91,7 +91,7 @@ angular.module('ion-google-place', [])
 							$ionicLoading.show({
 					      animation: 'fade-in',
 					      showBackdrop: false,
-					      template:'<ion-spinner icon="ripple" class="spinner-askmonk"></ion-spinner>'
+					      template:'<ion-spinner icon="android" class="spinner-askmonk"></ion-spinner>'
 					    });
 							getLocation()
 								.then(reverseGeocoding)
@@ -105,23 +105,36 @@ angular.module('ion-google-place', [])
 								})
 								.catch(function(error){
 									$ionicLoading.hide();
-									console.log('erreur catch',error);
-                  ngModel.$render();
-                  el.element.css('display', 'none');
-                  $ionicBackdrop.release();
-									var confirmPopup = $ionicPopup.alert({
-							      cssClass:"ios",
+
+									var confirmPopup = $ionicPopup.show({
+							      cssClass:"ios turnOnLocation",
 							      title: 'Turn on Location Services to allow Askmonk to determine your location.',
 							      buttons: [
-							        {text: 'Ok',type:'button-ios button-clear',
-							          onTap: function(e) {
-							            return true;
-							          }
-							        }
-							      ]
+								      {text: 'Enable',type:'button-ios button-clear',
+								        onTap: function(e) {
+								          return true;
+								        }
+								      },
+								      {text:'Close',type:'button-ios button-clear',
+								        onTap: function(e) {
+								          return false;
+								        }
+								      }
+								    ]
 							    });
 							    confirmPopup.then(function(res) {
-						        console.log('You are sure',res);
+						        if(res) {
+								      console.log('You are sure');
+								      cordova.plugins.settings.openSetting("location_source", function(){console.log("opened")},function(){console.log("failed")});
+								      $timeout(function(){
+								      	scope.setCurrentLocation();
+								      }, 6000);
+								    } else {
+											console.log('erreur catch',error);
+		                  ngModel.$render();
+		                  el.element.css('display', 'none');
+		                  $ionicBackdrop.release();
+								    }
 							    });
 								});
 						};

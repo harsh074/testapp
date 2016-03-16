@@ -106,7 +106,7 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
   }
 }]);
 
-askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','CONSTANT','$ionicLoading','$timeout','$ionicHistory','$state','$ionicSideMenuDelegate','$ionicPlatform','$stateParams','HardwareBackButtonManager', function($scope,utility,CONSTANT,$rootScope,CONSTANT,$ionicLoading,$timeout,$ionicHistory,$state,$ionicSideMenuDelegate,$ionicPlatform,$stateParams,HardwareBackButtonManager){
+askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','CONSTANT','$ionicLoading','$timeout','$ionicHistory','$state','$ionicSideMenuDelegate','$ionicPlatform','$stateParams','HardwareBackButtonManager','$ionicNativeTransitions', function($scope,utility,CONSTANT,$rootScope,CONSTANT,$ionicLoading,$timeout,$ionicHistory,$state,$ionicSideMenuDelegate,$ionicPlatform,$stateParams,HardwareBackButtonManager,$ionicNativeTransitions){
 	document.addEventListener("deviceready", onDeviceReady, false);
   $scope.showArrow = false;
 
@@ -252,12 +252,27 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
 
   $scope.hamburgerBtnEvent = function(){
     if($state.current.name == 'app.editProfile' || $state.current.name == 'app.askQuestion' || $state.current.name == 'app.yprofile' || $state.current.name == 'app.singlequestion'||$state.current.name == 'app.broadcastquestion' ){
-      $timeout(function(){
+      /*$timeout(function(){
         $ionicHistory.goBack();
+        $ionicHistory.viewHistory().backView..url
+        var options = {
+          "duration"    : 500,
+          "androiddelay": -1
+        };
+        window.plugins.nativepagetransitions.fade(
+          options,
+          function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+          function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+        );
         // if($ionicHistory.viewHistory.backView==null&&$state.current.name=='app.singlequestion'){
         //   $state.go('app.dashboard');
         // }
-      }, 300);
+      }, 50);*/
+
+      $ionicNativeTransitions.locationUrl($ionicHistory.viewHistory().backView.url, {
+        "type": "fade",
+        "duration": 450,
+      });
     }else{
       $ionicSideMenuDelegate.toggleLeft();
     }

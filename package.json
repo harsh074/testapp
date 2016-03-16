@@ -18,21 +18,25 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
+    "https://github.com/harsh-iomedia/cordova-cache.git",
     "com.ionic.keyboard",
+    " https://github.com/deefactorial/Cordova-open-native-settings.git",
+    "https://github.com/harsh-iomedia/phonegap-pushplugin.git",
     "https://github.com/razorpay/razorpay-cordova.git",
-    "https://github.com/harsh-iomedia/cordova-cache.git",
     "com.telerik.plugins.nativepagetransitions",
-    "cordova-plugin-splashscreen",
-    "cordova-plugin-x-toast",
-    "https://github.com/apache/cordova-plugin-device.git",
-    "org.apache.cordova.statusbar",
-    "https://github.com/harsh-iomedia/cordova-cache.git",
-    "https://github.com/harsh-iomedia/cordova-inappbrowser.git",
     "https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin.git --variable URL_SCHEME=askmonk",
+    "cordova-plugin-splashscreen",
     "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git",
+    "cordova-plugin-x-toast",
     "net.yoik.cordova.plugins.screenorientation",
     "https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git#compiled-googleplayservices-jar",
-    "org.apache.cordova.geolocation"
+    "org.apache.cordova.console",
+    "https://github.com/apache/cordova-plugin-device.git",
+    "org.apache.cordova.geolocation",
+    "https://github.com/harsh-iomedia/cordova-inappbrowser.git",
+    "org.apache.cordova.network-information",
+    "org.apache.cordova.statusbar",
+    "https://github.com/phonegap/phonegap-mobile-accessibility.git"
   ],
   "cordovaPlatforms": [
     "android"

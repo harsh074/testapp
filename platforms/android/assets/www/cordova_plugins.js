@@ -137,6 +137,13 @@ module.exports = [
         "clobbers": [
             "navigator.splashscreen"
         ]
+    },
+    {
+        "file": "plugins/com.phonegap.plugins.nativesettingsopener/www/settings.js",
+        "id": "com.phonegap.plugins.nativesettingsopener.Settings",
+        "clobbers": [
+            "cordova.plugins.settings"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -159,7 +166,8 @@ module.exports.metadata =
     "cordova-plugin-customurlscheme": "4.1.3",
     "com.telerik.plugins.nativepagetransitions": "0.6.2",
     "org.apache.cordova.geolocation": "0.3.12",
-    "cordova-plugin-splashscreen": "3.2.1-dev"
+    "cordova-plugin-splashscreen": "3.2.1-dev",
+    "com.phonegap.plugins.nativesettingsopener": "1.0"
 }
 // BOTTOM OF METADATA
 });

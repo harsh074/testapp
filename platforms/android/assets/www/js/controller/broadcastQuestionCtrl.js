@@ -1,4 +1,4 @@
-askmonkApp.controller('broadcastQuestionCtrl', ['$scope','$state','utility','$stateParams','CONSTANT', function($scope,$state,utility,$stateParams,CONSTANT){
+askmonkApp.controller('broadcastQuestionCtrl', ['$scope','$state','utility','$stateParams','CONSTANT','$timeout', function($scope,$state,utility,$stateParams,CONSTANT,$timeout){
 	
 	if(!$scope.authenticated){
     $state.go('login');
@@ -32,6 +32,10 @@ askmonkApp.controller('broadcastQuestionCtrl', ['$scope','$state','utility','$st
   }
 
   $scope.shareArticle = function (){
+    $scope.showLoader();
     window.plugins.socialsharing.share($scope.question.articleLink);
+    $timeout(function(){
+      $scope.hideLoader();
+    }, 2000);
   }
 }])
