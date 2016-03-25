@@ -85,10 +85,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
 
   .state('app.profile', {
     url: "/profile",
-    nativeTransitions: {
-      "type": "fade",
-      "duration": "400"
-    },
+    nativeTransitions: null,
     cache: false,
     views: {
       'menuContent': {
@@ -99,10 +96,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   })
   .state('app.yprofiles', {
     url: "/yogi-profiles",
-    nativeTransitions: {
-      "type": "fade",
-      "duration": "400"
-    },
+    nativeTransitions: null,
     cache: false,
     views: {
       'menuContent': {
@@ -123,10 +117,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   })
   .state('app.directQuestion', {
     url: "/direct-question",
-    nativeTransitions: {
-      "type": "fade",
-      "duration": "400"
-    },
+    nativeTransitions: null,
     cache: false,
     views: {
       'menuContent': {
@@ -137,10 +128,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   })
   .state('app.openQuestion', {
     url: "/open-question",
-    nativeTransitions: {
-      "type": "fade",
-      "duration": "400"
-    },
+    nativeTransitions: null,
     cache: false,
     views: {
       'menuContent': {
@@ -151,10 +139,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   })
   .state('app.draftQuestion', {
     url: "/draft-question",
-    nativeTransitions: {
-      "type": "fade",
-      "duration": "400"
-    },
+    nativeTransitions: null,
     cache: false,
     views: {
       'menuContent': {
@@ -165,10 +150,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   })
   .state('app.wallet',{
     url:"/wallet",
-    nativeTransitions: {
-      "type": "fade",
-      "duration": "400"
-    },
+    nativeTransitions: null,
     cache: false,
     views:{
       'menuContent':{
@@ -180,10 +162,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   .state('app.setting',{
     url:"/setting",
     // cache: false,
-    nativeTransitions: {
-      "type": "fade",
-      "duration": "400"
-    },
+    nativeTransitions: null,
     views:{
       'menuContent':{
         templateUrl:"views/setting.html",
@@ -213,10 +192,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   })
   .state('app.dashboard',{
     url:"/dashboard",
-    nativeTransitions: {
-      "type": "fade",
-      "duration": "570"
-    },
+    nativeTransitions: null,
     cache: false,
     views:{
       'menuContent':{
@@ -247,10 +223,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   })
   .state('app.horoscope',{
     url:"/dailyHoroscope",
-    nativeTransitions: {
-      "type": "fade",
-      "duration": "400"
-    },
+    nativeTransitions: null,
     // cache: false,
     views:{
       'menuContent':{
@@ -261,10 +234,7 @@ askmonkApp.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
   })
   .state('app.packages',{
     url:"/fullPackages",
-    nativeTransitions: {
-      "type": "fade",
-      "duration": "400"
-    },
+    nativeTransitions: null,
     cache: false,
     views:{
       'menuContent':{

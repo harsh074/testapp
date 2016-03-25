@@ -212,14 +212,19 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
   function onlineHandler() {
     console.log('online');
   }
-  
-  /*$ionicPlatform.onHardwareBackButton(function() {
-    if($ionicHistory.currentStateName() == "login"){
 
-    }else{
-      $ionicHistory.goBack();
+  $ionicPlatform.onHardwareBackButton(function() {
+    var backState = $ionicHistory.viewHistory().backView.stateName;
+    var currentState = $ionicHistory.viewHistory().currentView.stateName;
+    if((currentState == 'app.editProfile' || currentState=='app.profile')&&(backState=='login')){
+      // $state.go(currentState);
+      ionic.Platform.exitApp();
+    }else if(currentState=='login' && backState=='app.setting'){
+      ionic.Platform.exitApp();
+    }else if(currentState=='login' && backState=='app.profile'){
+      ionic.Platform.exitApp();
     }
-  },150);*/
+  },150);
   /*$ionicPlatform.registerBackButtonAction(function() {
     if($ionicHistory.currentStateName() == "login"){
 
@@ -268,11 +273,15 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
         //   $state.go('app.dashboard');
         // }
       }, 50);*/
-
-      $ionicNativeTransitions.locationUrl($ionicHistory.viewHistory().backView.url, {
-        "type": "fade",
-        "duration": 450,
-      });
+      if(cordova.plugins.Keyboard.isVisible){
+        cordova.plugins.Keyboard.close();
+      }
+      $timeout(function(){
+        $ionicNativeTransitions.locationUrl($ionicHistory.viewHistory().backView.url, {
+          "type": "fade",
+          "duration": 450,
+        });
+      }, 10);
     }else{
       $ionicSideMenuDelegate.toggleLeft();
     }
@@ -286,12 +295,6 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
       $scope.showArrow = true;
     }else{
       $scope.showArrow = false;
-    }
-
-    if((toState.name == 'app.editProfile' || toState.name=='app.profile')&&(fromState.name=='login') || (toState.name=='login' && fromState.name=='app.setting') ||(toState.name=='login' && fromState.name=='app.profile')){
-      HardwareBackButtonManager.disable();
-    }else{
-      HardwareBackButtonManager.enable();
     }
   });
 

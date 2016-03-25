@@ -57,7 +57,7 @@
       	<ionic-datepicker input-obj="datepickerObject">
 				  <button class="button button-custom-small button-light"> 
             <span class="dateObject" ng-if="!showDate">{{datepickerObject.lowDateTitleLabel}}</span>
-            <span class="dateObject" ng-if="showDate">{{datepickerObject.inputDate | date:'dd - MM - yyyy'}}</span>
+            <span class="dateObject" ng-if="showDate">{{selectedDate | date:'dd - MM - yyyy'}}</span>
             <i class="ion-android-calendar"></i>
           </button>
 				</ionic-datepicker>

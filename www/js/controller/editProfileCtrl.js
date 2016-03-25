@@ -25,7 +25,6 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
 
     if($rootScope.profileData){
       $scope.editProfileData = angular.copy($rootScope.profileData);
-      $scope.showDate = true;
       if($scope.loginType == "user"){
         if($scope.editProfileData.birthTime){
           $scope.editProfileData.birthTime = new Date($scope.editProfileData.birthTime);
@@ -46,6 +45,14 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       }
     }, 50);
 
+    if($scope.editProfileData.dob){
+      $scope.showDate = true;
+      $scope.selectedDate = angular.copy($scope.editProfileData.dob);
+    }else{
+      $scope.showDate = false;
+      $scope.selectedDate = "";
+    }
+
     $scope.datepickerObject = {
       titleLabel: 'Date Of Birth',
       lowDateTitleLabel:'DOB',
@@ -55,7 +62,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       setButtonType : 'button-askmonk',
       todayButtonType : 'button-askmonk',
       closeButtonType : 'button-askmonk',
-      inputDate:new Date($scope.editProfileData.dob),
+      inputDate:$scope.editProfileData.dob?new Date($scope.editProfileData.dob):new Date(),
       mondayFirst: true,
       // disabledDates: disabledDates,
       // weekDaysList: weekDaysList,
@@ -67,7 +74,9 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       from: new Date(1940, 1, 1),
       to: new Date(),
       callback: function (val) {
-        datePickerCallback(val);
+        if(val&& (new Date().getFullYear()!=val.getFullYear() || new Date().getDate()!=val.getDate())){
+          datePickerCallback(val);
+        }
       },
       dateFormat: 'dd-MM-yyyy',
       closeOnSelect: true
@@ -77,6 +86,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       if(new Date(val) != 'Invalid Date'){
         $scope.showDate = true;
         $scope.datepickerObject.inputDate = val;
+        $scope.selectedDate = val
       }else{
         // $scope.datepickerObject.inputDate = new Date();
       }
