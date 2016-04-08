@@ -193,5 +193,10 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       }
 
     }
+
+    $scope.enableFocus = false;
+    $scope.opendSelect = function(){
+      $scope.enableFocus = !$scope.enableFocus;
+    }
   }
 }]);

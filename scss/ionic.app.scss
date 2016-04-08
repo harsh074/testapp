@@ -911,6 +911,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     z-index: 1;
     font-size: 17px;
     .questionData{
+    	padding-bottom:20px;
 			.question{
         position: relative;
 		    padding: 10px 0px 20px 0px;
@@ -944,6 +945,29 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 			    	color:$top-portion-color;
 			    }
 		    }
+			}
+			.moreInformation{
+				padding: 15px 0px;
+				.item.item-stable{
+					padding:10px;
+				}
+				.askInformationData{
+			    width: 93%;
+    			display: inline-flex;
+    			max-height:40px;
+    			white-space:normal;
+    			align-items: center;
+    			height: 40px;
+				}
+				i.icon{
+			    display: inline-block;
+    			float: right;
+    			line-height: 40px;
+				}
+				.solutionHeading{
+					color:$top-portion-color;
+					font-weight:700;
+				}
 			}
 			.subBottom{
 				padding-top: 3px;
@@ -1383,6 +1407,22 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	    margin-top: 0;
 	    padding: 0 12px;
 		}
+	}
+	.button-fixed{
+    position: fixed;
+    z-index: 13;
+    bottom: 5px;
+    width: 100%;
+    button{
+    	margin-top: 0px;
+    	width: 48%;
+    	background-color:$top-portion-color;
+    	padding: 4px 27px;
+			font-size:15px;
+    	&:first-child{
+		    margin-right: 6px;
+    	}
+    }
 	}
 }
 .bar-assertive-900{
@@ -1893,13 +1933,18 @@ ion-side-menu .has-header{
 		select{
 			padding: 4px 33px 4px 2px;
 			height: 34px;
-			border: 1px solid #ddd;
+			border-width:0px 0px 1px;
+			border-style:solid;
+			border-color: #ddd;
 			width: 100%;
 			max-width: 100%;
 			direction: ltr;
+			&.focused{
+				border-color: $background-color;
+			}
 		}
 		&:after{
-			right: 25px;
+			right: 19px;
 			top: 42%;
 		}
 	}
@@ -1915,6 +1960,11 @@ ion-side-menu .has-header{
 			.button{
 				width: 100%;
 				padding-left: 5px;
+				border-width: 0px 0px 1px;
+				&.button-custom-small.activated, &.button-custom-small.active{
+					border-color:$background-color;
+					background-color:transparent;
+				}
 			}
 		}
 	}
@@ -2644,6 +2694,14 @@ ion-side-menu .has-header{
 	top:144px;
 	.bottomPart{
     padding: 15px 18px;
+    dl{
+    	dt{
+    		text-align:right;
+    		&:after{
+    			content:":";
+    		}
+    	}
+    }
 	}
 }
 
@@ -2662,6 +2720,12 @@ ion-side-menu .has-header{
 	}
 	.questionPart{
 		margin-top:90px;
+		.card{
+			margin:20px 0px;
+		}
+		&.askInformation{
+			margin-top:30px;
+		}
 		.editQuestionTextarea{
 	    padding: 10px 0 0;
     	margin-top: 15px;
@@ -2677,7 +2741,7 @@ ion-side-menu .has-header{
 		}
 	}
 	.questionTag{	
-		margin-top:10px;
+		margin-top:20px;
 	}
 	.matchMakingEdit{
     margin-bottom: 50px;
@@ -2689,8 +2753,11 @@ ion-side-menu .has-header{
 		border-width:1px;
 	}
 }
-
-    
+.postInformationModal{
+	.questionPart{
+		margin-top:25px;
+	}
+}
 
 // Settings
 .settingCtrl{

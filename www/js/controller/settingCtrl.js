@@ -28,6 +28,27 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     return false;
   }
 
+  $scope.payGoogleWallet = function(){
+    /*if((window.device && device.platform == "Android") && typeof inappbilling !== "undefined") {
+      inappbilling.buy(function(data) {
+        console.log("ITEM PURCHASED");
+        alert("ITEM PURCHASED" + JSON.stringify(data));
+      }, function(errorBuy) {
+        console.log("ERROR BUYING -> " + errorBuy);
+        alert("ERROR BUYING -> " + JSON.stringify(errorBuy));
+      }, 
+      "question250");
+    }*/
+
+    // https://www.payumoney.com/paybypayumoney/#/121195
+
+    var ref = window.open('https://www.payumoney.com/paybypayumoney/#/121195', '_blank', 'location=no');
+     ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
+     ref.addEventListener('loadstop', function(event) { alert('stop: ' + event.url); });
+     ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
+     ref.addEventListener('exit', function(event) { alert(event.type); });
+  }
+
   $scope.getPaymentInfo = function(){
     $scope.showLoader();
     if($scope.loginType == "user"){

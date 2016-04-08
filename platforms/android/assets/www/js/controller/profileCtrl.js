@@ -1,4 +1,4 @@
-askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$rootScope','$timeout','$ionicPopup','$stateParams','$ionicModal', function($scope, $state, utility,CONSTANT,$rootScope,$timeout,$ionicPopup,$stateParams,$ionicModal){
+askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$rootScope','$timeout','$ionicPopup','$stateParams','$ionicModal','$filter', function($scope, $state, utility,CONSTANT,$rootScope,$timeout,$ionicPopup,$stateParams,$ionicModal,$filter){
   
   $scope.floatingBtnAction = false;
 	$scope.$on('$ionicView.enter', function(){
@@ -287,6 +287,10 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
 
   $scope.profileEdit = function(){
     $state.go('app.editProfile');
+  }
+
+  $scope.moonSignName = function(){
+    $scope.showMessage('Hi '+ $filter('capitalize')($scope.profileInfo.moonSign));
   }
 
   $scope.askQuestion = function(){

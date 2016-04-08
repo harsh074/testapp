@@ -24,7 +24,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           var videoTag = angular.element(document.getElementById('video'+i));
           videoTag[0].load();
         }
-      }, 600);
+      }, 1000);
     });
     $scope.slideHasChanged = function(index){
       var videoTag = angular.element(document.getElementById('video'+index));

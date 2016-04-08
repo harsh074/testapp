@@ -202,7 +202,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 		console.log($scope.askQuestion.moneyType);
 		var confirmPopup = $ionicPopup.show({
 	    cssClass:"ios",
-	    title: 'Going further would send the question to the astrologers',
+	    title: 'Going further would sent the question to the astrologers',
 	    template:'Do u wish to continue ?',
 	    buttons: [
 	      {text: 'Yes',type:'button-ios button-clear',

@@ -144,6 +144,13 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.settings"
         ]
+    },
+    {
+        "file": "plugins/com.smartmobilesoftware.androidinappbilling/www/inappbilling.js",
+        "id": "com.smartmobilesoftware.androidinappbilling.InAppBillingPlugin",
+        "clobbers": [
+            "inappbilling"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -167,7 +174,8 @@ module.exports.metadata =
     "com.telerik.plugins.nativepagetransitions": "0.6.2",
     "org.apache.cordova.geolocation": "0.3.12",
     "cordova-plugin-splashscreen": "3.2.1-dev",
-    "com.phonegap.plugins.nativesettingsopener": "1.0"
+    "com.phonegap.plugins.nativesettingsopener": "1.0",
+    "com.smartmobilesoftware.androidinappbilling": "3.0.2"
 }
 // BOTTOM OF METADATA
 });

@@ -237,6 +237,14 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'params': {"access_token":localStorage.getItem('token')}
       });
     },
+    postAnswerInformation:function(args){
+      return this.request({
+        'method':"POST",
+        'url':"/api/questions/answerInformationOnQuestion/",
+        'data':args,
+        'params':{"access_token":localStorage.getItem('token')}
+      });
+    },
 
     notification:function(args){
       return this.request({
@@ -376,6 +384,14 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
         'method':"GET",
         'url':"/api/questions/getMonkStatusQuestions/"+localStorage.getItem('userId')+'/underObservation',
         'params': {"access_token":localStorage.getItem('token')}
+      });
+    },
+    postInformation:function(args){
+      return this.request({
+        'method':"POST",
+        'url':"/api/questions/askInformationOnQuestion/",
+        'data':args,
+        'params':{"access_token":localStorage.getItem('token')}
       });
     },
     initialize: function(url, sessions, scope, rootScope){

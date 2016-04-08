@@ -64,7 +64,7 @@
       </label>
 
 		  <label class="item item-input item-select" ng-if="loginType=='user'">
-        <select name="gender" ng-model="editProfileData.gender" required="">
+        <select name="gender" ng-model="editProfileData.gender" required="" ng-focus="enableFocus=!enableFocus" ng-blur="enableFocus=!enableFocus" ng-class="{'focused':enableFocus}">
           <option value="" disabled>Gender</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
@@ -75,7 +75,7 @@
         <div class="divider">More Info <p>(All fields required for better predictions)</p></div>
 
         <label class="item item-input item-select" ng-if="loginType=='user'">
-          <select name="gender" ng-model="editProfileData.maritalStatus" required="">
+          <select name="gender" ng-model="editProfileData.maritalStatus" required="" ng-focus="enableFocus=!enableFocus" ng-blur="enableFocus=!enableFocus" ng-class="{'focused':enableFocus}">
             <option value="" disabled>Marital Status?</option>
             <option value="married">Married</option>
             <option value="unmarried">Unmarried</option>
@@ -85,7 +85,7 @@
         </label>
 
         <label class="item item-input item-select" ng-if="loginType=='user'">
-          <select name="gender" ng-model="editProfileData.profession" required="">
+          <select name="gender" ng-model="editProfileData.profession" required="" ng-focus="enableFocus=!enableFocus" ng-blur="enableFocus=!enableFocus" ng-class="{'focused':enableFocus}">
             <option value="" disabled>What do you do?</option>
             <option value="job">Job</option>
             <option value="business">Business</option>
@@ -97,7 +97,7 @@
         </label>
 
         <label class="item item-input item-select" ng-if="loginType=='user'">
-          <select name="gender" ng-model="editProfileData.qualification" required="">
+          <select name="gender" ng-model="editProfileData.qualification" required="" ng-focus="enableFocus=!enableFocus" ng-blur="enableFocus=!enableFocus" ng-class="{'focused':enableFocus}">
             <option value="" disabled>Educational Background</option>
             <option value="10">10th</option>
             <option value="12">12th</option>
@@ -107,7 +107,7 @@
         </label>
 
         <label class="item item-input item-select" ng-if="loginType=='user'">
-          <select name="gender" ng-model="editProfileData.numberOfChildren" required="">
+          <select name="gender" ng-model="editProfileData.numberOfChildren" required="" ng-focus="enableFocus=!enableFocus" ng-blur="enableFocus=!enableFocus" ng-class="{'focused':enableFocus}">
             <option value="" disabled>Number Of Children</option>
             <option value="none">None</option>
             <option value="1">1</option>

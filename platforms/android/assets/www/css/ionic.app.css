@@ -9928,6 +9928,24 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
       margin-bottom: 0px; }
       .home-view .singleQuestion .questionData .middleSec .yogiName span {
         color: #2B5D80; }
+  .home-view .singleQuestion .questionData .moreInformation {
+    padding: 15px 0px; }
+    .home-view .singleQuestion .questionData .moreInformation .item.item-stable {
+      padding: 10px; }
+    .home-view .singleQuestion .questionData .moreInformation .askInformationData {
+      width: 93%;
+      display: inline-flex;
+      max-height: 40px;
+      white-space: normal;
+      align-items: center;
+      height: 40px; }
+    .home-view .singleQuestion .questionData .moreInformation i.icon {
+      display: inline-block;
+      float: right;
+      line-height: 40px; }
+    .home-view .singleQuestion .questionData .moreInformation .solutionHeading {
+      color: #2B5D80;
+      font-weight: 700; }
   .home-view .singleQuestion .questionData .subBottom {
     padding-top: 3px; }
     .home-view .singleQuestion .questionData .subBottom .tagName {
@@ -10696,12 +10714,16 @@ ion-side-menu .has-header {
     .editProfile .item-select select {
       padding: 4px 33px 4px 2px;
       height: 34px;
-      border: 1px solid #ddd;
+      border-width: 0px 0px 1px;
+      border-style: solid;
+      border-color: #ddd;
       width: 100%;
       max-width: 100%;
       direction: ltr; }
+      .editProfile .item-select select.focused {
+        border-color: #00BCD2; }
     .editProfile .item-select:after {
-      right: 25px;
+      right: 19px;
       top: 42%; }
   .editProfile .item-calender {
     border-width: 0px;
@@ -10714,7 +10736,11 @@ ion-side-menu .has-header {
       width: 100%; }
       .editProfile .item-calender ionic-datepicker .button {
         width: 100%;
-        padding-left: 5px; }
+        padding-left: 5px;
+        border-width: 0px 0px 1px; }
+        .editProfile .item-calender ionic-datepicker .button.button-custom-small.activated, .editProfile .item-calender ionic-datepicker .button.button-custom-small.active {
+          border-color: #00BCD2;
+          background-color: transparent; }
   .editProfile .btn-two .button {
     margin-top: 15px;
     font-size: 15px;
@@ -11336,6 +11362,10 @@ ion-side-menu .has-header {
     font-size: 18px; }
   .editQuestionModal .questionPart {
     margin-top: 90px; }
+    .editQuestionModal .questionPart .card {
+      margin: 20px 0px; }
+    .editQuestionModal .questionPart.askInformation {
+      margin-top: 30px; }
     .editQuestionModal .questionPart .editQuestionTextarea {
       padding: 10px 0 0;
       margin-top: 15px; }
@@ -11348,13 +11378,16 @@ ion-side-menu .has-header {
         max-height: 125px;
         overflow-y: scroll !important; }
   .editQuestionModal .questionTag {
-    margin-top: 10px; }
+    margin-top: 20px; }
   .editQuestionModal .matchMakingEdit {
     margin-bottom: 50px; }
     .editQuestionModal .matchMakingEdit .headerPart {
       margin-top: 30px; }
   .editQuestionModal .askQuestionForm .item-select {
     border-width: 1px; }
+
+.postInformationModal .questionPart {
+  margin-top: 25px; }
 
 .settingCtrl {
   margin-top: 60px;

@@ -9902,106 +9902,126 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   top: 105px;
   z-index: 1;
   font-size: 17px; }
-  .home-view .singleQuestion .questionData .question {
-    position: relative;
-    padding: 10px 0px 20px 0px;
-    font-weight: bold;
-    font-size: 23px;
-    line-height: 30px; }
-    .home-view .singleQuestion .questionData .question span {
-      position: absolute;
-      left: 0; }
-  .home-view .singleQuestion .questionData .middleSec {
-    display: inline-block;
-    width: 100%; }
-    .home-view .singleQuestion .questionData .middleSec .answer {
-      font-size: 17px;
-      padding-bottom: 30px;
-      margin-bottom: 0px;
-      line-height: 24px; }
-    .home-view .singleQuestion .questionData .middleSec .solutionHeading {
-      color: #2B5D80;
-      font-weight: 700; }
-    .home-view .singleQuestion .questionData .middleSec .yogiName {
-      text-align: right;
-      font-size: 14px;
-      margin-bottom: 0px; }
-      .home-view .singleQuestion .questionData .middleSec .yogiName span {
-        color: #2B5D80; }
-  .home-view .singleQuestion .questionData .subBottom {
-    padding-top: 3px; }
-    .home-view .singleQuestion .questionData .subBottom .tagName {
-      display: inline-block;
-      white-space: nowrap; }
-      .home-view .singleQuestion .questionData .subBottom .tagName span {
-        color: #CC333C; }
-    .home-view .singleQuestion .questionData .subBottom .moneyType, .home-view .singleQuestion .questionData .subBottom .moneyTypeUser {
-      font-size: 14px;
-      white-space: nowrap;
-      color: #2B5D80;
-      display: inline-block;
-      margin-bottom: 15px;
+  .home-view .singleQuestion .questionData {
+    padding-bottom: 20px; }
+    .home-view .singleQuestion .questionData .question {
+      position: relative;
+      padding: 10px 0px 20px 0px;
+      font-weight: bold;
+      font-size: 23px;
       line-height: 30px; }
-    .home-view .singleQuestion .questionData .subBottom .moneyTypeUser {
-      display: block; }
-    .home-view .singleQuestion .questionData .subBottom .btnUserDetails {
-      float: right;
-      margin-top: 0px; }
-    .home-view .singleQuestion .questionData .subBottom .questionTime {
+      .home-view .singleQuestion .questionData .question span {
+        position: absolute;
+        left: 0; }
+    .home-view .singleQuestion .questionData .middleSec {
       display: inline-block;
-      float: right;
-      font-size: 14px;
-      white-space: nowrap;
-      color: #2B5D80; }
-    .home-view .singleQuestion .questionData .subBottom .ratingQuestion {
-      padding-top: 10px;
-      font-size: 18px; }
-    .home-view .singleQuestion .questionData .subBottom .answerRating {
-      display: inline-block;
-      padding-bottom: 10px;
       width: 100%; }
-      .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating {
-        display: inline-block; }
-        .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li {
-          display: inline;
-          border: 0px;
-          background: none;
-          padding: 5px;
+      .home-view .singleQuestion .questionData .middleSec .answer {
+        font-size: 17px;
+        padding-bottom: 30px;
+        margin-bottom: 0px;
+        line-height: 24px; }
+      .home-view .singleQuestion .questionData .middleSec .solutionHeading {
+        color: #2B5D80;
+        font-weight: 700; }
+      .home-view .singleQuestion .questionData .middleSec .yogiName {
+        text-align: right;
+        font-size: 14px;
+        margin-bottom: 0px; }
+        .home-view .singleQuestion .questionData .middleSec .yogiName span {
+          color: #2B5D80; }
+    .home-view .singleQuestion .questionData .moreInformation {
+      padding: 15px 0px; }
+      .home-view .singleQuestion .questionData .moreInformation .item.item-stable {
+        padding: 10px; }
+      .home-view .singleQuestion .questionData .moreInformation .askInformationData {
+        width: 93%;
+        display: inline-flex;
+        max-height: 40px;
+        white-space: normal;
+        align-items: center;
+        height: 40px; }
+      .home-view .singleQuestion .questionData .moreInformation i.icon {
+        display: inline-block;
+        float: right;
+        line-height: 40px; }
+      .home-view .singleQuestion .questionData .moreInformation .solutionHeading {
+        color: #2B5D80;
+        font-weight: 700; }
+    .home-view .singleQuestion .questionData .subBottom {
+      padding-top: 3px; }
+      .home-view .singleQuestion .questionData .subBottom .tagName {
+        display: inline-block;
+        white-space: nowrap; }
+        .home-view .singleQuestion .questionData .subBottom .tagName span {
           color: #CC333C; }
-          .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li:first-child {
-            padding-left: 0; }
-          .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li i {
-            font-size: 30px; }
-      .home-view .singleQuestion .questionData .subBottom .answerRating .button.button-custom {
-        margin-top: 3px;
-        float: right; }
-    .home-view .singleQuestion .questionData .subBottom .row {
-      padding: 5px 0px;
-      font-size: 14px; }
-      .home-view .singleQuestion .questionData .subBottom .row .partnerDetailBtn {
-        width: 100%;
-        padding: 4px 27px;
-        font-size: 15px;
+      .home-view .singleQuestion .questionData .subBottom .moneyType, .home-view .singleQuestion .questionData .subBottom .moneyTypeUser {
+        font-size: 14px;
+        white-space: nowrap;
+        color: #2B5D80;
+        display: inline-block;
+        margin-bottom: 15px;
+        line-height: 30px; }
+      .home-view .singleQuestion .questionData .subBottom .moneyTypeUser {
+        display: block; }
+      .home-view .singleQuestion .questionData .subBottom .btnUserDetails {
+        float: right;
+        margin-top: 0px; }
+      .home-view .singleQuestion .questionData .subBottom .questionTime {
+        display: inline-block;
+        float: right;
+        font-size: 14px;
+        white-space: nowrap;
+        color: #2B5D80; }
+      .home-view .singleQuestion .questionData .subBottom .ratingQuestion {
+        padding-top: 10px;
+        font-size: 18px; }
+      .home-view .singleQuestion .questionData .subBottom .answerRating {
+        display: inline-block;
+        padding-bottom: 10px;
+        width: 100%; }
+        .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating {
+          display: inline-block; }
+          .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li {
+            display: inline;
+            border: 0px;
+            background: none;
+            padding: 5px;
+            color: #CC333C; }
+            .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li:first-child {
+              padding-left: 0; }
+            .home-view .singleQuestion .questionData .subBottom .answerRating ul.rating li i {
+              font-size: 30px; }
+        .home-view .singleQuestion .questionData .subBottom .answerRating .button.button-custom {
+          margin-top: 3px;
+          float: right; }
+      .home-view .singleQuestion .questionData .subBottom .row {
+        padding: 5px 0px;
+        font-size: 14px; }
+        .home-view .singleQuestion .questionData .subBottom .row .partnerDetailBtn {
+          width: 100%;
+          padding: 4px 27px;
+          font-size: 15px;
+          margin-top: 10px; }
+        .home-view .singleQuestion .questionData .subBottom .row .answerRating {
+          margin-top: 10px; }
+        .home-view .singleQuestion .questionData .subBottom .row .fullLengthButton button {
+          width: 100%;
+          background-color: #2B5D80; }
+        .home-view .singleQuestion .questionData .subBottom .row .btnAccept {
+          margin-top: 15px; }
+        .home-view .singleQuestion .questionData .subBottom .row .col:first-child {
+          padding-left: 0px; }
+        .home-view .singleQuestion .questionData .subBottom .row .col:last-child {
+          padding-right: 0px; }
+        .home-view .singleQuestion .questionData .subBottom .row .col span {
+          color: #00BCD2; }
+        .home-view .singleQuestion .questionData .subBottom .row .col button {
+          margin-top: 0px;
+          padding: 4px 27px;
+          font-size: 15px; }
+      .home-view .singleQuestion .questionData .subBottom .writtenAnswer {
         margin-top: 10px; }
-      .home-view .singleQuestion .questionData .subBottom .row .answerRating {
-        margin-top: 10px; }
-      .home-view .singleQuestion .questionData .subBottom .row .fullLengthButton button {
-        width: 100%;
-        background-color: #2B5D80; }
-      .home-view .singleQuestion .questionData .subBottom .row .btnAccept {
-        margin-top: 15px; }
-      .home-view .singleQuestion .questionData .subBottom .row .col:first-child {
-        padding-left: 0px; }
-      .home-view .singleQuestion .questionData .subBottom .row .col:last-child {
-        padding-right: 0px; }
-      .home-view .singleQuestion .questionData .subBottom .row .col span {
-        color: #00BCD2; }
-      .home-view .singleQuestion .questionData .subBottom .row .col button {
-        margin-top: 0px;
-        padding: 4px 27px;
-        font-size: 15px; }
-    .home-view .singleQuestion .questionData .subBottom .writtenAnswer {
-      margin-top: 10px; }
 
 .home-view .broadcastQuestion .middleSec .answer {
   text-align: justify; }
@@ -10265,6 +10285,20 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
   z-index: 1;
   margin-top: 0;
   padding: 0 12px; }
+
+.home-view .button-fixed {
+  position: fixed;
+  z-index: 13;
+  bottom: 5px;
+  width: 100%; }
+  .home-view .button-fixed button {
+    margin-top: 0px;
+    width: 48%;
+    background-color: #2B5D80;
+    padding: 4px 27px;
+    font-size: 15px; }
+    .home-view .button-fixed button:first-child {
+      margin-right: 6px; }
 
 .bar-assertive-900 {
   background-color: #00BCD2;
@@ -10696,12 +10730,16 @@ ion-side-menu .has-header {
     .editProfile .item-select select {
       padding: 4px 33px 4px 2px;
       height: 34px;
-      border: 1px solid #ddd;
+      border-width: 0px 0px 1px;
+      border-style: solid;
+      border-color: #ddd;
       width: 100%;
       max-width: 100%;
       direction: ltr; }
+      .editProfile .item-select select.focused {
+        border-color: #00BCD2; }
     .editProfile .item-select:after {
-      right: 25px;
+      right: 19px;
       top: 42%; }
   .editProfile .item-calender {
     border-width: 0px;
@@ -10714,7 +10752,11 @@ ion-side-menu .has-header {
       width: 100%; }
       .editProfile .item-calender ionic-datepicker .button {
         width: 100%;
-        padding-left: 5px; }
+        padding-left: 5px;
+        border-width: 0px 0px 1px; }
+        .editProfile .item-calender ionic-datepicker .button.button-custom-small.activated, .editProfile .item-calender ionic-datepicker .button.button-custom-small.active {
+          border-color: #00BCD2;
+          background-color: transparent; }
   .editProfile .btn-two .button {
     margin-top: 15px;
     font-size: 15px;
@@ -11326,6 +11368,10 @@ ion-side-menu .has-header {
   top: 144px; }
   .userDetailModalBottom .bottomPart {
     padding: 15px 18px; }
+    .userDetailModalBottom .bottomPart dl dt {
+      text-align: right; }
+      .userDetailModalBottom .bottomPart dl dt:after {
+        content: ":"; }
 
 .partnerDetailModal .topPart .userInfo {
   line-height: 50px; }
@@ -11336,6 +11382,10 @@ ion-side-menu .has-header {
     font-size: 18px; }
   .editQuestionModal .questionPart {
     margin-top: 90px; }
+    .editQuestionModal .questionPart .card {
+      margin: 20px 0px; }
+    .editQuestionModal .questionPart.askInformation {
+      margin-top: 30px; }
     .editQuestionModal .questionPart .editQuestionTextarea {
       padding: 10px 0 0;
       margin-top: 15px; }
@@ -11348,13 +11398,16 @@ ion-side-menu .has-header {
         max-height: 125px;
         overflow-y: scroll !important; }
   .editQuestionModal .questionTag {
-    margin-top: 10px; }
+    margin-top: 20px; }
   .editQuestionModal .matchMakingEdit {
     margin-bottom: 50px; }
     .editQuestionModal .matchMakingEdit .headerPart {
       margin-top: 30px; }
   .editQuestionModal .askQuestionForm .item-select {
     border-width: 1px; }
+
+.postInformationModal .questionPart {
+  margin-top: 25px; }
 
 .settingCtrl {
   margin-top: 60px;

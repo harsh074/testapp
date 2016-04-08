@@ -1,4 +1,4 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place','ionic-timepicker','ionic-native-transitions','ion-datetime-picker','templates']); // ,'templates'
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place','ionic-timepicker','ionic-native-transitions','ion-datetime-picker']); // ,'templates'
 
 askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', function($ionicPlatform,$state,$stateParams,CONSTANT,$timeout){
   if(!localStorage.getItem('token')){
@@ -35,6 +35,36 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', 
 
     CONSTANT.isDevice = ionic.Platform.device().available;
     // ionic.Platform.isFullScreen = false;
+
+    /*if((window.device && device.platform == "Android") && typeof inappbilling !== "undefined") {
+      inappbilling.init(function(resultInit) {
+        inappbilling.getPurchases(function(result) {
+          console.log("PURCHASE RESPONSE -> " + JSON.stringify(result));
+          alert("PURCHASE RESPONSE -> " + JSON.stringify(result));
+        }, 
+        function(errorPurchases) {
+          console.log("PURCHASE ERROR -> " + errorPurchases);
+          alert("PURCHASE ERROR -> " + JSON.stringify(errorPurchases));
+        });
+      }, 
+      function(errorInit) {
+        console.log("INITIALIZATION ERROR -> " + errorInit);
+        alert("INITIALIZATION ERROR -> " + JSON.stringify(errorInit));
+      }, 
+      {showLog: true},
+      ["question250"]);
+    }*/
+
+    /*if((window.device && device.platform == "Android") && typeof inappbilling !== "undefined") {
+      inappbilling.init(function(resultInit) {
+        console.log("IAB Initialized");
+      },
+      function(errorInit) {
+        console.log("ERROR -> " + errorInit);
+      }, 
+      {showLog: true},
+      ["question250"]);
+    }*/
     
   });
   

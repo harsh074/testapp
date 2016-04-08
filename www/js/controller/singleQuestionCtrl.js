@@ -106,13 +106,16 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
 
   $scope.rateQuestion = function(){
     console.log($scope.question);
+    $scope.showLoader();
     utility.ratingQuestion({"userId":localStorage.getItem('userId'),"email":$scope.question.email,"id":$scope.question.id,"status":$scope.question.status,"rating":$scope.question.rating})
     .then(function(data){
       console.log("success",data);
+      $scope.hideLoader();
       $scope.question = angular.copy(data);
       $scope.ratingSubmitted = true;
       $scope.ratingEdit = false;
     },function(data){
+      $scope.hideLoader();
       if(data && data.error.statusCode == 422){
         $scope.showMessage(data.error.message);
       }else{
@@ -146,7 +149,6 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
       hardwareBackButtonClose: true
     });
   }
-
   
   $scope.userDetail = function(){
     $ionicModal.fromTemplateUrl('views/userDetailModal.html', function (modal) {
@@ -237,7 +239,7 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     $scope.question.solution = localStorage.getItem('solution');
     var confirmPopup = $ionicPopup.show({
       cssClass:"ios",
-      title: 'Going further would send the answer to the user.',
+      title: 'Going further would sent the answer to the user.',
       template:'Do u wish to continue ?',
       buttons: [
         {text: 'Yes',type:'button-ios button-clear',
@@ -254,13 +256,21 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     });
     confirmPopup.then(function(res) {
       if(res) {
-        if($scope.question.answer.length<100){
-          $scope.showMessage("Minimum character length is 100.");
+        if(!$scope.question.answer){
+          $scope.showMessage("Please write answer");
           return;
+          if($scope.question.answer.length<100){
+            $scope.showMessage("Minimum character length is 100.");
+            return;
+          }
         }
-        if($scope.question.solution.length<25){
-          $scope.showMessage("Minimum character length is 25.");
+        if(!$scope.question.solution){
+          $scope.showMessage("Please write solution");
           return;
+          if($scope.question.solution.length<25){
+            $scope.showMessage("Minimum character length is 25.");
+            return;
+          }
         }
         $scope.showLoader();
         console.log('You are sure');
@@ -298,6 +308,19 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     if($scope.editQuestionModal && $scope.editQuestionModal.isShown()){
       $scope.editQuestionModal.remove();
     }
+    if($scope.askInformationModal && $scope.askInformationModal.isShown()){
+      $scope.askInformationModal.remove();
+    }
+    if($scope.postInformationModal && $scope.postInformationModal.isShown()){
+      $scope.postInformationModal.remove();
+    }
+  }
+
+  $scope.closeAskInformationModal = function(data){
+    $scope.question = angular.copy(data);
+    console.log($scope.question)
+    $scope.hideLoader();
+    
   }
 
   $scope.closeModal = function(){
@@ -313,7 +336,14 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     if($scope.editQuestionModal && $scope.editQuestionModal.isShown()){
       $scope.editQuestionModal.remove();
     }
+    if($scope.askInformationModal && $scope.askInformationModal.isShown()){
+      $scope.askInformationModal.remove();
+    }
+    if($scope.postInformationModal && $scope.postInformationModal.isShown()){
+      $scope.postInformationModal.remove();
+    }
   }
+
   $scope.goToWalletFromModal = function(){
     $scope.closeModal();
     $state.go('app.wallet');
@@ -321,8 +351,30 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
   
   $scope.showMonkPage = function(){
     $state.go('app.yprofile',{id:$scope.question.monkId});
-    // console.log($scope.question.monkId)
   }
+
+  // Monk Modal
+  $scope.askInformation = function(){
+    $ionicModal.fromTemplateUrl('views/askInformationModal.html', function (modal) {
+      $scope.askInformationModal = modal;
+      $scope.askInformationModal.show();
+    }, {
+      scope: $scope,
+      animation: 'slide-in-right'
+    });
+  }
+
+  // User Modal
+  $scope.openInformationModal = function(){
+    $ionicModal.fromTemplateUrl('views/postInformationModal.html', function (modal) {
+      $scope.postInformationModal = modal;
+      $scope.postInformationModal.show();
+    }, {
+      scope: $scope,
+      animation: 'slide-in-right'
+    });
+  }
+
 }]);
 
 askmonkApp.controller('writeAnswerModalPopupCtrl', ['$scope','$timeout', function($scope,$timeout){
@@ -481,5 +533,127 @@ askmonkApp.controller('editQuestionModalCtrl', ['$scope','utility','$timeout', f
       }
       console.log(data,"error");
     })
+  }
+}]);
+
+askmonkApp.controller('askInformationModalCtrl', ['$scope','utility','$ionicPopup', function($scope,utility,$ionicPopup){
+  $scope.editQuestion = angular.copy($scope.question);
+  console.log($scope.editQuestion);
+  $scope.modal = {"monkId":localStorage.userId,"monkEmail":localStorage.email,"monkName":localStorage.name,"userId":$scope.editQuestion.userId,"id":$scope.editQuestion.id,"status":$scope.editQuestion.status,askInformation:""};
+  if(localStorage.tagQuestion){
+    $scope.questionTag = JSON.parse(localStorage.getItem('tagQuestion'));
+    $scope.hideLoader();
+  }else{
+    utility.getAllQuestion()
+    .then(function(data){
+      $scope.hideLoader();
+      $scope.questionTag = data;
+      localStorage.setItem('tagQuestion',JSON.stringify(data));
+    },function(data){
+      $scope.hideLoader();
+      if(data && data.error.statusCode == 422){
+        $scope.showMessage(data.error.message);
+      }else{
+        $scope.showMessage("Something went wrong. Please try again.");
+      }
+      console.log(data);
+    });
+  }
+
+  $scope.postInformation = function(){
+    if(!$scope.modal.askInformation){
+      $scope.showMessage('Please write desired information')
+      return;
+    }
+    var confirmPopup = $ionicPopup.show({
+      cssClass:"ios",
+      title: 'Asking information to user would make this question mandatory for you to answer.',
+      template:'Do u wish to continue ?',
+      buttons: [
+        {text: 'Yes',type:'button-ios button-clear',
+          onTap: function(e) {
+            return true;
+          }
+        },
+        {text:'No',type:'button-ios button-clear',
+          onTap: function(e) {
+            return false;
+          }
+        }
+      ]
+    });
+    confirmPopup.then(function(res) {
+      if(res){
+        $scope.showLoader();
+        utility.postInformation($scope.modal)
+        .then(function(data){
+          $scope.hideLoader();
+          $scope.closeEditModal(data);
+          $scope.showMessage('Information has been sent to user');
+        },function(data){
+          $scope.hideLoader();
+          if(data && data.error.statusCode == 422){
+            $scope.showMessage(data.error.message);
+          }else{
+            $scope.showMessage("Something went wrong. Please try again.");
+          }
+          console.log(data,"error");
+        });
+      }else{
+        console.log('You are not sure');
+      }
+    });
+  }
+}]);
+
+
+askmonkApp.controller('postInformationModalCtrl', ['$scope','utility','$ionicPopup', function($scope,utility,$ionicPopup){
+  $scope.editQuestion = angular.copy($scope.question);
+  console.log($scope.editQuestion);
+  $scope.modal = {"monkId":localStorage.userId,"userId":$scope.editQuestion.userId,"id":$scope.editQuestion.id,"status":$scope.editQuestion.status,answerInformation:""};
+
+  $scope.postInformation = function(){
+    if(!$scope.modal.answerInformation){
+      $scope.showMessage('Please ask the desired information')
+      return;
+    }
+    var confirmPopup = $ionicPopup.show({
+      cssClass:"ios",
+      title: 'Going further would sent the information to the monk.',
+      template:'Do u wish to continue ?',
+      buttons: [
+        {text: 'Yes',type:'button-ios button-clear',
+          onTap: function(e) {
+            return true;
+          }
+        },
+        {text:'No',type:'button-ios button-clear',
+          onTap: function(e) {
+            return false;
+          }
+        }
+      ]
+    });
+    confirmPopup.then(function(res) {
+      if(res){
+        $scope.showLoader();
+        utility.postAnswerInformation($scope.modal)
+        .then(function(data){
+          $scope.hideLoader();
+          $scope.closeEditModal(data);
+          $scope.showMessage('Information has been sent to monk');
+        },function(data){
+          $scope.hideLoader();
+          if(data && data.error.statusCode == 422){
+            $scope.showMessage(data.error.message);
+          }else{
+            $scope.showMessage("Something went wrong. Please try again.");
+          }
+          console.log(data,"error");
+        });
+      }else{
+        console.log('You are not sure');
+      }
+    });
   }
 }]);

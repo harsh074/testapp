@@ -1,0 +1,47 @@
+<!-- User modal -->
+<ion-modal-view class="home-view" ng-controller="postInformationModalCtrl">
+	<ion-header-bar class="bar-assertive-900">
+		<div class="buttons buttons-left header-item"><span class="left-buttons">
+      <button class="customMenuBtn is-active" ng-click="closeModal()"><span></span></button>
+    </span></div>
+    <div class="title title-left header-item" style="left: 75px; right: 68px;"><i class="logoSideMenu"></i></div>
+  </ion-header-bar>
+  <ion-content scroll="false">
+    <div class="shortHeader">
+      <h1 class="title">Add Further Information</h1>
+      <div class="shortHeaderBtn" ng-click="postInformation()" ng-if="!editQuestion.moreInformation[0].answerInformation">
+        <a class="shortHeaderIcon"><i class="icon ion-ios-download"></i></a>
+      </div>
+    </div>
+  </ion-content>
+	<ion-content scroll="true" class="has-header paddingLRPlus21 editQuestionModal postInformationModal">
+    <div class="questionPart">
+      <p class="headerPart">Question</p>
+      <div class="card">
+        <div class="item item-text-wrap">
+          {{editQuestion.question}}
+        </div>
+      </div>
+    </div>
+    <div class="questionPart">
+      <p class="headerPart">Asked Information</p>
+      <div class="card">
+        <div class="item item-text-wrap">
+          {{editQuestion.moreInformation[0].askInformation}}
+        </div>
+      </div>
+    </div>
+    <div class="questionPart askInformation">
+      <p class="headerPart" ng-if="!editQuestion.moreInformation[0].answerInformation">Write Information</p>
+      <p class="headerPart" ng-if="editQuestion.moreInformation[0].answerInformation">Information Provided</p>
+      <div class="item editQuestionTextarea" ng-if="!editQuestion.moreInformation[0].answerInformation">
+        <textarea class="animate msd-elastic" name="askQuestionTextarea" ng-model="modal.answerInformation" placeholder="Write suitable information that is asked by monk for this particular question to answer..." required></textarea>
+      </div>
+      <div class="card" ng-if="editQuestion.moreInformation[0].answerInformation">
+        <div class="item item-text-wrap">
+          {{editQuestion.moreInformation[0].answerInformation}}
+        </div>
+      </div>
+    </div>
+	</ion-content>
+</ion-modal-view>

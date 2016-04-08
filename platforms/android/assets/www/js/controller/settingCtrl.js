@@ -28,6 +28,21 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     return false;
   }
 
+  $scope.payGoogleWallet = function(){
+    /*if((window.device && device.platform == "Android") && typeof inappbilling !== "undefined") {
+      inappbilling.buy(function(data) {
+        console.log("ITEM PURCHASED");
+        alert("ITEM PURCHASED" + JSON.stringify(data));
+      }, function(errorBuy) {
+        console.log("ERROR BUYING -> " + errorBuy);
+        alert("ERROR BUYING -> " + JSON.stringify(errorBuy));
+      }, 
+      "question250");
+    }*/
+
+    
+  }
+
   $scope.getPaymentInfo = function(){
     $scope.showLoader();
     if($scope.loginType == "user"){
