@@ -311,21 +311,23 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	.socialLogin{
     // text-align: center;
     &.googleLoginBtn{
-    	width:240px;
-    	height:45px;
-    	background-color:#F62B00;
-    	margin:25px auto 0;
-    	color:#fff;
-    	border-radius: 5px;
-    	font-size:13px;
-    	display: flex;
+	    width: 48%;
+	    height: 45px;
+	    background-color: #F62B00;
+	    color: #fff;
+	    border-radius: 5px;
+	    font-size: 12px;
+	    display: inline-flex;
+	    margin-right:5px;
     	i{
-	    	padding: 6px 5px 2px 9px;;
+	    	padding: 6px 3px 2px 5px;
   			border-right: 1px solid #DC2700;
     		float: left;
-		    font-size: 36px;
+		    font-size: 32px;
 		    vertical-align: middle;
 		    display: inline-block;
+		    text-align:center;
+		    width:55px;
     	}
     	p{
     		display: inline-block;
@@ -334,6 +336,13 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 		    margin: 0;
 		    width: 192px;
         line-height: 45px;
+    	}
+    }
+    &.facebookLoginBtn{
+    	background-color:#3B5998;
+    	margin-right:0px;
+    	i{
+    		border-color:#10399C;
     	}
     }
     img{

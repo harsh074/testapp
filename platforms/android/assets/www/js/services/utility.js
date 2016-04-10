@@ -59,6 +59,13 @@ askmonkApp.service('utility', ['$q','$http','$state', function utility($q, $http
        'params':args
       });
     },
+    facebookOauth:function(args){
+      return this.request({
+       'method': "POST",
+       'url': "/fbOAuthLogin/",
+       'params':args
+      });
+    },
     logout:function(){
       return this.request({
         'method':"POST",

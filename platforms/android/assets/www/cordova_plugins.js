@@ -151,6 +151,13 @@ module.exports = [
         "clobbers": [
             "inappbilling"
         ]
+    },
+    {
+        "file": "plugins/phonegap-facebook-plugin/facebookConnectPlugin.js",
+        "id": "phonegap-facebook-plugin.FacebookConnectPlugin",
+        "clobbers": [
+            "facebookConnectPlugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -175,7 +182,8 @@ module.exports.metadata =
     "org.apache.cordova.geolocation": "0.3.12",
     "cordova-plugin-splashscreen": "3.2.1-dev",
     "com.phonegap.plugins.nativesettingsopener": "1.0",
-    "com.smartmobilesoftware.androidinappbilling": "3.0.2"
+    "com.smartmobilesoftware.androidinappbilling": "3.0.2",
+    "phonegap-facebook-plugin": "0.12.0"
 }
 // BOTTOM OF METADATA
 });

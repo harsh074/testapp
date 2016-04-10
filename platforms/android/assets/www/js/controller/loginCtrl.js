@@ -1,4 +1,4 @@
-askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ionicScrollDelegate','$timeout','$rootScope','$stateParams','$ionicModal','$ionicSlideBoxDelegate','base64Encoding', function($scope, $state,utility,CONSTANT,$ionicScrollDelegate,$timeout,$rootScope,$stateParams,$ionicModal,$ionicSlideBoxDelegate,base64Encoding){
+askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ionicScrollDelegate','$timeout','$rootScope','$stateParams','$ionicModal','$ionicSlideBoxDelegate','base64Encoding','$q', function($scope, $state,utility,CONSTANT,$ionicScrollDelegate,$timeout,$rootScope,$stateParams,$ionicModal,$ionicSlideBoxDelegate,base64Encoding,$q){
   // console.log(base64Encoding.encode(JSON.stringify(a)));
   
   if(!$scope.authenticated){
@@ -338,8 +338,8 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           $scope.hideLoader();
         },function(data){
           $scope.hideLoader();
-          if(data && data.error.statusCode == 422){
-            $scope.showMessage(data.error.message);
+          if(data && data.status == 422){
+            $scope.showMessage(data.msg);
           }else{
             $scope.showMessage("Something went wrong. Please try again.");
           }
@@ -352,6 +352,111 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         console.log(JSON.stringify(msg),"error");
       });
     }
+
+    // Facebook login functions
+    $scope.finalFacebookLogin = function(profileInfo) {
+      // alert("finalFacebookLogin");
+      // profileInfo = {'name':"harsh agarwal",'email':"harsh.agarwal1112+17@gmail.com",'gender':"male"}
+      utility.facebookOauth({
+        name: profileInfo.name,
+        email: profileInfo.email,
+        gender:profileInfo.gender,
+        image : "http://graph.facebook.com/" + profileInfo.id + "/picture?type=large"
+      })
+      .then(function(data){
+        $scope.setAuth(true);
+        localStorage.setItem('loginType',"user");
+        localStorage.setItem('token',data.id);
+        localStorage.setItem('userId',data.userId);
+        CONSTANT.loginType = "user";
+        if(data.firstTimeLogin){
+          localStorage.setItem('firstTime',true);
+          localStorage.setItem("name",profileInfo.name);
+          localStorage.setItem("email",profileInfo.email);
+          $rootScope.profileData = angular.copy(profileInfo);
+          CONSTANT.isComingFromSignUp = true;
+          $state.go('app.editProfile');
+        }else{
+          $state.go('app.profile');
+        }
+        if($scope.userLoginModal && $scope.userLoginModal.isShown()){
+          $scope.userLoginModal.remove();
+        }
+        $scope.registerNotificaton();
+        $scope.hideLoader();
+      },function(data){
+        $scope.hideLoader();
+        if(data && data.status == 422){
+          $scope.showMessage(data.msg);
+        }else{
+          $scope.showMessage("Something went wrong. Please try again.");
+        }
+        console.log("error",data);
+      });
+    }
+
+    var fbLoginSuccess = function(response) {
+      // alert('fbLoginSuccess');
+      if (!response.authResponse){
+        fbLoginError("Cannot find the authResponse");
+        return;
+      }
+
+      getFacebookProfileInfo(response.authResponse)
+      .then(function(profileInfo) {
+        // alert("profileInfo");
+        // alert(JSON.stringify(profileInfo));
+        $scope.finalFacebookLogin(profileInfo)
+      }, function(fail){
+        $scope.hideLoader();
+        $scope.showMessage("Something went wrong. Please try again.");
+      });
+    }
+    var fbLoginError = function(error){
+      $scope.hideLoader();
+      $scope.showMessage("Something went wrong. Please try again.");
+      console.log('fbLoginError', error);
+    }
+
+    var getFacebookProfileInfo = function (authResponse) {
+      // alert("getFacebookProfileInfo");
+      // alert(JSON.stringify(authResponse));
+      var info = $q.defer();
+
+      facebookConnectPlugin.api('/me?fields=email,name,gender&access_token=' + authResponse.accessToken, null,
+        function (response) {
+          // alert('facebookConnectPlugin.api');
+          // alert(JSON.stringify(response));
+          info.resolve(response);
+        },
+        function (response) {
+          info.reject(response);
+        }
+      );
+      return info.promise;
+    }
+
+    $scope.userFacebookLogin = function(){
+      $scope.showLoader();
+      facebookConnectPlugin.getLoginStatus(function(success){
+        if(success.status === 'connected'){
+          // alert(success.status);
+          getFacebookProfileInfo(success.authResponse)
+          .then(function(profileInfo) {
+            // alert("profileInfo");
+            // alert(JSON.stringify(profileInfo));
+            $scope.finalFacebookLogin(profileInfo)
+          }, function(fail){
+            $scope.hideLoader();
+            $scope.showMessage("Something went wrong. Please try again.");
+          });
+        }else{
+          // alert(success.status);
+          facebookConnectPlugin.login(['email', 'public_profile'], fbLoginSuccess, fbLoginError);
+        }
+      });
+    }
+
   }
   else if(localStorage.getItem('questionStatus') == "underObeservation"){
     $stateParams.id = localStorage.getItem('questionId');

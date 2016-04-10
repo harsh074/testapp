@@ -83,17 +83,6 @@
             <button class="button button-custom button-small partnerDetailBtn" ng-click="viewPartnerDetails()" ng-if="question.questionTag == 'Match Making'">Partner Details</button>
           </div>
         </div>
-        <div class="row">
-          <div class="col fullLengthButton">
-            <button class="button button-custom button-small" ng-if="question.status=='underObservation'" ng-click="openWriteModal()">Write Answer</button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col fullLengthButton">
-            <button class="button button-custom button-small" ng-if="question.status=='underObservation'" ng-click="openWriteSolutionModal()">Write Solution</button>
-          </div>
-        </div>
-
         <!-- <div class="row">
           <div class="answerRating col" ng-if="question.status=='rated'">
             <p style="font-size: 18px;margin:5px 0px;" ng-if="question.status=='rated'">Here is your rating.</p>
@@ -101,6 +90,7 @@
           </div>
         </div> -->
       </div>
+
 
       <div class="moreInformation" ng-if="loginType=='user' && question.moreInformation">
         <p class="solutionHeading">Add information for better prediction.</p>
@@ -116,6 +106,11 @@
       </div>
 		</div> 
 	</ion-content>
+  <div class="button-fixed">
+    <button class="button button-custom button-small" ng-if="question.status=='underObservation'" ng-click="openWriteModal()">Write Answer</button>
+    <button class="button button-custom button-small" ng-if="question.status=='underObservation'" ng-click="openWriteSolutionModal()">Write Solution</button>
+  </div>
+
 	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user' && question.status=='asked'">
 		<i class="icon ion-android-add"></i>
 		<!-- <img src="img/flyout_icon.jpg" /> -->

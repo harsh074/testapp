@@ -239,7 +239,7 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     $scope.question.solution = localStorage.getItem('solution');
     var confirmPopup = $ionicPopup.show({
       cssClass:"ios",
-      title: 'Going further would send the answer to the user.',
+      title: 'Going further would sent the answer to the user.',
       template:'Do u wish to continue ?',
       buttons: [
         {text: 'Yes',type:'button-ios button-clear',
@@ -256,13 +256,21 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     });
     confirmPopup.then(function(res) {
       if(res) {
-        if($scope.question.answer.length<100){
-          $scope.showMessage("Minimum character length is 100.");
+        if(!$scope.question.answer){
+          $scope.showMessage("Please write answer");
           return;
+          if($scope.question.answer.length<100){
+            $scope.showMessage("Minimum character length is 100.");
+            return;
+          }
         }
-        if($scope.question.solution.length<25){
-          $scope.showMessage("Minimum character length is 25.");
+        if(!$scope.question.solution){
+          $scope.showMessage("Please write solution");
           return;
+          if($scope.question.solution.length<25){
+            $scope.showMessage("Minimum character length is 25.");
+            return;
+          }
         }
         $scope.showLoader();
         console.log('You are sure');
@@ -611,7 +619,7 @@ askmonkApp.controller('postInformationModalCtrl', ['$scope','utility','$ionicPop
     }
     var confirmPopup = $ionicPopup.show({
       cssClass:"ios",
-      title: 'Going further would send the answer to the monk.',
+      title: 'Going further would sent the information to the monk.',
       template:'Do u wish to continue ?',
       buttons: [
         {text: 'Yes',type:'button-ios button-clear',
@@ -633,7 +641,7 @@ askmonkApp.controller('postInformationModalCtrl', ['$scope','utility','$ionicPop
         .then(function(data){
           $scope.hideLoader();
           $scope.closeEditModal(data);
-          $scope.showMessage('Information has been send to monk');
+          $scope.showMessage('Information has been sent to monk');
         },function(data){
           $scope.hideLoader();
           if(data && data.error.statusCode == 422){

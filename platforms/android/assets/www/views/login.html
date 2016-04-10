@@ -80,7 +80,11 @@
 					<a ng-click="resendValidationTab()" class="resendValidation" ng-if="!userForgetPasswordShow">RESEND VALIDATION EMAIL</a>
 					<div class="socialLogin googleLoginBtn" ng-click="userGoogleLogin()" ng-if="!userForgetPasswordShow">
 						<i class="icon ion-social-googleplus-outline"></i>
-						<p>SIGN IN WITH GOOGLE</p>
+						<p>GOOGLE</p>
+					</div>
+					<div class="socialLogin googleLoginBtn facebookLoginBtn" ng-click="userFacebookLogin()" ng-if="!userForgetPasswordShow">
+						<i class="icon ion-social-facebook"></i>
+						<p>FACEBOOK</p>
 					</div>
 				</form>
 				<form name="registerForm" class="form form-horizontal" ng-submit="userSignUp(registerForm)" novalidate autocomplete="off" ng-show="signUptab">
