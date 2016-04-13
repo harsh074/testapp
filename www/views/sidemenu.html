@@ -6,7 +6,7 @@
         <button class="customMenuBtn" ng-click="hamburgerBtnEvent()" ng-disabled="isComingFromSignUp" ng-class="{'is-active':showArrow}"><span></span></button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-        <button class="button-clear ion-wallet" ng-disabled="isComingFromSignUp" ng-click="goToWallet()" ng-if="loginType=='user'"></button>
+        <button class="button-clear ion-wallet" ng-disabled="isComingFromSignUp" ng-click="goToAstrologers()" ng-if="loginType=='user'"></button>
         <label class="toggle monkAvaliableButton" ng-if="loginType=='monk'">
           <input type="checkbox" ng-model="isAvailable.status" ng-change="changeAvaliableStatus()">
           <div class="track">
@@ -67,7 +67,7 @@
             <span><i class="ion-android-drafts"></i></span>
             <span class="menuList">Draft Questions</span>
           </ion-item>
-          <ion-item menu-close ui-sref="app.wallet" class="menuItem wallet">
+          <ion-item menu-close ui-sref="app.wallet" class="menuItem wallet" ng-if="loginType=='monk'">
             <span><i class="ion-wallet"></i></span>
             <span class="menuList">Wallet</span>
           </ion-item>

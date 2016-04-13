@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.askmonk.in" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.askmonk.in" version="1.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
     <feature name="Cache">
         <param name="android-package" value="at.modalog.cordova.plugin.cache.Cache" />
@@ -66,6 +66,9 @@
     <access origin="https://api.facebook.com" />
     <access origin="https://*.fbcdn.net" />
     <access origin="https://*.akamaihd.net" />
+    <feature name="PayTM">
+        <param name="android-package" value="com.paytm.cordova.PayTM" />
+    </feature>
     <access origin="https://ssl.gstatic.com/accessibility/javascript/android/*" />
     <feature name="MobileAccessibility">
         <param name="android-package" value="com.phonegap.plugin.mobileaccessibility.MobileAccessibility" />
@@ -94,7 +97,7 @@
     <author email="support@askmonk.in" href="http://askmonk.in/">
     Askmonk Team
   </author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.4:8100" />
     <access origin="*" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarBackgroundColor" value="#000" />

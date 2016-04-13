@@ -75,6 +75,38 @@
                         {
                             "xml": "<feature name=\"NativeSettings\"><param name=\"android-package\" value=\"com.phonegap.plugins.nativesettings.NativeSettings\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBillingPlugin\"><param name=\"android-package\" value=\"com.smartmobilesoftware.inappbilling.InAppBillingPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FacebookConnectPlugin\"><param name=\"android-package\" value=\"org.apache.cordova.facebook.ConnectPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://m.facebook.com\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://graph.facebook.com\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://api.facebook.com\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://*.fbcdn.net\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://*.akamaihd.net\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"PayTM\"><param name=\"android-package\" value=\"com.paytm.cordova.PayTM\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -108,6 +140,10 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"com.android.vending.BILLING\" />",
                             "count": 1
                         }
                     ],
@@ -151,6 +187,22 @@
                         {
                             "xml": "<meta-data android:name=\"com.google.android.gms.version\" android:value=\"5077000\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<meta-data android:name=\"com.facebook.sdk.ApplicationId\" android:value=\"@string/fb_app_id\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<activity android:label=\"@string/fb_app_name\" android:name=\"com.facebook.LoginActivity\" android:theme=\"@android:style/Theme.Translucent.NoTitleBar\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<activity android:configChanges=\"keyboardHidden|orientation|keyboard\" android:name=\"com.paytm.pgsdk.PaytmPGActivity\" android:screenOrientation=\"portrait\" />",
+                            "count": 1
                         }
                     ],
                     "/manifest/application/activity": [
@@ -178,6 +230,56 @@
                         },
                         {
                             "xml": "<feature name=\"MobileAccessibility\"><param name=\"android-package\" value=\"com.phonegap.plugin.mobileaccessibility.MobileAccessibility\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "res/values/billing_key_param.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<string name=\"billing_key_param\">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnOGLcfuV4WtVrhwjygacjiSmzHmNfzRe5V5KBV6zxa1EDsd328FrpczPkYJBi1sJ9loF2kIXTJacbjEsNAwx/7eIL72Vsq2tpMLdxxGdSDMyvBmmKivAVQmS4W2VizuF+k95MgBmSLGoBW7fmGBjvvkYM/FNXLbHRVawIYuNIPXpu8lJLlUC+eKzb7HR50Y1LjEYTlHUoDfvRbyRQMEOaM2yvKlsYANyXox40w9e9IfXmlStKkR4GI65p22hraihw2H7qlHOdeZuPMjtxXO74vZ2kJoohIvw2bEPWauwz0SvKTC6K4JU0SdjsMsprqCFnfQ4fc+JINTJDnZWiIYBcQIDAQAB</string>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "res/values/facebookconnect.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<string name=\"fb_app_id\">204852189866038</string>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<string name=\"fb_app_name\">Askmonk</string>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "res/values/paytmcordova.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<string name=\"paytm_gen_url\">http://www.askmonk.in:3000/generate_checksum</string>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<string name=\"paytm_chk_url\">http://www.askmonk.in:3000/verify_checksum</string>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<string name=\"paytm_merchant_id\">HOGANT74481634116747</string>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<string name=\"paytm_industry_type_id\">Retail</string>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<string name=\"paytm_website\">HOGANTWAP</string>",
                             "count": 1
                         }
                     ]
@@ -242,6 +344,23 @@
             "PACKAGE_NAME": "com.askmonk.in"
         },
         "com.phonegap.plugins.nativesettingsopener": {
+            "PACKAGE_NAME": "com.askmonk.in"
+        },
+        "com.smartmobilesoftware.androidinappbilling": {
+            "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnOGLcfuV4WtVrhwjygacjiSmzHmNfzRe5V5KBV6zxa1EDsd328FrpczPkYJBi1sJ9loF2kIXTJacbjEsNAwx/7eIL72Vsq2tpMLdxxGdSDMyvBmmKivAVQmS4W2VizuF+k95MgBmSLGoBW7fmGBjvvkYM/FNXLbHRVawIYuNIPXpu8lJLlUC+eKzb7HR50Y1LjEYTlHUoDfvRbyRQMEOaM2yvKlsYANyXox40w9e9IfXmlStKkR4GI65p22hraihw2H7qlHOdeZuPMjtxXO74vZ2kJoohIvw2bEPWauwz0SvKTC6K4JU0SdjsMsprqCFnfQ4fc+JINTJDnZWiIYBcQIDAQAB",
+            "PACKAGE_NAME": "com.askmonk.in"
+        },
+        "phonegap-facebook-plugin": {
+            "APP_ID": "204852189866038",
+            "APP_NAME": "askmonk",
+            "PACKAGE_NAME": "com.askmonk.in"
+        },
+        "com.paytm.cordova": {
+            "GENERATE_URL": "http://www.askmonk.in:3000/generate_checksum",
+            "VERIFY_URL": "http://www.askmonk.in:3000/verify_checksum",
+            "MERCHANT_ID": "HOGANT74481634116747",
+            "INDUSTRY_TYPE_ID": "Retail",
+            "WEBSITE": "HOGANTWAP",
             "PACKAGE_NAME": "com.askmonk.in"
         }
     },

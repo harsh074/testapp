@@ -222,7 +222,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	    if(res) {
 	      console.log('You are sure');
 	      if($scope.getUserCount.emailVerified){
-	     		$scope.askQuestionButton();
+	     		$scope.goTopaymentModal();
 	      }else{
 	      	// console.log("Please verify your email");
 	      	$scope.showMessage("Please verify your email");
@@ -232,8 +232,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	    }
 	  });
 	}
-	$scope.money = {"customMoney":""};
-	$scope.options = function(){
+/*	$scope.options = function(){
 		$scope.amount = $scope.money.customMoney*100;
 		var profileData = JSON.parse(localStorage.profile);
 	 	var data = {
@@ -247,17 +246,18 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	    theme: {color: '#00BCD2'}
 	  }
 	  return data;
-	}
-	var successCallback = function(payment_id) {
-    // alert('payment_id: ' + payment_id);
-    if(payment_id){
-    	$scope.showLoader();
-	    utility.addMoney({'userId':localStorage.userId,'email':localStorage.email,'amount':$scope.amount,'payment_id':payment_id})
+	}*/
+    		
+	$scope.startPostingQuestion = function(paymentId, transactionId) {
+    // alert('paymentId: ' + paymentId);
+    debugger;
+    if(paymentId){
+    	// $scope.showLoader();
+	    utility.addMoney({'userId':localStorage.userId,'email':localStorage.email,'amount':$scope.timeLineJson[$scope.askQuestion.moneyType].amount,'paymentId':paymentId,'transactionId':transactionId,'paymentType':"payUMoney"})
 	    .then(function(data){
-	    	$scope.hideLoader();
-	    	$scope.showMessage('Transaction successful');
 				localStorage.profile = JSON.stringify(data);
 				$scope.askQuestionButton();
+	    	$scope.showMessage('Transaction successful');
 	    },function(data){
 	    	$scope.hideLoader();
 	    	if(data){
@@ -271,10 +271,10 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 			$scope.showMessage('Something went wrong. Try again');
 	  }
   }
-  var cancalCallback = function(error) {
+ /* var cancalCallback = function(error) {
     // alert(error.description + ' (Error '+error.code+')');
     $scope.showMessage(error.description);
-  }	
+  }	*/
 	$scope.openInsufficientPopup = function(){
 		var confirmPopup = $ionicPopup.show({
 	    cssClass:"ios",
@@ -306,7 +306,87 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	}
 
 	$scope.askQuestionButton = function(){
-		$scope.showLoader();
+		if(localStorage.getItem('directQuestion')){
+			utility.askDirectQuestion($scope.askQuestion)
+			.then(function(data){
+				utility.getUserCount()
+				.then(function(data1){
+					var profileData = JSON.parse(localStorage.profile);
+					profileData.totalQuestionsAsked = data1.totalQuestionsAsked;
+					profileData.walletMoney = data1.walletMoney;
+					localStorage.profile = JSON.stringify(profileData);
+					localStorage.setItem('updateDashboard',true);
+					$scope.hideLoader();
+					$scope.closeModal();
+					$state.go('app.dashboard');
+				},function(data1){
+					$scope.hideLoader();
+					if(data1 && data1.error.statusCode == 422){
+						$scope.showMessage(data1.error.message);
+		      }else{
+		        $scope.showMessage("Something went wrong. Please try again.");
+		      }
+				});
+			},function(data){
+				$scope.hideLoader();
+				if(data.error.message.indexOf('Insufficient Funds') == 0){
+					console.log($scope.getUserCount);
+					$scope.showMessage(data.error.message);
+					/*if($scope.getUserCount && $scope.getUserCount.walletMoney){
+						$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount - $scope.getUserCount.walletMoney;
+					}else{
+						$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount;
+					}*/
+					$scope.openInsufficientPopup();
+				}else if(data && data.error.statusCode == 422){
+	        $scope.showMessage(data.error.message);
+	      }else{
+	        $scope.showMessage("Something went wrong. Please try again.");
+	      }
+			});
+		}else{
+			utility.askQuestion($scope.askQuestion)
+			.then(function(data){
+				utility.getUserCount()
+				.then(function(data1){
+					var profileData = JSON.parse(localStorage.profile);
+					profileData.totalQuestionsAsked = data1.totalQuestionsAsked;
+					profileData.walletMoney = data1.walletMoney;
+					localStorage.setItem('updateDashboard',true);
+					localStorage.profile = JSON.stringify(profileData);
+					$scope.hideLoader();
+					$scope.closeModal();
+					$state.go('app.dashboard');
+				},function(data1){
+					$scope.hideLoader();
+					if(data1 && data1.error.statusCode == 422){
+		        $scope.showMessage(data1.error.message);
+		      }else{
+		        $scope.showMessage("Something went wrong. Please try again.");
+		      }
+				});
+			},function(data){
+				$scope.hideLoader();
+				if(data.error.message.indexOf('Insufficient Funds') == 0){
+					console.log($scope.getUserCount);
+					$scope.showMessage(data.error.message);
+					if($scope.getUserCount && $scope.getUserCount.walletMoney){
+						$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount - $scope.getUserCount.walletMoney;
+					}else{
+						$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount;
+					}
+					$scope.openInsufficientPopup();
+				}else if(data && data.error.statusCode == 422){
+	        $scope.showMessage(data.error.message);
+	      }else{
+	        $scope.showMessage("Something went wrong. Please try again.");
+	      }
+			});
+		}
+	}
+
+	$scope.goTopaymentModal = function(){
+		// $scope.showLoader();
 		if($scope.askOtherQuestion.question){
 			$scope.askQuestion.question = null;
 			$scope.askQuestion.question = angular.copy($scope.askOtherQuestion.question);
@@ -325,81 +405,17 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 				$scope.askQuestion.matchMakingDetails = angular.copy($scope.args);
 			}
 		}
+		
 		if($scope.askQuestion.question){
 			$scope.askQuestion.moneyType = angular.copy($scope.selectedTimeline.value);
-			if(localStorage.getItem('directQuestion')){
-				utility.askDirectQuestion($scope.askQuestion)
-				.then(function(data){
-					utility.getUserCount()
-					.then(function(data1){
-						var profileData = JSON.parse(localStorage.profile);
-						profileData.totalQuestionsAsked = data1.totalQuestionsAsked;
-						profileData.walletMoney = data1.walletMoney;
-						localStorage.profile = JSON.stringify(profileData);
-						localStorage.setItem('updateDashboard',true);
-						$state.go('app.dashboard');
-					},function(data1){
-						$scope.hideLoader();
-						if(data1 && data1.error.statusCode == 422){
-							$scope.showMessage(data1.error.message);
-			      }else{
-			        $scope.showMessage("Something went wrong. Please try again.");
-			      }
-					});
-				},function(data){
-					$scope.hideLoader();
-					if(data.error.message.indexOf('Insufficient Funds') == 0){
-						console.log($scope.getUserCount);
-						$scope.showMessage(data.error.message);
-						if($scope.getUserCount && $scope.getUserCount.walletMoney){
-							$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount - $scope.getUserCount.walletMoney;
-						}else{
-							$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount;
-						}
-						$scope.openInsufficientPopup();
-					}else if(data && data.error.statusCode == 422){
-		        $scope.showMessage(data.error.message);
-		      }else{
-		        $scope.showMessage("Something went wrong. Please try again.");
-		      }
-				});
-			}else{
-				utility.askQuestion($scope.askQuestion)
-				.then(function(data){
-					utility.getUserCount()
-					.then(function(data1){
-						var profileData = JSON.parse(localStorage.profile);
-						profileData.totalQuestionsAsked = data1.totalQuestionsAsked;
-						profileData.walletMoney = data1.walletMoney;
-						localStorage.setItem('updateDashboard',true);
-						localStorage.profile = JSON.stringify(profileData);
-						$state.go('app.dashboard');
-					},function(data1){
-						$scope.hideLoader();
-						if(data1 && data1.error.statusCode == 422){
-			        $scope.showMessage(data1.error.message);
-			      }else{
-			        $scope.showMessage("Something went wrong. Please try again.");
-			      }
-					});
-				},function(data){
-					$scope.hideLoader();
-					if(data.error.message.indexOf('Insufficient Funds') == 0){
-						console.log($scope.getUserCount);
-						$scope.showMessage(data.error.message);
-						if($scope.getUserCount && $scope.getUserCount.walletMoney){
-							$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount - $scope.getUserCount.walletMoney;
-						}else{
-							$scope.money.customMoney = $scope.timeLineJson[$scope.askQuestion.moneyType].amount;
-						}
-						$scope.openInsufficientPopup();
-					}else if(data && data.error.statusCode == 422){
-		        $scope.showMessage(data.error.message);
-		      }else{
-		        $scope.showMessage("Something went wrong. Please try again.");
-		      }
-				});
-			}
+			$ionicModal.fromTemplateUrl('views/paymentDetailsModal.html', function (modal) {
+	      $scope.paymentDetailsModal = modal;
+	      $scope.paymentDetailsModal.show();
+	    },{
+	      scope: $scope,
+	      animation: 'slide-in-right',
+	      hardwareBackButtonClose: true
+	    });
 		}else{
 			$scope.hideLoader();
 			$scope.showMessage("Please ask the desired question");
@@ -414,11 +430,14 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
     if($scope.partnerDetailsModal && $scope.partnerDetailsModal.isShown()){
       $scope.partnerDetailsModal.remove();
     }
+    if($scope.paymentDetailsModal && $scope.paymentDetailsModal.isShown()){
+      $scope.paymentDetailsModal.remove();
+    }
   }
-  $scope.goToWalletFromModal = function(){
+	/* $scope.goToWalletFromModal = function(){
   	$scope.closeModal();
   	$state.go('app.wallet');
-  }
+  }*/
 
   $scope.changePopValue = function(){
   	$scope.timeLineValueSelected = angular.copy($scope.timeLineJson[$scope.selectedTimeline.value].durationMonths);
@@ -427,6 +446,43 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 			$scope.timeLinePopup.close();
 		}, 100);
   }
+}]);
+
+askmonkApp.controller('paymentDetailsModalCtrl', ['$scope', function($scope){
+	console.log($scope.askQuestion);
+	$scope.paymentAskQuestion =  angular.copy($scope.askQuestion);
+	$scope.totalAmount = $scope.timeLineJson[$scope.paymentAskQuestion.moneyType].amount;
+	$scope.serviceTax = $scope.totalAmount*0.15;
+	$scope.basicCost = $scope.totalAmount - $scope.serviceTax;
+
+	$scope.payWithPayU = function(){
+		$scope.showLoader();
+		// TODO: payUId ain place of 121195
+		// TODO : paymentType = paytm, payUMoney
+		var ref = window.open('https://www.payumoney.com/paybypayumoney/#/121195', '_blank', 'location=no');
+    ref.addEventListener('loadstart', function(event) { 
+      if(event.url.indexOf('payumoney') > -1){
+        if(event.url.indexOf('payment/notification/success') > -1){
+          var paymentId = event.url.split('/')[event.url.split('/').length-1];
+          // var paymentId = 100853983;
+          var transactionId = '121195-'+paymentId;
+      		ref.close();
+      		$scope.startPostingQuestion(paymentId,transactionId);
+        }
+      }
+    });
+    // ref.addEventListener('loadstop', function(event) {
+    //   if(event.url.indexOf('payumoney') > -1){
+    //     // alert('stop: ' + event.url); 
+    //   }
+    // });
+    ref.addEventListener('exit', function(event) {
+    	if(!paymentId){
+    		alert(event.type);
+    	};
+    });
+	}
+
 }]);
 
 askmonkApp.filter('timeLineFiter',function(){

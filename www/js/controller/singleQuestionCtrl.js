@@ -344,10 +344,10 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     }
   }
 
-  $scope.goToWalletFromModal = function(){
+  /*$scope.goToWalletFromModal = function(){
     $scope.closeModal();
     $state.go('app.wallet');
-  }
+  }*/
   
   $scope.showMonkPage = function(){
     $state.go('app.yprofile',{id:$scope.question.monkId});

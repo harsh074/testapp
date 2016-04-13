@@ -28,6 +28,7 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     return false;
   }
 
+  $scope.showBackground = false;
   $scope.payGoogleWallet = function(){
     /*if((window.device && device.platform == "Android") && typeof inappbilling !== "undefined") {
       inappbilling.buy(function(data) {
@@ -40,13 +41,97 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
       "question250");
     }*/
 
-    // https://www.payumoney.com/paybypayumoney/#/121195
 
+    // https://www.payumoney.com/paybypayumoney/#/121195
+    // https://www.payumoney.com/pay/#/merchant/99870B53C5BE8B304170B42D5FB27B16?param=5453900
+    // https://www.payumoney.com/pay/#/?param=5453900
     var ref = window.open('https://www.payumoney.com/paybypayumoney/#/121195', '_blank', 'location=no');
-     ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
-     ref.addEventListener('loadstop', function(event) { alert('stop: ' + event.url); });
+    ref.addEventListener('loadstart', function(event) { 
+      if(event.url.indexOf('payumoney') > -1){
+        // alert('start: ' + event.url);
+        if(event.url.indexOf('payment/notification/success') > -1){
+          var paymentId = event.url.split('/')[event.url.split('/').length-1];
+          
+        } 
+      }
+    });
+    ref.addEventListener('loadstop', function(event) {
+      ref.close();
+      if(event.url.indexOf('payumoney') > -1){
+        alert('stop: ' + event.url); 
+      }
+    });
      ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
      ref.addEventListener('exit', function(event) { alert(event.type); });
+    /*var options = {
+      src: "https://www.payumoney.com/paybypayumoney/#/121195",
+      height: "100%",
+      width: "100%", 
+      x: 0,
+      y: 0,
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      scalesPageToFit: true,
+      bounces: true,
+      animation: {
+        type: "fadeIn",
+        duration: "300"
+      }
+    };
+    wizViewManager.create("Askmonk",options, function(data){
+        alert(data);
+        $scope.showBackground = true;
+        wizViewManager.show(data.name,options,function(data1){alert(data1)},function(data){alert(data1)});
+      }, function(data){
+        alert(data);
+      }
+    );*/
+
+
+     // var url = "https://test.payumoney.com/payment/payment/createPayment";
+     // var url = "https://www.payumoney.com/auth/op/searchMerchant"
+     //var url = "https://secure.payu.com/api/v2_1/orders"; /**/
+     // var url = "https://secure.payu.com/en/standard/user/oauth/authorize";
+     //var method = "POST"; /**/
+     // var method = "GET";
+
+     /*var params = {"grant_type":"client_credentials","client_id":"5453900","client_secret":"3W1P41uzXP"}*/
+     /*var params = {"count":1,"isPageable":true,"offset":0,"param":5453900}*/
+     
+     /*var data = {
+      "notifyUrl": "http://askmonk.in/privacy.html",
+      "customerIp": "127.0.0.1",
+      "merchantPosId": "5453900",
+      "description": "Askmonk Payment",
+      "currencyCode": "INR",
+      "totalAmount": "2",
+      "products": [
+        {
+          "name": "Question",
+          "unitPrice": "1",
+          "quantity": "1"
+        }
+      ]
+    };*/
+    // var data = {};
+    /*var params = {};
+    $http.defaults.headers.common.Authorization = 'Basic NTQ1MzkwMDowY2Q0YTViNzU5ZmU5ZDFiZDM0OGJlNjhlNDdhZjQwZQ==';
+    $http({
+      url: url,
+      method: method,
+      data: data,
+      params:params
+    })
+    .success(function(data, status, headers, config) {
+      console.log(data)
+    })
+    .error(function(data, status, headers, config) {
+      console.log(data);
+    });*/
+
+    
   }
 
   $scope.getPaymentInfo = function(){

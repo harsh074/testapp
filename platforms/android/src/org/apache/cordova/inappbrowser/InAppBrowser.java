@@ -627,7 +627,7 @@ public class InAppBrowser extends CordovaPlugin {
                     settings.setDatabasePath(databasePath);
                     settings.setDatabaseEnabled(true);
                 }
-                settings.setDomStorageEnabled(false);
+                settings.setDomStorageEnabled(true);
 
                 if (clearAllCache) {
                     CookieManager.getInstance().removeAllCookie();

@@ -162,5 +162,26 @@
             "url": "https://github.com/deefactorial/Cordova-open-native-settings.git",
             "subdir": "."
         }
+    },
+    "com.smartmobilesoftware.androidinappbilling": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/poiuytrez/AndroidInAppBilling.git",
+            "subdir": "."
+        }
+    },
+    "phonegap-facebook-plugin": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Wizcorp/phonegap-facebook-plugin.git",
+            "subdir": "."
+        }
+    },
+    "com.paytm.cordova": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/samyam-a/PayTM-PhoneGap-Plugin.git",
+            "subdir": "."
+        }
     }
 }

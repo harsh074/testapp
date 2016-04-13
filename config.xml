@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.askmonk.in" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.askmonk.in" version="1.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Askmonk</name>
   <description>
     Easy and Affordable day to day astrological predictions in a basic Question and Answer and to the point platform, and also create a trustworthy community of Astrologers for transparent predications.
@@ -7,7 +7,7 @@
   <author email="support@askmonk.in" href="http://askmonk.in/">
     Askmonk Team
   </author>
-  <content src="index.html"/>
+  <content src="http://192.168.1.4:8100" original-src="index.html"/>
   <access origin="*"/>
   <preference name="StatusBarOverlaysWebView" value="true"/>
   <preference name="StatusBarBackgroundColor" value="#000"/>

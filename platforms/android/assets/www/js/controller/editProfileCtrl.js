@@ -157,7 +157,6 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
             }
           },function(data){
             $scope.hideLoader();
-            // alert(JSON.stringify(data));
             if(data && data.error.statusCode == 422){
               $scope.showMessage(data.error.message);
             }else{

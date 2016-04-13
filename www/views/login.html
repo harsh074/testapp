@@ -94,11 +94,15 @@
 					<ion-md-input placeholder="Confirm Password" name="conpassword" highlight-color="custom" ng-model="conpassword.pass" type="password" ng-minlength="6" ng-maxlength="16" ng-required="true"></ion-md-input>
 					<p class="disclaimer">By clicking Sign up, you agree to Askmonk's <a class="" ng-click="openTnC()">Terms & Condition</a>.</p>
 					<button class="button button-login" type="submit">SIGN UP</button>
-					<a ng-click="loginTab()" class="backTologin">Already have an account? LOGIN</a>
 					<div class="socialLogin googleLoginBtn" ng-click="userGoogleLogin()">
 						<i class="icon ion-social-googleplus-outline"></i>
-						<p>SIGN UP WITH GOOGLE</p>
+						<p>GOOGLE</p>
 					</div>
+					<div class="socialLogin googleLoginBtn facebookLoginBtn" ng-click="userFacebookLogin()">
+						<i class="icon ion-social-facebook"></i>
+						<p>FACEBOOK</p>
+					</div>
+					<a ng-click="loginTab()" class="backTologin">Already have an account? LOGIN</a>
 				</form>
 			</div>
 		</ion-content>

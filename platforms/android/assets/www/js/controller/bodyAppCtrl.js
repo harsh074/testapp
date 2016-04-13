@@ -23,8 +23,8 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
   });
 
   
-  $scope.goToWallet = function(){
-    $state.go("app.wallet");
+  $scope.goToAstrologers = function(){
+    $state.go("app.yprofiles");
   };
   if(CONSTANT.loginType == 'monk'){
     $scope.isAvailable={};
@@ -45,7 +45,7 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
   $scope.getDirectQuestionCount = function(){
     utility.getDirectQuestionCount()
     .then(function(data){
-      if(data.length>0){
+      if(data.count>0){
         $scope.showDirectQuestionCountPopup(data);
       }
     },function(data){
@@ -273,7 +273,7 @@ askmonkApp.controller('bodyCtrl', ['$scope','utility','CONSTANT','$rootScope','C
         //   $state.go('app.dashboard');
         // }
       }, 50);*/
-      if(cordova.plugins.Keyboard.isVisible){
+      if(typeof cordova != "undefined" && cordova.plugins.Keyboard.isVisible){
         cordova.plugins.Keyboard.close();
       }
       $timeout(function(){

@@ -7,9 +7,9 @@
 	<ion-content scroll="true" has-bouncing="false" class="settingCtrl">
 		<div>
 			<div class="list">
-				<div class="list-item">
+				<!-- <div class="list-item">
 					<button class="button button-full" ng-click="payGoogleWallet()"><i class="icon ion-information-circled"></i><span>paywithgooglewallet</span></button>
-				</div>
+				</div> -->
 				<div class="list-item">
 					<button class="button button-full" ng-click="aboutUs()"><i class="icon ion-information-circled"></i><span>About</span></button>
 				</div>
@@ -38,6 +38,9 @@
 					<button class="button button-full" ng-click="shareWhatsapp()"><i class="icon ion-android-share-alt"></i><span>Share</span></button>
 				</div>
 				<div class="list-item">
+					<button class="button button-full" ng-click="shareWhatsapp()"><i class="icon ion-android-share-alt"></i><span>Rate Us</span></button>
+				</div>
+				<div class="list-item">
 					<button class="button button-full" ng-click="helpDesk()"><i class="icon ion-help"></i><span>Helpdesk</span></button>
 				</div>
 				<div class="list-item">
@@ -50,6 +53,23 @@
 			<p>v.201604072250</p>
 		</div>
 	</ion-content>
+
+	<!-- <div class="form">
+		<form method="post" action="https://secure.payu.com/api/v2_1/orders">
+	    <input type="hidden" name="customerIp" value="192.168.1.4">
+	    <input type="hidden" name="merchantPosId" value="5453900">
+	    <input type="hidden" name="description" value="Askmonk Payment">
+	    <input type="hidden" name="totalAmount" value="2">
+	    <input type="hidden" name="currencyCode" value="INR">
+	    <input type="hidden" name="products[0].name" value="Ask Question">
+	    <input type="hidden" name="products[0].unitPrice" value="2">
+	    <input type="hidden" name="products[0].quantity" value="1">
+	    <input type="hidden" name="notifyUrl" value="http://askmonk.in/privacy.html">
+	    <input type="hidden" name="continueUrl" value="http://askmonk.in/privacy.html">
+	    <input type="hidden" name="OpenPayu-Signature" value="sender=5453900;algorithm=SHA-256;signature=">
+	    <button type="submit" formtarget="_blank" >Pay with PayU</button>
+		</form >
+	</div> -->
 </ion-view>
 
 <script type="text/ng-template" id="resendValidationModal.html">

@@ -158,6 +158,13 @@ module.exports = [
         "clobbers": [
             "facebookConnectPlugin"
         ]
+    },
+    {
+        "file": "plugins/com.paytm.cordova/www/paytm.js",
+        "id": "com.paytm.cordova.paytm",
+        "clobbers": [
+            "window.plugins.paytm"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -183,7 +190,8 @@ module.exports.metadata =
     "cordova-plugin-splashscreen": "3.2.1-dev",
     "com.phonegap.plugins.nativesettingsopener": "1.0",
     "com.smartmobilesoftware.androidinappbilling": "3.0.2",
-    "phonegap-facebook-plugin": "0.12.0"
+    "phonegap-facebook-plugin": "0.12.0",
+    "com.paytm.cordova": "0.0.1"
 }
 // BOTTOM OF METADATA
 });

@@ -75,7 +75,7 @@ askmonkApp.controller('walletCtrl', ['$scope','utility','$state','CONSTANT','$ti
     // alert('payment_id: ' + payment_id);
     if(payment_id){
     	$scope.showLoader();
-	    utility.addMoney({'userId':localStorage.getItem('userId'),'email':localStorage.getItem('email'),'amount':$scope.amount,'payment_id':payment_id})
+	    utility.addMoney({'userId':localStorage.getItem('userId'),'email':localStorage.getItem('email'),'amount':$scope.amount,'payment_id':payment_id,'paymentType':"razorPay"})
 	    .then(function(data){
 	    	$scope.hideLoader();
 	    	$scope.showMessage('Transaction successful');

@@ -70,7 +70,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
           $scope.profileImage = 'http://askmonk.in/mImages/'+$scope.profileInfo.email.split('@')[0].toLowerCase()+'.jpg';
           utility.getDirectQuestionCount()
           .then(function(data){
-            if(data.length>0){
+            if(data.count>0){
               $scope.showDirectQuestionCountPopup(data);
             }
           },function(data){

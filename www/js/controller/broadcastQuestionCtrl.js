@@ -26,10 +26,10 @@ askmonkApp.controller('broadcastQuestionCtrl', ['$scope','$state','utility','$st
   	// console.log(data);
   });
 
-  $scope.goToWalletFromModal = function(){
+/*  $scope.goToWalletFromModal = function(){
     $scope.closeModal();
     $state.go('app.wallet');
-  }
+  }*/
 
   $scope.shareArticle = function (){
     $scope.showLoader();

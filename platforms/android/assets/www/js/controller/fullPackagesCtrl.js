@@ -86,7 +86,7 @@ askmonkApp.controller('fullPackagesCtrl', ['$scope','utility','$state','$ionicPo
     // alert('payment_id: ' + payment_id);
     if(payment_id){
     	$scope.showLoader();
-	    utility.addMoney({'userId':localStorage.userId,'email':localStorage.email,'amount':$scope.amount,'payment_id':payment_id})
+	    utility.addMoney({'userId':localStorage.userId,'email':localStorage.email,'amount':$scope.amount,'payment_id':payment_id,'paymentType':"razorPay"})
 	    .then(function(data){
 	    	$scope.hideLoader();
 	    	$scope.showMessage('Transaction successful');

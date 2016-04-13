@@ -308,7 +308,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
 
     $scope.userGoogleLogin = function(){
       $scope.showLoader();
-      window.plugins.googleplus.login({'iOSApiKey': '915609605128-idn9dp6hnes236v35ko5pjhfmk4m8ap3.apps.googleusercontent.com'},
+      window.plugins.googleplus.login({'androidApiKey': '915609605128-f9vqg6urf8p1718lqvfm51aulv91f95k.apps.googleusercontent.com'},
       function (obj) {
         // alert(JSON.stringify(obj),"success");
         // var obj = {"email":"harsh.agarwal1112+16@gmail.com","displayName":"harsh9","gender":"male"};
@@ -356,7 +356,7 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     // Facebook login functions
     $scope.finalFacebookLogin = function(profileInfo) {
       // alert("finalFacebookLogin");
-      // profileInfo = {'name':"harsh agarwal",'email':"harsh.agarwal1112+17@gmail.com",'gender':"male"}
+      // profileInfo = {'name':"harsh agarwal",'email':"harsh.agarwal1112+22@gmail.com",'gender':"male","id":"237298329839287398"}
       utility.facebookOauth({
         name: profileInfo.name,
         email: profileInfo.email,
@@ -373,6 +373,9 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           localStorage.setItem('firstTime',true);
           localStorage.setItem("name",profileInfo.name);
           localStorage.setItem("email",profileInfo.email);
+          if(profileInfo.id){
+            delete profileInfo.id;
+          }
           $rootScope.profileData = angular.copy(profileInfo);
           CONSTANT.isComingFromSignUp = true;
           $state.go('app.editProfile');
@@ -421,8 +424,8 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     var getFacebookProfileInfo = function (authResponse) {
       // alert("getFacebookProfileInfo");
       // alert(JSON.stringify(authResponse));
+      $scope.showLoader();
       var info = $q.defer();
-
       facebookConnectPlugin.api('/me?fields=email,name,gender&access_token=' + authResponse.accessToken, null,
         function (response) {
           // alert('facebookConnectPlugin.api');
@@ -437,7 +440,6 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
     }
 
     $scope.userFacebookLogin = function(){
-      $scope.showLoader();
       facebookConnectPlugin.getLoginStatus(function(success){
         if(success.status === 'connected'){
           // alert(success.status);
