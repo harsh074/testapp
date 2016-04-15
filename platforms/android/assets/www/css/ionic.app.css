@@ -9370,38 +9370,69 @@ body, p, a, div, span, input, b, strong, h1, h2, h3, h4, h5, h6, dt, dl, dd, inp
     white-space: nowrap;
     text-align: center;
     display: block; }
-  .loginPages .socialLogin.googleLoginBtn {
-    width: 48%;
+  .loginPages .socialLogin.signUpSocial .dashLine {
+    padding: 0; }
+  .loginPages .socialLogin .dashLine {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 0 0 20px;
+    color: #ccc; }
+    .loginPages .socialLogin .dashLine:before {
+      content: "";
+      border-width: 1px;
+      border-style: solid;
+      width: 40%;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 15px;
+      border-color: #699FAD; }
+    .loginPages .socialLogin .dashLine:after {
+      content: "";
+      border-width: 1px;
+      border-style: solid;
+      width: 40%;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 15px;
+      border-color: #699FAD; }
+  .loginPages .socialLogin .googleLoginBtn {
+    width: 46%;
     height: 45px;
     line-height: 45px;
-    background-color: #F62B00;
+    background-color: #DC4E41;
     color: #fff;
     border-radius: 5px;
     font-size: 12px;
     display: inline-flex;
     margin-right: 5px;
-    margin-top: 5px; }
-    .loginPages .socialLogin.googleLoginBtn i {
-      border-right: 1px solid #DC2700;
-      float: left;
-      font-size: 32px;
-      vertical-align: middle;
-      display: inline-block;
-      line-height: inherit;
-      text-align: center;
-      width: 60px; }
-    .loginPages .socialLogin.googleLoginBtn p {
+    margin-top: 5px;
+    padding-left: 20px;
+    box-shadow: 0 0 4px transparent, 0 4px 4px rgba(0, 0, 0, 0.2); }
+    .loginPages .socialLogin .googleLoginBtn i.googleIcon {
+      background-image: url("../img/googleplus.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: 50% center;
+      width: 35px; }
+    .loginPages .socialLogin .googleLoginBtn p {
       display: inline-block;
       vertical-align: middle;
       text-align: center;
       margin: 0;
       width: 192px;
       line-height: inherit; }
-  .loginPages .socialLogin.facebookLoginBtn {
-    background-color: #3B5998;
-    margin-right: 0px; }
-    .loginPages .socialLogin.facebookLoginBtn i {
-      border-color: #10399C; }
+  .loginPages .socialLogin .facebookLoginBtn {
+    background-color: #5E7AB5;
+    margin-right: 0px;
+    padding-left: 20px;
+    float: right; }
+    .loginPages .socialLogin .facebookLoginBtn i.facebookIcon {
+      background-image: url("../img/facebook.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: 50% center;
+      width: 30px; }
   .loginPages .socialLogin img {
     width: 75%;
     margin-top: 15px;
@@ -10831,9 +10862,20 @@ ion-side-menu .has-header {
   .askQuestionForm .item-select:after {
     right: 25px;
     top: 50%; }
+  .askQuestionForm .item-select:before {
+    content: "";
+    background-image: url("../img/hand.png");
+    position: absolute;
+    width: 20px;
+    height: 29px;
+    top: 8px;
+    left: 17px;
+    z-index: 10;
+    background-size: contain;
+    background-repeat: no-repeat; }
 
 .askQuestionForm select {
-  padding: 12px 33px 4px 14px;
+  padding: 12px 33px 4px 45px;
   height: 38px;
   width: 100%;
   max-width: 100%;
@@ -11387,9 +11429,12 @@ ion-side-menu .has-header {
   line-height: 50px; }
 
 .paymentDetailsModal {
-  top: 106px; }
+  top: 106px;
+  background-color: #eee; }
   .paymentDetailsModal .tile {
-    margin-top: 13px; }
+    margin: 0px -18px;
+    background-color: #fff;
+    padding: 13px 18px 30px; }
     .paymentDetailsModal .tile .packName {
       color: #00BCD2;
       font-size: 19px; }
@@ -11405,11 +11450,11 @@ ion-side-menu .has-header {
     padding: 15px 0 5px;
     font-weight: bold; }
   .paymentDetailsModal .paymentOptions {
-    margin: 30px -18px;
+    margin: 0px -18px 0;
     position: relative;
     background: #eee;
     padding: 10px 18px;
-    height: 300px; }
+    height: 215px; }
     .paymentDetailsModal .paymentOptions:before {
       content: "";
       display: block;
@@ -11430,23 +11475,23 @@ ion-side-menu .has-header {
       padding: 0 18px; }
       .paymentDetailsModal .paymentOptions .pickWallet .payumoney {
         padding: 25px 0;
+        margin-bottom: 0px; }
+      .paymentDetailsModal .paymentOptions .pickWallet .paytm {
+        padding: 25px 0;
         margin-bottom: 0px;
         border-style: solid;
         border-width: 0 0 1px 0;
         border-color: #ddd; }
-      .paymentDetailsModal .paymentOptions .pickWallet .paytm {
-        padding: 25px 0;
-        margin-bottom: 0px; }
       .paymentDetailsModal .paymentOptions .pickWallet .name {
         color: black;
         vertical-align: middle;
         padding-left: 30px;
-        font-size: 17px; }
+        font-size: 18px; }
       .paymentDetailsModal .paymentOptions .pickWallet img {
         vertical-align: middle; }
       .paymentDetailsModal .paymentOptions .pickWallet i.icon {
         float: right;
-        line-height: 40px;
+        line-height: 30px;
         height: 20px;
         font-size: 18px; }
 

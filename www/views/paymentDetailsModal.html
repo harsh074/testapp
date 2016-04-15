@@ -1,0 +1,53 @@
+<ion-modal-view class="home-view" ng-controller="paymentDetailsModalCtrl">
+	<ion-header-bar class="bar-assertive-900">
+		<div class="buttons buttons-left header-item"><span class="left-buttons">
+      <button class="customMenuBtn is-active" ng-click="closeModal()"><span></span></button>
+    </span></div>
+    <div class="title title-left header-item" style="left: 75px; right: 68px;"><i class="logoSideMenu"></i></div>
+  </ion-header-bar>
+
+  <ion-content scroll="false">
+		<div class="shortHeader">
+			<h1 class="title">Checkout</h1>
+		</div>
+	</ion-content>
+
+	<ion-content scroll="true" class="paymentDetailsModal paddingLRPlus21">
+		<div class="allTile">
+			<div class="tile">
+				<div class="name">
+					<p class="packName">Question</p>
+				</div>
+				<div class="describe">
+					<p>{{paymentAskQuestion.question}}</p>
+					<br>
+					<div class="showAmountBreakage">
+						<p class="basicCost">Basic Cost<span class="amount"> Rs. {{basicCost}}</span></p>
+						<p>Service Tax<span class="amount"> Rs. {{serviceTax}}</span></p>
+						<p class="dash"></p>
+						<p class="totalCost">Total Cost<span class="amount"> Rs. {{totalAmount}}</span></p>
+						<p class="dash"></p>
+					</div>
+				</div>
+			</div>
+
+			<div class="paymentOptions">
+				<div class="name">
+					<p class="packName">Payment Options</p>
+				</div>
+				<div class="pickWallet">
+					<p class="paytm" ng-click="payWithPayTm()">
+						<img src="img/paytm.png" width="60px">
+						<span class="name">Paytm</span>
+						<i class="icon ion-ios-arrow-right"></i>
+					</p>
+					<p class="payumoney" ng-click="payWithPayU()">
+						<img src="img/payumoney.jpg" width="60px">
+						<span class="name">PayUmoney</span>
+						<i class="icon ion-ios-arrow-right"></i>
+					</p>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-modal-view>

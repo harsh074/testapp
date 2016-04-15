@@ -78,13 +78,16 @@
 
 					<a ng-click="signUpTab()" class="registerWithUs" ng-if="!userForgetPasswordShow">SIGN UP</a>
 					<a ng-click="resendValidationTab()" class="resendValidation" ng-if="!userForgetPasswordShow">RESEND VALIDATION EMAIL</a>
-					<div class="socialLogin googleLoginBtn" ng-click="userGoogleLogin()" ng-if="!userForgetPasswordShow">
-						<i class="icon ion-social-googleplus-outline"></i>
-						<p>GOOGLE</p>
-					</div>
-					<div class="socialLogin googleLoginBtn facebookLoginBtn" ng-click="userFacebookLogin()" ng-if="!userForgetPasswordShow">
-						<i class="icon ion-social-facebook"></i>
-						<p>FACEBOOK</p>
+					<div class="socialLogin" ng-if="!userForgetPasswordShow">
+						<p class="dashLine">OR</p>
+						<div class="googleLoginBtn" ng-click="userGoogleLogin()">
+							<i class="googleIcon"></i>
+							<p>GOOGLE</p>
+						</div>
+						<div class="googleLoginBtn facebookLoginBtn" ng-click="userFacebookLogin()">
+							<i class="facebookIcon"></i>
+							<p>FACEBOOK</p>
+						</div>
 					</div>
 				</form>
 				<form name="registerForm" class="form form-horizontal" ng-submit="userSignUp(registerForm)" novalidate autocomplete="off" ng-show="signUptab">
@@ -92,15 +95,18 @@
 					<ion-md-input placeholder="Email" ng-pattern="/^\w+([\.+-]?\w+)*@\w+([\.-]?\w+)(\.\w{1,})+$/" name="email" highlight-color="custom" ng-model="argsSignup.email" type="email" required></ion-md-input>
 					<ion-md-input placeholder="Password" name="password" highlight-color="custom" ng-model="argsSignup.password" type="password" ng-minlength="6" ng-maxlength="16" ng-required="true"></ion-md-input>
 					<ion-md-input placeholder="Confirm Password" name="conpassword" highlight-color="custom" ng-model="conpassword.pass" type="password" ng-minlength="6" ng-maxlength="16" ng-required="true"></ion-md-input>
-					<p class="disclaimer">By clicking Sign up, you agree to Askmonk's <a class="" ng-click="openTnC()">Terms & Condition</a>.</p>
+					<p class="disclaimer">By clicking Sign up, you agree to Askmonk's <a class="" ng-click="openTnC()">Terms & Conditions</a>.</p>
 					<button class="button button-login" type="submit">SIGN UP</button>
-					<div class="socialLogin googleLoginBtn" ng-click="userGoogleLogin()">
-						<i class="icon ion-social-googleplus-outline"></i>
-						<p>GOOGLE</p>
-					</div>
-					<div class="socialLogin googleLoginBtn facebookLoginBtn" ng-click="userFacebookLogin()">
-						<i class="icon ion-social-facebook"></i>
-						<p>FACEBOOK</p>
+					<div class="socialLogin signUpSocial">
+						<p class="dashLine">OR</p>
+						<div class="googleLoginBtn" ng-click="userGoogleLogin()">
+							<i class="googleIcon"></i>
+							<p>GOOGLE</p>
+						</div>
+						<div class="googleLoginBtn facebookLoginBtn" ng-click="userFacebookLogin()">
+							<i class="facebookIcon"></i>
+							<p>FACEBOOK</p>
+						</div>
 					</div>
 					<a ng-click="loginTab()" class="backTologin">Already have an account? LOGIN</a>
 				</form>

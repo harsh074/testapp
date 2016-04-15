@@ -28,9 +28,9 @@
         <meta-data android:name="com.google.android.gms.version" android:value="5077000" />
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/fb_app_id" />
         <activity android:label="@string/fb_app_name" android:name="com.facebook.LoginActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:configChanges="keyboardHidden|orientation|keyboard" android:name="com.paytm.pgsdk.PaytmPGActivity" android:screenOrientation="portrait" />
-        <uses-permission android:name="android.permission.INTERNET" />
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        <uses-permission android:name="android.permission.INTERNET" />
+        <activity android:configChanges="keyboardHidden|orientation|keyboard" android:name="com.paytm.pgsdk.PaytmPGActivity" android:screenOrientation="portrait" />
     </application>
     <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="21" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -43,5 +43,4 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="com.android.vending.BILLING" />
 </manifest>

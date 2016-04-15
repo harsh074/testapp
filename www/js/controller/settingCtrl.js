@@ -28,7 +28,13 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     return false;
   }
 
-  $scope.showBackground = false;
+  $scope.rateUsApp = function(){
+    var openUrl = window.open('market://details?id=com.askmonk.in');
+    openUrl.addEventListener('loadstop', function(event) { 
+      openUrl.close();
+    });
+  }
+
   $scope.payGoogleWallet = function(){
     /*if((window.device && device.platform == "Android") && typeof inappbilling !== "undefined") {
       inappbilling.buy(function(data) {
@@ -129,9 +135,7 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     })
     .error(function(data, status, headers, config) {
       console.log(data);
-    });*/
-
-    
+    });*/   
   }
 
   $scope.getPaymentInfo = function(){

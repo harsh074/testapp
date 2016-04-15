@@ -2,7 +2,7 @@
 	<ion-content scroll="false">
 		<div class="shortHeader">
 			<h1 class="title">Ask Question</h1>
-			<div class="shortHeaderBtn" ng-click="openAskQuestion()">
+			<div class="shortHeaderBtn" ng-click="goTopaymentModal()">
 			  <a class="shortHeaderIcon"><i class="icon ion-paper-airplane"></i></a>
 			</div>
 			<div class="selectTimeQuestion">
@@ -12,7 +12,7 @@
 		<div class="askQuestionForm">
 			<label class="item item-input item-select">
 				<select name="questionCategory" ng-model="askQuestion.questionTag" required ng-change="askQuestionCategory($event, askQuestion.questionTag)">
-					<option value="" disabled selected>Click here for questions !</option>
+					<option value="" disabled selected>Click here for Questions</option>
 					<option ng-repeat="(key,value) in questions" value="{{key}}">{{key}}</option>
 					<option value="other">Other</option>
 				</select>

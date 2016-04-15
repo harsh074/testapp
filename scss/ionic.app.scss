@@ -309,27 +309,57 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
     display: block;
 	}
 	.socialLogin{
-    // text-align: center;
-    &.googleLoginBtn{
-	    width: 48%;
+		&.signUpSocial{
+			.dashLine{
+				padding:0;
+			}
+		}
+		.dashLine{
+	    display: inline-block;
+	    width: 100%;
+	    text-align: center;
+	    padding: 0 0 20px;
+	    color: #ccc;
+			&:before{
+				content:"";
+		    border-width: 1px;
+			  border-style: solid;
+			  width: 40%;
+			  display: inline-block;
+			  vertical-align: middle;
+			  margin-right: 15px;
+			  border-color: #699FAD;
+			}
+			&:after{
+				content:"";
+		    border-width: 1px;
+		    border-style: solid;
+		    width: 40%;
+		    display: inline-block;
+		    vertical-align: middle;
+		    margin-left: 15px;
+		    border-color: #699FAD;
+			}
+		}
+    .googleLoginBtn{
+	    width: 46%;
 	    height: 45px;
 	    line-height: 45px;
-	    background-color: #F62B00;
+	    background-color: #DC4E41;
 	    color: #fff;
 	    border-radius: 5px;
 	    font-size: 12px;
 	    display: inline-flex;
 	    margin-right:5px;
 	    margin-top: 5px;
-    	i{
-  			border-right: 1px solid #DC2700;
-    		float: left;
-		    font-size: 32px;
-		    vertical-align: middle;
-		    display: inline-block;
-		    line-height: inherit;
-		    text-align:center;
-		    width:60px;
+      padding-left: 20px;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0), 0 4px 4px rgba(0, 0, 0, 0.2);
+    	i.googleIcon{
+    		background-image:url('../img/googleplus.png');
+		    background-size: contain;
+		    background-repeat: no-repeat;
+		    background-position: 50% center;
+		    width: 35px;
     	}
     	p{
     		display: inline-block;
@@ -340,11 +370,17 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
         line-height: inherit;
     	}
     }
-    &.facebookLoginBtn{
-    	background-color:#3B5998;
+    .facebookLoginBtn{
+    	background-color:#5E7AB5;
     	margin-right:0px;
-    	i{
-    		border-color:#10399C;
+	    padding-left: 20px;
+	    float:right;
+    	i.facebookIcon{
+    		background-image:url('../img/facebook.png');
+		    background-size: contain;
+		    background-repeat: no-repeat;
+		    background-position: 50% center;
+		    width: 30px;
     	}
     }
     img{
@@ -352,6 +388,7 @@ body,p,a,div,span,input,b,strong,h1,h2,h3,h4,h5,h6,dt,dl,dd,input,button,select,
 	    margin-top: 15px;
 	    height: 45px;
     }
+
 	}
 }
 .item-md-label input {
@@ -2057,9 +2094,21 @@ ion-side-menu .has-header{
 	    right: 25px;
 	    top: 50%;
 		}
+		&:before{
+			content:"";
+			background-image:url('../img/hand.png');
+			position: absolute;
+			width:20px;
+			height:29px;
+			top:8px;
+			left:17px;
+	    z-index: 10;
+	    background-size: contain;
+  	  background-repeat: no-repeat;
+		}
 	}
 	select {
-    padding: 12px 33px 4px 14px;
+    padding: 12px 33px 4px 45px;
     height: 38px;
     width: 100%;
     max-width: 100%;
@@ -2726,8 +2775,11 @@ ion-side-menu .has-header{
 
 .paymentDetailsModal{
 	top:106px;
+	background-color: #eee;
 	.tile{
-    margin-top: 13px;
+    margin: 0px -18px;
+    background-color: #fff;
+    padding: 13px 18px 30px;
     .packName{
     	color:$background-color;
     	font-size:19px;
@@ -2749,11 +2801,11 @@ ion-side-menu .has-header{
 		font-weight:bold;
 	}
 	.paymentOptions{
-		margin:30px -18px;
+    margin: 0px -18px 0;
 		position: relative;
 		background: #eee;
 		padding:10px 18px;
-		height:300px;
+		height:215px;
 		&:before {
 		  content: "";
 		  display: block;
@@ -2787,26 +2839,26 @@ ion-side-menu .has-header{
 			.payumoney{
 				padding:25px 0;
 				margin-bottom:0px;
-		    border-style: solid;
-		    border-width: 0 0 1px 0;
-		    border-color: #ddd;
 			}
 			.paytm{
 				padding:25px 0;
-				margin-bottom:0px
+				margin-bottom:0px;
+		    border-style: solid;
+		    border-width: 0 0 1px 0;
+		    border-color: #ddd;
 			}
 			.name{
 		    color: black;
 		    vertical-align: middle;
 		    padding-left: 30px;
-		    font-size:17px;
+		    font-size:18px;
 			}
 			img{
 				vertical-align: middle;
 			}
 			i.icon{
 		    float: right;
-		    line-height: 40px;
+		    line-height: 30px;
 		    height: 20px;
 		    font-size: 18px;
 			}

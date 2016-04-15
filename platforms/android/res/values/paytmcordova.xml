@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="paytm_gen_url">http://www.askmonk.in:3000/generate_checksum</string>
+    <string name="paytm_chk_url">http://www.askmonk.in:3000/verify_checksum</string>
+    <string name="paytm_merchant_id">HOGANT74481634116747</string>
+    <string name="paytm_industry_type_id">Retail</string>
+    <string name="paytm_website">HOGANTWAP</string>
+</resources>

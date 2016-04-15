@@ -146,13 +146,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/com.smartmobilesoftware.androidinappbilling/www/inappbilling.js",
-        "id": "com.smartmobilesoftware.androidinappbilling.InAppBillingPlugin",
-        "clobbers": [
-            "inappbilling"
-        ]
-    },
-    {
         "file": "plugins/phonegap-facebook-plugin/facebookConnectPlugin.js",
         "id": "phonegap-facebook-plugin.FacebookConnectPlugin",
         "clobbers": [
@@ -189,7 +182,6 @@ module.exports.metadata =
     "org.apache.cordova.geolocation": "0.3.12",
     "cordova-plugin-splashscreen": "3.2.1-dev",
     "com.phonegap.plugins.nativesettingsopener": "1.0",
-    "com.smartmobilesoftware.androidinappbilling": "3.0.2",
     "phonegap-facebook-plugin": "0.12.0",
     "com.paytm.cordova": "0.0.1"
 }

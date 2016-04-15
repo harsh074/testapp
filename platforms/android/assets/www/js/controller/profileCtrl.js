@@ -17,6 +17,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
   if(localStorage.getItem("profile")){
     $rootScope.profileData = JSON.parse(localStorage.getItem("profile"));
     $scope.profileInfo = angular.copy($rootScope.profileData);
+    console.log($scope.profileInfo)
     if($scope.loginType == "user"){
       $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
       $timeout(function(){
@@ -111,6 +112,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     utility.getUserCount()
     .then(function(data){
       $scope.getUserCount = data;
+      console.log(data);
     },function(data){
       $scope.hideLoader();
       if(data && data.error.statusCode == 422){

@@ -9,7 +9,7 @@
 					<div class="statics" ng-class="{'userProfile':loginType=='user'}">
 						<span class="answered" ng-if="loginType=='user'">{{getUserCount.totalQuestionsAsked ? getUserCount.totalQuestionsAsked : 0}}<br/><span class="textShow">Asked</span></span>
 						<span class="experience" ng-if="loginType=='user'">{{profileInfo.moonSign}}<br/><span class="textShow">Zodiac</span></span>
-						<span class="views" ng-if="loginType=='user'">Rs. {{getUserCount.walletMoney ? getUserCount.walletMoney : 0}}<br/><span class="textShow">Wallet</span></span>
+						<span class="views" ng-if="loginType=='user'">{{getUserCount.totalQuestionsRated}}<br/><span class="textShow">Rated</span></span>
 						<span class="answered" ng-if="loginType=='monk'">{{getMonkCount.questionsAnswered ? getMonkCount.questionsAnswered : 0}}<br/><span class="textShow">Answered</span></span>
 						<span class="experience" ng-if="loginType=='monk'">{{getMonkCount.experience ? getMonkCount.experience : 0}}<br/><span class="textShow">Experience</span></span>
 						<span class="views" ng-if="loginType=='monk'">{{getMonkCount.profileViews ? getMonkCount.profileViews : 0}}<br/><span class="textShow">Views</span></span>
