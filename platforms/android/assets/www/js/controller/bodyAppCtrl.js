@@ -17,9 +17,19 @@ askmonkApp.controller('appCtrl', ['$scope','CONSTANT','$state','utility','$rootS
   });
 
  	$scope.sideMenuName = localStorage.getItem("name");
+  if(localStorage.profile && JSON.parse(localStorage.profile).profilePic){
+    $scope.profilePic = JSON.parse(localStorage.profile).profilePic;
+  }else{
+    $scope.profilePic = "img/sidemenu_bg.jpg"
+  }
   $scope.$on("updateSideMenuName",function(evt,data){
     $scope.loginType = CONSTANT.loginType;
     $scope.sideMenuName = localStorage.getItem("name");
+    if(data.profilePic){
+      $scope.profilePic = data.profilePic;
+    }else{
+      $scope.profilePic = "img/sidemenu_bg.jpg"
+    }
   });
 
   

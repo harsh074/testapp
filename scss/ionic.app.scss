@@ -2094,21 +2094,28 @@ ion-side-menu .has-header{
 	    right: 25px;
 	    top: 50%;
 		}
-		&:before{
-			content:"";
-			background-image:url('../img/hand.png');
-			position: absolute;
-			width:20px;
-			height:29px;
-			top:8px;
-			left:17px;
-	    z-index: 10;
-	    background-size: contain;
-  	  background-repeat: no-repeat;
+	}
+	&.handIcon{
+		.item-select{
+			&:before{
+				content:"";
+				background-image:url('../img/hand.png');
+				position: absolute;
+				width:20px;
+				height:29px;
+				top:8px;
+				left:17px;
+		    z-index: 10;
+		    background-size: contain;
+	  	  background-repeat: no-repeat;
+			}
+		}
+		select{
+			padding-left:45px;
 		}
 	}
 	select {
-    padding: 12px 33px 4px 45px;
+    padding: 12px 33px 4px 14px;
     height: 38px;
     width: 100%;
     max-width: 100%;
@@ -2233,21 +2240,64 @@ ion-side-menu .has-header{
   line-height: 65px;
   border-radius: 50%;
   right: 20px;
-  bottom: -100px;
   font-size: 32px;
-  transition: all 0.4s linear;
-  z-index: 13;
+  z-index: 14;
  	@include align-items(center);
   @include justify-content(center);
   overflow: hidden;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.38);
+  
+
+  // bottom: -100px;
+  // transition: all 0.4s linear;
+
+
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  opacity: 0;
+  transition: all .3s cubic-bezier(.55,0,.55,.2);
+  transition-delay: 3ms;
+  bottom:20px;
   img{
   	width: 100%;
   }
   &.floatBtn{
-  	bottom:20px;
+  	// bottom:20px;
+  	transform: scale(1);
+  	opacity: 1;
+  	transition-delay: 0ms;
   }
 }
+.floatingBtnText{
+	position: absolute;
+  font-size: 20px;
+  white-space: nowrap;
+  display: inline-block;
+  line-height: 17px;
+  z-index: 13;
+  color: #fff;
+  right: 73px;
+  bottom: 34px;
+  left:226px;
+  overflow:hidden;
+  background-color: #00BCD2;
+	padding: 6px 10px;
+  border-bottom-left-radius: 15px;
+	border-top-left-radius: 15px;
+	-webkit-transition: all 2.5s cubic-bezier(0.4, 0, 1, 1);
+	-moz-transition: all 2.5s cubic-bezier(0.4, 0, 1, 1);
+	-o-transition: all 2.5s cubic-bezier(0.4, 0, 1, 1);
+	transition: all 2.5s cubic-bezier(0.4, 0, 1, 1);
+  &.floatBtn{
+  	left:360px;
+		transition-delay: 3s;
+  }
+  .inner{
+  	display:block;
+  	font-size: 15px;
+  }
+}
+
 
 .writeAnswer{
 	background-color:white;
@@ -2844,7 +2894,7 @@ ion-side-menu .has-header{
 				padding:25px 0;
 				margin-bottom:0px;
 		    border-style: solid;
-		    border-width: 0 0 1px 0;
+		    border-width: 0 0 0px 0;
 		    border-color: #ddd;
 			}
 			.name{
@@ -2861,6 +2911,13 @@ ion-side-menu .has-header{
 		    line-height: 30px;
 		    height: 20px;
 		    font-size: 18px;
+			}
+		}
+		.postFreeQuestion{
+			text-align:center;
+			button{
+				width:85%;
+				height: 40px;
 			}
 		}
 	}
@@ -3168,6 +3225,13 @@ ion-side-menu .has-header{
     	padding-right: 18px;
 		}
 	}
+
+	.floatingBtnText{
+		left:135px;
+		&.floatBtn{
+			left:250px;
+		}
+	}
 }
 
 /*************** iPhone 6 ***************/
@@ -3193,6 +3257,12 @@ ion-side-menu .has-header{
 		.paddingLRPlus21{
 	    padding-left: 18px;
     	padding-right: 18px;
+		}
+	}
+	.floatingBtnText{
+		left:200px;
+		&.floatBtn{
+			left:320px;
 		}
 	}
 }
@@ -3239,6 +3309,20 @@ ion-side-menu .has-header{
 	.welcome-view .authFields .inputFields label .md-input:focus ~ .highlight-custom.password{
 		height:2px;
 	}
+	.floatingBtnText{
+		left:175px;
+		&.floatBtn{
+			left:300px;
+		}
+	}
+}
+@media screen and (device-width: 360px){
+	.floatingBtnText{
+		left:175px;
+		&.floatBtn{
+			left:300px;
+		}
+	}	
 }
 
 .a0-lock-container{

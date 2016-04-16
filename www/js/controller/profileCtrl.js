@@ -19,7 +19,11 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
     $scope.profileInfo = angular.copy($rootScope.profileData);
     console.log($scope.profileInfo)
     if($scope.loginType == "user"){
-      $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
+      if($scope.profileInfo.profilePic){
+        $scope.profileImage = angular.copy($scope.profileInfo.profilePic);
+      }else{
+        $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
+      }
       $timeout(function(){
         $scope.getBroadcastQuestion();
       });
@@ -41,7 +45,11 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
       	}else{
           localStorage.setItem("profile",JSON.stringify(data));
       		$scope.profileInfo = angular.copy($rootScope.profileData);
-          $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
+          if($scope.profileInfo.profilePic){
+            $scope.profileImage = angular.copy($scope.profileInfo.profilePic);
+          }else{
+            $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
+          }
           $scope.getBroadcastQuestion();
       	}
       },function(data){

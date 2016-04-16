@@ -44,16 +44,22 @@ askmonkApp.controller('yProfileCtrl', ['$scope','$state','$stateParams','utility
 		      title: 'Monk is not available right now. Please try again after some time or post open question.',
 		      // template:'Do u wish to continue ?',
 		      buttons: [
-		        {text: 'Ok',type:'button-ios button-clear',
-		          onTap: function(e) {
-		            return true;
-		          }
-		        }
-		      ]
+			      {text: 'Yes',type:'button-ios button-clear',
+			        onTap: function(e) {
+			          return true;
+			        }
+			      },
+			      {text:'No',type:'button-ios button-clear noBold',
+			        onTap: function(e) {
+			          return false;
+			        }
+			      }
+			    ]
 		    });
 		    confirmPopup.then(function(res) {
-		      if(res) {
+		      if(res){
 		        console.log('You are sure');
+		        $state.go('app.askQuestion');
 		      } else {
 		        console.log('You are not sure');
 		      }

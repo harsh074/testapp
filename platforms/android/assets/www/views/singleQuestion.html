@@ -112,7 +112,9 @@
   </div>
 
 	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user' && question.status=='asked'">
-		<i class="icon ion-android-add"></i>
-		<!-- <img src="img/flyout_icon.jpg" /> -->
+		<i class="icon ion-android-chat"></i>
 	</div>
+  <div class="floatingBtnText" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user' && question.status=='asked'">
+    <span class="inner">Ask a Question</span>
+  </div>
 </ion-view>

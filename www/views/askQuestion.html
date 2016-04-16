@@ -9,7 +9,7 @@
 				<div class="selectTimeLabel" ng-click="selectTimelineOption()">{{timeLineValueSelected | timeLineFiter}}</div>
 			</div>
 		</div>
-		<div class="askQuestionForm">
+		<div class="askQuestionForm handIcon">
 			<label class="item item-input item-select">
 				<select name="questionCategory" ng-model="askQuestion.questionTag" required ng-change="askQuestionCategory($event, askQuestion.questionTag)">
 					<option value="" disabled selected>Click here for Questions</option>
@@ -56,8 +56,8 @@
 		    <div class="checkbox__checkmark"></div>
 		    <span class="valueTimeLine">
 		    	<span class="monthDuration">{{value.durationMonths | timeLineFiter}}</span><br>
-		    	<a class="fullRate" ng-class="{'cutRate':(getUserCount.makeFirstQuestionHalfRate &&  !getUserCount.totalQuestionsAsked) && !(getUserCount.makeFirstQuestionHalfRate && getUserCount.makeFirstQuestionFree)}">(Rs. {{value.amount}})</a><br>
-		    	<a class="halfRate" ng-if="(getUserCount.makeFirstQuestionHalfRate &&  !getUserCount.totalQuestionsAsked) && !(getUserCount.makeFirstQuestionHalfRate && getUserCount.makeFirstQuestionFree)">(Rs. {{value.amount/2}})</a>
+		    	<a class="fullRate" ng-class="{'cutRate':(getUserCount.makeFirstQuestionHalfRate &&  getUserCount.totalQuestionsAsked==0) && !(getUserCount.makeFirstQuestionHalfRate && getUserCount.makeFirstQuestionFree)}">(Rs. {{value.amount}})</a><br>
+		    	<a class="halfRate" ng-if="(getUserCount.makeFirstQuestionHalfRate && getUserCount.totalQuestionsAsked==0) && !(getUserCount.makeFirstQuestionHalfRate && getUserCount.makeFirstQuestionFree)">(Rs. {{value.amount/2}})</a>
 		    </span>
 		  </label>
 	  </div>

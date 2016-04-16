@@ -1,4 +1,4 @@
-var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place','ionic-timepicker','ionic-native-transitions','ion-datetime-picker','templates']); // ,'templates'
+var askmonkApp = angular.module('askmonkApp', ['ionic','ionMdInput','ionic-datepicker','ionic.rating','tabSlideBox','monospaced.elastic','ion-google-place','ionic-timepicker','ionic-native-transitions','ion-datetime-picker']); // ,'templates'
 
 askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', function($ionicPlatform,$state,$stateParams,CONSTANT,$timeout){
   if(!localStorage.getItem('token')){

@@ -117,7 +117,7 @@
   					<img src="img/sunlogo.png">
   					<div class="paymentInfo">
       				<h2>Askmonk</h2>
-			      	<p ng-if="loginType=='user'">{{item.created_at | date:'MMM dd, yyyy'}}</p>
+			      	<p ng-if="loginType=='user'">{{item.createdAt | date:'MMM dd, yyyy'}}</p>
 			      	<p ng-if="loginType=='monk'">{{item.dateOfPayment | date:'MMM dd, yyyy'}}</p>
 			      </div>
 			      <div class="paymentAmount" ng-if="loginType=='user'">Rs. {{item.amount}}</div>

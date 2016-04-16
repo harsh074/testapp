@@ -18,6 +18,9 @@
 		</div>
 	</ion-content>
 	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user'">
-		<i class="icon ion-android-add"></i>
+		<i class="icon ion-android-chat"></i>
+	</div>
+	<div class="floatingBtnText" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user'">
+		<span class="inner">Ask a Question</span>
 	</div>
 </ion-modal-view>

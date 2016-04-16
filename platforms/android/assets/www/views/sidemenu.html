@@ -21,13 +21,13 @@
   <ion-side-menu side="left" is-enabled="!isComingFromSignUp">
      <ion-header-bar class="bar-stable sideMenuTop">
       <div class="overlayBlack"></div>
-      <div class="imgHldr" style="background-image:url('img/sidemenu_bg.jpg')" ng-if="loginType=='user'"></div>
+      <div class="imgHldr" style="background-image:url('{{profilePic}}')" ng-if="loginType=='user'"></div>
       <div class="imgHldr" style="background-image:url('{{profileImage}}')" ng-if="loginType=='monk'"></div>
       
    </ion-header-bar>
       <div class="shortSideMenuProfile">
         <div class="sProfilePic">
-          <img src="img/sidemenu_bg.jpg" ng-if="loginType=='user'">
+          <img ng-src="{{profilePic}}" ng-if="loginType=='user'">
           <img ng-src="{{profileImage}}" ng-if="loginType=='monk'">
         </div>
         <div class="sProfileName">{{sideMenuName}}</div>
