@@ -183,5 +183,11 @@
             "url": "https://github.com/samyam-a/PayTM-PhoneGap-Plugin.git",
             "subdir": "."
         }
+    },
+    "cordova-plugin-google-analytics": {
+        "source": {
+            "type": "local",
+            "path": "..\\Custom-plugin\\google-analytics-plugin"
+        }
     }
 }

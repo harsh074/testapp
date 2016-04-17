@@ -103,6 +103,10 @@
                         {
                             "xml": "<feature name=\"PayTM\"><param name=\"android-package\" value=\"com.paytm.cordova.PayTM\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"UniversalAnalytics\"><param name=\"android-package\" value=\"com.danielcwilson.plugins.analytics.UniversalAnalyticsPlugin\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -155,6 +159,22 @@
                         {
                             "xml": "<activity android:configChanges=\"keyboard|keyboardHidden|orientation|screenSize\" android:name=\"com.razorpay.CheckoutActivity\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<receiver android:enabled=\"true\" android:name=\"com.google.android.gms.analytics.AnalyticsReceiver\"><intent-filter><action android:name=\"com.google.android.gms.analytics.ANALYTICS_DISPATCH\" /></intent-filter></receiver>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:enabled=\"true\" android:exported=\"false\" android:name=\"com.google.android.gms.analytics.AnalyticsService\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<receiver android:exported=\"true\" android:name=\"com.google.android.gms.analytics.CampaignTrackingReceiver\"><intent-filter><action android:name=\"com.android.vending.INSTALL_REFERRER\" /></intent-filter></receiver>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:name=\"com.google.android.gms.analytics.CampaignTrackingService\" />",
+                            "count": 1
                         }
                     ],
                     "/*": [
@@ -164,7 +184,7 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-                            "count": 1
+                            "count": 2
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
@@ -172,6 +192,10 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
                             "count": 1
                         }
                     ],
@@ -348,6 +372,9 @@
             "MERCHANT_ID": "HOGANT74481634116747",
             "INDUSTRY_TYPE_ID": "Retail",
             "WEBSITE": "HOGANTWAP",
+            "PACKAGE_NAME": "com.askmonk.in"
+        },
+        "cordova-plugin-google-analytics": {
             "PACKAGE_NAME": "com.askmonk.in"
         }
     },

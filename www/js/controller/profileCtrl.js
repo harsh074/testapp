@@ -1,12 +1,21 @@
 askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$rootScope','$timeout','$ionicPopup','$stateParams','$ionicModal','$filter', function($scope, $state, utility,CONSTANT,$rootScope,$timeout,$ionicPopup,$stateParams,$ionicModal,$filter){
   
   $scope.floatingBtnAction = false;
+  $scope.floatingBtnLabel = false;
 	$scope.$on('$ionicView.enter', function(){
     $scope.floatingBtnAction = true;
     // $scope.showLoader();
+    $timeout(function(){
+      $scope.floatingBtnLabel = true;
+    },0);
     if(CONSTANT.isDevice){
       cordova.plugins.Keyboard.close();
     }
+   /* $timeout(function(){
+      if(CONSTANT.googleAnalyticsStatus){
+        analytics.trackView("Home Page");
+      }
+    }, 1500);*/
   });
 
   var indexGetQuestion = 0;
@@ -43,6 +52,7 @@ askmonkApp.controller('profileCtrl', ['$scope','$state','utility','CONSTANT','$r
           CONSTANT.isComingFromSignUp = true;
           $state.go('app.editProfile');
       	}else{
+          // alert(JSON.stringify(data));
           localStorage.setItem("profile",JSON.stringify(data));
       		$scope.profileInfo = angular.copy($rootScope.profileData);
           if($scope.profileInfo.profilePic){

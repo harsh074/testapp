@@ -9,7 +9,13 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
       $ionicScrollDelegate.$getByHandle('scrollHandle').scrollBottom(true);
 		}, 150);
   }
-
+	
+	$timeout(function(){
+		if(CONSTANT.googleAnalyticsStatus){
+    	analytics.trackView("Ask Question Page");
+		}
+	}, 1500);
+  
   $scope.args = {"partnerName":"","partnerBirthPlace":"","partnerBirthTime":"","partnerDOB":"","partnerGender":""};
 	$scope.showQuestion = true;
 	$scope.askQuestion = {"email":localStorage.getItem('email'), "userId":localStorage.getItem('userId'),"question":"","questionTag":"","isDirect":false,"moneyType":""}
@@ -119,7 +125,7 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 	$scope.selectedTimeline = {'value':"basic"};
 	$scope.timeLineValueSelected = "6";
 	$scope.selectTimelineOption = function(){
-		if(!$scope.getUserCount.totalQuestionsAsked){
+		if($scope.getUserCount.totalQuestionsAsked == 0){
 			if(!$scope.getUserCount.makeFirstQuestionHalfRate && $scope.getUserCount.makeFirstQuestionFree){
 				$scope.showMessage('Free question has fixed duration of 6 months');
 			}else{
@@ -279,6 +285,10 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
     	return;
     }
 		if($scope.askOtherQuestion.question){
+			if($scope.askOtherQuestion.question.length<10){
+        $scope.showMessage("Minimum character length is 10.");
+        return;
+      }
 			$scope.askQuestion.question = null;
 			$scope.askQuestion.question = angular.copy($scope.askOtherQuestion.question);
 			$scope.hideLoader();
@@ -337,11 +347,24 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
 askmonkApp.controller('paymentDetailsModalCtrl', ['$scope','base64Encoding','CONSTANT', function($scope,base64Encoding,CONSTANT){
 	$scope.paymentAskQuestion =  angular.copy($scope.askQuestion);
 	var selectedTimeline = $scope.timeLineJson[$scope.paymentAskQuestion.moneyType];
+	
+	// $scope.getUserCount = {makeFirstQuestionFree: true, makeFirstQuestionHalfRate: false, emailVerified: true, totalQuestionsAsked: 0, totalQuestionsRated: 0}
+	$scope.freeQuestion = ($scope.getUserCount.makeFirstQuestionFree && !$scope.getUserCount.makeFirstQuestionHalfRate && $scope.getUserCount.totalQuestionsAsked==0) ? true : false;
+	$scope.halfRateQuestion = ($scope.getUserCount.makeFirstQuestionHalfRate && !$scope.getUserCount.makeFirstQuestionFree && $scope.getUserCount.totalQuestionsAsked == 0) ? true : false
+	
+	// console.log($scope.freeQuestion,$scope.halfRateQuestion);
+	// console.log(selectedTimeline,$scope.getUserCount);
+	
 	$scope.totalAmount = selectedTimeline.amount;
+	if($scope.freeQuestion){
+		$scope.totalAmount = 0;
+	}
+	if($scope.halfRateQuestion){
+		$scope.totalAmount = selectedTimeline.amount/2;
+	}
 	$scope.serviceTax = $scope.totalAmount*0.15;
 	$scope.basicCost = $scope.totalAmount - $scope.serviceTax;
 
-	console.log(selectedTimeline)
 
 	$scope.payWithPayU = function(){
 		$scope.showLoader();
@@ -394,6 +417,12 @@ askmonkApp.controller('paymentDetailsModalCtrl', ['$scope','base64Encoding','CON
 		var phone = JSON.parse(localStorage.profile).mobile;
 		var amount = $scope.totalAmount;
 		window.plugins.paytm.startPayment(order_id, customer_id, email, phone, amount, successCallback, failureCallback);
+	}
+
+	// Post free question Directly
+	$scope.postFreeQuestion = function(){
+		$scope.showLoader();
+		$scope.askQuestionButton()
 	}
 
 }]);

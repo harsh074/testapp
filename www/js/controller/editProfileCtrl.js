@@ -2,6 +2,13 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
   if($scope.authenticated){
     $scope.loginType = CONSTANT.loginType;
 
+    // $scope.showLoader();
+    $scope.showEditForm = false;
+    $timeout(function(){
+      // $scope.hideLoader();
+      $scope.showEditForm = true;
+    }, 300);
+
     if($scope.loginType == 'user'){
       $scope.showLoader();
       utility.getUserCount()
@@ -43,7 +50,7 @@ askmonkApp.controller('editProfileCtrl', ['$scope','$state','CONSTANT','$rootSco
       if($scope.editProfileData.birthTime){
         angular.element(document.getElementsByClassName('ion-birth-time')).addClass('used');
       }
-    }, 50);
+    }, 350);
 
     if($scope.editProfileData.dob){
       $scope.showDate = true;

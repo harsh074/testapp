@@ -9,7 +9,13 @@ askmonkApp.controller('askQuestionCtrl', ['$scope','$state','utility','$ionicScr
       $ionicScrollDelegate.$getByHandle('scrollHandle').scrollBottom(true);
 		}, 150);
   }
-
+	
+	$timeout(function(){
+		if(CONSTANT.googleAnalyticsStatus){
+    	analytics.trackView("Ask Question Page");
+		}
+	}, 1500);
+  
   $scope.args = {"partnerName":"","partnerBirthPlace":"","partnerBirthTime":"","partnerDOB":"","partnerGender":""};
 	$scope.showQuestion = true;
 	$scope.askQuestion = {"email":localStorage.getItem('email'), "userId":localStorage.getItem('userId'),"question":"","questionTag":"","isDirect":false,"moneyType":""}
@@ -342,12 +348,12 @@ askmonkApp.controller('paymentDetailsModalCtrl', ['$scope','base64Encoding','CON
 	$scope.paymentAskQuestion =  angular.copy($scope.askQuestion);
 	var selectedTimeline = $scope.timeLineJson[$scope.paymentAskQuestion.moneyType];
 	
-	// $scope.getUserCount = {makeFirstQuestionFree: false, makeFirstQuestionHalfRate: true, emailVerified: true, totalQuestionsAsked: 0, totalQuestionsRated: 2}
+	// $scope.getUserCount = {makeFirstQuestionFree: true, makeFirstQuestionHalfRate: false, emailVerified: true, totalQuestionsAsked: 0, totalQuestionsRated: 0}
 	$scope.freeQuestion = ($scope.getUserCount.makeFirstQuestionFree && !$scope.getUserCount.makeFirstQuestionHalfRate && $scope.getUserCount.totalQuestionsAsked==0) ? true : false;
 	$scope.halfRateQuestion = ($scope.getUserCount.makeFirstQuestionHalfRate && !$scope.getUserCount.makeFirstQuestionFree && $scope.getUserCount.totalQuestionsAsked == 0) ? true : false
 	
-	console.log($scope.freeQuestion,$scope.halfRateQuestion);
-	console.log(selectedTimeline,$scope.getUserCount);
+	// console.log($scope.freeQuestion,$scope.halfRateQuestion);
+	// console.log(selectedTimeline,$scope.getUserCount);
 	
 	$scope.totalAmount = selectedTimeline.amount;
 	if($scope.freeQuestion){

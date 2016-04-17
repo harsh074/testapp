@@ -12,6 +12,7 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
   $scope.question = {"askedQuestion":[],"answeredQuestion":[],"ratedQuestion":[]};
 
   $scope.floatingBtnAction = false;
+  $scope.floatingBtnLabel = false;
   $scope.$on('$ionicView.beforeEnter', function(){
     // $scope.showLoader();
   });
@@ -19,14 +20,19 @@ askmonkApp.controller('dashboardCtrl', ['$scope','$state','utility','$timeout','
   $scope.$on('$ionicView.enter', function(){
     $scope.floatingBtnAction = true;
     // $scope.showLoader();
+    $timeout(function(){
+      $scope.floatingBtnLabel = true;
+    }, 0);
   });
   window.addEventListener('native.keyboardshow', keyboardHandler);
   window.addEventListener('native.keyboardhide', keyboardHandler);
   function keyboardHandler(e){
     if(e.type=="native.keyboardshow"){
       $scope.floatingBtnAction = false;
+      $scope.floatingBtnLabel = false;
     }else{
       $scope.floatingBtnAction = true;
+      // $scope.floatingBtnLabel = true;
     }
   }
   $scope.loginType = CONSTANT.loginType;

@@ -8,9 +8,9 @@
 		</div>
 	</ion-content>
 	<ion-content class="row singleQuestion broadcastQuestion paddingLRPlus21" scroll="true" delegate-handle="mainScroll">
-		<div class="questionData">
+		<div class="questionData" ng-if="question">
       
-      <div class="question">{{question.articleHeading|capitalize}}</div>
+      <div class="question">{{question.articleHeading}}</div>
       <div class="middleSec">
         <p class="answer">{{question.articleBody}}</p>
       	<p class="yogiName">Posted by {{question.userName ? question.userName: "Askmonk"}}</p>
@@ -23,10 +23,4 @@
       </div>
 		</div> 
 	</ion-content>
-	<div ng-click="askQuestion()" class="floatingButton" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user' && question.status=='asked'">
-		<i class="icon ion-android-chat"></i>
-	</div>
-	<div class="floatingBtnText" ng-class="{'floatBtn':floatingBtnAction}" ng-if="loginType=='user' && question.status=='asked'">
-		<span class="inner">Ask a Question</span>
-	</div>
 </ion-view>

@@ -50,7 +50,7 @@
 		</div>
 		<div class="bottomPart">
 			<!-- <p>Version 1.0.0</p> -->
-			<p>v.201604150020</p>
+			<p>v.201604171445</p>
 		</div>
 	</ion-content>
 
@@ -117,7 +117,7 @@
   					<img src="img/sunlogo.png">
   					<div class="paymentInfo">
       				<h2>Askmonk</h2>
-			      	<p ng-if="loginType=='user'">{{item.created_at | date:'MMM dd, yyyy'}}</p>
+			      	<p ng-if="loginType=='user'">{{item.createdAt | date:'MMM dd, yyyy'}}</p>
 			      	<p ng-if="loginType=='monk'">{{item.dateOfPayment | date:'MMM dd, yyyy'}}</p>
 			      </div>
 			      <div class="paymentAmount" ng-if="loginType=='user'">Rs. {{item.amount}}</div>

@@ -2272,29 +2272,42 @@ ion-side-menu .has-header{
 	position: absolute;
   font-size: 20px;
   white-space: nowrap;
-  display: inline-block;
-  line-height: 17px;
+  line-height: 15px;
   z-index: 13;
   color: #fff;
   right: 73px;
   bottom: 34px;
-  left:226px;
+  left:234px;
+  display:inline-block;
   overflow:hidden;
-  background-color: #00BCD2;
-	padding: 6px 10px;
   border-bottom-left-radius: 15px;
 	border-top-left-radius: 15px;
-	-webkit-transition: all 2.5s cubic-bezier(0.4, 0, 1, 1);
-	-moz-transition: all 2.5s cubic-bezier(0.4, 0, 1, 1);
-	-o-transition: all 2.5s cubic-bezier(0.4, 0, 1, 1);
-	transition: all 2.5s cubic-bezier(0.4, 0, 1, 1);
+  // box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.38);
+	-webkit-transition: all 2s cubic-bezier(0.4, 0, 1, 1);
+	-moz-transition: all 2s cubic-bezier(0.4, 0, 1, 1);
+	-o-transition: all 2s cubic-bezier(0.4, 0, 1, 1);
+	transition: all 2s cubic-bezier(0.4, 0, 1, 1);
   &.floatBtn{
   	left:360px;
 		transition-delay: 3s;
+		.inner{
+			// visibility:visible;
+			transform: scale(1);
+	  	opacity: 1;
+	  	transition-delay: 0ms;
+		}
   }
   .inner{
+  	// visibility:hidden;
   	display:block;
-  	font-size: 15px;
+  	background-color: #00BCD2;
+  	padding: 6px 10px;
+  	font-size: 14px;
+  	-webkit-transform: scale(0);
+	  transform: scale(0);
+	  opacity: 0;
+	  transition: all .3s cubic-bezier(.55,0,.55,.2);
+	  transition-delay: 3ms;
   }
 }
 
@@ -2341,8 +2354,8 @@ ion-side-menu .has-header{
 	}
 }
 .image-loader-container svg{
-	width: 50px;
-  height: 50px;
+	width: 30px;
+  height: 30px;
 }
 .loading-container .loading{
 	padding:0px;
@@ -2780,13 +2793,20 @@ ion-side-menu .has-header{
 	.topPart{
 		background-color:$top-portion-color;
     padding: 13px 18px;
-    color: rgb(255, 255, 255);
+    color: #fff;
     .avatar{
 	    display: inline-block;
   	  vertical-align: top;
-      height: 74px;
-    	width: 74px;
+      height: 75px;
+    	width: 75px;
     	border-radius: 50%;
+    	img{
+		    height: 75px;
+		    width: 75px;
+		    display: inline-block;
+		    border-radius: 50%;
+		    vertical-align: top;
+    	}
     }
     .userInfo{
 	    display: inline-block;
@@ -2806,7 +2826,7 @@ ion-side-menu .has-header{
     padding: 15px 18px;
     dl{
     	dt{
-    		text-align:right;
+    		// text-align:right;
     		&:after{
     			content:":";
     		}
@@ -2889,13 +2909,13 @@ ion-side-menu .has-header{
 			.payumoney{
 				padding:25px 0;
 				margin-bottom:0px;
+		    border-style: solid;
+		    border-width: 1px 0 0 0;
+		    border-color: #ddd;
 			}
 			.paytm{
 				padding:25px 0;
 				margin-bottom:0px;
-		    border-style: solid;
-		    border-width: 0 0 0px 0;
-		    border-color: #ddd;
 			}
 			.name{
 		    color: black;
@@ -2916,7 +2936,7 @@ ion-side-menu .has-header{
 		.postFreeQuestion{
 			text-align:center;
 			button{
-				width:85%;
+				width:100%;
 				height: 40px;
 			}
 		}
@@ -3227,7 +3247,7 @@ ion-side-menu .has-header{
 	}
 
 	.floatingBtnText{
-		left:135px;
+		left:143px;
 		&.floatBtn{
 			left:250px;
 		}
@@ -3260,9 +3280,9 @@ ion-side-menu .has-header{
 		}
 	}
 	.floatingBtnText{
-		left:200px;
+		left:195px;
 		&.floatBtn{
-			left:320px;
+			left:310px;
 		}
 	}
 }
@@ -3310,7 +3330,7 @@ ion-side-menu .has-header{
 		height:2px;
 	}
 	.floatingBtnText{
-		left:175px;
+		left:183px;
 		&.floatBtn{
 			left:300px;
 		}
@@ -3318,7 +3338,7 @@ ion-side-menu .has-header{
 }
 @media screen and (device-width: 360px){
 	.floatingBtnText{
-		left:175px;
+		left:183px;
 		&.floatBtn{
 			left:300px;
 		}

@@ -3,10 +3,12 @@ askmonkApp.controller('broadcastQuestionCtrl', ['$scope','$state','utility','$st
 	if(!$scope.authenticated){
     $state.go('login');
   }
-  $scope.floatingBtnAction = false;
   $scope.$on('$ionicView.enter', function(){
-    $scope.floatingBtnAction = true;
-    // $scope.showLoader();
+    /*$timeout(function(){
+      if(CONSTANT.googleAnalyticsStatus){
+        analytics.trackView("View Article Page");
+      }
+    }, 1500);*/
   });
 
   $scope.loginType = CONSTANT.loginType;

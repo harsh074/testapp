@@ -3,9 +3,14 @@ askmonkApp.controller('singleQuestionCtrl', ['$scope','$state','utility','$timeo
     $state.go('login');
   }
   $scope.floatingBtnAction = false;
+  $scope.floatingBtnLabel = false;
+
   $scope.$on('$ionicView.enter', function(){
     $scope.floatingBtnAction = true;
     // $scope.showLoader();
+    $timeout(function(){
+      $scope.floatingBtnLabel = true;
+    }, 0);
   });
 
   if(localStorage.getItem('questionStatus') == "underObservation"){
@@ -415,7 +420,11 @@ askmonkApp.controller('writeSolutionModalPopupCtrl', ['$scope','$timeout', funct
 
 askmonkApp.controller('userDetailModalPopupCtrl', ['$scope','getMoonSign', function($scope,getMoonSign){
   $scope.profileInfo = angular.copy(getMoonSign($scope.question));
-  $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
+  if($scope.question.userProfilePic){
+    $scope.profileImage = $scope.question.userProfilePic;
+  }else{
+    $scope.profileImage = 'img/moonSign/'+$scope.profileInfo.moonSign+'.png';
+  }
 }]);
 
 askmonkApp.controller('viewPartnerDetailModalCtrl', ['$scope','getMoonSign', function($scope,getMoonSign){

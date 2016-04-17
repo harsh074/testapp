@@ -8,7 +8,7 @@
     </div>
   </ion-content>
 	<ion-content class="row paddingLRPlus21 questionBottom" scroll="true">
-		<div class="list editProfile">
+		<div class="list editProfile" ng-if="showEditForm">
       <ion-md-input placeholder="Full Name" autofocus hightlight-color="calm" type="text" ng-model="editProfileData.name"></ion-md-input>
       <ion-md-input placeholder="Mobile" hightlight-color="custom" type="number" ng-model="editProfileData.mobile" ng-if="loginType=='user'"></ion-md-input>
       <label class="item item-input item-md-label" ng-if="loginType=='user'">

@@ -8,5 +8,10 @@ askmonkApp.constant('CONSTANT', {
   pushSenderID:"915609605128",
   razorPayKey:"rzp_test_Gyvc5rLmpetSzJ",
   razorPayImage:"https://i.imgur.com/BaLhC5I.png",
-  PRODUCTION_MODE:false
+  google:{
+    googlePlusAndroidKey:"915609605128-u216nkp9epffsf24mtgeu7qe7b1g2g7a.apps.googleusercontent.com",
+    googleAnalyticsKey:"UA-75134245-2",// Prod-Askmonk: 
+  },
+  googleAnalyticsStatus:false,
+  productionMode:false
 });

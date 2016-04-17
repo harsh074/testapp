@@ -1,6 +1,6 @@
 askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ionicScrollDelegate','$timeout','$rootScope','$stateParams','$ionicModal','$ionicSlideBoxDelegate','base64Encoding','$q', function($scope, $state,utility,CONSTANT,$ionicScrollDelegate,$timeout,$rootScope,$stateParams,$ionicModal,$ionicSlideBoxDelegate,base64Encoding,$q){
   // console.log(base64Encoding.encode(JSON.stringify(a)));
-  
+
   if(!$scope.authenticated){
     $scope.monkTab = true;
     $scope.userForgetPasswordShow = false;
@@ -20,6 +20,9 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
 
     $scope.$on('$ionicView.loaded',function(){
       $timeout(function(){
+        if(CONSTANT.googleAnalyticsStatus){
+          analytics.trackView("Login");
+        }
         for(var i=1;i<4;i++){
           var videoTag = angular.element(document.getElementById('video'+i));
           videoTag[0].load();
@@ -126,6 +129,9 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       $scope.showLoader();
       utility.login($scope.args)
       .then(function(data){
+        if(CONSTANT.googleAnalyticsStatus){
+          analytics.trackEvent('Login', 'Click', 'User_Login_Button', 1);
+        }
         $scope.args.password = "";
         $scope.setAuth(true);
         localStorage.setItem('loginType',"user");
@@ -154,6 +160,9 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       }
       utility.monkLogin($scope.argsMonk)
       .then(function(data){
+        if(CONSTANT.googleAnalyticsStatus){
+          analytics.trackEvent('Login', 'Click', 'Monk_Login_Button', 1);
+        }
         $scope.argsMonk.password = "";
         $scope.setAuth(true);
         localStorage.setItem('loginType',"monk");
@@ -208,6 +217,9 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
           localStorage.setItem("email",data.email);
           utility.login({"email":data.email,"password":$scope.argsSignup.password})
           .then(function(dataLogin){
+            if(CONSTANT.googleAnalyticsStatus){
+              analytics.trackEvent('Sign Up', 'Click', 'User_Signup_Button', 1);
+            }
             $scope.argsSignup = {"name":"","email":"","password":""};
             $scope.conpassword = {"pass":""};
             $rootScope.token = localStorage.getItem('token');
@@ -249,6 +261,9 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       $scope.showLoader();
       utility.forgetUserPassword(base64Encoding.encode($scope.args.email))
       .then(function(data){
+        if(CONSTANT.googleAnalyticsStatus){
+          analytics.trackEvent('Forgot Password', 'Click', 'User_Forgot_Password_Submit', 1);
+        }
         $scope.hideLoader();
         $scope.userLoginForm();
         $scope.showMessage('Mail sent');
@@ -266,6 +281,9 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       $scope.showLoader();
       utility.resendValidationUser(base64Encoding.encode($scope.args.email))
       .then(function(data){
+        if(CONSTANT.googleAnalyticsStatus){
+          analytics.trackEvent('Resend Validation', 'Click', 'User_Resend_Validation_Submit', 1);
+        }
         $scope.hideLoader();
         $scope.userLoginForm();
         $scope.showMessage('Mail sent');
@@ -283,6 +301,9 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
       $scope.showLoader();
       utility.forgetMonkPassword(base64Encoding.encode($scope.argsMonk.email))
       .then(function(data){
+        if(CONSTANT.googleAnalyticsStatus){
+          analytics.trackEvent('Forgot Password', 'Click', 'Monk_Forgot_Password_Submit', 1);
+        }
         $scope.hideLoader();
         $scope.monkLoginForm();
         $scope.showMessage('Mail sent');
@@ -308,13 +329,16 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
 
     $scope.userGoogleLogin = function(){
       $scope.showLoader();
-      window.plugins.googleplus.login({'androidApiKey': '915609605128-f9vqg6urf8p1718lqvfm51aulv91f95k.apps.googleusercontent.com'},
+      window.plugins.googleplus.login({'androidApiKey':CONSTANT.google.googlePlusAndroidKey},
       function (obj) {
         // alert(JSON.stringify(obj),"success");
         // var obj = {"email":"harsh.agarwal1112+16@gmail.com","displayName":"harsh9","gender":"male"};
         utility.googleOauth(obj)
         .then(function(data){
           // alert(JSON.stringify(data),"Server Responce on google login");
+          if(CONSTANT.googleAnalyticsStatus){
+            analytics.trackEvent('Login', 'Click', 'User_Google_Login_Button', 1);
+          }
           $scope.setAuth(true);
           localStorage.setItem('loginType',"user");
           localStorage.setItem('token',data.id);
@@ -364,6 +388,10 @@ askmonkApp.controller('loginCtrl', ['$scope','$state','utility','CONSTANT','$ion
         image : "http://graph.facebook.com/" + profileInfo.id + "/picture?type=large"
       })
       .then(function(data){
+        if(CONSTANT.googleAnalyticsStatus){
+          analytics.trackEvent('Login', 'Click', 'User_Facebook_Login_Button', 1);
+        }
+        // alert(JSON.stringify(data));
         $scope.setAuth(true);
         localStorage.setItem('loginType',"user");
         localStorage.setItem('token',data.id);

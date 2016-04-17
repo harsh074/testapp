@@ -35,10 +35,18 @@ askmonkApp.run(['$ionicPlatform','$state','$stateParams','CONSTANT','$timeout', 
 
     CONSTANT.isDevice = ionic.Platform.device().available;
     // ionic.Platform.isFullScreen = false;
+   
+    // Google Analytics
+    if(typeof analytics !== undefined) {
+      if(CONSTANT.googleAnalyticsStatus){
+        analytics.startTrackerWithId(CONSTANT.google.googleAnalyticsKey);
+      }
+    }
     
   });
   
-  if(CONSTANT.PRODUCTION_MODE) {
+  
+  if(CONSTANT.productionMode) {
     if(window.console && window.console.log){
       window.console.log = function() {};
     }

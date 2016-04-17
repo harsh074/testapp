@@ -301,6 +301,22 @@ askmonkApp.controller('settingCtrl', ['$scope','utility','$ionicHistory','$rootS
     $scope.showLoader();
   	utility.logout()
     .then(function(data){
+      // For Social Logout
+      var loginSocialStatus = JSON.parse(localStorage.profile).isSocial;
+      if(loginSocialStatus){
+        if(loginSocialStatus == "Google"){
+          window.plugins.googleplus.logout(function (msg) {
+            console.log(msg);
+          });
+        }else if(loginSocialStatus == "Facebook"){
+          facebookConnectPlugin.logout(function(){
+            console.log("Facebook Logout");
+          },
+          function(fail){
+            console.log(fail);
+          });
+        }
+      }
       $state.go('login');
       $scope.setAuth(false);
       $ionicHistory.clearCache();

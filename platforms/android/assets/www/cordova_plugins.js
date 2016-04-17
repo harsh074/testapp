@@ -158,6 +158,13 @@ module.exports = [
         "clobbers": [
             "window.plugins.paytm"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-google-analytics/www/analytics.js",
+        "id": "cordova-plugin-google-analytics.UniversalAnalytics",
+        "clobbers": [
+            "analytics"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -183,7 +190,8 @@ module.exports.metadata =
     "cordova-plugin-splashscreen": "3.2.1-dev",
     "com.phonegap.plugins.nativesettingsopener": "1.0",
     "phonegap-facebook-plugin": "0.12.0",
-    "com.paytm.cordova": "0.0.1"
+    "com.paytm.cordova": "0.0.1",
+    "cordova-plugin-google-analytics": "0.8.1"
 }
 // BOTTOM OF METADATA
 });
